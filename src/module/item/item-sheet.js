@@ -36,16 +36,19 @@ export class AcksItemSheet extends ItemSheet {
   /** @override */
   get template() {
     const path = "systems/acks/templates/items/";
-    return `${path}/${this.item.data.type}-sheet.html`;
+    return `${path}/${this.item.type}-sheet.html`;
   }
 
   /**
    * Prepare data for rendering the Item sheet
    * The prepared data object contains both the actor data as well as additional sheet options
    */
-  getData() {
+  async getData() {
     const data = super.getData();
     data.config = CONFIG.ACKS;
+    data.system = this.object.system;
+    data.description = await TextEditor.enrichHTML(this.object.system.description, { async: true })
+
     return data;
   }
 
@@ -57,7 +60,7 @@ export class AcksItemSheet extends ItemSheet {
    */
   activateListeners(html) {
     html.find('input[data-action="add-tag"]').keypress((ev) => {
-      if (event.which == 13) {
+      if (ev.which == 13) {
         let value = $(ev.currentTarget).val();
         let values = value.split(',');
         this.object.pushTag(values);
@@ -68,11 +71,11 @@ export class AcksItemSheet extends ItemSheet {
       this.object.popTag(value);
     });
     html.find('a.melee-toggle').click(() => {
-      this.object.update({data: {melee: !this.object.data.data.melee}});
+      this.object.update({ 'system.melee': !this.object.system.melee} );
     });
 
     html.find('a.missile-toggle').click(() => {
-      this.object.update({data: {missile: !this.object.data.data.missile}});
+      this.object.update({ 'system.missile': !this.object.system.missile} );
     });
 
     super.activateListeners(html);

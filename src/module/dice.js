@@ -144,12 +144,12 @@ export class AcksDice {
     result.target = data.roll.thac0;
 
     const targetAc = data.roll.target
-      ? data.roll.target.actor.data.data.ac.value
+      ? data.roll.target.actor.system.ac.value
       : 9;
     const targetAac = data.roll.target
-      ? data.roll.target.actor.data.data.aac.value
+      ? data.roll.target.actor.system.aac.value
       : 0;
-    result.victim = data.roll.target ? data.roll.target.data.name : null;
+    result.victim = data.roll.target ? data.roll.target.name : null;
 
     const hfh = game.settings.get("acks", "exploding20s")
     const die = roll.dice[0].total
@@ -164,16 +164,7 @@ export class AcksDice {
           }
         );
         return result;
-      } else if (roll.total < targetAac + 10 && die < 20) {
-        result.details = game.i18n.format(
-          "ACKS.messages.AttackAscendingFailure",
-          {
-            result: roll.total - 10,
-            bonus: result.target,
-          }
-        );
-        return result;
-      } else if (roll.total < targetAac + 10 && hfh) {
+      } else if (roll.total < targetAac + 10 && (die < 20 || hfh)) {
         result.details = game.i18n.format(
           "ACKS.messages.AttackAscendingFailure",
           {
@@ -234,8 +225,10 @@ export class AcksDice {
     };
 
     // Optionally include a situational bonus
-    if (form !== null && form.bonus.value) parts.push(form.bonus.value);
-
+    if (form !== null && form.bonus.value) {
+      parts.push(form.bonus.value);
+    }
+    
     const roll = new Roll(parts.join("+"), data);
     await roll.evaluate({
       async: true,

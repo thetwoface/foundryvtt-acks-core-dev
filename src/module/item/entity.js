@@ -13,7 +13,7 @@ export class AcksItem extends Item {
   prepareData() {
     // Set default image
     let img = CONST.DEFAULT_TOKEN;
-    switch (this.data.type) {
+    switch (this.type) {
       case "spell":
         img = "/systems/acks/assets/default/spell.png";
         break;
@@ -30,7 +30,9 @@ export class AcksItem extends Item {
         img = "/systems/acks/assets/default/item.png";
         break;
     }
-    if (!this.data.img) this.data.img = img;
+    if (!this.img) {
+      this.img = img;
+    }
     super.prepareData();
   }
 
@@ -39,24 +41,24 @@ export class AcksItem extends Item {
     html.on("click", ".item-name", this._onChatCardToggleContent.bind(this));
   }
 
-  getChatData(htmlOptions) {
-    const data = duplicate(this.data.data);
+  async getChatData(htmlOptions) {
+    const data = duplicate(this);
 
     // Rich text description
-    data.description = TextEditor.enrichHTML(data.description, htmlOptions);
+    data.description = await TextEditor.enrichHTML(this.system.description, { ...{ async: true }, ...htmlOptions });
+    data.system = this.system;
 
     // Item properties
     const props = [];
-    const labels = this.labels;
 
-    if (this.data.type == "weapon") {
-      data.tags.forEach(t => props.push(t.value));
+    if (this.type == "weapon") {
+      this.system.tags.forEach(t => props.push(t.value));
     }
-    if (this.data.type == "spell") {
-      props.push(`${data.class} ${data.lvl}`, data.range, data.duration);
+    if (this.type == "spell") {
+      props.push(`${this.system.class} ${this.system.lvl}`, this.system.range, this.system.duration);
     }
-    if (data.hasOwnProperty("equipped")) {
-      props.push(data.equipped ? "Equipped" : "Not Equipped");
+    if (this.system.hasOwnProperty("equipped")) {
+      props.push(this.system.equipped ? "Equipped" : "Not Equipped");
     }
 
     // Filter properties and return
@@ -65,21 +67,20 @@ export class AcksItem extends Item {
   }
 
   rollWeapon(options = {}) {
-    let isNPC = this.actor.data.type != "character";
+    let isNPC = this.actor.type != "character";
     const targets = 5;
-    const data = this.data.data;
     let type = isNPC ? "attack" : "melee";
     const rollData =
     {
-      item: this.data,
-      actor: this.actor.data,
+      item: this.toObject(),
+      actor: this.actor.toObject(),
       roll: {
-        save: this.data.data.save,
+        save: this.system.save,
         target: null
       }
     };
 
-    if (data.missile && data.melee && !isNPC) {
+    if ((this.system.missile || this.system.melee) && !isNPC) {
       // Dialog
       new Dialog({
         title: "Choose Attack Range",
@@ -103,7 +104,7 @@ export class AcksItem extends Item {
         default: "melee",
       }).render(true);
       return true;
-    } else if (data.missile && !isNPC) {
+    } else if (this.system.missile && !isNPC) {
       type = "missile";
     }
     this.actor.targetAttack(rollData, type, options);
@@ -111,23 +112,22 @@ export class AcksItem extends Item {
   }
 
   async rollFormula(options = {}) {
-    const data = this.data.data;
-    if (!data.roll) {
+    if (!this.system.roll) {
       throw new Error("This Item does not have a formula to roll!");
     }
 
     const label = `${this.name}`;
-    const rollParts = [data.roll];
+    const rollParts = [this.system.roll];
 
-    let type = data.rollType;
+    let type = this.system.rollType;
 
     const newData = {
-      actor: this.actor.data,
-      item: this.data,
+      actor: this.actor.toObject(),
+      item: this.toObject(),
       roll: {
         type: type,
-        target: data.rollTarget,
-        blindroll: data.blindroll,
+        target: this.system.rollTarget,
+        blindroll: this.system.blindroll,
       },
     };
 
@@ -144,11 +144,7 @@ export class AcksItem extends Item {
   }
 
   spendSpell() {
-    this.update({
-      data: {
-        cast: this.data.data.cast + 1,
-      },
-    }).then(() => {
+    this.update({ 'system.cast': this.system.cast + 1, }).then(() => {
       this.show({ skipDialog: true });
     });
   }
@@ -162,56 +158,55 @@ export class AcksItem extends Item {
       }
       return `<li class='tag'>${fa}${tag}</li>`;
     };
-
-    const data = this.data.data;
-    switch (this.data.type) {
+    
+    let wTags, sTags, roll
+    switch (this.type) {
       case "weapon":
-        let wTags = formatTag(data.damage, "fa-tint");
-        data.tags.forEach((t) => {
+        wTags = formatTag(this.system.damage, "fa-tint");
+        this.system.tags.forEach((t) => {
           wTags += formatTag(t.value);
         });
-        wTags += formatTag(CONFIG.ACKS.saves_long[data.save], "fa-skull");
-        if (data.missile) {
+        wTags += formatTag(CONFIG.ACKS.saves_long[this.system.save], "fa-skull");
+        if (this.system.missile) {
           wTags += formatTag(
-            data.range.short + "/" + data.range.medium + "/" + data.range.long,
+            this.system.range.short + "/" + this.system.range.medium + "/" + this.system.range.long,
             "fa-bullseye"
           );
         }
         return wTags;
       case "armor":
-        return `${formatTag(CONFIG.ACKS.armor[data.type], "fa-tshirt")}`;
+        return `${formatTag(CONFIG.ACKS.armor[this.system.type], "fa-tshirt")}`;
       case "item":
         return "";
       case "spell":
-        let sTags = `${formatTag(data.class)}${formatTag(
-          data.range
-        )}${formatTag(data.duration)}${formatTag(data.roll)}`;
-        if (data.save) {
-          sTags += formatTag(CONFIG.ACKS.saves_long[data.save], "fa-skull");
+        sTags = `${formatTag(data.class)}${formatTag(
+          this.system.range
+        )}${formatTag(this.system.duration)}${formatTag(this.system.roll)}`;
+        if (this.system.save) {
+          sTags += formatTag(CONFIG.ACKS.saves_long[this.system.save], "fa-skull");
         }
         return sTags;
       case "ability":
-        let roll = "";
-        roll += data.roll ? data.roll : "";
-        roll += data.rollTarget ? CONFIG.ACKS.roll_type[data.rollType] : "";
-        roll += data.rollTarget ? data.rollTarget : "";
-        return `${formatTag(data.requirements)}${formatTag(roll)}`;
+        roll = "";
+        roll += this.system.roll ? this.system.roll : "";
+        roll += this.system.rollTarget ? CONFIG.ACKS.roll_type[this.system.rollType] : "";
+        roll += this.system.rollTarget ? this.system.rollTarget : "";
+        return `${formatTag(this.system.requirements)}${formatTag(roll)}`;
     }
     return "";
   }
 
   pushTag(values) {
-    const data = this.data.data;
     let update = [];
-    if (data.tags) {
-      update = duplicate(data.tags);
+    if (this.system.tags) {
+      update = duplicate(this.system.tags);
     }
     let newData = {};
-    var regExp = /\(([^)]+)\)/;
+    let regExp = /\(([^)]+)\)/;
     if (update) {
       values.forEach((val) => {
         // Catch infos in brackets
-        var matches = regExp.exec(val);
+        let matches = regExp.exec(val);
         let title = "";
         if (matches) {
           title = matches[1];
@@ -238,16 +233,15 @@ export class AcksItem extends Item {
       update = values;
     }
     newData.tags = update;
-    return this.update({ data: newData });
+    return this.update({ system: newData });
   }
 
   popTag(value) {
-    const data = this.data.data;
-    let update = data.tags.filter((el) => el.value != value);
+    let update = this.system.tags.filter((el) => el.value != value);
     let newData = {
       tags: update,
     };
-    return this.update({ data: newData });
+    return this.update({ system: newData });
   }
 
   roll() {
@@ -259,7 +253,7 @@ export class AcksItem extends Item {
         this.spendSpell();
         break;
       case "ability":
-        if (this.data.data.roll) {
+        if (this.system.roll) {
           this.rollFormula();
         } else {
           this.show();
@@ -276,21 +270,22 @@ export class AcksItem extends Item {
    * @return {Promise}
    */
   async show() {
+    console.log("Showing item", this);
     // Basic template rendering data
     const token = this.actor.token;
     const templateData = {
-      actor: this.actor,
+      actor: this.actor.toObject(),
       tokenId: token ? `${token.parent.id}.${token.id}` : null,
-      item: this.data,
-      data: this.getChatData(),
+      item: this.toObject(),
+      data: await this.getChatData(),
       labels: this.labels,
       isHealing: this.isHealing,
       hasDamage: this.hasDamage,
-      isSpell: this.data.type === "spell",
+      isSpell: this.type === "spell",
       hasSave: this.hasSave,
       config: CONFIG.ACKS,
     };
-
+    //console.log("Template data", templateData);
     // Render the chat card template
     const template = `systems/acks/templates/chat/item-card.html`;
     const html = await renderTemplate(template, templateData);
@@ -338,6 +333,7 @@ export class AcksItem extends Item {
   static async _onChatCardAction(event) {
     event.preventDefault();
 
+
     // Extract card data
     const button = event.currentTarget;
     button.disabled = true;
@@ -346,14 +342,21 @@ export class AcksItem extends Item {
     const message = game.messages.get(messageId);
     const action = button.dataset.action;
 
+    console.log("Chat card action", action, event, message);
     // Validate permission to proceed with the roll
     const isTargetted = action === "save";
-    if (!(isTargetted || game.user.isGM || message.isAuthor)) return;
-
+    if (!(isTargetted || game.user.isGM || message.isAuthor)) {
+      ui.notifications.warn(
+        `You do not have permission to use this feature for the selected chat card.`
+      );  
+      return;
+    }
     // Get the Actor from a synthetic Token
     const actor = this._getChatCardActor(card);
-    if (!actor) return;
-
+    if (!actor) {
+      ui.notifications.warn('Unable to get the actor')
+      return;
+    }
     // Get the Item
     const item = actor.items.get(card.dataset.itemId);
     if (!item) {
@@ -369,8 +372,12 @@ export class AcksItem extends Item {
     }
 
     // Attack and Damage Rolls
-    if (action === "damage") await item.rollDamage({ event });
-    else if (action === "formula") await item.rollFormula({ event });
+    if (action === "damage") {
+      await item.rollDamage({ event });
+    }
+    else if (action === "formula") {
+      await item.rollFormula({ event });
+    }
     // Saving Throws for card targets
     else if (action == "save") {
       if (!targets.length) {

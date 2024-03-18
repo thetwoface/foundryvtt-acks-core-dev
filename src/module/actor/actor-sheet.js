@@ -5,30 +5,36 @@ export class AcksActorSheet extends ActorSheet {
   constructor(...args) {
     super(...args);
   }
-  /* -------------------------------------------- */
 
-  getData() {
+  /* -------------------------------------------- */
+  async getData() {
     const data = super.getData();
 
     data.config = CONFIG.ACKS;
     // Settings
     data.config.ascendingAC = game.settings.get("acks", "ascendingAC");
     data.config.encumbrance = game.settings.get("acks", "encumbranceOption");
+    data.system = this.actor.system;
 
     // Prepare owned items
     this._prepareItems(data);
+    data.description = await TextEditor.enrichHTML(this.object.system.details.description, { async: true })
+    data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true })
 
+    console.log(data, this.object.system);
     return data;
   }
+  /* -------------------------------------------- */
 
   activateEditor(target, editorOptions, initialContent) {
     // remove some controls to the editor as the space is lacking
-    if (target == "data.details.description") {
+    if (target == "system.details.description") {
       editorOptions.toolbar = "styleselect bullist hr table removeFormat save";
     }
     super.activateEditor(target, editorOptions, initialContent);
   }
 
+  /* -------------------------------------------- */
   /**
    * Organize and classify Owned Items for Character sheets
    * @private
@@ -49,14 +55,19 @@ export class AcksActorSheet extends ActorSheet {
     );
 
     // Sort spells by level
-    var sortedSpells = {};
-    var slots = {};
-    for (var i = 0; i < spells.length; i++) {
-      let lvl = spells[i].data.lvl;
-      if (!sortedSpells[lvl]) sortedSpells[lvl] = [];
-      if (!slots[lvl]) slots[lvl] = 0;
-      slots[lvl] += spells[i].data.cast;
-      sortedSpells[lvl].push(spells[i]);
+    let sortedSpells = {};
+    let slots = {};
+    for (let spell of spells) {
+      let lvl = spell.system.lvl;
+      if (!sortedSpells[lvl]) {
+        sortedSpells[lvl] = [];
+      }
+      if (!slots[lvl]) {
+        slots[lvl] = 0;
+      }
+      slots[lvl] += spell.system.cast;
+      sortedSpells[lvl].push(spell);
+
     }
     data.slots = {
       used: slots,
@@ -69,13 +80,15 @@ export class AcksActorSheet extends ActorSheet {
     };
     data.abilities = abilities;
     data.spells = sortedSpells;
+
   }
 
-  _onItemSummary(event) {
+  /* -------------------------------------------- */
+  async _onItemSummary(event) {
     event.preventDefault();
     let li = $(event.currentTarget).parents(".item"),
       item = this.actor.items.get(li.data("item-id")),
-      description = TextEditor.enrichHTML(item.data.data.description);
+      description = await TextEditor.enrichHTML(item.system.description, { async: true });
     // Toggle summary
     if (li.hasClass("expanded")) {
       let summary = li.parents(".item-entry").children(".item-summary");
@@ -91,19 +104,21 @@ export class AcksActorSheet extends ActorSheet {
     li.toggleClass("expanded");
   }
 
+  /* -------------------------------------------- */
   async _onSpellChange(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (event.target.dataset.field == "cast") {
-      return item.update({ "data.cast": parseInt(event.target.value) });
+      return item.update({ "system.cast": parseInt(event.target.value) });
     } else if (event.target.dataset.field == "memorize") {
       return item.update({
-        "data.memorized": parseInt(event.target.value),
+        "system.memorized": parseInt(event.target.value),
       });
     }
   }
 
+  /* -------------------------------------------- */
   async _resetSpells(event) {
     let spells = $(event.currentTarget)
       .closest(".inventory.spells")
@@ -113,12 +128,13 @@ export class AcksActorSheet extends ActorSheet {
       const item = this.actor.items.get(itemId);
       item.update({
         _id: item.id,
-        "data.cast": 0,
-        "item.data.data.memorized": 0
+        "system.cast": 0,
+        "system.memorized": 0
       });
     });
   }
 
+  /* -------------------------------------------- */
   activateListeners(html) {
     super.activateListeners(html);
 
@@ -136,21 +152,19 @@ export class AcksActorSheet extends ActorSheet {
 
     html.find(".saving-throw .attribute-name a").click((ev) => {
       let actorObject = this.actor;
-      let element = event.currentTarget;
+      let element = ev.currentTarget;
       let save = element.parentElement.parentElement.dataset.save;
-      actorObject.rollSave(save, { event: event });
+      actorObject.rollSave(save, { event: ev });
     });
 
     html.find(".item .item-rollable .item-image").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
       if (item.type == "weapon") {
-        if (this.actor.data.type === "monster") {
-          item.update({
-            data: { counter: { value: item.data.data.counter.value - 1 } },
-          });
+        if (this.actor.type === "monster") {
+          item.update({ 'system.counter.value': item.system.counter.value - 1 });
         }
-          item.rollWeapon({ skipDialog: ev.ctrlKey });
+        item.rollWeapon({ skipDialog: ev.ctrlKey });
       } else if (item.type == "spell") {
         item.spendSpell({ skipDialog: ev.ctrlKey });
       } else {
@@ -165,30 +179,30 @@ export class AcksActorSheet extends ActorSheet {
 
     html.find(".attack a").click((ev) => {
       let actorObject = this.actor;
-      let element = event.currentTarget;
+      let element = ev.currentTarget;
       let attack = element.parentElement.parentElement.dataset.attack;
       const rollData = {
         actor: this.data,
         roll: {},
       };
       actorObject.targetAttack(rollData, attack, {
-		  type: attack,
-		  skipDialog: ev.ctrlKey,
-	  });
+        type: attack,
+        skipDialog: ev.ctrlKey,
+      });
 
-    html.find(".spells .item-reset").click((ev) => {
-      this._resetSpells(ev);
-    });
+      html.find(".spells .item-reset").click((ev) => {
+        this._resetSpells(ev);
+      });
     });
 
     html.find(".hit-dice .attribute-name a").click((ev) => {
       let actorObject = this.actor;
-      actorObject.rollHitDice({ event: event });
+      actorObject.rollHitDice({ event: ev });
     });
 
     html.find(".bhr .attribute-name a").click((ev) => {
       let actorObject = this.actor;
-      actorObject.rollBHR({ event: event });
+      actorObject.rollBHR({ event: ev });
     });
 
     // Everything below here is only needed if the sheet is editable
@@ -241,9 +255,8 @@ export class AcksActorSheet extends ActorSheet {
       let container = editor.closest(".resizable-editor");
       if (container) {
         let heightDelta = this.position.height - this.options.height;
-        editor.style.height = `${
-          heightDelta + parseInt(container.dataset.editorSize)
-		  }px`;
+        editor.style.height = `${heightDelta + parseInt(container.dataset.editorSize)
+          }px`;
       }
     });
   }

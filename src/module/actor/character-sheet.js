@@ -34,6 +34,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
   generateScores() {
     new AcksCharacterCreator(this.actor, {
       top: this.position.top + 40,
@@ -41,12 +42,13 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     }).render(true);
   }
 
+  /* -------------------------------------------- */
   /**
-   * Prepare data for rendering the Actor sheet
-   * The prepared data object contains both the actor data as well as additional sheet options
-   */
-  getData() {
-    const data = super.getData();
+     * Prepare data for rendering the Actor sheet
+     * The prepared data object contains both the actor data as well as additional sheet options
+     */
+  async getData() {
+    const data = await super.getData();
 
     data.config.ascendingAC = game.settings.get("acks", "ascendingAC");
     data.config.initiative = game.settings.get("acks", "initiative") != "group";
@@ -57,7 +59,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     return data;
   }
 
-
+  /* -------------------------------------------- */
   async _chooseLang() {
     let choices = CONFIG.ACKS.languages;
 
@@ -91,8 +93,9 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
   _pushLang(table) {
-    const data = this.actor.data.data;
+    const data = this.actor.system;
     let update = duplicate(data[table]);
     this._chooseLang().then((dialogInput) => {
       const name = CONFIG.ACKS.languages[dialogInput.choice];
@@ -107,8 +110,9 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
   _popLang(table, lang) {
-    const data = this.actor.data.data;
+    const data = this.actor.system;
     let update = data[table].value.filter((el) => el != lang);
     let newData = {};
     newData[table] = { value: update };
@@ -116,7 +120,6 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
   }
 
   /* -------------------------------------------- */
-
   async _onQtChange(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
@@ -124,7 +127,8 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     return item.update({ "data.quantity.value": parseInt(event.target.value) });
   }
 
-  _onShowModifiers(event) {
+    /* -------------------------------------------- */
+_onShowModifiers(event) {
     event.preventDefault();
     new AcksCharacterModifiers(this.actor, {
       top: this.position.top + 40,
@@ -132,6 +136,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     }).render(true);
   }
 
+  /* -------------------------------------------- */
   /**
    * Activate event listeners using the prepared sheet HTML
    * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
@@ -141,46 +146,46 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
 
     html.find(".morale-check a").click((ev) => {
       let actorObject = this.actor;
-      actorObject.rollMorale({ event: event });
+      actorObject.rollMorale({ event: ev });
     });
 
     html.find(".loyalty-check a").click((ev) => {
       let actorObject = this.actor;
-      actorObject.rollLoyalty({ event: event });
+      actorObject.rollLoyalty({ event: ev });
     });
-    
+
     html.find(".ability-score .attribute-name a").click((ev) => {
       let actorObject = this.actor;
-      let element = event.currentTarget;
+      let element = ev.currentTarget;
       let score = element.parentElement.parentElement.dataset.score;
       let stat = element.parentElement.parentElement.dataset.stat;
       if (!score) {
         if (stat == "lr") {
-          actorObject.rollLoyalty(score, { event: event });
+          actorObject.rollLoyalty(score, { event: ev });
         }
       } else {
-        actorObject.rollCheck(score, { event: event });
+        actorObject.rollCheck(score, { event: ev });
       }
     });
 
     html.find(".exploration .attribute-name a").click((ev) => {
       let actorObject = this.actor;
-      let element = event.currentTarget;
+      let element = ev.currentTarget;
       let expl = element.parentElement.parentElement.dataset.exploration;
-      actorObject.rollExploration(expl, { event: event });
+      actorObject.rollExploration(expl, { event: ev });
     });
 
     html.find(".inventory .item-titles .item-caret").click((ev) => {
-      let items = $(event.currentTarget.parentElement.parentElement).children(
+      let items = $(ev.currentTarget.parentElement.parentElement).children(
         ".item-list"
       );
       if (items.css("display") == "none") {
-        let el = $(event.currentTarget).find(".fas.fa-caret-right");
+        let el = $(ev.currentTarget).find(".fas.fa-caret-right");
         el.removeClass("fa-caret-right");
         el.addClass("fa-caret-down");
         items.slideDown(200);
       } else {
-        let el = $(event.currentTarget).find(".fas.fa-caret-down");
+        let el = $(ev.currentTarget).find(".fas.fa-caret-down");
         el.removeClass("fa-caret-down");
         el.addClass("fa-caret-right");
         items.slideUp(200);
@@ -211,19 +216,19 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     });
 
     html.find(".item-push").click((ev) => {
-      event.preventDefault();
-      const header = event.currentTarget;
+      ev.preventDefault();
+      const header = ev.currentTarget;
       const table = header.dataset.array;
       this._pushLang(table);
     });
 
     html.find(".item-pop").click((ev) => {
-      event.preventDefault();
-      const header = event.currentTarget;
+      ev.preventDefault();
+      const header = ev.currentTarget;
       const table = header.dataset.array;
       this._popLang(
         table,
-        $(event.currentTarget).closest(".item").data("lang")
+        $(ev.currentTarget).closest(".item").data("lang")
       );
     });
 
@@ -236,7 +241,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
         type: type,
         data: duplicate(header.dataset),
       };
-      delete itemData.data["type"];
+      //delete itemsystem["type"];
       await this.actor.createEmbeddedDocuments("Item", [
         itemData,
       ]);
@@ -249,7 +254,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       await item.update({
         _id: li.data("itemId"),
         data: {
-          equipped: !item.data.data.equipped,
+          equipped: !item.system.equipped,
         },
       });
     });

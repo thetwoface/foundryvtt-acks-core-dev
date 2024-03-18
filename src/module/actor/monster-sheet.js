@@ -32,6 +32,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
   /**
    * Monster creation helpers
    */
@@ -67,20 +68,25 @@ export class AcksActorSheetMonster extends AcksActorSheet {
     }).render(true);
   }
 
+  /* -------------------------------------------- */
   /**
    * Prepare data for rendering the Actor sheet
    * The prepared data object contains both the actor data as well as additional sheet options
    */
-  getData() {
-    const data = super.getData();
+  async getData() {
+    const data = await super.getData();
 
     // Settings
     data.config.morale = game.settings.get("acks", "morale");
-    data.data.data.details.treasure.link = TextEditor.enrichHTML(data.data.data.details.treasure.table);
+    data.system = this.object.system;
+    data.treasureLink = await TextEditor.enrichHTML(this.object.system.details.treasure.table);
+    data.biography = await TextEditor.enrichHTML(this.object.system.details.biography);
+
     data.isNew = this.actor.isNew();
     return data;
   }
 
+  /* -------------------------------------------- */
   async _onDrop(event) {
     super._onDrop(event);
     let data;
@@ -102,7 +108,6 @@ export class AcksActorSheetMonster extends AcksActorSheet {
   }
 
   /* -------------------------------------------- */
-
   async _chooseItemType(choices = ["weapon", "armor", "shield", "gear"]) {
     let templateData = { types: choices },
       dlg = await renderTemplate(
@@ -135,33 +140,36 @@ export class AcksActorSheetMonster extends AcksActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
   async _resetCounters(event) {
     for (const weapon of this.actor.itemTypes["weapon"]) {
       await weapon.update({
         data: {
           counter: {
-            value: parseInt(weapon.data.data.counter.max, 10),
+            value: parseInt(weapon.system.counter.max, 10),
           },
         },
       });
     }
   }
 
+  /* -------------------------------------------- */
   async _onCountChange(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (event.target.dataset.field == "value") {
       return item.update({
-        "data.counter.value": parseInt(event.target.value),
+        "system.counter.value": parseInt(event.target.value),
       });
     } else if (event.target.dataset.field == "max") {
       return item.update({
-        "data.counter.max": parseInt(event.target.value),
+        "system.counter.max": parseInt(event.target.value),
       });
     }
   }
 
+  /* -------------------------------------------- */
   /**
    * Activate event listeners using the prepared sheet HTML
    * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
@@ -212,7 +220,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
       // item creation helper func
       let createItem = function (type, name = `New ${type.capitalize()}`) {
         const itemData = {
-          name: name ? name : `New ${type.capitalize()}`,
+          name: name ?? `New ${type.capitalize()}`,
           type: type,
           data: duplicate(header.dataset),
         };
@@ -248,13 +256,13 @@ export class AcksActorSheetMonster extends AcksActorSheet {
 
     html.find(".hp-roll").click((ev) => {
       let actorObject = this.actor;
-      actorObject.rollHP({ event: event });
+      actorObject.rollHP({ event: ev });
     });
 
     html.find(".item-pattern").click(ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      let currentColor = item.data.data.pattern;
+      let currentColor = item.system.pattern;
       let colors = Object.keys(CONFIG.ACKS.colors);
       let index = colors.indexOf(currentColor);
       if (index + 1 == colors.length) {
@@ -263,7 +271,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
         index++;
       }
       item.update({
-        "data.pattern": colors[index]
+        "system.pattern": colors[index]
       })
     });
 

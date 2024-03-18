@@ -26,14 +26,15 @@ export class AcksEntityTweaks extends FormApplication {
    * @return {Object}
    */
   getData() {
-    const data = this.object.data;
+    const data = this.object;
 
-    if (this.object.data.type === 'character') {
+    if (this.object.type === 'character') {
       data.isCharacter = true;
     }
 
     data.user = game.user;
     data.config = CONFIG.ACKS;
+    data.system = this.object.system;
 
     return data;
   }

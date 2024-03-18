@@ -27,7 +27,7 @@ export class AcksCharacterCreator extends FormApplication {
    * @return {Object}
    */
   getData() {
-    let data = this.object.data;
+    let data = this.object.system;
     data.user = game.user;
     data.config = CONFIG.ACKS;
     data.counters = {
@@ -48,7 +48,6 @@ export class AcksCharacterCreator extends FormApplication {
   }
 
   /* -------------------------------------------- */
-
   doStats(ev) {
     let list = $(ev.currentTarget).closest('.attribute-list');
     let values = [];
@@ -72,16 +71,17 @@ export class AcksCharacterCreator extends FormApplication {
       $(ev.currentTarget).closest('form').find('button[type="submit"]').removeAttr('disabled');
     }
 
-    this.object.data.stats = {
+    this.object.system.stats = {
       sum: sum,
       avg: Math.round(10 * sum / n) / 10,
       std: Math.round(100 * std) / 100
     }
   }
 
+  /* -------------------------------------------- */
   rollScore(score, options = {}) {
     // Increase counter
-    this.object.data.counters[score]++;
+    this.object.system.counters[score]++;
 
     const label = score != "gold" ? game.i18n.localize(`ACKS.scores.${score}.long`) : "Gold";
     const rollParts = ["3d6"];
@@ -97,11 +97,12 @@ export class AcksCharacterCreator extends FormApplication {
       data: data,
       skipDialog: true,
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: game.i18n.format('ACKS.dialog.generateScore', { score: label, count: this.object.data.counters[score] }),
-      title: game.i18n.format('ACKS.dialog.generateScore', { score: label, count: this.object.data.counters[score] }),
+      flavor: game.i18n.format('ACKS.dialog.generateScore', { score: label, count: this.object.system.counters[score] }),
+      title: game.i18n.format('ACKS.dialog.generateScore', { score: label, count: this.object.system.counters[score] }),
     });
   }
 
+  /* -------------------------------------------- */
   async close(options) {
     // Gather scores
     let scores = {};
@@ -116,7 +117,7 @@ export class AcksCharacterCreator extends FormApplication {
       config: CONFIG.ACKS,
       scores: scores,
       title: game.i18n.localize("ACKS.dialog.generator"),
-      stats: this.object.data.stats,
+      stats: this.object.system.stats,
       gold: gold
     }
     const content = await renderTemplate("/systems/acks/templates/chat/roll-creation.html", templateData)
@@ -127,6 +128,7 @@ export class AcksCharacterCreator extends FormApplication {
     return super.close(options);
   }
 
+  /* -------------------------------------------- */
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
@@ -172,6 +174,8 @@ export class AcksCharacterCreator extends FormApplication {
       itemData,
     ]);
   }
+
+  /* -------------------------------------------- */
   /**
    * This method is called upon form submission after form data is validated
    * @param event {Event}       The initial triggering submission event

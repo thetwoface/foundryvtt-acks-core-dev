@@ -1,5 +1,5 @@
 export class AcksPartySheet extends FormApplication {
-  
+
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["acks", "dialog", "party-sheet"],
@@ -37,11 +37,12 @@ export class AcksPartySheet extends FormApplication {
       user: game.user,
       settings: settings
     };
-
+    console.log("PARTY", data);
     return data;
   }
 
-  _onDrop(event) {
+  _  /* -------------------------------------------- */
+  onDrop(event) {
     event.preventDefault();
     // WIP Drop Items
     let data;
@@ -66,7 +67,7 @@ export class AcksPartySheet extends FormApplication {
     `;
 
     let pcs = this.object.documents.filter((actor) => {
-      return actor.getFlag('acks', 'party') && actor.data.type === "character";
+      return actor.getFlag('acks', 'party') && actor.type === "character";
     });
 
     new Dialog({
@@ -80,12 +81,12 @@ export class AcksPartySheet extends FormApplication {
             let toDeal = html.find('input[name="total"]').val();
             // calculate number of shares
             let shares = 0;
-            pcs.forEach(c => {shares += c.data.data.details.xp.share});
+            pcs.forEach(c => { shares += c.system.details.xp.share });
             const value = parseFloat(toDeal) / shares;
             if (value) {
               // Give experience
               pcs.forEach((c) => {
-                c.getExperience(Math.floor(c.data.data.details.xp.share * value));
+                c.getExperience(Math.floor(c.system.details.xp.share * value));
               });
             }
           },
@@ -94,6 +95,7 @@ export class AcksPartySheet extends FormApplication {
     }).render(true);
   }
 
+  /* -------------------------------------------- */
   async _selectActors(event) {
     event.preventDefault();
 
@@ -113,12 +115,13 @@ export class AcksPartySheet extends FormApplication {
             let checks = html.find("input[data-action='select-actor']");
             checks.each(async (_, c) => {
               let key = c.getAttribute('name');
+              console.log("KEY", key, c.checked);
               await this.object.documents[key].setFlag('acks', 'party', c.checked);
             });
           },
         },
       },
-    }, {height: "auto", width: 220}).render(true);
+    }, { height: "auto", width: 220 }).render(true);
   }
 
   /** @override */

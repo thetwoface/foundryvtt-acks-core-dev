@@ -1,2 +1,5 @@
-acks/
-acks.zip
+.history/
+/src/packs/*/
+/src/packs/*/CURRENT
+/src/packs/*/LOG
+/src/packs/*/LOCK

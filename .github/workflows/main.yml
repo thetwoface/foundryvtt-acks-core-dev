@@ -46,7 +46,6 @@ env:
   # processed by this workflow.
   release_module_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip"
 
-
 on:
   # Only run this workflow when a release is published.
   # To modify this workflow when other events occur, see:
@@ -60,7 +59,6 @@ on:
   release:
     types: [published]
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -70,7 +68,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
 
       # Extract version embedded in the tag.
       # This step expects the tag to be one of the following formats:
@@ -83,7 +80,6 @@ jobs:
         id: get_version
         uses: battila7/get-version-action@v2
 
-
       # Modify "module.json" with values specific to the release.
       # Since the values for the "version" and "url" keys aren't known ahead of
       # time, the manifest file in the repository is updated with these values.
@@ -94,7 +90,7 @@ jobs:
         id: sub_manifest_link_version
         uses: cschleiden/replace-tokens@v1
         with:
-          files: 'src/system.json'
+          files: "src/system.json"
         env:
           VERSION: ${{steps.get_version.outputs.version-without-v}}
           URL: ${{ env.project_url }}
@@ -105,7 +101,7 @@ jobs:
       # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
       - name: Install Dependencies
         run: npm ci
-      
+
       # Pull JSON to LDB packs
       - name: Build Packs
         run: npm run pullJSONtoLDB
@@ -148,7 +144,7 @@ jobs:
           draft: ${{ github.event.release.unpublished }}
           prerelease: ${{ github.event.release.prerelease }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './system.json, ./system.zip'
+          artifacts: "./system.json, ./system.zip"
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
 
@@ -161,4 +157,3 @@ jobs:
       #    contentType: 'application/json'
       #    customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
       #    data: '{"id": "cthack","dry-run":true,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/cthulhuhack/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/cthulhuhack/blob/main/CHANGELOG.md","compatibility":{"minimum":"11","verified":"11"}}}'
-      

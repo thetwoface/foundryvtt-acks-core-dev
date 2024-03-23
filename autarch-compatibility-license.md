@@ -1,24 +1,24 @@
 # Adventurer Conqueror King System Compatibility License
 
-### 1\. Acceptance of Terms 
+## 1\. Acceptance of Terms
 
-Bu using the *Adventurer Conqueror King System* Compatibility Logo
+By using the *Adventurer Conqueror King System* Compatibility Logo
 ("Compatibility Logo") you accept and agree to be bound by the terms and
 conditions of this license agreement ("License").
 
-### 2\. Copyrights and Trademarks 
+## 2\. Copyrights and Trademarks
 
 You agree and acknowledge that Autarch LLC ("Autarch") holds all
 trademarks and copyrights pertaining to Compatibility Logo. You agree
 not to dispute Autarch's ownership of any intellectual property rights
-related to the Compatibility Logo or Font, both during the duration of
-this License and beyond. Furthermore, you agree to refrain from creating
-or using any names or trademarks that are sufficiently similar to
-Autarch's trademarks, to avoid any potential confusion among consumers
-about the origin of your material, whether it is affiliated with or
-endorsed by Autarch.
+related to the Compatibility Logo, both during the duration of this
+License and beyond. Furthermore, you agree to refrain from creating or
+using any names or trademarks that are sufficiently similar to Autarch's
+trademarks, to avoid any potential confusion among consumers about the
+origin of your material, whether it is affiliated with or endorsed by
+Autarch.
 
-### 3\. License Grant
+## 3\. License Grant
 
 Provided that you adhere to all the terms, conditions, and usage
 requirements outlined herein, you are granted a non-transferable,
@@ -42,17 +42,17 @@ compatible with the *Adventurer Conqueror King System*.
 
 This agreement does not extend any license or permission (whether
 explicit or implied) regarding any trademarks, copyrights, or other
-intellectual property rights, except for the Compatibility Logo and
-Font. Any rights not explicitly provided in this agreement are expressly
-retained by Autarch.
+intellectual property rights, except for the Compatibility Logo. Any
+rights not explicitly provided in this agreement are expressly retained
+by Autarch.
 
-### 4\. Usage Restrictions 
+## 4\. Usage Restrictions
 
 The license granted hereunder is expressly limited to use of the
-Compatibility Logo and Font in printed books, electronic books, and
-freely available websites that are compatible with *Adventurer Conqueror
-King System Imperial Imprint*. Anyone seeking a license for any other
-use should contact Autarch at <orders@autarch.com>.
+Compatibility Logo in printed books, electronic books, and freely
+available websites that are compatible
+with *Adventurer Conqueror King System Imperial Imprint*. Anyone seeking
+a license for any other use should contact Autarch at <orders@autarch.com>.
 
 You are prohibited from using the Compatibility Logo in a manner that
 implies Autarch has ownership, endorsement, or any responsibility for
@@ -83,7 +83,7 @@ trademarks. You may not use this License for material that the general
 public would classify as obscene or pornographic, or to disparage,
 defame, libel, parody, satirize, or slander Autarch.
 
-### 5\. Compatibility 
+## 5\. Compatibility
 
 In order to make use of the compatible content, your Product must
 operate under and rely on *Adventurer Conqueror King System Imperial
@@ -92,7 +92,7 @@ You agree to use your best efforts to ensure that Products are fully
 compatible with *Adventurer Conqueror King System Imperial Imprint* as
 published. Products may additionally be compatible with other systems.
 
-### 6\. References
+## 6\. References
 
 You may freely incorporate references to *Adventurer Conqueror King
 System* material that has been designated as Authorized Game Content
@@ -130,7 +130,7 @@ before you can release your Product in that language. The list of
 currently licensed languages is provided as Exhibit C, which may be
 updated at any time.
 
-### 7\. Breach and Cure
+## 7\. Breach and Cure
 
 If you fail to comply with any of the terms of this License, you will be
 in breach and we will have the right to terminate this License. We will
@@ -141,28 +141,28 @@ and completely cured, we reserve the right to terminate the License with
 no further notice. After termination, you will not have the right to
 secure a new license from us without specific written consent.
 
-### 8\. Termination
+## 8\. Termination
 
 We can terminate this License at any time, at our sole discretion.
 
 If we terminate the License due to breach, you have to immediately stop
-selling products that use the Compatibility Logo or Font and you must
-destroy all of your inventory of those products (including all marketing
+selling products that use the Compatibility Logo and you must destroy
+all of your inventory of those products (including all marketing
 material). You may not make any more products that use the Compatibility
-Logo or Font. You must immediately suspend any advertisements and any
-web content promoting products that use the Compatibility Logo or Font.
-If there are any costs associated with any of this, the responsibility
-for paying them is exclusively yours.
+Logo. You must immediately suspend any advertisements and any web
+content promoting products that use the Compatibility Logo. If there are
+any costs associated with any of this, the responsibility for paying
+them is exclusively yours.
 
 If we terminate the License for any reason other than breach, you may no
-longer make any new products using the Compatibility Logo or Font, but
-you may continue to sell existing physical products that were compliant
-under this License as long as you have inventory. If you sell out of a
+longer make any new products using the Compatibility Logo, but you may
+continue to sell existing physical products that were compliant under
+this License as long as you have inventory. If you sell out of a
 compliant product, you must remove the Compatibility Logo and Font from
 future print runs. In the case of products that do not have physical
 inventory, such as PDFs, you must stop selling them within 30 days of
-termination, but if you remove the Compatibility Logo and Font from
-them, you may start selling them again.
+termination, but if you remove the Compatibility Logo from them, you may
+start selling them again.
 
 Note that if we terminate this License, and you publish products that
 make use of our copyrighted content available under the OGL, you still
@@ -176,20 +176,12 @@ the prevailing party in any dispute its legal fees and court costs in
 addition to any other appropriate monetary or injunctive relief such
 court deems appropriate.
 
-### Updates
+## Updates
 
 Autarch may update this License at any time. The latest version is
-available at autarch.co/acks/compatibility.
+available on the Autarch website or GitHub.
 
 If you published anything under a previous version of this License, you
 can choose to use either the version in place at the time you originally
 published the work or the updated version. For new Products, you may
 only use the current version of the License.
-
-We may update the Exhibits at any time; if we do, we will attempt to
-send notice to the email address you supplied in your registration. You
-must always use the most recent version of each Exhibit. The Exhibits
-are incorporated within the terms of this License by this reference.
-
-We may update the Compatibility Logo, Font, and the text required by
-Exhibit A ("Compatibility Text") at any time; if we do

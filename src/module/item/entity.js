@@ -80,7 +80,7 @@ export class AcksItem extends Item {
       }
     };
 
-    if ((this.system.missile || this.system.melee) && !isNPC) {
+    if ( (this.system.missile && this.system.melee) && !isNPC) {
       // Dialog
       new Dialog({
         title: "Choose Attack Range",
@@ -179,7 +179,7 @@ export class AcksItem extends Item {
       case "item":
         return "";
       case "spell":
-        sTags = `${formatTag(data.class)}${formatTag(
+        sTags = `${formatTag(this.system.class)}${formatTag(
           this.system.range
         )}${formatTag(this.system.duration)}${formatTag(this.system.roll)}`;
         if (this.system.save) {

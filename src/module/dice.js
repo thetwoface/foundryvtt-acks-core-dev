@@ -77,7 +77,7 @@ export class AcksDice {
     if (form !== null && form.bonus.value) {
       parts.push(form.bonus.value);
     }
-
+    
     const roll = new Roll(parts.join("+"), data);
     await roll.evaluate({
       async: true,

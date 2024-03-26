@@ -124,7 +124,7 @@ jobs:
              ../system.zip                        \
             `# The files that will be included.` \
             README.md                            \
-            CHANGELOG.txt                            \
+            Changelog.txt                            \
             system.json                          \
             template.json                        \
             LICENSE.txt                              \
@@ -148,7 +148,7 @@ jobs:
           draft: ${{ github.event.release.unpublished }}
           prerelease: ${{ github.event.release.prerelease }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "./system.json, ./system.zip"
+          artifacts: "./build/system.json, ./system.zip"
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
 

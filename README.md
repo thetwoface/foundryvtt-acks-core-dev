@@ -27,7 +27,9 @@ To test and report bugs against the pre-release version of the ACKS II port for 
 
 1. Delete the current "ACKS" system from your Foundry install  (or duplicate your foundry installation)
 2. Install and launch Foundry v11
-3. Install the beta system by copying this manifest link (paste the following URL into the Install System dialog on the Setup menu of the application): <https://raw.githubusercontent.com/AutarchLLC/foundryvtt-acks-core/master/src/system.json>
+3. Install the beta system by copying this manifest link
+(paste the following URL into the Install System dialog on the Setup menu of the application):
+<https://github.com/AutarchLLC/foundryvtt-acks-core/releases/latest/download/system.json>
 4. Create a new world and perform some tests
 5. Report bugs with screenshots and descriptions as per Community Contribution guidelines below.
 

@@ -59,6 +59,26 @@ Big thank you to Bobloblah and The Happy Anarchist for laying the
 foundation of the ACKS compendium\! Both of them put in an enormous effort, all to
 save judges tons of work in getting their campaigns started.
 
+## Developer Instructions
+### The test suite
+
+There are tests that can be run inside of your Foundry instance through the `acks-tests` module.  To
+install the module locally, symlink that folder inside of your Foundry modules folder:
+```bash
+cd ~/.local/share/FoundryVTT/Data/modules
+ln -s ~/path/to/foundryvtt-acks-core/acks-tests acks-tests
+```
+Once that's done, reload Foundry and you will see "ACKS Test Suite" in your Add-on Modules list.
+You'll need to install the [Quench](https://ethaks.github.io/FVTT-Quench/index.html) module too,
+which can be done via the built-in module search functionality.
+
+To run the tests, log into a World which is using the ACKS System and go to Manage Modules to enable
+ACKS Test Suite.  It will prompt you to enable Quench.
+
+Now that it's installed and enabled, you will see a "🧪 Quench" button under your chat box. Click
+that and the tests will run.  You can also adjust your Quench defaults in the Configure Settings
+menu.
+
 ## License
 #### System
 

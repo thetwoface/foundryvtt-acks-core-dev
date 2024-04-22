@@ -105,7 +105,6 @@ export class AcksCombatClass extends Combat {
     if (this.round == 1) {
       this.turns.forEach(t => t.actor.hasEffect("surprised") ? AcksUtility.removeEffect(t.actor, "surprised") : null);
     }
-    this.turns.forEach(t => t.actor.hasEffect("readied") ? AcksUtility.removeEffect(t.actor, "readied") : null);
     this.turns.forEach(t => t.actor.hasEffect("delayed") ? AcksUtility.removeEffect(t.actor, "delayed") : null);
     this.turns.forEach(t => t.actor.hasEffect("done") ? AcksUtility.removeEffect(t.actor, "done") : null);
     console.log("ROUND", this.round, this.turns);

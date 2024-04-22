@@ -3,3 +3,4 @@
 /src/packs/*/CURRENT
 /src/packs/*/LOG
 /src/packs/*/LOCK
+.vscode/settings.json

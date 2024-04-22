@@ -12,7 +12,7 @@ import * as chat from "./module/chat.js";
 import * as treasure from "./module/treasure.js";
 import * as macros from "./module/macros.js";
 import * as party from "./module/party.js";
-import { AcksCombat } from "./module/combat.js";
+import { AcksCombat, AcksCombatClass } from "./module/combat.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -25,7 +25,7 @@ Hooks.once("init", async function () {
    */
   CONFIG.Combat.initiative = {
     formula: "1d6 + @initiative.value",
-    decimals: 0,
+    decimals: 1,
   };
 
   CONFIG.ACKS = ACKS;
@@ -42,7 +42,8 @@ Hooks.once("init", async function () {
 
   CONFIG.Actor.documentClass = AcksActor;
   CONFIG.Item.documentClass = AcksItem;
-
+  CONFIG.Combat.documentClass = AcksCombatClass;
+  
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("acks", AcksActorSheetCharacter, {
@@ -99,6 +100,8 @@ Hooks.on("preUpdateCombatant", AcksCombat.updateCombatant);
 Hooks.on("renderCombatTracker", AcksCombat.format);
 Hooks.on("preUpdateCombat", AcksCombat.preUpdateCombat);
 Hooks.on("getCombatTrackerEntryContext", AcksCombat.addContextEntry);
+Hooks.on('combatTurn', AcksCombat.combatTurn);
+Hooks.on('combatRound', AcksCombat.combatRound);
 
 Hooks.on("renderChatLog", (app, html, data) => AcksItem.chatListeners(html));
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);

@@ -1,4 +1,38 @@
 export const ACKS = {
+  statusEffects : [
+    { acks: true, id: "surprised", label: 'Surprised', icon: 'icons/svg/blind.svg', duration: {rounds: 1} },
+    { acks: true, id: "overnumbering", label: 'OverNumbered', icon: 'icons/svg/regen.svg' },
+    { acks: true, id: "done", label: 'Done', icon: 'icons/svg/cancel.svg' },
+    { acks: true, id: "readied", label: 'Readied', icon: 'icons/svg/ice-aura.svg' },
+    { acks: true, id: "delayed", label: 'Delayed', icon: 'icons/svg/clockwork.svg' },
+    { acks: true, id: "unconscious", label: 'Unconscious', icon: 'icons/svg/stoned.svg' },
+  ],
+  surpriseTableAdventurers : {
+    "forelos": {
+      "forelos": {monsterModifier: 0, adventurerModifier: +10, canEvade: false, description: "ACKS.surprise.forelos.forelos"},
+      "fore": {monsterModifier: 1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.fore"},
+      "los": {monsterModifier: 0, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.los"},
+      "none": {monsterModifier: -1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.none"}
+    },
+    "fore": {
+      "forelos": {monsterModifier: 10, adventurerModifier: +1, canEvade: false, description: "ACKS.surprise.fore.forelos"},
+      "fore": {monsterModifier: 1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.fore"},
+      "los": {monsterModifier: 0, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.los"},
+      "none": {monsterModifier: -1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.none"}
+    },
+    "los": {
+      "forelos": {monsterModifier: 10, adventurerModifier: 0, canEvade: false, description: "ACKS.surprise.los.forelos"},
+      "fore": {monsterModifier: 1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.fore"},
+      "los": {monsterModifier: 0, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.los"},
+      "none": {monsterModifier: -1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.none"}
+    },
+    "none": {
+      "forelos": {monsterModifier: 10, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.forelos"},
+      "fore": {monsterModifier: 1, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.fore"},
+      "los": {monsterModifier: 0, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.los"},
+      "none": {monsterModifier: -10, adventurerModifier: -10, canEvade: false, description: "ACKS.surprise.none.none"}
+    }
+  },
   scores: {
     str: "ACKS.scores.str.long",
     int: "ACKS.scores.int.long",

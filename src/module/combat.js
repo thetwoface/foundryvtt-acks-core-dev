@@ -1,17 +1,203 @@
+import { AcksSurprise } from "./surprise-manager.js";
+import { AcksUtility } from "./utility.js";
+
+export class AcksCombatClass extends Combat {
+
+  /*******************************************************/
+  /**
+   * Return the Array of combatants sorted into initiative order, breaking ties alphabetically by name.
+   * @returns {Combatant[]}
+   */
+  setupTurns() {
+
+    // Determine the turn order and the current turn
+    const turns = this.combatants.contents.sort(this._sortCombatants);
+    if (this.turn !== null) this.turn = Math.clamped(this.turn, 0, turns.length - 1);
+
+    // Update state tracking
+    let c = turns[this.turn];
+    this.current = {
+      round: this.round,
+      turn: this.turn,
+      combatantId: c ? c.id : null,
+      tokenId: c ? c.tokenId : null
+    };
+
+    // Return the array of prepared turns
+    return this.turns = turns;
+  }
+
+  /*******************************************************/
+  async internalStartCombat() {
+    this._playCombatSound("startEncounter");
+    let updateData = { round: 1, turn: 0 };
+
+    await AcksCombat.individualInitiative(this, updateData);
+    this.processOutNumbering();
+
+    Hooks.callAll("combatStart", this, updateData);
+    console.log(">>>>>>>>>> Start Combat", updateData);
+
+    return this.update(updateData);
+  }
+
+  /*******************************************************/
+  cleanupStatus(status) {
+    this.combatants.forEach((cbt) => {
+      if (cbt.actor.hasEffect(status)) {
+        AcksUtility.removeEffect(cbt.actor, status);
+      }
+    });
+  }
+
+  /*******************************************************/
+  async startCombat() {
+    this.cleanupStatus("overnumbering")
+    let pools = AcksCombat.getCombatantsPool();
+    this.pools = pools;
+
+    let surpriseDialog = new AcksSurprise({ pools, combatData: this });
+    await surpriseDialog.render(true);
+  }
+
+  /*******************************************************/
+  async nextTurn() {
+    console.log("NEXT TURN");
+
+    let turn = this.turn ?? -1;
+    let skipDefeated = this.settings.skipDefeated;
+
+    // Determine the next turn number
+    let next = null;
+    for (let [i, t] of this.turns.entries()) {
+      console.log("Turn", t);
+      if (i <= turn) continue;
+      if (skipDefeated && t.isDefeated) continue;
+      if (t.actor.hasEffect("surprised")) {
+        if (this.round == 1) {
+          ui.notifications.info(`${t.actor.name} is surprised, so skipped in initiative countdown.`);
+          continue;
+        } else {
+          await AcksUtility.removeEffect(t.actor, "surprised");
+        }
+      }
+      next = i;
+      break;
+    }
+
+    // Maybe advance to the next round
+    let round = this.round;
+    if ((this.round === 0) || (next === null) || (next >= this.turns.length)) {
+      return this.nextRound();
+    }
+
+    // Update the document, passing data through a hook first
+    const updateData = { round, turn: next };
+    const updateOptions = { advanceTime: CONFIG.time.turnTime, direction: 1 };
+    Hooks.callAll("combatTurn", this, updateData, updateOptions);
+    return this.update(updateData, updateOptions);
+  }
+
+  /*******************************************************/
+  async nextRound() {
+    let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
+    // Remove surprised effects
+    if (this.round == 1) {
+      this.turns.forEach(t => t.actor.hasEffect("surprised") ? AcksUtility.removeEffect(t.actor, "surprised") : null);
+    }
+    this.turns.forEach(t => t.actor.hasEffect("readied") ? AcksUtility.removeEffect(t.actor, "readied") : null);
+    this.turns.forEach(t => t.actor.hasEffect("delayed") ? AcksUtility.removeEffect(t.actor, "delayed") : null);
+    this.turns.forEach(t => t.actor.hasEffect("done") ? AcksUtility.removeEffect(t.actor, "done") : null);
+    console.log("ROUND", this.round, this.turns);
+
+    this.pools = AcksCombat.getCombatantsPool();
+    await AcksCombat.individualInitiative(this);
+    this.processOutNumbering();
+
+    if (this.settings.skipDefeated && (turn !== null)) {
+      turn = this.turns.findIndex(t => !t.isDefeated && (this.round == 1 && !t.actor.hasEffect("surprised")));
+      if (turn === -1) {
+        ui.notifications.warn("COMBAT.NoneRemaining", { localize: true });
+        turn = 0;
+      }
+    }
+    let advanceTime = Math.max(this.turns.length - this.turn, 0) * CONFIG.time.turnTime;
+    advanceTime += CONFIG.time.roundTime;
+    let nextRound = this.round + 1;
+
+
+    // Update the document, passing data through a hook first
+    const updateData = { round: nextRound, turn };
+    const updateOptions = { advanceTime, direction: 1 };
+    Hooks.callAll("combatRound", this, updateData, updateOptions);
+    return this.update(updateData, updateOptions);
+  }
+
+  /*******************************************************/
+  processOutNumbering() {
+    let pools = this.pools;
+    let hostileMore = pools.hostile.length > pools.friendly.length;
+    let friendlyMore = pools.friendly.length > pools.hostile.length;
+    this.combatants.forEach((cbt) => {
+      if (cbt.token.disposition == -1 && cbt.actor.hasEffect("overnumbering") && friendlyMore) {
+        AcksUtility.removeEffect(cbt.actor, "overnumbering");
+      }
+      if (cbt.token.disposition == 1 && cbt.actor.hasEffect("overnumbering") && hostileMore) {
+        AcksUtility.removeEffect(cbt.actor, "overnumbering");
+      }
+      if (cbt.token.disposition == -1 && !cbt.actor.hasEffect("overnumbering") && hostileMore) {
+        AcksUtility.addUniqueStatus(cbt.actor, "overnumbering");
+      }
+      if (cbt.token.disposition == 1 && !cbt.actor.hasEffect("overnumbering") && friendlyMore) {
+        AcksUtility.addUniqueStatus(cbt.actor, "overnumbering");
+      }
+    });
+  }
+
+  /*******************************************************/
+  _sortCombatants(a, b) {
+    if (a.initiative === b.initiative) {
+      if (a.actor.hasEffect("overnumbering")) {
+        return 1;
+      }
+      if (b.actor.hasEffect("overnumbering")) {
+        return -1;
+      }
+      return a.name.localeCompare(b.name);
+    }
+    return b.initiative - a.initiative;
+  }
+
+  /*******************************************************/
+  async endCombat() {
+    return Dialog.confirm({
+      title: game.i18n.localize("COMBAT.EndTitle"),
+      content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
+      yes: () => {
+        this.cleanupStatus("surprised");
+        this.cleanupStatus("overnumbering");
+        this.delete()
+      }
+    });
+  }
+}
+
 export class AcksCombat {
+
+  /*******************************************************/
   static async rollInitiative(combat, data) {
     // Initialize groups.
     data.combatants = [];
     let groups = {};
-    combat.data.combatants.forEach((cbt) => {
-      groups[cbt.data.flags.acks.group] = {present: true};
+    combat.combatants.forEach((cbt) => {
+      groups[cbt.flags.acks.group] = { present: true };
       data.combatants.push(cbt);
     });
 
     // Roll initiative for each group.
     for (const group in groups) {
       const roll = new Roll("1d6");
-      await roll.evaluate({async: true});
+      await roll.evaluate({ async: true });
       await roll.toMessage({
         flavor: game.i18n.format('ACKS.roll.initiative', {
           group: CONFIG["ACKS"].colors[group],
@@ -27,8 +213,8 @@ export class AcksCombat {
         return;
       }
 
-      let initiative = groups[combatant.data.flags.acks.group].initiative;
-      if (combatant.actor.data.data.isSlow) {
+      let initiative = groups[combatant.flags.acks.group].initiative;
+      if (combatant.actor.system.isSlow) {
         initiative -= 1;
       }
 
@@ -40,6 +226,7 @@ export class AcksCombat {
     combat.setupTurns();
   }
 
+  /*******************************************************/
   static async resetInitiative(combat, data) {
     const reroll = game.settings.get("acks", "initiativePersistence");
     if (!["reset", "reroll"].includes(reroll)) {
@@ -49,15 +236,19 @@ export class AcksCombat {
     combat.resetAll();
   }
 
+  /*******************************************************/
   static async individualInitiative(combat, data) {
     const updates = [];
     const messages = [];
 
+    let nbHostile = combat.pools.hostile.length;
+    let nbFriendly = combat.pools.friendly.length;
+
     let index = 0;
 
-    for (const [id, combatant] of combat.data.combatants.entries()) {
+    for (const [id, combatant] of combat.combatants.entries()) {
       const roll = combatant.getInitiativeRoll();
-      await roll.evaluate({async: true});
+      await roll.evaluate({ async: true });
       let value = roll.total;
 
       if (combat.settings.skipDefeated && combatant.defeated) {
@@ -65,6 +256,7 @@ export class AcksCombat {
       }
 
       updates.push({
+        combatantId: id,
         _id: id,
         initiative: value,
       });
@@ -72,7 +264,7 @@ export class AcksCombat {
       // Determine the roll mode
       let rollMode = game.settings.get("core", "rollMode");
       if ((combatant.token.hidden || combatant.hidden)
-          && (rollMode === "roll")) {
+        && (rollMode === "roll")) {
         rollMode = "gmroll";
       }
 
@@ -107,9 +299,22 @@ export class AcksCombat {
     await combat.updateEmbeddedDocuments("Combatant", updates);
     await CONFIG.ChatMessage.documentClass.create(messages);
 
-    data.turn = 0;
+    // Now setup the first turn of the first round (ie surprised management)
+    let turn = 0;
+    if (data) {
+      if (data.round == 1) {
+        for (let i=0; i<combat.turns.length; i++) {
+          if (!combat.turns[i].actor.hasEffect("surprised")) {
+            turn = i;
+            break;
+          }
+        }
+      }
+      data.turn = turn;
+    }
   }
 
+  /*******************************************************/
   static format(object, html, user) {
     html.find(".initiative").each((_, span) => {
       span.innerHTML =
@@ -125,19 +330,30 @@ export class AcksCombat {
     html.find(".combatant").each((_, ct) => {
       // Append spellcast and retreat
       const controls = $(ct).find(".combatant-controls .combatant-control");
-      const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
-      const moveActive = cmbtant.data.flags.acks?.moveInCombat ? "active" : "";
-      controls.eq(1).after(
-        `<a class='combatant-control move-combat ${moveActive}'><i class='fas fa-running'></i></a>`
-      );
-      const spellActive = cmbtant.data.flags.acks?.prepareSpell ? "active" : "";
-      controls.eq(1).after(
-        `<a class='combatant-control prepare-spell ${spellActive}'><i class='fas fa-magic'></i></a>`
-      );
-      const holdActive = cmbtant.data.flags.acks?.holdTurn ? "active" : "";
-      controls.eq(1).after(
-        `<a class='combatant-control hold-turn ${holdActive}'><i class='fas fa-pause-circle'></i></a>`
-      );
+      console.log("Combat controls", ct.dataset);
+      if (ct?.dataset?.combatantId) {
+        const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
+        const actionDone = cmbtant.actor.hasEffect("done") ? "active": "";
+        controls.eq(1).after(
+          `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`
+        );
+        const readied = cmbtant.actor.hasEffect("readied") ? "active": "";
+        controls.eq(1).after(
+          `<a class='combatant-control click-readied ${readied}' data-tooltip="Readied"><i class='fas fa-thumbs-up'></i></a>`
+        );
+        const delayed = cmbtant.actor.hasEffect("delayed") ? "active": "";
+        controls.eq(1).after(
+          `<a class='combatant-control click-delayed ${delayed}' data-tooltip="Delayed"><i class='fas fa-clock'></i></a>`
+        );
+        const unconscious = cmbtant.actor.hasEffect("unconscious") ? "active": "";
+        controls.eq(1).after(
+          `<a class='combatant-control click-unconscious ${unconscious}' data-tooltip="Unconscious"><i class='fas fa-person-falling-burst'></i></a>`
+        );
+        const spellActive = cmbtant.flags.acks?.prepareSpell ? "active" : "";
+        controls.eq(1).after(
+          `<a class='combatant-control prepare-spell ${spellActive}' data-tooltip="Casting"><i class='fas fa-magic'></i></a>`
+        );
+      }
     });
 
     AcksCombat.announceListener(html);
@@ -162,7 +378,7 @@ export class AcksCombat {
 
       // Get group color
       const combatant = object.viewed.combatants.get(ct.dataset.combatantId);
-      let color = combatant.data.flags.acks?.group;
+      let color = combatant.flags.acks?.group;
 
       // Append colored flag
       let controls = $(ct).find(".combatant-controls");
@@ -174,14 +390,15 @@ export class AcksCombat {
     AcksCombat.addListeners(html);
   }
 
+  /*******************************************************/
   static updateCombatant(combat, combatant, data) {
     let init = game.settings.get("acks", "initiative");
     // Why do you reroll ?
-// Legacy Slowness code from OSE
-//    if (combatant.actor.data.data.isSlow) {
-//      data.initiative = -789;
-//      return;
-//    }
+    // Legacy Slowness code from OSE
+    //    if (combatant.actor.data.data.isSlow) {
+    //      data.initiative = -789;
+    //      return;
+    //    }
     if (data.initiative && init == "group") {
       let groupInit = data.initiative;
       // Check if there are any members of the group with init
@@ -190,7 +407,7 @@ export class AcksCombat {
           ct.initiative &&
           ct.initiative != "-789.00" &&
           ct._id != data._id &&
-          ct.data.flags.acks.group == combatant.data.flags.acks.group
+          ct.flags.acks.group == combatant.flags.acks.group
         ) {
           groupInit = ct.initiative;
           // Set init
@@ -200,6 +417,7 @@ export class AcksCombat {
     }
   }
 
+  /*******************************************************/
   static announceListener(html) {
     html.find(".combatant-control.hold-turn").click(async (event) => {
       event.preventDefault();
@@ -223,36 +441,78 @@ export class AcksCombat {
 
       // Toggle spell announcement
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
-      const isActive = event.currentTarget.classList.contains('active');
+      const isActive = event.currentTarget.classList.contains('actionDone');
       const combatant = game.combat.combatants.get(id);
-      await combatant.update({
-        _id: id,
-        flags: {
-          acks: {
-            prepareSpell: !isActive,
-          },
-        },
-      });
+      if (isActive) {
+        AcksUtility.removeEffect(combatant.actor, "done")
+      } else {
+        AcksUtility.addUniqueStatus(combatant.actor, "done");
+      }
     });
 
-    html.find(".combatant-control.move-combat").click(async (event) => {
+    html.find(".combatant-control.action-done").click(async (event) => {
       event.preventDefault();
 
       // Toggle retreat announcement
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
       const isActive = event.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
-      await combatant.update({
-        _id: id,
-        flags: {
-          acks: {
-            moveInCombat: !isActive,
-          },
-        },
-      });
+      if (isActive) {
+        AcksUtility.removeEffect(combatant.actor, "done")
+      } else {
+        AcksUtility.removeEffect(combatant.actor, "delayed");
+        AcksUtility.removeEffect(combatant.actor, "readied");
+        AcksUtility.addUniqueStatus(combatant.actor, "done");
+      }
     });
+
+    html.find(".combatant-control.click-readied").click(async (event) => {
+      event.preventDefault();
+
+      // Toggle retreat announcement
+      const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
+      const isActive = event.currentTarget.classList.contains('active');
+      const combatant = game.combat.combatants.get(id);
+      if (isActive) {
+        AcksUtility.removeEffect(combatant.actor, "readied");
+      } else {
+        AcksUtility.removeEffect(combatant.actor, "delayed");
+        AcksUtility.addUniqueStatus(combatant.actor, "readied");
+      }
+    });
+    
+    html.find(".combatant-control.click-delayed").click(async (event) => {
+      event.preventDefault();
+
+      // Toggle retreat announcement
+      const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
+      const isActive = event.currentTarget.classList.contains('active');
+      const combatant = game.combat.combatants.get(id);
+      if (isActive) {
+        AcksUtility.removeEffect(combatant.actor, "delayed");
+      } else {
+        AcksUtility.removeEffect(combatant.actor, "readied");
+        AcksUtility.addUniqueStatus(combatant.actor, "delayed");
+      }
+    });
+
+    html.find(".combatant-control.click-unconscious").click(async (event) => {
+      event.preventDefault();
+
+      // Toggle retreat announcement
+      const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
+      const isActive = event.currentTarget.classList.contains('active');
+      const combatant = game.combat.combatants.get(id);
+      if (isActive) {
+        AcksUtility.removeEffect(combatant.actor, "unconscious");
+      } else {
+        AcksUtility.addUniqueStatus(combatant.actor, "unconscious");
+      }
+    });
+
   }
 
+  /*******************************************************/
   static addListeners(html) {
     // Cycle through colors
     html.find(".combatant-control.flag").click(async (event) => {
@@ -274,6 +534,7 @@ export class AcksCombat {
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
       const combatant = game.combat.combatants.get(id);
       await combatant.update({
+        combatantId: id,
         _id: id,
         flags: {
           acks: {
@@ -301,9 +562,10 @@ export class AcksCombat {
     });
   }
 
+  /*******************************************************/
   static async addCombatant(combatant, options, userId) {
     let color = "black";
-    switch (combatant.token.data.disposition) {
+    switch (combatant.token.disposition) {
       case -1:
         color = "red";
         break;
@@ -324,11 +586,13 @@ export class AcksCombat {
     });
   }
 
+  /*******************************************************/
   static activateCombatant(li) {
     const turn = game.combat.turns.findIndex(turn => turn._id === li.data('combatant-id'));
-    game.combat.update({turn: turn})
+    game.combat.update({ turn: turn })
   }
 
+  /*******************************************************/
   static addContextEntry(html, options) {
     options.unshift({
       name: "Set Active",
@@ -337,28 +601,36 @@ export class AcksCombat {
     });
   }
 
-  static async preUpdateCombat(combat, data, diff, id) {
-    if (!data.round) {
-      return;
-    }
-
-    if (data.round !== 1) {
-      const reroll = game.settings.get("acks", "initiativePersistence");
-
-      if (reroll === "reset") {
-        AcksCombat.resetInitiative(combat, data, diff, id);
-        return;
-      } else if (reroll === "keep") {
-        return;
+  /*******************************************************/
+  /* Sort current combatants in pools */
+  static getCombatantsPool() {
+    let pools = { friendly: [], neutral: [], hostile: [] };
+    game.combat.combatants.forEach((cbt) => {
+      if (cbt.token.disposition == 1) {
+        pools.friendly.push(cbt);
       }
-    }
+      if (cbt.token.disposition == -1) {
+        pools.hostile.push(cbt);
+      }
+      if (cbt.token.disposition == 0) {
+        pools.neutral.push(cbt);
+      }
+    });
+    return pools;
+  }
 
-    const init = game.settings.get("acks", "initiative");
+  /*******************************************************/
+  static combatTurn(combat, data, options) {
+  }
 
-    if (init === "group") {
-      AcksCombat.rollInitiative(combat, data, diff, id);
-    } else if (init === "individual") {
-      AcksCombat.individualInitiative(combat, data, diff, id);
-    }
+
+  /*******************************************************/
+  static combatRound(combat, data, options) {
+    // Cleanup surprised effects 
+
+  }
+
+  /*******************************************************/
+  static async preUpdateCombat(combat, data, diff, id) {
   }
 }

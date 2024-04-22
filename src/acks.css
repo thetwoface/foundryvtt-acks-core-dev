@@ -516,6 +516,7 @@
 #settings .acks.game-license {
   font-size: 12px;
 }
+.acks-label-center,
 #settings .acks.game-license .button {
   text-align: center;
   margin: 4px;
@@ -1127,6 +1128,20 @@
 .acks.actor.monster .panel.abilities .item-list .item-entry .item-pattern {
   flex: 0 0 15px;
   cursor: pointer;
+}
+.acks {
+  margin: 8px;
+}
+
+.acks .roll-surprise-button {
+  line-height: 14px;
+  font-size: 12px;
+  max-width: 170px;
+  min-height: 76px;
+  max-height: 76px;
+  margin: 4px;
+  padding: 0;
+  text-align: center;
 }
 
 /* ----------------------------------------- */

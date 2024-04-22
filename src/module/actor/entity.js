@@ -303,6 +303,11 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  hasEffect(effectId) {
+    return this.effects.find((e) => e.statuses.has(effectId));
+  }
+  
+  /* -------------------------------------------- */
   rollCheck(score, options = {}) {
     const label = game.i18n.localize(`ACKS.scores.${score}.long`);
     const rollParts = ["1d20"];

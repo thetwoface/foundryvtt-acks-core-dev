@@ -62,6 +62,9 @@
         "initiative": {
           "value": 0,
           "mod": 0
+        },
+        "surprise": {
+          "mod": 0
         }
       },
       "spellcaster": {

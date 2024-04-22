@@ -176,8 +176,11 @@
   "ACKS.category.languages": "Languages",
   "ACKS.category.description": "Description",
   "ACKS.category.equipment": "Equipment",
+  "ACKS.category.bonuses": "Bonuses",
 
-  "ACKS.Setting.Initiative": "Initiative",
+  "ACKS.bonuses.initiativebonus": "Initiative Bonus",
+  "ACKS.bonuses.surprisebonus": "Surprise Bonus",
+  
   "ACKS.Setting.InitiativeHint": "Grouped or individual initiative.",
   "ACKS.Setting.InitiativeIndividual": "Individual initiative",
   "ACKS.Setting.InitiativeGroup": "Grouped Initiative",
@@ -316,5 +319,38 @@
   "ACKS.morale.fightingWithdrawal": "Fighting Withdrawl",
   "ACKS.morale.fight": "Fight On",
   "ACKS.morale.advanceAndPursue": "Advance and Pursue",
-  "ACKS.morale.fightToTheDeath": "Victory or Death"
+  "ACKS.morale.fightToTheDeath": "Victory or Death",
+
+  "ACKS.surprise.forelos.forelos": "Monsters not surprised<br>Adventurers not surprised<br>Adventurers cannot evade",
+  "ACKS.surprise.forelos.fore": "Monsters roll surprise (+1)<br>Adventurers not surprised<br>Adventurers can evade",
+  "ACKS.surprise.forelos.los": "Monsters roll surprise<br>Adventures not surprised<br>Adventurers can evade",
+  "ACKS.surprise.forelos.none": "Monsters roll surprise (-1)<br>Adventurers not surprised<br>Adventurers can always evade",
+  
+  "ACKS.surprise.fore.forelos": "Monsters not surprised<br>Adventurers roll surprise (+1)<br>Adventurers cannot evade",
+  "ACKS.surprise.fore.fore": "Monsters roll surprise (+1)<br>Adventurers roll surprise (+1)<br>Adventurers can evade",
+  "ACKS.surprise.fore.los": "Monsters roll surprise<br>Adventurers roll surprise (+1)<br>Adventurers can evade",
+  "ACKS.surprise.fore.none": "Monsters roll surprise (-1)<br>Adventurers roll surprise (+1)<br>Adventurers can evade",
+
+  "ACKS.surprise.los.forelos": "Monsters not surprised<br>Adventurers roll surprise<br>Adventurers cannot evade",
+  "ACKS.surprise.los.fore": "Monsters roll surprise (+1)<br>Adventurers roll surprise<br>Adventurers can evade",
+  "ACKS.surprise.los.los": "Monsters roll surprise<br>Adventurers roll surprise<br>Adventurers can evade",
+  "ACKS.surprise.los.none": "Monsters roll surprise (-1)<br>Adventurers roll surprise<br>Adventurers can evade",
+
+  "ACKS.surprise.none.forelos": "Monsters not surprised<br>Adventurers roll surprise (-1)<br>Adventurers cannot evade",
+  "ACKS.surprise.none.fore": "Monsters roll surprise (+1)<br>Adventurers roll surprise (-1)<br>Adventurers cannot evade",
+  "ACKS.surprise.none.los": "Monsters roll surprise<br>Adventurers roll surprise (-1)<br>Adventurers cannot evade",
+  "ACKS.surprise.none.none": "No encounter",
+
+  "ACKS.surprise.notsurprised": "Actor {name} is NOT surprised (result {result})",
+  "ACKS.surprise.surprised": "Actor {name} is surprised (result {result})",
+
+  "ACKS.surprise.title.forelos": "Fore+LOS",
+  "ACKS.surprise.title.fore": "Fore",
+  "ACKS.surprise.title.los": "LOS",
+  "ACKS.surprise.title.none": "None",
+
+  "ACKS.StatusOutNumbered": "OutNumbered",
+  "ACKS.StatusOverNumbered": "OverNumbered",
+  "ACKS.StatusSurprised": "Surprised"
 }
+

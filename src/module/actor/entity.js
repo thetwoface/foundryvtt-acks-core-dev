@@ -596,7 +596,7 @@ export class AcksActor extends Actor {
     const hp = this.system.hp;
 
     // Remaining goes to health
-    const dh = Math.clamped(hp.value - amount, -99, hp.max);
+    const dh = Math.clamp(hp.value - amount, -99, hp.max);
 
     // Update the Actor
     await this.update({
@@ -663,7 +663,7 @@ export class AcksActor extends Actor {
     const maxEncumbrance = this.system.encumbrance.max;
 
     this.system.encumbrance = {
-      pct: Math.clamped(
+      pct: Math.clamp(
         (totalEncumbrance / maxEncumbrance) * 100,
         0,
         100

@@ -42,7 +42,7 @@ export class AcksItem extends Item {
   }
 
   async getChatData(htmlOptions) {
-    const data = duplicate(this);
+    const data = foundry.utils.duplicate(this);
 
     // Rich text description
     data.description = await TextEditor.enrichHTML(this.system.description, { ...{ async: true }, ...htmlOptions });
@@ -199,7 +199,7 @@ export class AcksItem extends Item {
   pushTag(values) {
     let update = [];
     if (this.system.tags) {
-      update = duplicate(this.system.tags);
+      update = foundry.utils.duplicate(this.system.tags);
     }
     let newData = {};
     let regExp = /\(([^)]+)\)/;

@@ -3,7 +3,7 @@ export class AcksUtility {
   static prepareActiveEffect(effectId) {
     let status = CONFIG.ACKS.statusEffects.find(it => it.id.includes(effectId))
     if (status) {
-      status = duplicate(status)
+      status = foundry.utils.duplicate(status)
       status.statuses = [effectId]
     }
     return status;

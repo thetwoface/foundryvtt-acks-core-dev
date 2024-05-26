@@ -1,4 +1,22 @@
 {
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "monster": "Monster"
+    },
+    "Item": {
+      "ability": "Ability",
+      "spell": "Spell",
+      "weapon": "Weapon",
+      "armor": "Armor",
+      "treasure": "Treasure",
+      "item": "Item",
+      "misc": "Misc"
+    }
+  },
+  "COMBAT.TurnPrev": "Prev. Combatant",
+  "COMBAT.TurnNext" : "Next Combatant",
+
   "ACKS.Edit": "Edit",
   "ACKS.Delete": "Delete",
   "ACKS.Show": "Show",

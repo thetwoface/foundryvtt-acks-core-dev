@@ -9,7 +9,7 @@ export const ACKS = {
   ],
   surpriseTableAdventurers : {
     "forelos": {
-      "forelos": {monsterModifier: 0, adventurerModifier: +10, canEvade: false, description: "ACKS.surprise.forelos.forelos"},
+      "forelos": {monsterModifier: +10, adventurerModifier: +10, canEvade: false, description: "ACKS.surprise.forelos.forelos"},
       "fore": {monsterModifier: 1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.fore"},
       "los": {monsterModifier: 0, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.los"},
       "none": {monsterModifier: -1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.none"}

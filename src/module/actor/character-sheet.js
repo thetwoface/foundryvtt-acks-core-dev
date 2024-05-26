@@ -18,7 +18,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
    * @returns {Object}
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "actor", "character"],
       template: "systems/acks/templates/actors/character-sheet.html",
       width: 450,
@@ -96,7 +96,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
   /* -------------------------------------------- */
   _pushLang(table) {
     const data = this.actor.system;
-    let update = duplicate(data[table]);
+    let update = foundry.utils.duplicate(data[table]);
     this._chooseLang().then((dialogInput) => {
       const name = CONFIG.ACKS.languages[dialogInput.choice];
       if (update.value) {
@@ -239,7 +239,7 @@ _onShowModifiers(event) {
       const itemData = {
         name: `New ${type.capitalize()}`,
         type: type,
-        data: duplicate(header.dataset),
+        data: foundry.utils.duplicate(header.dataset),
       };
       //delete itemsystem["type"];
       await this.actor.createEmbeddedDocuments("Item", [

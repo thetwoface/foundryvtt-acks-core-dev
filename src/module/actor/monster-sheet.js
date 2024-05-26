@@ -16,7 +16,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
    * @returns {Object}
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "monster", "actor"],
       template: "systems/acks/templates/actors/monster-sheet.html",
       width: 450,
@@ -222,7 +222,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
         const itemData = {
           name: name ?? `New ${type.capitalize()}`,
           type: type,
-          data: duplicate(header.dataset),
+          data: foundry.utils.duplicate(header.dataset),
         };
         delete itemData.data["type"];
         return itemData;

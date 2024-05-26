@@ -7,7 +7,7 @@ export class AcksSurprise extends FormApplication {
 
   /*******************************************************/
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "dialog", "party-sheet"],
       template: "systems/acks/templates/apps/dialog-surprise.html",
       width: 820,
@@ -25,7 +25,7 @@ export class AcksSurprise extends FormApplication {
 
     const data = {
       data: this.object,
-      config: duplicate(CONFIG.ACKS),
+      config: foundry.utils.duplicate(CONFIG.ACKS),
       user: game.user,
     }
     for (let key in data.config.surpriseTableAdventurers) {
@@ -39,11 +39,11 @@ export class AcksSurprise extends FormApplication {
   }
 
   /*******************************************************/
-  rollSurprise(surpriseDef) {
+  async rollSurprise(surpriseDef) {
     let monsters = this.object.pools.hostile;
     for (let c of monsters) {
       console.log("Combatant", c);
-      let roll = new Roll("1d6+"+c.actor.system.surprise.mod+"+"+surpriseDef.monsterModifier).roll({async: false});
+      let roll = await new Roll("1d6+"+c.actor.system.surprise.mod+"+"+surpriseDef.monsterModifier).roll();
       let surprised = roll.total <= 2;
       let msgText = (surprised) ? "ACKS.surprise.surprised" : "ACKS.surprise.notsurprised";
       let message = game.i18n.format(msgText, {name: c.actor.name, result: roll.total, surprised});

@@ -9,6 +9,12 @@
     text-shadow: -1px -1px 4px #4b4a44, 1px -1px 4px #4b4a44, -1px 1px 4px #4b4a44, 1px 1px 4px #4b4a44;
   }
 }
+
+/* Combat tracker specific overloads */
+.combat-sidebar li.combatant .roll {
+  background: url(/systems/acks/assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
+}
+
 .acks.sheet.actor {
   /* Header Summary Details */
 }

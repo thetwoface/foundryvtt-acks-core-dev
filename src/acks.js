@@ -89,13 +89,6 @@ Hooks.on("renderSidebarTab", async (object, html) => {
   }
 });
 
-Hooks.on("createCombatant", async (combatant, options, userId) => {
-  const init = game.settings.get("acks", "initiative");
-  if (init === "group") {
-    await AcksCombat.addCombatant(combatant, options, userId);
-  }
-});
-
 Hooks.on("preUpdateCombatant", AcksCombat.updateCombatant);
 Hooks.on("renderCombatTracker", AcksCombat.format);
 Hooks.on("preUpdateCombat", AcksCombat.preUpdateCombat);

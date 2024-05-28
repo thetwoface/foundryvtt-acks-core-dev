@@ -156,11 +156,12 @@ export class AcksCharacterCreator extends FormApplication {
     super._onSubmit(event, { updateData: updateData, preventClose: preventClose, preventRender: preventRender });
     // Generate gold
     let gold = event.target.elements.namedItem('gold').value;
+    console.log("Gold", gold);
     const itemData = {
       name: "GP",
       type: "item",
       img: "/systems/acks/assets/gold.png",
-      data: {
+      system: {
         treasure: true,
         cost: 1,
         weight: 1,

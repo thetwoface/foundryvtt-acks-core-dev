@@ -1,4 +1,36 @@
 export const registerSettings = () => {
+
+  game.settings.register("acks", "enable-combatant-color", {
+    name: game.i18n.localize("ACKS.Setting.enableCombatantColor"),
+    hint: game.i18n.localize("ACKS.Setting.enableCombatantColorHint"),
+    default: true,
+    scope: "world",
+    type: Boolean,
+    config: true,
+    onChange: _ => window.location.reload()
+  });
+
+  game.acks.colorFriendlies = new window.Ardittristan.ColorSetting("acks", "color-friendlies", {
+    name:  game.i18n.localize("ACKS.Setting.colorFriendlies"),           // The name of the setting in the settings menu
+    hint: game.i18n.localize("ACKS.Setting.colorFriendlies"),        // A description of the registered setting and its behavior
+    label: "Color Picker",              // The text label used in the button
+    restricted: false,                  // Restrict this setting to gamemaster only?
+    defaultColor: "#000000ff",          // The default color of the setting
+    scope: "client",                    // The scope of the setting
+    onChange: (value) => {},            // A callback function which triggers when the setting is changed
+    insertAfter: "acks.enable-combatant-color"   // If supplied it will place the setting after the supplied setting
+  });
+  game.acks.colorHostiles  = new window.Ardittristan.ColorSetting("acks", "color-hostiles", {
+    name:  game.i18n.localize("ACKS.Setting.colorHostiles"),           // The name of the setting in the settings menu
+    hint: game.i18n.localize("ACKS.Setting.colorHostiles"),        // A description of the registered setting and its behavior
+    label: "Color Picker",              // The text label used in the button
+    restricted: false,                  // Restrict this setting to gamemaster only?
+    defaultColor: "#000000ff",          // The default color of the setting
+    scope: "client",                    // The scope of the setting
+    onChange: (value) => {},            // A callback function which triggers when the setting is changed
+    insertAfter: "acks.color-friendlies"   // If supplied it will place the setting after the supplied setting
+  });
+
   game.settings.register("acks", "initiative", {
     name: game.i18n.localize("ACKS.Setting.Initiative"),
     hint: game.i18n.localize("ACKS.Setting.InitiativeHint"),

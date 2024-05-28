@@ -1,3 +1,37 @@
+<div class="flexrow">
+  <div>
+    <div class="flexrow acks-label-field-fixed">
+      <label class="acks-label-base">Friendly global initiative modifier : </label>
+      <select class="acks-field-numeric" id="surprise-friendly-modifier">
+        <option value="-3">-3</option>
+        <option value="-2">-2</option>
+        <option value="-1">-1</option>
+        <option value="0" selected>0</option>
+        <option value="+1">+1</option>
+        <option value="+2">+2</option>
+        <option value="+3">+3</option>
+      </select>
+    </div>
+    <div class="flexrow acks-label-field-fixed">
+      <label class="acks-label-base">Hostile global initiative modifier : </label>
+      <select class="acks-field-numeric" id="surprise-hostile-modifier">
+        <option value="-3">-3</option>
+        <option value="-2">-2</option>
+        <option value="-1">-1</option>
+        <option value="0" selected>0</option>
+        <option value="+1">+1</option>
+        <option value="+2">+2</option>
+        <option value="+3">+3</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="flexrow">
+    <button class="roll-actor-surprise" id="surprise-actor-modifiers">{{localize "ACKS.surprise.actormodifier"}}</button>
+  </div>
+
+</div>
+
 <table class="acks acks-surprised-table">
   
   <tr>

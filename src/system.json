@@ -5,6 +5,12 @@
   "version": "#{VERSION}#",
   "relationships": {
     "requires": [
+      {
+        "id": "colorsettings",
+        "type": "module",
+        "manifest": "https://raw.githubusercontent.com/ardittristan/VTTColorSettings/master/module.json",
+        "compatibility": {}
+      }
     ]
   },
   "compatibility": {
@@ -183,8 +189,10 @@
       "path": "lang/es.json"
     }
   ],
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
   "download": "#{DOWNLOAD}#"  

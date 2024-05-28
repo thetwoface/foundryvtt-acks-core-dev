@@ -16,6 +16,8 @@
   },
   "COMBAT.TurnPrev": "Prev. Combatant",
   "COMBAT.TurnNext" : "Next Combatant",
+  "COMBAT.ToggleDead": "Defeated",
+  "EFFECT.StatusDead": "Defeated",
 
   "ACKS.Edit": "Edit",
   "ACKS.Delete": "Delete",
@@ -226,6 +228,10 @@
   "ACKS.Setting.BHRHint": "Heroic Fantasy Option: Base Healing Rate per day varies by Max HP",
   "ACKS.Setting.RemoveMagicBonus": "HFH: Wisdom Bonus to All Saves",
   "ACKS.Setting.RemoveMagicBonusHint": "Heroic Fantasy Option: PCs will add their wisdom modifier to all saving throws, not just magic",
+  "ACKS.Setting.enableCombatantColor": "Enable colored highlight for combatants",
+  "ACKS.Setting.enableCombatantColorHint": "Change the color of combatants depending on their group",
+  "ACKS.Setting.colorFriendlies": "Color for friendlies combatants",
+  "ACKS.Setting.colorHostiles": "Color for hostiles combatants",
 
   "ACKS.items.Equip": "Equip",
   "ACKS.items.Unequip": "Unequip",
@@ -359,8 +365,9 @@
   "ACKS.surprise.none.los": "Monsters roll surprise<br>Adventurers roll surprise (-1)<br>Adventurers cannot evade",
   "ACKS.surprise.none.none": "No encounter",
 
-  "ACKS.surprise.notsurprised": "Actor {name} is NOT surprised (result {result})",
-  "ACKS.surprise.surprised": "Actor {name} is surprised (result {result})",
+  "ACKS.surprise.notsurprised": "Actor {name} is NOT surprised (result {result}, {formula})",
+  "ACKS.surprise.surprised": "Actor {name} is surprised (result {result}, {formula})",
+  "ACKS.surprise.actormodifier": "Per actor modifiers",
 
   "ACKS.surprise.title.forelos": "Fore+LOS",
   "ACKS.surprise.title.fore": "Fore",

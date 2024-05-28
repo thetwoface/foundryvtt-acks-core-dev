@@ -8,10 +8,11 @@ export class AcksSurprise extends FormApplication {
   /*******************************************************/
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
+      title: "Surprise Selector",
       classes: ["acks", "dialog", "party-sheet"],
       template: "systems/acks/templates/apps/dialog-surprise.html",
       width: 820,
-      height: 480,
+      height: 450,
       resizable: false,
     });
   }
@@ -23,6 +24,7 @@ export class AcksSurprise extends FormApplication {
 */
   getData() {
 
+    this.modifiers = {}; // Reset per actor modifier
     const data = {
       data: this.object,
       config: foundry.utils.duplicate(CONFIG.ACKS),
@@ -39,14 +41,17 @@ export class AcksSurprise extends FormApplication {
   }
 
   /*******************************************************/
-  async rollSurprise(surpriseDef) {
+  async rollSurprise(surpriseDef, friendlyModifier = 0, hostileModifier = 0) {
+    console.log("Rolling surprise", surpriseDef, friendlyModifier, hostileModifier);
     let monsters = this.object.pools.hostile;
     for (let c of monsters) {
-      console.log("Combatant", c);
-      let roll = await new Roll("1d6+"+c.actor.system.surprise.mod+"+"+surpriseDef.monsterModifier).roll();
+      //console.log("Combatant", c);
+      let actorModifier = this.modifiers[c.id] || 0;
+      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseDef.monsterModifier + "+" + hostileModifier + "+" + actorModifier).roll();
       let surprised = roll.total <= 2;
+      let formula = roll.formula;
       let msgText = (surprised) ? "ACKS.surprise.surprised" : "ACKS.surprise.notsurprised";
-      let message = game.i18n.format(msgText, {name: c.actor.name, result: roll.total, surprised});
+      let message = game.i18n.format(msgText, { name: c.actor.name, result: roll.total, surprised, formula });
       let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: c.actor }),
@@ -59,10 +64,12 @@ export class AcksSurprise extends FormApplication {
     }
     let adventurers = this.object.pools.friendly;
     for (let c of adventurers) {
-      let roll = new Roll("1d6+"+c.actor.system.surprise.mod+"+"+surpriseDef.adventurerModifier).roll({async: false});
+      let actorModifier = this.modifiers[c.id] || 0;
+      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseDef.adventurerModifier + "+" + friendlyModifier+ "+" + actorModifier).roll();
+      let formula = roll.formula;
       let surprised = roll.total <= 2;
       let msgText = (surprised) ? "ACKS.surprise.surprised" : "ACKS.surprise.notsurprised";
-      let message = game.i18n.format(msgText, {name: c.actor.name, result: roll.total, surprised});
+      let message = game.i18n.format(msgText, { name: c.actor.name, result: roll.total, surprised, formula });
       let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: c.actor }),
@@ -79,6 +86,17 @@ export class AcksSurprise extends FormApplication {
     this.close();
     this.object.combatData.internalStartCombat(); // Restarts the combat !
   }
+  
+  /*******************************************************/
+  getHostiles() {
+    return this.object.pools.hostile;
+  }
+  getFriendly() {
+    return this.object.pools.friendly;
+  }
+  setActorModifier(cId, value) {
+    this.modifiers[cId] = value;  
+  }
 
   /*******************************************************/
   /** @override */
@@ -86,12 +104,66 @@ export class AcksSurprise extends FormApplication {
     super.activateListeners(html);
     let myself = this;
 
-    html.find(".roll-surprise-button").click((ev) => {
+    html.find("#surprise-actor-modifiers").click((ev) => {
+      let surpriseActorDialog = new AcksActorSurprise({ surpriseDialog: this });
+      surpriseActorDialog.render(true);
+    });
+
+    html.find(".roll-surprise-button").click(async (ev) => {
       let keyA = $(ev.currentTarget).data("key-adventurer");
       let keyM = $(ev.currentTarget).data("key-monster");
       let surpriseDef = CONFIG.ACKS.surpriseTableAdventurers[keyA][keyM];
-      myself.rollSurprise(surpriseDef);
+      let friendlyModifier = $("#surprise-friendly-modifier").val();
+      let hostileModifier = $("#surprise-hostile-modifier").val();
+      await myself.rollSurprise(surpriseDef, friendlyModifier, hostileModifier);
     })
+  }
+
+}
+
+export class AcksActorSurprise extends FormApplication {
+
+  /*******************************************************/
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      title: "Per actor surprise modifiers",
+      classes: ["acks", "dialog", "party-sheet"],
+      template: "systems/acks/templates/apps/dialog-actor-surprise-modifier.html",
+      width: 360,
+      height: 280,
+      resizable: false,
+    });
+  }
+
+  /*******************************************************/
+  /**
+  * Construct and return the data object used to render the HTML template for this form application.
+  * @return {Object}
+  */
+  getData() {
+    const data = {
+      data: this.object,
+      config: foundry.utils.duplicate(CONFIG.ACKS),
+      user: game.user,
+      hostiles : this.object.surpriseDialog.getHostiles(),
+      friendlies: this.object.surpriseDialog.getFriendly()
+    }
+    return data;
+  }
+
+  activateListeners(html) {
+    super.activateListeners(html);
+    let myself = this;
+
+    html.find("#close-actor-surprise").click((ev) => {
+      this.close();
+    });
+
+    html.find(".actor-surprise-modifier").click((ev) => {
+      let cId = $(ev.currentTarget).data("cid");
+      myself.object.surpriseDialog.setActorModifier(cId, $(ev.currentTarget).val());
+    });
+
   }
 
 }

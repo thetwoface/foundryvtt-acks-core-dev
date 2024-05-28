@@ -1,11 +1,11 @@
 export const ACKS = {
   statusEffects : [
-    { acks: true, id: "surprised", label: 'Surprised', icon: 'icons/svg/blind.svg', duration: {rounds: 1} },
+    { acks: true, id: "surprised", label: 'Surprised', icon: 'systems/acks/assets/icons/surprised.svg', duration: {rounds: 1} },
     { acks: true, id: "overnumbering", label: 'OverNumbered', icon: 'icons/svg/regen.svg' },
     { acks: true, id: "done", label: 'Done', icon: 'icons/svg/cancel.svg' },
     { acks: true, id: "readied", label: 'Readied', icon: 'icons/svg/ice-aura.svg' },
     { acks: true, id: "delayed", label: 'Delayed', icon: 'icons/svg/clockwork.svg' },
-    { acks: true, id: "unconscious", label: 'Unconscious', icon: 'icons/svg/stoned.svg' },
+    { acks: true, id: "slumbering", label: 'Slumbering', icon: 'icons/svg/stoned.svg' },
   ],
   surpriseTableAdventurers : {
     "forelos": {

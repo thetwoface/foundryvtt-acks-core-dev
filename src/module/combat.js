@@ -8,7 +8,8 @@ export class AcksCombatClass extends Combat {
    * Return the Array of combatants sorted into initiative order, breaking ties alphabetically by name.
    * @returns {Combatant[]}
    */
-  setupTurns() {
+  setupTurns2() {
+    console.log("setup turns !")
 
     // Determine the turn order and the current turn
     const turns = this.combatants.contents.sort(this._sortCombatants);
@@ -16,15 +17,73 @@ export class AcksCombatClass extends Combat {
 
     // Update state tracking
     let c = turns[this.turn];
-    this.current = {
+    this.current = this.getCurrentState(c);
+    /*this.current = {
       round: this.round,
       turn: this.turn,
       combatantId: c ? c.id : null,
       tokenId: c ? c.tokenId : null
-    };
+    };*/
 
     // Return the array of prepared turns
-    return this.turns = turns;
+    this.turns = turns;
+    return turns
+  }
+
+  /*******************************************************/
+  async rollInitiative(ids, options) {
+
+    ids = typeof ids === "string" ? [ids] : ids;
+    let messages = [];
+
+    for (let cId of ids) {
+      const c = this.combatants.get(cId);
+      console.log("Init for combattant", cId, c, ids)
+      let id = c._id || c.id
+
+      const roll = c.getInitiativeRoll();
+      await roll.evaluate();
+      let initValue = roll.total;
+
+      await this.updateEmbeddedDocuments("Combatant", [{ _id: id, initiative: initValue }]);
+
+      // Determine the roll mode
+      let rollMode = game.settings.get("core", "rollMode");
+      if ((c.token.hidden || c.hidden)
+        && (rollMode === "roll")) {
+        rollMode = "gmroll";
+      }
+
+      // Construct chat message data
+      const messageData = foundry.utils.mergeObject({
+        speaker: {
+          scene: canvas.scene._id,
+          actor: c.actor?.id || null,
+          token: c.token.id,
+          alias: c.token.name
+        },
+        flavor: game.i18n.format('ACKS.roll.individualInit', {
+          name: c.token.name,
+        }),
+      }, {});
+
+      const chatData = await roll.toMessage(messageData, {
+        rollMode,
+        create: false,
+      });
+      if (messages.length > 0) {
+        chatData.sound = null;
+      }
+      messages.push(chatData);
+    }
+    
+    await CONFIG.ChatMessage.documentClass.create(messages);
+
+    this.pools = AcksCombat.getCombatantsPool();
+    this.processOutNumbering();
+
+    return this;
+
   }
 
   /*******************************************************/
@@ -32,8 +91,9 @@ export class AcksCombatClass extends Combat {
     this._playCombatSound("startEncounter");
     let updateData = { round: 1, turn: 0 };
 
-    await AcksCombat.individualInitiative(this, updateData);
-    this.processOutNumbering();
+    await this.rollAll()
+    //await AcksCombat.individualInitiative(this, updateData);
+    //this.processOutNumbering();
 
     Hooks.callAll("combatStart", this, updateData);
     console.log(">>>>>>>>>> Start Combat", updateData);
@@ -52,10 +112,12 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async startCombat() {
+    console.log("Start Combat 1 !")
     this.cleanupStatus("overnumbering")
     let pools = AcksCombat.getCombatantsPool();
     this.pools = pools;
 
+    console.log("Start Combat 2 !", pools)
     let surpriseDialog = new AcksSurprise({ pools, combatData: this });
     await surpriseDialog.render(true);
   }
@@ -100,6 +162,7 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async nextRound() {
+    console.log('NEXT ROUND')
     let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
     // Remove surprised effects
     if (this.round == 1) {
@@ -109,9 +172,7 @@ export class AcksCombatClass extends Combat {
     this.turns.forEach(t => t.actor.hasEffect("done") ? AcksUtility.removeEffect(t.actor, "done") : null);
     console.log("ROUND", this.round, this.turns);
 
-    this.pools = AcksCombat.getCombatantsPool();
-    await AcksCombat.individualInitiative(this);
-    this.processOutNumbering();
+    AcksCombat.resetInitiative(this);
 
     if (this.settings.skipDefeated && (turn !== null)) {
       turn = this.turns.findIndex(t => !t.isDefeated && (this.round == 1 && !t.actor.hasEffect("surprised")));
@@ -180,7 +241,6 @@ export class AcksCombatClass extends Combat {
     });
   }
 }
-
 export class AcksCombat {
 
   /*******************************************************/
@@ -196,7 +256,7 @@ export class AcksCombat {
     // Roll initiative for each group.
     for (const group in groups) {
       const roll = new Roll("1d6");
-      await roll.evaluate({ async: true });
+      await roll.evaluate();
       await roll.toMessage({
         flavor: game.i18n.format('ACKS.roll.initiative', {
           group: CONFIG["ACKS"].colors[group],
@@ -236,6 +296,57 @@ export class AcksCombat {
   }
 
   /*******************************************************/
+  static async rollCombatantInitiative(combat, combatant, updates, messages, id, index) {
+    const roll = combatant.getInitiativeRoll();
+    await roll.evaluate();
+    let value = roll.total;
+
+    if (combat.settings.skipDefeated && combatant.defeated) {
+      value = -790;
+    }
+
+    updates.push({
+      combatantId: id,
+      _id: id,
+      initiative: value,
+      turn: 1,
+
+    });
+
+    // Determine the roll mode
+    let rollMode = game.settings.get("core", "rollMode");
+    if ((combatant.token.hidden || combatant.hidden)
+      && (rollMode === "roll")) {
+      rollMode = "gmroll";
+    }
+
+    // Construct chat message data
+    const messageData = foundry.utils.mergeObject({
+      speaker: {
+        scene: canvas.scene._id,
+        actor: combatant.actor?.id || null,
+        token: combatant.token.id,
+        alias: combatant.token.name
+      },
+      flavor: game.i18n.format('ACKS.roll.individualInit', {
+        name: combatant.token.name,
+      }),
+    }, {});
+
+    const chatData = await roll.toMessage(messageData, {
+      rollMode,
+      create: false,
+    });
+
+    // Only play one sound for the whole set.
+    if (index > 0) {
+      chatData.sound = null;
+    }
+
+    messages.push(chatData);
+
+  }
+  /*******************************************************/
   static async individualInitiative(combat, data) {
     const updates = [];
     const messages = [];
@@ -246,63 +357,20 @@ export class AcksCombat {
     let index = 0;
 
     for (const [id, combatant] of combat.combatants.entries()) {
-      const roll = combatant.getInitiativeRoll();
-      await roll.evaluate({ async: true });
-      let value = roll.total;
-
-      if (combat.settings.skipDefeated && combatant.defeated) {
-        value = -790;
-      }
-
-      updates.push({
-        combatantId: id,
-        _id: id,
-        initiative: value,
-      });
-
-      // Determine the roll mode
-      let rollMode = game.settings.get("core", "rollMode");
-      if ((combatant.token.hidden || combatant.hidden)
-        && (rollMode === "roll")) {
-        rollMode = "gmroll";
-      }
-
-      // Construct chat message data
-      const messageData = foundry.utils.mergeObject({
-        speaker: {
-          scene: canvas.scene._id,
-          actor: combatant.actor?.id || null,
-          token: combatant.token.id,
-          alias: combatant.token.name
-        },
-        flavor: game.i18n.format('ACKS.roll.individualInit', {
-          name: combatant.token.name,
-        }),
-      }, {});
-
-      const chatData = await roll.toMessage(messageData, {
-        rollMode,
-        create: false,
-      });
-
-      // Only play one sound for the whole set.
-      if (index > 0) {
-        chatData.sound = null;
-      }
-
-      messages.push(chatData);
-
+      this.rollCombatantInitiative(combat, combatant, updates, messages, id, index);
       ++index;
     }
 
-    await combat.updateEmbeddedDocuments("Combatant", updates);
+    setTimeout(function () {
+      combat.updateEmbeddedDocuments("Combatant", updates);
+    }, 400);
     await CONFIG.ChatMessage.documentClass.create(messages);
 
     // Now setup the first turn of the first round (ie surprised management)
     let turn = 0;
     if (data) {
       if (data.round == 1) {
-        for (let i=0; i<combat.turns.length; i++) {
+        for (let i = 0; i < combat.turns.length; i++) {
           if (!combat.turns[i].actor.hasEffect("surprised")) {
             turn = i;
             break;
@@ -315,6 +383,10 @@ export class AcksCombat {
 
   /*******************************************************/
   static format(object, html, user) {
+    let colorEnabled = game.settings.get("acks", "enable-combatant-color");
+    let colorFriendlies = game.settings.get("acks", "color-friendlies");
+    let colorHostiles = game.settings.get("acks", "color-hostiles");
+
     html.find(".initiative").each((_, span) => {
       span.innerHTML =
         span.innerHTML == "-789.00"
@@ -332,21 +404,21 @@ export class AcksCombat {
       console.log("Combat controls", ct.dataset);
       if (ct?.dataset?.combatantId) {
         const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
-        const actionDone = cmbtant.actor.hasEffect("done") ? "active": "";
+        const actionDone = cmbtant.actor.hasEffect("done") ? "active" : "";
         controls.eq(1).after(
           `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`
         );
-        const readied = cmbtant.actor.hasEffect("readied") ? "active": "";
+        const readied = cmbtant.actor.hasEffect("readied") ? "active" : "";
         controls.eq(1).after(
           `<a class='combatant-control click-readied ${readied}' data-tooltip="Readied"><i class='fas fa-thumbs-up'></i></a>`
         );
-        const delayed = cmbtant.actor.hasEffect("delayed") ? "active": "";
+        const delayed = cmbtant.actor.hasEffect("delayed") ? "active" : "";
         controls.eq(1).after(
           `<a class='combatant-control click-delayed ${delayed}' data-tooltip="Delayed"><i class='fas fa-clock'></i></a>`
         );
-        const unconscious = cmbtant.actor.hasEffect("unconscious") ? "active": "";
+        const slumbering = cmbtant.actor.hasEffect("slumbering") ? "active" : "";
         controls.eq(1).after(
-          `<a class='combatant-control click-unconscious ${unconscious}' data-tooltip="Unconscious"><i class='fas fa-person-falling-burst'></i></a>`
+          `<a class='combatant-control click-slumbering ${slumbering}' data-tooltip="Slumbering"><i class='fas fa-person-falling-burst'></i></a>`
         );
         const spellActive = cmbtant.flags.acks?.prepareSpell ? "active" : "";
         controls.eq(1).after(
@@ -356,37 +428,23 @@ export class AcksCombat {
     });
 
     AcksCombat.announceListener(html);
-
-    let init = game.settings.get("acks", "initiative") === "group";
-    if (!init) {
-      return;
-    }
-
-    html.find('.combat-control[data-control="rollNPC"]').remove();
-    html.find('.combat-control[data-control="rollAll"]').remove();
-    let trash = html.find(
-      '.encounters .combat-control[data-control="endCombat"]'
-    );
-    $(
-      '<a class="combat-control" data-control="reroll"><i class="fas fa-dice"></i></a>'
-    ).insertBefore(trash);
+    console.log("INIT3")
+    console.log("INIT4")
 
     html.find(".combatant").each((_, ct) => {
       // Can't roll individual inits
-      $(ct).find(".roll").remove();
+      //$(ct).find(".roll").remove();
 
-      // Get group color
-      const combatant = object.viewed.combatants.get(ct.dataset.combatantId);
-      let color = combatant.flags.acks?.group;
-
-      // Append colored flag
-      let controls = $(ct).find(".combatant-controls");
-      controls.prepend(
-        `<a class='combatant-control flag' style='color:${color}' title="${CONFIG.ACKS.colors[color]}"><i class='fas fa-flag'></i></a>`
-      );
+      if (colorEnabled) {
+        const combatant = object.viewed.combatants.get(ct.dataset.combatantId);
+        let color = combatant.token.disposition === 1 ? colorFriendlies : colorHostiles;
+        // Append colored flag
+        let tokenH4 = $(ct).find("h4");
+        console.log("Token H4", tokenH4, color);
+        tokenH4.css("color", color);
+      }
     });
-
-    AcksCombat.addListeners(html);
+    //AcksCombat.addListeners(html);
   }
 
   /*******************************************************/
@@ -479,7 +537,7 @@ export class AcksCombat {
         AcksUtility.addUniqueStatus(combatant.actor, "readied");
       }
     });
-    
+
     html.find(".combatant-control.click-delayed").click(async (event) => {
       event.preventDefault();
 
@@ -495,7 +553,7 @@ export class AcksCombat {
       }
     });
 
-    html.find(".combatant-control.click-unconscious").click(async (event) => {
+    html.find(".combatant-control.click-slumbering").click(async (event) => {
       event.preventDefault();
 
       // Toggle retreat announcement
@@ -503,9 +561,9 @@ export class AcksCombat {
       const isActive = event.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
       if (isActive) {
-        AcksUtility.removeEffect(combatant.actor, "unconscious");
+        AcksUtility.removeEffect(combatant.actor, "slumbering");
       } else {
-        AcksUtility.addUniqueStatus(combatant.actor, "unconscious");
+        AcksUtility.addUniqueStatus(combatant.actor, "slumbering");
       }
     });
 
@@ -558,30 +616,6 @@ export class AcksCombat {
       })
 
       game.combat.setupTurns();
-    });
-  }
-
-  /*******************************************************/
-  static async addCombatant(combatant, options, userId) {
-    let color = "black";
-    switch (combatant.token.disposition) {
-      case -1:
-        color = "red";
-        break;
-      case 0:
-        color = "yellow";
-        break;
-      case 1:
-        color = "green";
-        break;
-    }
-
-    await combatant.update({
-      flags: {
-        acks: {
-          group: color,
-        },
-      },
     });
   }
 

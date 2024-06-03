@@ -59,9 +59,10 @@ export const registerHelpers = async function () {
     return CONFIG.ACKS.tag_images[index];
   });
 
+  const myClamp = (num, min, max) => Math.min(Math.max(num, min), max)
   Handlebars.registerHelper("counter", function (status, value, max) {
     return status
-      ? Math.clamp((100.0 * value) / max, 0, 100)
-      : Math.clamp(100 - (100.0 * value) / max, 0, 100);
+      ? myClamp((100.0 * value) / max, 0, 100)
+      : myClamp(100 - (100.0 * value) / max, 0, 100);
   });
 };

@@ -42,10 +42,10 @@ export class AcksSurprise extends FormApplication {
 
   /*******************************************************/
   async rollSurprise(surpriseDef, friendlyModifier = 0, hostileModifier = 0) {
-    console.log("Rolling surprise", surpriseDef, friendlyModifier, hostileModifier);
+    console.log("Rolling surprise", surpriseDef, friendlyModifier, hostileModifier, this.object.pools.hostile, this.object.pools.friendly);
     let monsters = this.object.pools.hostile;
     for (let c of monsters) {
-      //console.log("Combatant", c);
+      console.log("Combatant", c);
       let actorModifier = this.modifiers[c.id] || 0;
       let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseDef.monsterModifier + "+" + hostileModifier + "+" + actorModifier).roll();
       let surprised = roll.total <= 2;

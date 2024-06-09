@@ -151,14 +151,21 @@
       "path": "packs/acks-weapons.db",
       "type": "Item",
       "module": "acks-packs"
-    },
-    
+    },    
     {
       "name": "acks-maps",
       "label": "ACKS Maps",
       "system": "acks",
       "path": "packs/acks-maps.db",
       "type": "Scene",
+      "module": "acks-packs"
+    },    
+    {
+      "name": "acks-journals",
+      "label": "ACKS Journals",
+      "system": "acks",
+      "path": "packs/acks-journals.db",
+      "type": "JournalEntry",
       "module": "acks-packs"
     }    
   ],

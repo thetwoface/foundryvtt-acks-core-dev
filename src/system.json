@@ -4,14 +4,6 @@
   "description": "Play B/X or other OSR compatible content using the ACKS system",
   "version": "#{VERSION}#",
   "relationships": {
-    "requires": [
-      {
-        "id": "colorsettings",
-        "type": "module",
-        "manifest": "https://raw.githubusercontent.com/ardittristan/VTTColorSettings/master/module.json",
-        "compatibility": {}
-      }
-    ]
   },
   "compatibility": {
     "minimum": "11",
@@ -25,8 +17,8 @@
       "name": "The Happy Anarchist"
     }
   ],
-  "esmodules": ["acks.js"],
-  "styles": ["acks.css"],
+  "esmodules": ["acks.js", "./lib/colorsettings/colorSetting.js"],
+  "styles": ["acks.css", "./lib/colorsettings/css/colorpicker.css"],
   "packs": [
     {
       "name": "acks-arcane-spells-1",

@@ -251,12 +251,13 @@ _onShowModifiers(event) {
     html.find(".item-toggle").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      await item.update({
+      console.log("item", item.system.equipped);
+      await this.actor.updateEmbeddedDocuments("Item", [{
         _id: li.data("itemId"),
-        data: {
+        system: {
           equipped: !item.system.equipped,
         },
-      });
+      } ] );
     });
 
     html

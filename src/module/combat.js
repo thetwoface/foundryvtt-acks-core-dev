@@ -85,18 +85,34 @@ export class AcksCombatClass extends Combat {
     return this;
 
   }
+  /*******************************************************/
+  async rollAll(options) {
+    if ( !this.getFlag("acks", "initDone") ) {
+      ui.notifications.warn(game.i18n.localize("COMBAT.CombatNotStarted"));
+      return;
+    }
+    return super.rollAll(options)
+  }
+  /*******************************************************/
+  async rollNPC(options) {
+    if ( !this.getFlag("acks", "initDone") ) {
+      ui.notifications.warn(game.i18n.localize("COMBAT.CombatNotStarted"));
+      return;
+    }
+    return super.rollNPC(options)
+  }
 
   /*******************************************************/
   async internalStartCombat() {
+    await this.setFlag("acks", "initDone", true);
     this._playCombatSound("startEncounter");
-    let updateData = { round: 1, turn: 0 };
+    let updateData = { round: 1, turn: 0, initDone: true };
 
     await this.rollAll()
-    //await AcksCombat.individualInitiative(this, updateData);
-    //this.processOutNumbering();
 
     Hooks.callAll("combatStart", this, updateData);
-    console.log(">>>>>>>>>> Start Combat", updateData);
+    console.log(">>>>>>>>>> Start Combat", this, updateData);
+    
 
     return this.update(updateData);
   }
@@ -428,8 +444,6 @@ export class AcksCombat {
     });
 
     AcksCombat.announceListener(html);
-    console.log("INIT3")
-    console.log("INIT4")
 
     html.find(".combatant").each((_, ct) => {
       // Can't roll individual inits

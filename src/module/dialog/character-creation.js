@@ -154,6 +154,15 @@ export class AcksCharacterCreator extends FormApplication {
 
   async _onSubmit(event, { updateData = null, preventClose = false, preventRender = false } = {}) {
     super._onSubmit(event, { updateData: updateData, preventClose: preventClose, preventRender: preventRender });
+    // Update stats 
+    let update = {}
+    $(this.form.children).find(".score-roll").each((_, d) => {
+      let gr = $(d).closest('.form-group');
+      let val = gr.find(".score-value").val();
+      update['system.scores.'+gr.data("score")] = { mod: 0, bonus: 0, value: val};
+    })
+    await this.object.update( update );
+
     // Generate gold
     let gold = event.target.elements.namedItem('gold').value;
     console.log("Gold", gold);

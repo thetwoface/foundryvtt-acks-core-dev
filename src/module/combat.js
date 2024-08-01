@@ -32,53 +32,69 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async rollInitiative(ids, options) {
-
     ids = typeof ids === "string" ? [ids] : ids;
     let messages = [];
+
+    // Get current groups 
+    let groups = this.getFlag('acks', 'groups') || [];
 
     for (let cId of ids) {
       const c = this.combatants.get(cId);
       console.log("Init for combattant", cId, c, ids)
       let id = c._id || c.id
-
-      const roll = c.getInitiativeRoll();
-      await roll.evaluate();
-      let initValue = roll.total;
-
+      // get the associated token 
+      let tokenId = c.token.id;
+      // Check if the current token ID is in a group  
+      let groupData = groups.find((groupData) => groupData.tokens.includes(tokenId));
+      let initValue = -1;
+      let showMessage = true
+      let roll
+      if (groupData && groupData.initiative > 0) {
+        initValue = groupData.initiative;
+        showMessage = false
+      } else {
+        roll = c.getInitiativeRoll();
+        await roll.evaluate();
+        initValue = roll.total;
+      }
+      if ( groupData ) {
+        groupData.initiative = initValue
+      }
       await this.updateEmbeddedDocuments("Combatant", [{ _id: id, initiative: initValue }]);
 
-      // Determine the roll mode
-      let rollMode = game.settings.get("core", "rollMode");
-      if ((c.token.hidden || c.hidden)
-        && (rollMode === "roll")) {
-        rollMode = "gmroll";
-      }
+      if (showMessage) {
+        // Determine the roll mode
+        let rollMode = game.settings.get("core", "rollMode");
+        if ((c.token.hidden || c.hidden)
+          && (rollMode === "roll")) {
+          rollMode = "gmroll";
+        }
 
-      // Construct chat message data
-      const messageData = foundry.utils.mergeObject({
-        speaker: {
-          scene: canvas.scene._id,
-          actor: c.actor?.id || null,
-          token: c.token.id,
-          alias: c.token.name
-        },
-        flavor: game.i18n.format('ACKS.roll.individualInit', {
-          name: c.token.name,
-        }),
-      }, {});
+        // Construct chat message data
+        const messageData = foundry.utils.mergeObject({
+          speaker: {
+            scene: canvas.scene._id,
+            actor: c.actor?.id || null,
+            token: c.token.id,
+            alias: c.token.name
+          },
+          flavor: game.i18n.format('ACKS.roll.individualInit', {
+            name: c.token.name,
+          }),
+        }, {});
 
-      const chatData = await roll.toMessage(messageData, {
-        rollMode,
-        create: false,
-      });
-      if (messages.length > 0) {
-        chatData.sound = null;
+        const chatData = await roll.toMessage(messageData, {
+          rollMode,
+          create: false,
+        });
+        if (messages.length > 0) {
+          chatData.sound = null;
+        }
+        messages.push(chatData);
       }
-      messages.push(chatData);
     }
     
     await CONFIG.ChatMessage.documentClass.create(messages);
-
     this.pools = AcksCombat.getCombatantsPool();
     this.processOutNumbering();
 
@@ -93,6 +109,7 @@ export class AcksCombatClass extends Combat {
     }
     return super.rollAll(options)
   }
+
   /*******************************************************/
   async rollNPC(options) {
     if ( !this.getFlag("acks", "initDone") ) {
@@ -256,6 +273,44 @@ export class AcksCombatClass extends Combat {
       }
     });
   }
+
+  /*******************************************************/
+  manageGroup(groupTokens) {
+    // Check if the tokens are in the current combatant list 
+    let combatants = this.combatants;
+    let combatantTokens = combatants.map(c => c.token.id);
+    let missingTokens = groupTokens.filter(t => !combatantTokens.includes(t.id));
+    if (missingTokens.length > 0) {
+      ui.notifications.warn("Tokens are not in the combatant list");
+      return;
+    }
+
+    let groups = foundry.utils.duplicate(this.getFlag('acks', 'groups') || [])
+    // Group index is the group size
+    let groupId = groups.length;
+    groups[groupId] = {initiative: -1, tokens: groupTokens.map(t => t.id) }
+
+    // Remove tokens already present in another group
+    groups.forEach(function (groupData, id) {
+      if (id != groupId) {
+        groupTokens.forEach(t => {
+          if (groupData.tokens.includes(t.id)) {
+            groupData.tokens.splice(groupData.tokens.indexOf(t.id), 1);
+          }
+        });
+      }
+    })
+    // Then parse the group array and remove empty or single groups
+    groups = groups.filter((groupData) => {
+      return groupData.tokens.length > 1;
+    });
+    // Save the groups
+    this.setFlag('acks', 'groups', groups);
+    ui.notifications.info("Groups created/updated");
+    // Log the current group state
+    console.log("Groups", groups);
+  }
+
 }
 export class AcksCombat {
 
@@ -414,10 +469,18 @@ export class AcksCombat {
           : span.innerHTML;
     });
 
+    let rollNPC = html.find(`[data-control='rollNPC']`);
+    rollNPC.after(` <a class="combat-button combat-control create-group" aria-label="{{localize 'COMBAT.createGroup'}}" role="button"
+        data-tooltip="COMBAT.createGroup" data-control="create-group" {{#unless turns}}disabled{{/unless}}>
+        <i class="fa-duotone fa-solid fa-people-group"></i>
+      </a>` );
+
+    console.log("Roll NPC", rollNPC);
+
     html.find(".combatant").each((_, ct) => {
       // Append spellcast and retreat
       const controls = $(ct).find(".combatant-controls .combatant-control");
-      console.log("Combat controls", ct.dataset);
+      //console.log("Combat controls", ct.dataset);
       if (ct?.dataset?.combatantId) {
         const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
         const actionDone = cmbtant.actor.hasEffect("done") ? "active" : "";
@@ -446,14 +509,21 @@ export class AcksCombat {
     AcksCombat.announceListener(html);
 
     html.find(".combatant").each((_, ct) => {
-      // Can't roll individual inits
-      //$(ct).find(".roll").remove();
+      // Get the groups 
+      const groups = game.combat.getFlag('acks', 'groups') || [];
 
       if (colorEnabled) {
         const combatant = object.viewed.combatants.get(ct.dataset.combatantId);
-        let color = combatant.token.disposition === 1 ? colorFriendlies : colorHostiles;
-        // Append colored flag
+        // Search if the combatant token is inside a group
         let tokenH4 = $(ct).find("h4");
+        groups.forEach((groupData, index) => {
+          if (groupData.tokens?.includes(combatant.token.id)) {
+            // Add the group ID to the H4 content text
+            tokenH4.text(tokenH4.text() + ` [G${index}]`);
+          }
+        })
+        // Append colored flag
+        let color = combatant.token.disposition === 1 ? colorFriendlies : colorHostiles;
         console.log("Token H4", tokenH4, color);
         tokenH4.css("color", color);
       }
@@ -579,6 +649,24 @@ export class AcksCombat {
       } else {
         AcksUtility.addUniqueStatus(combatant.actor, "slumbering");
       }
+    });
+
+    html.find(".combat-control.create-group").click(async (event) => {
+      event.preventDefault();
+      let groupTokens = canvas.tokens.controlled
+      // Check if all tokens are NPCs
+      for (let token of groupTokens) {
+        if (token.actor.hasPlayerOwner) {
+          ui.notifications.warn("You can't group player tokens");
+          return;
+        }
+      }
+      // Check if number of tokens is greater than 1 
+      if (groupTokens.length < 2) {
+        ui.notifications.warn("You can't group a single token");
+        return;
+      }
+      game.combat.manageGroup(groupTokens);
     });
 
   }

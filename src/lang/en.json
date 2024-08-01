@@ -18,6 +18,8 @@
   "COMBAT.TurnNext" : "Next Combatant",
   "COMBAT.ToggleDead": "Defeated",
   "COMBAT.CombatNotStarted": "Combat is not started. Please start the combat first.",
+  "COMBAT.createGroup": "Create a NPC group from selected tokens",
+  
   "EFFECT.StatusDead": "Defeated",
 
   "ACKS.Edit": "Edit",

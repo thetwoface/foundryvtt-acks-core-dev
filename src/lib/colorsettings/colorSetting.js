@@ -628,7 +628,7 @@ Hooks.once('init', function () {
 
         Hooks.once('ready', function () {
             if (game.settings.get("colorsettings", "showWarning")) {
-                ui.notifications.notify(compatLocalize("colorSettings.backupWarning", "A module is running a backup color picker library. For best results, please install  and enable the Lib-Color Settings module."), "warning");
+              //ui.notifications.notify(compatLocalize("colorSettings.backupWarning", "A module is running a backup color picker library. For best results, please install  and enable the Lib-Color Settings module."), "warning");
             }
         });
         console.log("colorsettings | initializing fallback mode");

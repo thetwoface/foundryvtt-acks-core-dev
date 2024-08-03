@@ -129,6 +129,7 @@ jobs:
             template.json                        \
             LICENSE.txt                              \
             assets/                           \
+            lib/                              \
             lang/                             \
             module/                              \
             packs/                               \

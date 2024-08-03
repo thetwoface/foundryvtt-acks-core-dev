@@ -2,6 +2,7 @@
 
 import Picker from "./lib/vanilla-picker.min.mjs";
 import _html2canvas from './lib/html2canvas.esm.min.js';
+
 import API from "./api.js";
 /** @type {Html2CanvasStatic} */
 const html2canvas = _html2canvas
@@ -646,6 +647,6 @@ Hooks.once('init', function () {
 
 Hooks.once("setup", async function () {
     // Setup api
-    const data = game.modules.get("colorsettings");
-    data.api = API;
+    //const data = game.modules.get("colorsettings");
+    //data.api = API;
 });

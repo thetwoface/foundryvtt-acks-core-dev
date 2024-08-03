@@ -539,7 +539,7 @@ export class AcksCombat {
 
   /*******************************************************/
   static updateCombatant(combat, combatant, data) {
-    let init = game.settings.get("acks", "initiative");
+    let init = "individual" //UNUSED game.settings.get("acks", "initiative");
     // Why do you reroll ?
     // Legacy Slowness code from OSE
     //    if (combatant.actor.data.data.isSlow) {

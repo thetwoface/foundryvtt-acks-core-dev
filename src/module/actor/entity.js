@@ -18,7 +18,7 @@ export class AcksActor extends Actor {
     this.computeAAB();
 
     // Determine Initiative
-    if (game.settings.get("acks", "initiative") != "group") {
+    /* UNUSED : if (game.settings.get("acks", "initiative") != "group") {
       data.initiative.value = data.initiative.mod;
       if (this.type == "character") {
         data.initiative.value += data.scores.dex.mod;
@@ -28,7 +28,8 @@ export class AcksActor extends Actor {
       }
     } else {
       data.initiative.value = 0;
-    }
+    } */
+    data.initiative.value = 0;
     data.movement.encounter = data.movement.base / 3;
 
     console.log("MODCOMPUTE2", data);
@@ -521,7 +522,7 @@ export class AcksActor extends Actor {
 
     if (game.settings.get("acks", "exploding20s")) {
       rollParts = ["1d20x="];
-    }
+    } 
 
     const dmgParts = [];
     let label = game.i18n.format("ACKS.roll.attacks", {

@@ -455,8 +455,14 @@ export class AcksCombat {
   /*******************************************************/
   static format(object, html, user) {
     let colorEnabled = game.settings.get("acks", "enable-combatant-color");
-    let colorFriendlies = game.settings.get("acks", "color-friendlies");
-    let colorHostiles = game.settings.get("acks", "color-hostiles");
+    let colorFriendlies = "#00FF00";
+    let colorHostiles = "#FF0000";    
+    try {
+      colorFriendlies = game.settings.get("acks", "color-friendlies");
+      colorHostiles = game.settings.get("acks", "color-hostiles");
+    } catch (e) { 
+      console.log("Color settings not found", e);
+    }
 
     html.find(".initiative").each((_, span) => {
       span.innerHTML =

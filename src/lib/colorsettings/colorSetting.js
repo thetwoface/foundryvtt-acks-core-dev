@@ -28,11 +28,14 @@ function runInit(moduleName) {
     if (typeof libWrapper === "function") {
         // If the namespace is the moduleName no need to touch this file
         if(moduleName && game.modules.get(moduleName)){
-            libWrapper.register(moduleName, 'SettingsConfig.prototype._onClickSubmenu', onClickSubmenuWrapper, 'OVERRIDE');
+          console.log("HERE1")
+          libWrapper.register(moduleName, 'SettingsConfig.prototype._onClickSubmenu', onClickSubmenuWrapper, 'OVERRIDE');
         }else{
-            libWrapper.register('acks', 'SettingsConfig.prototype._onClickSubmenu', onClickSubmenuWrapper, 'OVERRIDE');
+          console.log("HERE2")
+          libWrapper.register('acks', 'SettingsConfig.prototype._onClickSubmenu', onClickSubmenuWrapper, 'OVERRIDE');
         }
     } else {
+      console.log("HERE3")
         // IMPORTANT: most likely to have compatibility issues with other modules
         SettingsConfig.prototype._onClickSubmenu = onClickSubmenuWrapper;
     }

@@ -17,8 +17,8 @@
       "name": "The Happy Anarchist"
     }
   ],
-  "esmodules": ["acks.js", "./lib/colorsettings/colorSetting.js"],
-  "styles": ["acks.css", "./lib/colorsettings/css/colorpicker.css"],
+  "esmodules": ["acks.js"],
+  "styles": ["acks.css"],
   "packs": [
     {
       "name": "acks-arcane-spells-1",

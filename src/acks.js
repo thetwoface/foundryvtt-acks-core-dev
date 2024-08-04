@@ -6,7 +6,7 @@ import { preloadHandlebarsTemplates } from "./module/preloadTemplates.js";
 import { AcksActor } from "./module/actor/entity.js";
 import { AcksItem } from "./module/item/entity.js";
 import { ACKS } from "./module/config.js";
-import { registerMainSettings, registerColorSettings } from "./module/settings.js";
+import { registerMainSettings } from "./module/settings.js";
 import { registerHelpers } from "./module/helpers.js";
 import * as chat from "./module/chat.js";
 import * as treasure from "./module/treasure.js";
@@ -76,8 +76,6 @@ Hooks.once("setup", function () {
 });
 
 Hooks.once("ready", async () => {
-  registerColorSettings();
-
   Hooks.on("hotbarDrop", (bar, data, slot) =>
     macros.createAcksMacro(data, slot)
   );

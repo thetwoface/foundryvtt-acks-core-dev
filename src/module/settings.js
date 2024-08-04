@@ -1,4 +1,4 @@
-export const registerMainSettings = () => {
+export const registerMainSettings = async () => {
   game.settings.register("acks", "enable-combatant-color", {
     name: game.i18n.localize("ACKS.Setting.enableCombatantColor"),
     hint: game.i18n.localize("ACKS.Setting.enableCombatantColorHint"),
@@ -7,6 +7,40 @@ export const registerMainSettings = () => {
     type: Boolean,
     config: true,
     onChange: _ => window.location.reload()
+  });
+
+  await game.settings.register('acks', 'color-friendlies', {
+    name:  game.i18n.localize("ACKS.Setting.colorFriendlies"),           // The name of the setting in the settings menu
+    hint: game.i18n.localize("ACKS.Setting.colorFriendlies"),        // A description of the registered setting and its behavior
+    scope: 'world',     // "world" = sync to db, "client" = local storage 
+    config: true,       // false if you dont want it to show in module config
+    type: String,       // Number, Boolean, String,  
+    requiresReload: true,
+    default: '#FF0000',
+    onChange: value => {
+      console.log(value)
+    },
+  });
+  Hooks.on('renderSettingsConfig', (app, el, data) => {
+    let col = game.settings.get('acks', 'color-friendlies')
+    el.find('[name="acks.color-friendlies"]').parent().append(`<input type="color" value="${col}" data-edit="acks.color-friendlies">`)
+  });
+
+  await game.settings.register('acks', 'color-hostiles', {
+    name:  game.i18n.localize("ACKS.Setting.colorHostiles"),           // The name of the setting in the settings menu
+    hint: game.i18n.localize("ACKS.Setting.colorHostiles"),        // A description of the registered setting and its behavior
+    scope: 'world',     // "world" = sync to db, "client" = local storage 
+    config: true,       // false if you dont want it to show in module config
+    type: String,       // Number, Boolean, String,  
+    requiresReload: true,
+    default: '#FF0000',
+    onChange: value => {
+      console.log(value)
+    },
+  });
+  Hooks.on('renderSettingsConfig', (app, el, data) => {
+    let col = game.settings.get('acks', 'color-hostiles')
+    el.find('[name="acks.color-hostiles"]').parent().append(`<input type="color" value="${col}" data-edit="acks.color-hostiles">`)
   });
 
   /*game.settings.register("acks", "initiative", {
@@ -45,6 +79,8 @@ export const registerMainSettings = () => {
     config: false,
     onChange: _ => window.location.reload()
   });
+  
+  
 
   game.settings.register("acks", "encumbranceOption", {
     name: game.i18n.localize("ACKS.Setting.Encumbrance"),
@@ -97,30 +133,6 @@ export const registerMainSettings = () => {
     type: Boolean,
     config: true,
     onChange: _ => window.location.reload()
-  });
-}
-
-export const registerColorSettings = () => {
-
-  game.acks.colorFriendlies = new window.Ardittristan.ColorSetting("acks", "color-friendlies", {
-    name:  game.i18n.localize("ACKS.Setting.colorFriendlies"),           // The name of the setting in the settings menu
-    hint: game.i18n.localize("ACKS.Setting.colorFriendlies"),        // A description of the registered setting and its behavior
-    label: "Color Picker",              // The text label used in the button
-    restricted: true,                  // Restrict this setting to gamemaster only?
-    defaultColor: "#000000ff",          // The default color of the setting
-    scope: "world",                    // The scope of the setting
-    onChange: (value) => {},            // A callback function which triggers when the setting is changed
-    insertAfter: "acks.enable-combatant-color"   // If supplied it will place the setting after the supplied setting
-  });
-  game.acks.colorHostiles  = new window.Ardittristan.ColorSetting("acks", "color-hostiles", {
-    name:  game.i18n.localize("ACKS.Setting.colorHostiles"),           // The name of the setting in the settings menu
-    hint: game.i18n.localize("ACKS.Setting.colorHostiles"),        // A description of the registered setting and its behavior
-    label: "Color Picker",              // The text label used in the button
-    restricted: true,                  // Restrict this setting to gamemaster only?
-    defaultColor: "#000000ff",          // The default color of the setting
-    scope: "world",                    // The scope of the setting
-    onChange: (value) => {},            // A callback function which triggers when the setting is changed
-    insertAfter: "acks.color-friendlies"   // If supplied it will place the setting after the supplied setting
   });
 }
 

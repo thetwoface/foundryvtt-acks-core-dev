@@ -1,6 +1,7 @@
 import { AcksActor } from "./entity.js";
 import { AcksActorSheet } from "./actor-sheet.js";
 
+// Define the Item sheet default options
 const __DEFAULT_ITEM_TYPES = [
   {key:"weapon", label:"Weapon"}, 
   {key:"armor", label:"Armor"},

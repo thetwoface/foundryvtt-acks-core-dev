@@ -137,7 +137,7 @@ export class AcksCombatClass extends Combat {
   /*******************************************************/
   cleanupStatus(status) {
     this.combatants.forEach((cbt) => {
-      if (cbt.actor.hasEffect(status)) {
+      if (cbt?.actor?.hasEffect(status)) {
         AcksUtility.removeEffect(cbt.actor, status);
       }
     });
@@ -168,7 +168,7 @@ export class AcksCombatClass extends Combat {
       console.log("Turn", t);
       if (i <= turn) continue;
       if (skipDefeated && t.isDefeated) continue;
-      if (t.actor.hasEffect("surprised")) {
+      if (t.actor?.hasEffect("surprised")) {
         if (this.round == 1) {
           ui.notifications.info(`${t.actor.name} is surprised, so skipped in initiative countdown.`);
           continue;
@@ -489,26 +489,28 @@ export class AcksCombat {
       //console.log("Combat controls", ct.dataset);
       if (ct?.dataset?.combatantId) {
         const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
-        const actionDone = cmbtant.actor.hasEffect("done") ? "active" : "";
-        controls.eq(1).after(
-          `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`
-        );
-        const readied = cmbtant.actor.hasEffect("readied") ? "active" : "";
-        controls.eq(1).after(
-          `<a class='combatant-control click-readied ${readied}' data-tooltip="Readied"><i class='fas fa-thumbs-up'></i></a>`
-        );
-        const delayed = cmbtant.actor.hasEffect("delayed") ? "active" : "";
-        controls.eq(1).after(
-          `<a class='combatant-control click-delayed ${delayed}' data-tooltip="Delayed"><i class='fas fa-clock'></i></a>`
-        );
-        const slumbering = cmbtant.actor.hasEffect("slumbering") ? "active" : "";
-        controls.eq(1).after(
-          `<a class='combatant-control click-slumbering ${slumbering}' data-tooltip="Slumbering"><i class='fas fa-person-falling-burst'></i></a>`
-        );
-        const spellActive = cmbtant.flags.acks?.prepareSpell ? "active" : "";
-        controls.eq(1).after(
-          `<a class='combatant-control prepare-spell ${spellActive}' data-tooltip="Casting"><i class='fas fa-magic'></i></a>`
-        );
+        if ( cmbtant?.actor) {
+          const actionDone = cmbtant.actor.hasEffect("done") ? "active" : "";
+          controls.eq(1).after(
+            `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`
+          );
+          const readied = cmbtant.actor.hasEffect("readied") ? "active" : "";
+          controls.eq(1).after(
+            `<a class='combatant-control click-readied ${readied}' data-tooltip="Readied"><i class='fas fa-thumbs-up'></i></a>`
+          );
+          const delayed = cmbtant.actor.hasEffect("delayed") ? "active" : "";
+          controls.eq(1).after(
+            `<a class='combatant-control click-delayed ${delayed}' data-tooltip="Delayed"><i class='fas fa-clock'></i></a>`
+          );
+          const slumbering = cmbtant.actor.hasEffect("slumbering") ? "active" : "";
+          controls.eq(1).after(
+            `<a class='combatant-control click-slumbering ${slumbering}' data-tooltip="Slumbering"><i class='fas fa-person-falling-burst'></i></a>`
+          );
+          const spellActive = cmbtant.flags.acks?.prepareSpell ? "active" : "";
+          controls.eq(1).after(
+            `<a class='combatant-control prepare-spell ${spellActive}' data-tooltip="Casting"><i class='fas fa-magic'></i></a>`
+          );
+        }
       }
     });
 

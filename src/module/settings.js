@@ -106,7 +106,7 @@ export const registerColorSettings = () => {
     name:  game.i18n.localize("ACKS.Setting.colorFriendlies"),           // The name of the setting in the settings menu
     hint: game.i18n.localize("ACKS.Setting.colorFriendlies"),        // A description of the registered setting and its behavior
     label: "Color Picker",              // The text label used in the button
-    restricted: false,                  // Restrict this setting to gamemaster only?
+    restricted: true,                  // Restrict this setting to gamemaster only?
     defaultColor: "#000000ff",          // The default color of the setting
     scope: "world",                    // The scope of the setting
     onChange: (value) => {},            // A callback function which triggers when the setting is changed
@@ -116,7 +116,7 @@ export const registerColorSettings = () => {
     name:  game.i18n.localize("ACKS.Setting.colorHostiles"),           // The name of the setting in the settings menu
     hint: game.i18n.localize("ACKS.Setting.colorHostiles"),        // A description of the registered setting and its behavior
     label: "Color Picker",              // The text label used in the button
-    restricted: false,                  // Restrict this setting to gamemaster only?
+    restricted: true,                  // Restrict this setting to gamemaster only?
     defaultColor: "#000000ff",          // The default color of the setting
     scope: "world",                    // The scope of the setting
     onChange: (value) => {},            // A callback function which triggers when the setting is changed

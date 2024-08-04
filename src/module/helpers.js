@@ -65,4 +65,13 @@ export const registerHelpers = async function () {
       ? myClamp((100.0 * value) / max, 0, 100)
       : myClamp(100 - (100.0 * value) / max, 0, 100);
   });
+
+  // Handle v12 removal of this helper
+  Handlebars.registerHelper('select', function (selected, options) {
+    const escapedValue = RegExp.escape(Handlebars.escapeExpression(selected));
+    const rgx = new RegExp(' value=[\"\']' + escapedValue + '[\"\']');
+    const html = options.fn(this);
+    return html.replace(rgx, "$& selected");
+  });
+
 };

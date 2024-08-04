@@ -4,8 +4,8 @@ import { AcksActorSheet } from "./actor-sheet.js";
 const __DEFAULT_ITEM_TYPES = [
   {key:"weapon", label:"Weapon"}, 
   {key:"armor", label:"Armor"},
-  {key:"shield", label:"Shield"},
-  {key:"gear", label:"Gear"}
+  {key:"ability", label:"Ability"},
+  {key:"item", label:"Item"}
 ]
 
 /**

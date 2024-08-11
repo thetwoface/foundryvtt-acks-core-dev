@@ -191,7 +191,7 @@ export class AcksDice {
         return result;
       }
       result.isSuccess = true;
-      let value = Math.clamped(result.target - roll.total, -3, 9);
+      let value = Math.clamp(result.target - roll.total, -3, 9);
       result.details = game.i18n.format("ACKS.messages.AttackSuccess", {
         result: value,
         bonus: result.target,

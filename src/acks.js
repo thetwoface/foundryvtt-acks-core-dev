@@ -19,6 +19,14 @@ import { AcksCombat, AcksCombatClass } from "./module/combat.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", async function () {
+
+  // Clamp/Clamped management v11/v12
+  if (Math.clamp === undefined) {
+    Math.clamp = function (a, b, c) {
+      return Math.max(b, Math.min(c, a));
+    };
+  };
+
   /**
    * Set an initiative formula for the system
    * @type {String}

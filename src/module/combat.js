@@ -13,7 +13,7 @@ export class AcksCombatClass extends Combat {
 
     // Determine the turn order and the current turn
     const turns = this.combatants.contents.sort(this._sortCombatants);
-    if (this.turn !== null) this.turn = Math.clamped(this.turn, 0, turns.length - 1);
+    if (this.turn !== null) this.turn = Math.clamp(this.turn, 0, turns.length - 1);
 
     // Update state tracking
     let c = turns[this.turn];

@@ -18,18 +18,18 @@ export class AcksActor extends Actor {
     this.computeAAB();
 
     // Determine Initiative
-    /* UNUSED : if (game.settings.get("acks", "initiative") != "group") {
-      data.initiative.value = data.initiative.mod;
-      if (this.type == "character") {
-        data.initiative.value += data.scores.dex.mod;
-        if (data.isSlow) {
-          data.initiative.value -= 1;
-        }
+    //if (game.settings.get("acks", "initiative") != "group") {
+    data.initiative.value = data.initiative.mod || 0;
+    if (this.type == "character") {
+      data.initiative.value += data.scores.dex.mod;
+      if (data.isSlow) {
+        data.initiative.value -= 1;
       }
-    } else {
+    }
+    /*} else {
       data.initiative.value = 0;
     } */
-    data.initiative.value = 0;
+
     data.movement.encounter = data.movement.base / 3;
 
     console.log("MODCOMPUTE2", data);
@@ -307,7 +307,7 @@ export class AcksActor extends Actor {
   hasEffect(effectId) {
     return this.effects.find((e) => e.statuses.has(effectId));
   }
-  
+
   /* -------------------------------------------- */
   rollCheck(score, options = {}) {
     const label = game.i18n.localize(`ACKS.scores.${score}.long`);
@@ -522,7 +522,7 @@ export class AcksActor extends Actor {
 
     if (game.settings.get("acks", "exploding20s")) {
       rollParts = ["1d20x="];
-    } 
+    }
 
     const dmgParts = [];
     let label = game.i18n.format("ACKS.roll.attacks", {

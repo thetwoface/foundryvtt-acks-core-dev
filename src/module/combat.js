@@ -205,7 +205,7 @@ export class AcksCombatClass extends Combat {
     this.turns.forEach(t => t.actor.hasEffect("delayed") ? AcksUtility.removeEffect(t.actor, "delayed") : null);
     this.turns.forEach(t => t.actor.hasEffect("done") ? AcksUtility.removeEffect(t.actor, "done") : null);
     console.log("ROUND", this.round, this.turns);
-
+    
     AcksCombat.resetInitiative(this);
 
     if (this.settings.skipDefeated && (turn !== null)) {
@@ -282,6 +282,7 @@ export class AcksCombatClass extends Combat {
         await this.cleanupStatus("overnumbering");
         await this.cleanupStatus("prepareSpell");
         await this.cleanupStatus("done");
+        await this.cleanupStatus("readied");
         await this.cleanupStatus("delayed");
         await this.delete()
       }
@@ -624,6 +625,11 @@ export class AcksCombat {
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
       const isActive = event.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
+      // Check if combatant is delayed or readied
+      if (combatant.actor.hasEffect("delayed") || combatant.actor.hasEffect("readied")) {
+        ui.notifications.warn("You can't mark a delayed or readied combatant as done");
+        return;
+      }
       if (isActive) {
         AcksUtility.removeEffect(combatant.actor, "done")
       } else {
@@ -640,6 +646,10 @@ export class AcksCombat {
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
       const isActive = event.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
+      if (combatant.actor.hasEffect("delayed") || combatant.actor.hasEffect("done")) {
+        ui.notifications.warn("You can't mark a delayed or done combatant as ready");
+        return;
+      }
       if (isActive) {
         AcksUtility.removeEffect(combatant.actor, "readied");
       } else {
@@ -655,6 +665,10 @@ export class AcksCombat {
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
       const isActive = event.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
+      if (combatant.actor.hasEffect("readied") || combatant.actor.hasEffect("done")) {
+        ui.notifications.warn("You can't mark a readied or done combatant as delayed");
+        return;
+      }
       if (isActive) {
         AcksUtility.removeEffect(combatant.actor, "delayed");
       } else {

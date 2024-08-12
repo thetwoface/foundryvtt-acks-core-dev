@@ -8,26 +8,23 @@ export class AcksCombatClass extends Combat {
    * Return the Array of combatants sorted into initiative order, breaking ties alphabetically by name.
    * @returns {Combatant[]}
    */
-  setupTurns2() {
+  setupTurns() {
     console.log("setup turns !")
+    this.turns ||= [];
 
     // Determine the turn order and the current turn
-    const turns = this.combatants.contents.sort(this._sortCombatants);
+    const turns = this.combatants.contents.sort(this.sortCombatantsACKS);
     if (this.turn !== null) this.turn = Math.clamp(this.turn, 0, turns.length - 1);
 
     // Update state tracking
     let c = turns[this.turn];
-    this.current = this.getCurrentState(c);
-    /*this.current = {
-      round: this.round,
-      turn: this.turn,
-      combatantId: c ? c.id : null,
-      tokenId: c ? c.tokenId : null
-    };*/
+    this.current = this._getCurrentState(c);
+
+    // One-time initialization of the previous state
+    if ( !this.previous ) this.previous = this.current;
 
     // Return the array of prepared turns
-    this.turns = turns;
-    return turns
+    return this.turns = turns;
   }
 
   /*******************************************************/
@@ -135,22 +132,22 @@ export class AcksCombatClass extends Combat {
   }
 
   /*******************************************************/
-  cleanupStatus(status) {
-    this.combatants.forEach(async (cbt) => {
-      if (status == "outnumbering") {
-        await cbt.setFlag("acks", "outnumbering", false);
+  async cleanupStatus(status) {
+    for (let cbt of this.combatants) {
+      if (status == "outnumbering" || status == "prepareSpell") {
+        await cbt.setFlag("acks", status, false); // Flags management
       } else {
         if (cbt?.actor?.hasEffect(status)) {
           AcksUtility.removeEffect(cbt.actor, status);
         }
       }
-    });
+    }
   }
 
   /*******************************************************/
   async startCombat() {
     console.log("Start Combat 1 !")
-    this.cleanupStatus("outnumbering")
+    await this.cleanupStatus("outnumbering")
     let pools = AcksCombat.getCombatantsPool();
     this.pools = pools;
 
@@ -253,8 +250,16 @@ export class AcksCombatClass extends Combat {
   }
 
   /*******************************************************/
-  _sortCombatants(a, b) {
+  sortCombatantsACKS(a, b) {
     if (a.initiative === b.initiative) {
+      // No outnumbering at all
+      if (!a.getFlag("acks", "outnumbering") && !b.getFlag("acks", "outnumbering")) {
+        if (a.token.disposition == -1) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
       if (a.getFlag("acks", "outnumbering") ) {
         return 1;
       }
@@ -271,13 +276,14 @@ export class AcksCombatClass extends Combat {
     return Dialog.confirm({
       title: game.i18n.localize("COMBAT.EndTitle"),
       content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
-      yes: () => {
-        this.cleanupStatus("surprised");
-        this.cleanupStatus("outnumbering");
-        this.cleanupStatus("overnumbering");
-        this.cleanupStatus("done");
-        this.cleanupStatus("delayed");
-        this.delete()
+      yes: async () => {
+        await this.cleanupStatus("surprised");
+        await this.cleanupStatus("outnumbering");
+        await this.cleanupStatus("overnumbering");
+        await this.cleanupStatus("prepareSpell");
+        await this.cleanupStatus("done");
+        await this.cleanupStatus("delayed");
+        await this.delete()
       }
     });
   }

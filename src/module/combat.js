@@ -590,12 +590,12 @@ export class AcksCombat {
 
       // Toggle spell announcement
       const id = $(event.currentTarget).closest(".combatant")[0].dataset.combatantId;
-      const isActive = event.currentTarget.classList.contains('actionDone');
+      const isActive = event.currentTarget.classList.contains('active');
       const combatant = game.combat.combatants.get(id);
       if (isActive) {
-        AcksUtility.removeEffect(combatant.actor, "done")
+        await combatant.setFlag("acks", "prepareSpell", false);
       } else {
-        AcksUtility.addUniqueStatus(combatant.actor, "done");
+        await combatant.setFlag("acks", "prepareSpell", true);
       }
     });
 

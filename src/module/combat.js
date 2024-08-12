@@ -136,9 +136,13 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   cleanupStatus(status) {
-    this.combatants.forEach((cbt) => {
-      if (cbt?.actor?.hasEffect(status)) {
-        AcksUtility.removeEffect(cbt.actor, status);
+    this.combatants.forEach(async (cbt) => {
+      if (status == "outnumbering") {
+        await cbt.setFlag("acks", "outnumbering", false);
+      } else {
+        if (cbt?.actor?.hasEffect(status)) {
+          AcksUtility.removeEffect(cbt.actor, status);
+        }
       }
     });
   }
@@ -146,7 +150,7 @@ export class AcksCombatClass extends Combat {
   /*******************************************************/
   async startCombat() {
     console.log("Start Combat 1 !")
-    this.cleanupStatus("overnumbering")
+    this.cleanupStatus("outnumbering")
     let pools = AcksCombat.getCombatantsPool();
     this.pools = pools;
 
@@ -232,17 +236,18 @@ export class AcksCombatClass extends Combat {
     let hostileMore = pools.hostile.length > pools.friendly.length;
     let friendlyMore = pools.friendly.length > pools.hostile.length;
     this.combatants.forEach((cbt) => {
-      if (cbt.token.disposition == -1 && cbt.actor.hasEffect("overnumbering") && friendlyMore) {
-        AcksUtility.removeEffect(cbt.actor, "overnumbering");
+      let outNumbering = cbt.getFlag("acks", "outnumbering")
+      if (cbt.token.disposition == -1 && outNumbering && friendlyMore) {
+        cbt.setFlag("acks", "outnumbering", false)
       }
-      if (cbt.token.disposition == 1 && cbt.actor.hasEffect("overnumbering") && hostileMore) {
-        AcksUtility.removeEffect(cbt.actor, "overnumbering");
+      if (cbt.token.disposition == 1 && outNumbering && hostileMore) {
+        cbt.setFlag("acks", "outnumbering", false)
       }
-      if (cbt.token.disposition == -1 && !cbt.actor.hasEffect("overnumbering") && hostileMore) {
-        AcksUtility.addUniqueStatus(cbt.actor, "overnumbering");
+      if (cbt.token.disposition == -1 && !outNumbering && hostileMore) {
+        cbt.setFlag("acks", "outnumbering", true)
       }
-      if (cbt.token.disposition == 1 && !cbt.actor.hasEffect("overnumbering") && friendlyMore) {
-        AcksUtility.addUniqueStatus(cbt.actor, "overnumbering");
+      if (cbt.token.disposition == 1 && !outNumbering && friendlyMore) {
+        cbt.setFlag("acks", "outnumbering", true)
       }
     });
   }
@@ -250,10 +255,10 @@ export class AcksCombatClass extends Combat {
   /*******************************************************/
   _sortCombatants(a, b) {
     if (a.initiative === b.initiative) {
-      if (a.actor.hasEffect("overnumbering")) {
+      if (a.getFlag("acks", "outnumbering") ) {
         return 1;
       }
-      if (b.actor.hasEffect("overnumbering")) {
+      if (b.getFlag("acks", "outnumbering") ) {
         return -1;
       }
       return a.name.localeCompare(b.name);
@@ -268,7 +273,10 @@ export class AcksCombatClass extends Combat {
       content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
       yes: () => {
         this.cleanupStatus("surprised");
+        this.cleanupStatus("outnumbering");
         this.cleanupStatus("overnumbering");
+        this.cleanupStatus("done");
+        this.cleanupStatus("delayed");
         this.delete()
       }
     });
@@ -510,6 +518,10 @@ export class AcksCombat {
           controls.eq(1).after(
             `<a class='combatant-control prepare-spell ${spellActive}' data-tooltip="Casting"><i class='fas fa-magic'></i></a>`
           );
+          const outNumbering = cmbtant.flags.acks?.outnumbering ? "active" : "";
+          controls.eq(1).after(
+            `<span class='combatant-control outnumbering ${outNumbering}' data-tooltip="Outnumbering"><i class='fas fa-people-group'></i></span>`
+          );
         }
       }
     });
@@ -532,8 +544,8 @@ export class AcksCombat {
         })
         // Append colored flag
         let color = combatant.token.disposition === 1 ? colorFriendlies : colorHostiles;
-        console.log("Token H4", tokenH4, color);
-        tokenH4.css("color", color);
+        //console.log("Token H4", tokenH4, color);
+        //tokenH4.css("color", color);
       }
     });
     //AcksCombat.addListeners(html);

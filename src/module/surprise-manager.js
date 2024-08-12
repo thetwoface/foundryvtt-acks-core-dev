@@ -57,7 +57,10 @@ export class AcksSurprise extends FormApplication {
         speaker: ChatMessage.getSpeaker({ actor: c.actor }),
         content: message,
       };
-      ChatMessage.create(chatData);
+      if ( (c.token.hidden || c.hidden) ) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM").map(u => u.id);
+      }
+      await ChatMessage.create(chatData);
       if (surprised) {
         AcksUtility.addUniqueStatus(c.actor, "surprised")
       }

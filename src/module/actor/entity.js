@@ -178,7 +178,7 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   rollMorale(options = {}) {
     const rollParts = ["2d6"];
-    rollParts.push(this.system.details.morale);
+    rollParts.push(this.system.retainer.loyalty);
 
     const data = {
       actor: this,

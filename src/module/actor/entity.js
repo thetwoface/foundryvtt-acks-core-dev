@@ -127,17 +127,14 @@ export class AcksActor extends Actor {
 
   async rollHP(options = {}) {
     let roll = new Roll(this.system.hp.hd);
-    await roll.evaluate({
-      async: true,
-    });
-
+    await roll.evaluate();
     await this.update({
-      data: {
+      system: {
         hp: {
           max: roll.total,
           value: roll.total,
-        },
-      },
+        }
+      }
     });
   }
 
@@ -178,7 +175,7 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   rollMorale(options = {}) {
     const rollParts = ["2d6"];
-    rollParts.push(this.system.retainer.loyalty);
+    rollParts.push(this.system.details.morale);
 
     const data = {
       actor: this,
@@ -221,7 +218,7 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   rollLoyalty(options = {}) {
     const rollParts = ["2d6"];
-    rollParts.push(this.system.details.morale);
+    rollParts.push(this.system.retainer.loyalty);
 
     const data = {
       actor: this,

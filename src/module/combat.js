@@ -93,7 +93,7 @@ export class AcksCombatClass extends Combat {
     
     await CONFIG.ChatMessage.documentClass.create(messages);
     this.pools = AcksCombat.getCombatantsPool();
-    this.processOutNumbering();
+    await this.processOutNumbering();
 
     return this;
 
@@ -228,25 +228,20 @@ export class AcksCombatClass extends Combat {
   }
 
   /*******************************************************/
-  processOutNumbering() {
+  async processOutNumbering() {
     let pools = this.pools;
     let hostileMore = pools.hostile.length > pools.friendly.length;
     let friendlyMore = pools.friendly.length > pools.hostile.length;
-    this.combatants.forEach((cbt) => {
-      let outNumbering = cbt.getFlag("acks", "outnumbering")
-      if (cbt.token.disposition == -1 && outNumbering && friendlyMore) {
-        cbt.setFlag("acks", "outnumbering", false)
+    // DEBUG : console.log("Pools", pools, hostileMore, friendlyMore);
+    for (let cbt of this.combatants) {
+      await cbt.setFlag("acks", "outnumbering", false)
+      if (cbt.token.disposition == -1 && hostileMore) {
+        await cbt.setFlag("acks", "outnumbering", true)
       }
-      if (cbt.token.disposition == 1 && outNumbering && hostileMore) {
-        cbt.setFlag("acks", "outnumbering", false)
+      if (cbt.token.disposition == 1 && friendlyMore) {
+        await cbt.setFlag("acks", "outnumbering", true)
       }
-      if (cbt.token.disposition == -1 && !outNumbering && hostileMore) {
-        cbt.setFlag("acks", "outnumbering", true)
-      }
-      if (cbt.token.disposition == 1 && !outNumbering && friendlyMore) {
-        cbt.setFlag("acks", "outnumbering", true)
-      }
-    });
+    }
   }
 
   /*******************************************************/
@@ -552,7 +547,7 @@ export class AcksCombat {
         // Append colored flag
         let color = combatant.token.disposition === 1 ? colorFriendlies : colorHostiles;
         //console.log("Token H4", tokenH4, color);
-        //tokenH4.css("color", color);
+        tokenH4.css("color", color);
       }
     });
     //AcksCombat.addListeners(html);
@@ -781,14 +776,17 @@ export class AcksCombat {
   static getCombatantsPool() {
     let pools = { friendly: [], neutral: [], hostile: [] };
     game.combat.combatants.forEach((cbt) => {
-      if (cbt.token.disposition == 1) {
-        pools.friendly.push(cbt);
-      }
-      if (cbt.token.disposition == -1) {
-        pools.hostile.push(cbt);
-      }
-      if (cbt.token.disposition == 0) {
-        pools.neutral.push(cbt);
+      console.log("Combatant", cbt);
+      if (!cbt.isDefeated) {
+        if (cbt.token.disposition == 1) {
+          pools.friendly.push(cbt);
+        }
+        if (cbt.token.disposition == -1) {
+          pools.hostile.push(cbt);
+        }
+        if (cbt.token.disposition == 0) {
+          pools.neutral.push(cbt);
+        }
       }
     });
     return pools;

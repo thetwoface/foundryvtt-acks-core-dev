@@ -11,7 +11,7 @@ ACKS). A number of compendiums with Monsters, Items, Spells,
 Proficiencies, Abilities, and more, are available separately.
 
 ## ACKS II for Foundry VTT Features
-#### **Core Rules**
+### **Core Rules**
 - Armor Class (Ascending starting from 0)
 - Attack throws, saving throws, and proficiency throws
 - Attributes, class powers, and proficiency modifiers applied to character sheet
@@ -22,25 +22,31 @@ Proficiencies, Abilities, and more, are available separately.
 - Party-based evasion rolls to end encounters
 - Spellcasting
 
-## PRE-BETA RELEASE INSTALLATION INSTRUCTIONS
-To test and report bugs against the pre-release version of the ACKS II port for Foundry v11, follow these instructions:
+### **Recent Updates**
+For a complete list of changes, [refer to the Changelog](https://github.com/AutarchLLC/foundryvtt-acks-core/blob/master/Changelog.txt). Here are some of the significant changes in the latest release:
 
-1. Delete the current "ACKS" system from your Foundry install  (or duplicate your foundry installation)
-2. Install and launch Foundry v11
-3. Install the beta system by copying this manifest link
-(paste the following URL into the Install System dialog on the Setup menu of the application):
-<https://github.com/AutarchLLC/foundryvtt-acks-core/releases/latest/download/system.json>
-4. Create a new world and perform some tests
-5. Report bugs with screenshots and descriptions as per Community Contribution guidelines below.
+- Added the ACKS II specific Initiative sequencing including Surprise bonuses and Initiative conditions such as Delaying and Readied.
+- Updated the game system to add Foundry version 11 and version 12 compatibility.
 
-<!--
-## Manual Installation
-To install and use this system, simply paste the following URL into the Install System dialog on the Setup menu of the application.
+## Installation Instructions
+**Getting Started**  
+If you're new to installing Game System modules, follow along with the [Foundry Gamemaster tutorial](https://foundryvtt.com/article/tutorial/) section headlined *Installing a Game System.* [https://foundryvtt.com/article/tutorial/](https://foundryvtt.com/article/tutorial/)
 
-<https://github.com/thehappyanarchist/foundryacks/raw/master/src/system.json>
+**Backward Compatibility**  
+If you need to maintain backward compatibility with older Foundry releases before version 11, we recommend using the Version 9 installation package. Be aware that the Version 9 package is for ACKS (original) and will not contain any updated content for ACKS II.
 
+**Installation**  
+To install and use this system, paste one of the following installation URLs into the *Install System* dialog of the Setup menu inside the Foundry application.
+
+| For this<br/>Foundry version | Use this Installation URL |
+| --------------- | ---------------- |
+| Version 12, <br/>Version 11 | [https://github.com/AutarchLLC/foundryvtt-acks-core/releases/latest/download/system.json](https://github.com/AutarchLLC/foundryvtt-acks-core/releases/latest/download/system.json) |
+| Version 10 | Unknown. Recommend staying at Version 9 or else updating to Version 11. |
+| Version 9 | [https://github.com/thehappyanarchist/foundryacks/raw/master/src/system.json](https://github.com/thehappyanarchist/foundryacks/raw/master/src/system.json) |
+| Older versions | Not supported. |
+
+### Manual Installation (Advanced Users)
 If you wish to manually install the system, you must clone or extract it into the foundry "/data/systems/acks" folder. You may do this by cloning the repository /src folder or downloading and extracting the zip archive available on the GitHub page.
--->
 
 ## Community Contribution
 

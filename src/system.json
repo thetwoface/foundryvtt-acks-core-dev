@@ -4,12 +4,10 @@
   "description": "Play B/X or other OSR compatible content using the ACKS system",
   "version": "#{VERSION}#",
   "relationships": {
-    "requires": [
-    ]
   },
   "compatibility": {
     "minimum": "11",
-    "verified": "11"
+    "verified": "12"
   },
   "authors": [
     {
@@ -145,14 +143,21 @@
       "path": "packs/acks-weapons.db",
       "type": "Item",
       "module": "acks-packs"
-    },
-    
+    },    
     {
       "name": "acks-maps",
       "label": "ACKS Maps",
       "system": "acks",
       "path": "packs/acks-maps.db",
       "type": "Scene",
+      "module": "acks-packs"
+    },    
+    {
+      "name": "acks-journals",
+      "label": "ACKS Journals",
+      "system": "acks",
+      "path": "packs/acks-journals.db",
+      "type": "JournalEntry",
       "module": "acks-packs"
     }    
   ],
@@ -183,8 +188,10 @@
       "path": "lang/es.json"
     }
   ],
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
   "download": "#{DOWNLOAD}#"  

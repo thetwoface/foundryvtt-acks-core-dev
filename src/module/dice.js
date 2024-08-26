@@ -79,9 +79,7 @@ export class AcksDice {
     }
     
     const roll = new Roll(parts.join("+"), data);
-    await roll.evaluate({
-      async: true,
-    });
+    await roll.evaluate();
 
     // Convert the roll to a chat message and return the roll
     let rollMode = game.settings.get("core", "rollMode");
@@ -193,7 +191,7 @@ export class AcksDice {
         return result;
       }
       result.isSuccess = true;
-      let value = Math.clamped(result.target - roll.total, -3, 9);
+      let value = Math.clamp(result.target - roll.total, -3, 9);
       result.details = game.i18n.format("ACKS.messages.AttackSuccess", {
         result: value,
         bonus: result.target,
@@ -230,14 +228,10 @@ export class AcksDice {
     }
     
     const roll = new Roll(parts.join("+"), data);
-    await roll.evaluate({
-      async: true,
-    });
+    await roll.evaluate();
 
     const dmgRoll = new Roll(data.roll.dmg.join("+"), data);
-    await dmgRoll.evaluate({
-      async: true,
-    });
+    await dmgRoll.evaluate();
 
     // Add minimal damage of 1
     if (dmgRoll.total < 1) {

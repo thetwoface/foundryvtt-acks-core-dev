@@ -18,7 +18,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
    * @returns {Object}
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "actor", "character"],
       template: "systems/acks/templates/actors/character-sheet.html",
       width: 450,
@@ -51,7 +51,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     const data = await super.getData();
 
     data.config.ascendingAC = game.settings.get("acks", "ascendingAC");
-    data.config.initiative = game.settings.get("acks", "initiative") != "group";
+    data.config.initiative = true; // game.settings.get("acks", "initiative") != "group";
     data.config.BHR = game.settings.get("acks", "bhr");
     data.config.removeMagicBonus = game.settings.get("acks", "removeMagicBonus");
 
@@ -96,7 +96,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
   /* -------------------------------------------- */
   _pushLang(table) {
     const data = this.actor.system;
-    let update = duplicate(data[table]);
+    let update = foundry.utils.duplicate(data[table]);
     this._chooseLang().then((dialogInput) => {
       const name = CONFIG.ACKS.languages[dialogInput.choice];
       if (update.value) {
@@ -239,7 +239,7 @@ _onShowModifiers(event) {
       const itemData = {
         name: `New ${type.capitalize()}`,
         type: type,
-        data: duplicate(header.dataset),
+        data: foundry.utils.duplicate(header.dataset),
       };
       //delete itemsystem["type"];
       await this.actor.createEmbeddedDocuments("Item", [
@@ -251,12 +251,13 @@ _onShowModifiers(event) {
     html.find(".item-toggle").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      await item.update({
+      console.log("item", item.system.equipped);
+      await this.actor.updateEmbeddedDocuments("Item", [{
         _id: li.data("itemId"),
-        data: {
+        system: {
           equipped: !item.system.equipped,
         },
-      });
+      } ] );
     });
 
     html

@@ -18,17 +18,18 @@ export class AcksActor extends Actor {
     this.computeAAB();
 
     // Determine Initiative
-    if (game.settings.get("acks", "initiative") != "group") {
-      data.initiative.value = data.initiative.mod;
-      if (this.type == "character") {
-        data.initiative.value += data.scores.dex.mod;
-        if (data.isSlow) {
-          data.initiative.value -= 1;
-        }
+    //if (game.settings.get("acks", "initiative") != "group") {
+    data.initiative.value = data.initiative.mod || 0;
+    if (this.type == "character") {
+      data.initiative.value += data.scores.dex.mod;
+      if (data.isSlow) {
+        data.initiative.value -= 1;
       }
-    } else {
-      data.initiative.value = 0;
     }
+    /*} else {
+      data.initiative.value = 0;
+    } */
+
     data.movement.encounter = data.movement.base / 3;
 
     console.log("MODCOMPUTE2", data);
@@ -126,17 +127,14 @@ export class AcksActor extends Actor {
 
   async rollHP(options = {}) {
     let roll = new Roll(this.system.hp.hd);
-    await roll.evaluate({
-      async: true,
-    });
-
+    await roll.evaluate();
     await this.update({
-      data: {
+      system: {
         hp: {
           max: roll.total,
           value: roll.total,
-        },
-      },
+        }
+      }
     });
   }
 
@@ -300,6 +298,11 @@ export class AcksActor extends Actor {
       flavor: game.i18n.localize("ACKS.reaction.check"),
       title: game.i18n.localize("ACKS.reaction.check"),
     });
+  }
+
+  /* -------------------------------------------- */
+  hasEffect(effectId) {
+    return this.effects.find((e) => e.statuses.has(effectId));
   }
 
   /* -------------------------------------------- */
@@ -591,7 +594,7 @@ export class AcksActor extends Actor {
     const hp = this.system.hp;
 
     // Remaining goes to health
-    const dh = Math.clamped(hp.value - amount, -99, hp.max);
+    const dh = Math.clamp(hp.value - amount, -99, hp.max);
 
     // Update the Actor
     await this.update({
@@ -658,7 +661,7 @@ export class AcksActor extends Actor {
     const maxEncumbrance = this.system.encumbrance.max;
 
     this.system.encumbrance = {
-      pct: Math.clamped(
+      pct: Math.clamp(
         (totalEncumbrance / maxEncumbrance) * 100,
         0,
         100

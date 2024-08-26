@@ -128,8 +128,9 @@ jobs:
             system.json                          \
             template.json                        \
             LICENSE.txt                              \
-            lib/
+            lib/                               \
             assets/                           \
+            lib/                              \
             lang/                             \
             module/                              \
             packs/                               \

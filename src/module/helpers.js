@@ -59,9 +59,19 @@ export const registerHelpers = async function () {
     return CONFIG.ACKS.tag_images[index];
   });
 
+  const myClamp = (num, min, max) => Math.min(Math.max(num, min), max)
   Handlebars.registerHelper("counter", function (status, value, max) {
     return status
-      ? Math.clamped((100.0 * value) / max, 0, 100)
-      : Math.clamped(100 - (100.0 * value) / max, 0, 100);
+      ? myClamp((100.0 * value) / max, 0, 100)
+      : myClamp(100 - (100.0 * value) / max, 0, 100);
   });
+
+  // Handle v12 removal of this helper
+  Handlebars.registerHelper('select', function (selected, options) {
+    const escapedValue = RegExp.escape(Handlebars.escapeExpression(selected));
+    const rgx = new RegExp(' value=[\"\']' + escapedValue + '[\"\']');
+    const html = options.fn(this);
+    return html.replace(rgx, "$& selected");
+  });
+
 };

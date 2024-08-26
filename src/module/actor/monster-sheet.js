@@ -1,6 +1,14 @@
 import { AcksActor } from "./entity.js";
 import { AcksActorSheet } from "./actor-sheet.js";
 
+// Define the Item sheet default options
+const __DEFAULT_ITEM_TYPES = [
+  {key:"weapon", label:"Weapon"}, 
+  {key:"armor", label:"Armor"},
+  {key:"ability", label:"Ability"},
+  {key:"item", label:"Item"}
+]
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  */
@@ -16,10 +24,10 @@ export class AcksActorSheetMonster extends AcksActorSheet {
    * @returns {Object}
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "monster", "actor"],
       template: "systems/acks/templates/actors/monster-sheet.html",
-      width: 450,
+      width: 480,
       height: 560,
       resizable: true,
       tabs: [
@@ -108,7 +116,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
   }
 
   /* -------------------------------------------- */
-  async _chooseItemType(choices = ["weapon", "armor", "shield", "gear"]) {
+  async _chooseItemType(choices = __DEFAULT_ITEM_TYPES) {
     let templateData = { types: choices },
       dlg = await renderTemplate(
         "systems/acks/templates/items/entity-create.html",
@@ -216,23 +224,21 @@ export class AcksActorSheetMonster extends AcksActorSheet {
       event.preventDefault();
       const header = event.currentTarget;
       const type = header.dataset.type;
-
       // item creation helper func
       let createItem = function (type, name = `New ${type.capitalize()}`) {
         const itemData = {
           name: name ?? `New ${type.capitalize()}`,
-          type: type,
-          data: duplicate(header.dataset),
+          type: type
         };
-        delete itemData.data["type"];
         return itemData;
       };
 
       // Getting back to main logic
       if (type == "choice") {
-        const choices = header.dataset.choices.split(",");
+        const choices = __DEFAULT_ITEM_TYPES; //header.dataset.choices.split(",");
         this._chooseItemType(choices).then(async (dialogInput) => {
           const itemData = createItem(dialogInput.type, dialogInput.name);
+          console.log("Type: ", dialogInput);
           await this.actor.createEmbeddedDocuments("Item", [
             itemData,
           ]);

@@ -10,6 +10,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/acks/templates/actors/partials/character-abilities-tab.html',
         'systems/acks/templates/actors/partials/character-spells-tab.html',
         'systems/acks/templates/actors/partials/character-inventory-tab.html',
+        'systems/acks/templates/actors/partials/character-bonuses-tab.html',
         'systems/acks/templates/actors/partials/character-notes-tab.html',
 
         'systems/acks/templates/actors/partials/monster-header.html',

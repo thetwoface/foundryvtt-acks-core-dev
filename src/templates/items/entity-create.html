@@ -9,11 +9,11 @@
         <label>{{localize 'ACKS.dialog.itemType'}}</label>
         <div class="form-fields">
             <select name="type">
-                {{#select types}}
-                {{#each types as |type|}}
-                <option value="{{type}}">{{type}}</option>
-                {{/each}}
-                {{/select}}
+              {{#select type}}
+               {{#each types as |typedef idx|}}
+                <option value="{{typedef.key}}">{{typedef.label}}</option>
+               {{/each}}
+              {{/select}}
             </select>
         </div>
     </div>

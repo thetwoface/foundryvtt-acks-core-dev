@@ -64,6 +64,7 @@
                 </div>
             </li>
             {{/if}}
+            
             <li class="attribute">
                 <h4 class="attribute-name box-title" title="{{localize 'ACKS.movement.base'}}">
                     {{ localize "ACKS.movement.short" }}
@@ -73,8 +74,25 @@
                         data-dtype="Number" />
                 </div>
             </li>
+            <li class="attribute flexrow" >
+              <h4 class="attribute-name box-title" title="({{localize 'ACKS.bonuses.initiativebonus'}}) {{localize 'ACKS.exploration.ld.long'}}">
+                {{ localize "ACKS.bonuses.initiativebonus" }}
+              </h4>
+              <div class="attribute-value">
+                <input name="system.initiative.mod" type="text" value="{{system.initiative.mod}}" value="0"  data-dtype="Number" placeholder="0" />
+              </div>
+            </li>
+            <li class="attribute flexrow" >
+              <h4 class="attribute-name box-title" title="({{localize 'ACKS.bonuses.surprisebonus'}}) {{localize 'ACKS.exploration.ld.long'}}">
+                {{ localize "ACKS.bonuses.surprisebonus" }}
+              </h4>
+              <div class="attribute-value">
+                <input name="system.surprise.mod" type="text" value="{{system.surprise.mod}}" value="0"  data-dtype="Number" placeholder="0" />
+              </div>
+            </li>      
         </ul>
     </section>
+
     <section class="flexrow attribute-row">
         {{!-- Skills and abilities --}}
         <div class="flex3 panel inventory abilities">

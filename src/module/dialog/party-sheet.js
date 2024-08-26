@@ -1,7 +1,7 @@
 export class AcksPartySheet extends FormApplication {
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "dialog", "party-sheet"],
       template: "systems/acks/templates/apps/party-sheet.html",
       width: 280,

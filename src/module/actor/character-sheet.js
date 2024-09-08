@@ -21,8 +21,8 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "actor", "character"],
       template: "systems/acks/templates/actors/character-sheet.html",
-      width: 450,
-      height: 530,
+      width: 720,
+      height: 640,
       resizable: true,
       tabs: [
         {
@@ -173,6 +173,13 @@ _onShowModifiers(event) {
       let element = ev.currentTarget;
       let expl = element.parentElement.parentElement.dataset.exploration;
       actorObject.rollExploration(expl, { event: ev });
+    });
+
+    html.find(".adventuring .attribute-name a").click((ev) => {
+      let actorObject = this.actor;
+      let element = ev.currentTarget;
+      let advKey = element.parentElement.parentElement.dataset.adventuring;
+      actorObject.rollAdventuring(advKey, { event: ev });
     });
 
     html.find(".inventory .item-titles .item-caret").click((ev) => {

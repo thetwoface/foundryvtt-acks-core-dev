@@ -69,6 +69,8 @@
   "ACKS.roll.initiative": "Group {group} rolls for Initiative!",
   "ACKS.roll.individualInit": "{name} rolls for Initiative!",
   "ACKS.roll.bhr": "Healing roll",
+  "ACKS.roll.details.adventuring": "Roll 1d20 >= {adventuring} for success",
+  "ACKS.roll.adventuring": "{adventuring} test",
 
   "ACKS.table.treasure.roll": "Roll Treasure",
 
@@ -112,15 +114,16 @@
   "ACKS.scores.cha.short": "CHA",
 
   "ACKS.saves.death.short": "D",
-  "ACKS.saves.death.long": "Poison & Death",
+  "ACKS.saves.death.long": "Death",
   "ACKS.saves.wand.short": "W",
   "ACKS.saves.wand.long": "Staffs & Wands",
   "ACKS.saves.paralysis.short": "P",
-  "ACKS.saves.paralysis.long": "Paralysis & Petrify",
+  "ACKS.saves.paralysis.long": "Paralysis",
   "ACKS.saves.breath.short": "B",
-  "ACKS.saves.breath.long": "Blast & Breath",
+  "ACKS.saves.breath.long": "Blast",
   "ACKS.saves.spell.short": "S",
   "ACKS.saves.spell.long": "Spells",
+  "ACKS.saves.implements.long": "Implements",
   "ACKS.saves.magic.long": "Bonus vs Magic",
   "ACKS.saves.magic.short": "vs Magic",									   
   "ACKS.SaveBonus": "Saving Throw Bonus",
@@ -142,6 +145,15 @@
   "ACKS.movement.overland.short": "Ov",
   "ACKS.movement.exploration.short": "Ex",
   "ACKS.movement.exploration.long": "Exploration Movement Rate",
+  "ACKS.movement.exploration": "Exploration",
+  "ACKS.movement.combat": "Combat",
+  "ACKS.movement.chargerun": "Charge/Run",
+  "ACKS.movement.expedition": "Expedition",
+  "ACKS.movement.stealth": "Stealth",
+  "ACKS.movement.climb": "Climb",
+  
+  "ACKS.SurpriseOthers": "Surprise Others",
+  "ACKS.AvoidSurprise": "Avoid Surprise",
 
   "ACKS.ArmorClassNaked": "Naked Armor Class",
   "ACKS.ArmorClass": "Armor Class",
@@ -200,6 +212,7 @@
   "ACKS.category.description": "Description",
   "ACKS.category.equipment": "Equipment",
   "ACKS.category.bonuses": "Bonuses",
+  "ACKS.category.effects": "Effects",
 
   "ACKS.bonuses.initiativebonus": "Initiative Bonus",
   "ACKS.bonuses.surprisebonus": "Surprise Bonus",
@@ -307,6 +320,12 @@
   "ACKS.exploration.ft.short": "Find Trap",
   "ACKS.exploration.ft.abrev": "FT",
 
+  "ACKS.adventuring.trapbreaking": "Trapbreaking",
+  "ACKS.adventuring.searching": "Searching",
+  "ACKS.adventuring.listening": "Listening",
+  "ACKS.adventuring.climb": "Climb",
+  "ACKS.adventuring.dungeonbashing": "Dungeonbashing",
+
   "ACKS.messages.GetExperience": "{name} gained {value} experience points!",
   "ACKS.messages.AttackSuccess": "<b>Hits AC {result}!</b> ({bonus})",
   "ACKS.messages.AttackAscendingSuccess": "<b>Hits AC {result}!</b>",
@@ -379,6 +398,10 @@
 
   "ACKS.StatusOutNumbered": "OutNumbered",
   "ACKS.StatusOverNumbered": "OverNumbered",
-  "ACKS.StatusSurprised": "Surprised"
-}
+  "ACKS.StatusSurprised": "Surprised",
 
+  "ACKS.Effect.Temporary": "Temporary",
+  "ACKS.Effect.Passive": "Passive",
+  "ACKS.Effect.Inactive": "Inactive",
+  "ACKS.Effect.Source"  : "Source"
+}

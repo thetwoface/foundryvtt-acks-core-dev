@@ -9,6 +9,12 @@
     "minimum": "11",
     "verified": "12"
   },
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "html", "hbs", "json"],
+      "paths": ["acks.css", "./", "templates", "css", "lang/en.json"]
+    }
+  },
   "authors": [
     {
       "name": "LeRatierBretonnien"

@@ -138,6 +138,37 @@ export class AcksActor extends Actor {
     });
   }
 
+  /* -------------------------------------------- */  
+  rollAdventuring(advKey, options = {}) {
+    const label = game.i18n.localize(`ACKS.adventuring.${advKey}`);
+    console.log("ROLLADV", advKey);
+    const rollParts = ["1d20"];
+
+    const data = {
+      actor: this,
+      roll: {
+        type: "above",
+        target: this.system.adventuring[advKey],
+      },
+      details: game.i18n.format("ACKS.roll.details.adventuring", {
+        adventuring: label,
+      }),
+    };
+
+    let skip = options.event && options.event.ctrlKey;
+
+    // Roll and return
+    return AcksDice.Roll({
+      event: options.event,
+      parts: rollParts,
+      data: data,
+      skipDialog: skip,
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: game.i18n.format("ACKS.roll.adventuring", { adventuring: label }),
+      title: game.i18n.format("ACKS.roll.adventuring", { adventuring: label }),
+    });
+  }
+
   /* -------------------------------------------- */
   rollSave(save, options = {}) {
     const label = game.i18n.localize(`ACKS.saves.${save}.long`);

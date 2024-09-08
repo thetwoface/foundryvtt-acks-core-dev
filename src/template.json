@@ -51,6 +51,9 @@
           },
           "spell": {
             "value": 0
+          },
+          "implements": {
+            "value": 0
           }
         },
         "save": {
@@ -64,7 +67,9 @@
           "mod": 0
         },
         "surprise": {
-          "mod": 0
+          "mod": 0,
+          "surpriseothers": 0,
+          "avoidsurprise": 0
         }
       },
       "spellcaster": {
@@ -109,6 +114,21 @@
           "value": 0,
           "bonus": 0
         }
+      },
+      "movementacks": {
+        "exploration": 0,
+        "combat": 0,
+        "chargerun": 0,
+        "expedition": 0,
+        "stealth": 0,
+        "climb": 0
+      },
+      "adventuring": {
+        "dungeonbashing":18,
+        "climb": 8,
+        "listening": 18,
+        "searching": 18,
+        "trapbreaking": 18
       },
       "exploration": {
         "ld": 18,

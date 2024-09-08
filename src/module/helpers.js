@@ -73,5 +73,20 @@ export const registerHelpers = async function () {
     const html = options.fn(this);
     return html.replace(rgx, "$& selected");
   });
+  
+  Handlebars.registerHelper('split', function (str, separator, keep) {
+    return str.split(separator)[keep];
+  })
+
+  // If you need to add Handlebars helpers, here are a few useful examples:
+  Handlebars.registerHelper('concat', function () {
+    let outStr = '';
+    for (let arg in arguments) {
+      if (typeof arguments[arg] != 'object') {
+        outStr += arguments[arg];
+      }
+    }
+    return outStr;
+  })
 
 };

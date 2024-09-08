@@ -7,7 +7,18 @@
       </h1>
     </div>
   </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">
+      {{localize "ACKS.category.description"}}
+    </a>
+    <a class="item" data-tab="effects">
+      {{localize "ACKS.category.effects"}}
+    </a>
+  </nav>
+
   <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="description">
     <div class="flexrow">
       <div class="stats narrow">
         <div class="form-group">
@@ -55,5 +66,10 @@
         owner=owner editable=editable}}
       </div>
     </div>
+    </div>
+    <div class="tab" data-group="primary" data-tab="effects">
+      {{> "systems/acks/templates/items/partials/item-generic-effects-tab.html"}}
+    </div>
+
   </section>
 </form>

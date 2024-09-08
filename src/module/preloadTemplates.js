@@ -12,9 +12,12 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/acks/templates/actors/partials/character-inventory-tab.html',
         'systems/acks/templates/actors/partials/character-bonuses-tab.html',
         'systems/acks/templates/actors/partials/character-notes-tab.html',
+        'systems/acks/templates/actors/partials/character-effects-tab.html',
 
         'systems/acks/templates/actors/partials/monster-header.html',
-        'systems/acks/templates/actors/partials/monster-attributes-tab.html'
+        'systems/acks/templates/actors/partials/monster-attributes-tab.html',
+
+        'systems/acks/templates/items/partials/item-generic-effects-tab.html'
     ];
     return loadTemplates(templatePaths);
 };

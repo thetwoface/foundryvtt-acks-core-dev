@@ -1,6 +1,6 @@
 import { AcksActor } from "./entity.js";
 import { AcksEntityTweaks } from "../dialog/entity-tweaks.js";
-
+import { AcksUtility } from "../utility.js";
 export class AcksActorSheet extends ActorSheet {
   constructor(...args) {
     super(...args);
@@ -14,6 +14,7 @@ export class AcksActorSheet extends ActorSheet {
     // Settings
     data.config.ascendingAC = game.settings.get("acks", "ascendingAC");
     data.config.encumbrance = game.settings.get("acks", "encumbranceOption");
+    data.effects = await AcksUtility.prepareActiveEffectCategories(this.actor.allApplicableEffects());
     data.system = this.actor.system;
 
     // Prepare owned items
@@ -21,7 +22,7 @@ export class AcksActorSheet extends ActorSheet {
     data.description = await TextEditor.enrichHTML(this.object.system.details.description, { async: true })
     data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true })
 
-    console.log(data, this.object.system);
+    console.log("Actor sheet", data);
     return data;
   }
   /* -------------------------------------------- */
@@ -144,6 +145,15 @@ export class AcksActorSheet extends ActorSheet {
       .find(".item .item-name h4")
       .click((event) => this._onItemSummary(event));
 
+    html.on('click', '.effect-control', (ev) => {
+      const row = ev.currentTarget.closest('li');
+      const document =
+        row.dataset.parentId === this.actor.id
+          ? this.actor
+          : this.actor.items.get(row.dataset.parentId);
+      AcksUtility.onManageActiveEffect(ev, document);
+    });
+
     html.find(".item .item-controls .item-show").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
@@ -156,7 +166,7 @@ export class AcksActorSheet extends ActorSheet {
       let save = element.parentElement.parentElement.dataset.save;
       actorObject.rollSave(save, { event: ev });
     });
-
+    
     html.find(".item .item-rollable .item-image").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));

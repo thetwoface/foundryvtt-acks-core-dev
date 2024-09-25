@@ -35,7 +35,8 @@ async function drawTreasure(table, data) {
   if (table.getFlag('acks', 'treasure')) {
     for (const result of table.results) {
       const roll = new Roll("1d100");
-      await roll.evaluate({async: true});
+      // Since version 9, roll.evaluate has been async by default.
+      await roll.evaluate();
 
       if (roll.total <= result.weight) {
         const text = result.getChatText();

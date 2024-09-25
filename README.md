@@ -1,14 +1,33 @@
-# **Adventurer Conqueror King System Imperial Imprint** for Foundry VTT
+Enter a world where adventurers can become conquerors – and conquerors can become kings.<br/>
+Welcome to ACKS II, the new edition of the bestselling fantasy RPG.<br/>
+Adventure, conquer, and reign!
 
-This game system for Foundry Virtual Tabletop provides character sheet
-and game system support for the Adventurer Conqueror King System
-Imperial Imprint (ACKS II).
+Will you survive the perils of war and dark magic to claim a throne?
+Or will you meet your fate in a forgotten ruin beyond the ken of men?
 
-This system provides rules mechanics and character sheets, to make the
-judge's job easier for running ACKS games on the Foundry VTT. Also
-included is a world map of the Auran Empire (the default setting of
-ACKS). A number of compendiums with Monsters, Items, Spells,
-Proficiencies, Abilities, and more, are available separately.
+This is a world where empires stand on the brink of war, and terrible
+monsters tear at the fragile borderlands of men; where decaying cities teem
+with chaos and corruption, weeping innocents are sacrificed to chthonic cults
+and nobles live in decadent pleasure while the realm burns; where heroes,
+wizards, and rogues risk everything in pursuit of glory, fortune, and power.
+
+The Adventurer Conqueror King System™ Imperial Imprint (ACKS II) is the new
+edition of the acclaimed bestselling fantasy role-playing game.
+Within ACKS II you'll find everything you need to enjoy epic fantasy
+campaigns with a sweeping scope. Whether you want to crawl through dungeons,
+experiment with alchemy, crossbreed monsters, run a merchant emporium,
+raise an undead legion, or conquer an empire, ACKS II supports your playstyle.
+
+## **Adventurer Conqueror King System Imperial Imprint (ACKS II)** for Foundry VTT
+
+This is the ACKS II core game system module for Foundry Virtual Tabletop,
+providing character sheet and game system support for ACKS II.
+
+This game system has essential rules mechanics and character sheets to make the
+judge's job easier for running ACKS games on the Foundry VTT.
+Also included is a world map of the Auran Empire (the default setting of ACKS).
+A number of compendiums with Monsters, Items, Spells, Proficiencies, Abilities
+and more are available separately.
 
 ## ACKS II for Foundry VTT Features
 ### **Core Rules**
@@ -29,7 +48,12 @@ For a complete list of changes, [refer to the Changelog](https://github.com/Auta
 - Updated the game system to add Foundry version 11 and version 12 compatibility.
 
 ## Installation Instructions
-**Getting Started**  
+**Forge Hosting**
+If you're using the Forge hosting service, the ACKS II module is immediately installable directly from Forge's Bazaar.
+
+The rest of this document describe how to install the module on a self-hosted Foundry instance.
+
+**Getting Started with the Foundry VTT**  
 If you're new to installing Game System modules, follow along with the [Foundry Gamemaster tutorial](https://foundryvtt.com/article/tutorial/) section headlined *Installing a Game System.* [https://foundryvtt.com/article/tutorial/](https://foundryvtt.com/article/tutorial/)
 
 **Backward Compatibility**  
@@ -40,6 +64,7 @@ To install and use this system, paste one of the following installation URLs int
 
 | For this<br/>Foundry version | Use this Installation URL |
 | --------------- | ---------------- |
+| The Forge hosting service | Visit the ACKS II page on Forge and click the Install button.<br/>[https://forge-vtt.com/bazaar/package/acks](https://forge-vtt.com/bazaar/package/acks) |
 | Version 12, <br/>Version 11 | [https://github.com/AutarchLLC/foundryvtt-acks-core/releases/latest/download/system.json](https://github.com/AutarchLLC/foundryvtt-acks-core/releases/latest/download/system.json) |
 | Version 10 | Unknown. Recommend staying at Version 9 or else updating to Version 11. |
 | Version 9 | [https://github.com/thehappyanarchist/foundryacks/raw/master/src/system.json](https://github.com/thehappyanarchist/foundryacks/raw/master/src/system.json) |

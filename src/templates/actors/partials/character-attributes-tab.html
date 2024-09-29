@@ -76,105 +76,144 @@
   {{!-- Resource Tracking --}}
   <div class="resources">
     <div class="flexrow">
-        <div class="health">
-          <input class="health-value health-top" name="system.hp.value" type="text" value="{{system.hp.value}}"
-            data-dtype="Number" placeholder="0" title="{{localize 'ACKS.Health'}}" />
-          <input class="health-value health-bottom" name="system.hp.max" type="text" value="{{system.hp.max}}"
-            data-dtype="Number" placeholder="0" title="{{localize 'ACKS.HealthMax'}}" />
-          <div class="health-empty" style="height:{{counter false system.hp.value system.hp.max}}%"></div>
-          <div class="health-full" style="height:{{counter true system.hp.value system.hp.max}}%"></div>
-        </div>
-        <div class="health armor-class">
-          {{#if config.ascendingAC}}
-          <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.aac.value}}</div>
-          <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
-            {{system.aac.naked}}</div>
-          {{#if system.aac.shield}}<div class="shield"
-            title="{{localize 'ACKS.items.hasShield'}} ({{system.aac.shield}})"><i class="fas fa-shield-alt"></i></div>
-          {{/if}}
-          {{else}}
-          <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.ac.value}}</div>
-          <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
-            {{system.ac.naked}}</div>
-          {{#if system.ac.shield}}<div class="shield"
-            title="{{localize 'ACKS.items.hasShield'}} ({{system.ac.shield}})">
-            <i class="fas fa-shield-alt"></i>
-          </div>{{/if}}
-          {{/if}}
-        </div>
+      <div class="health">
+        <input class="health-value health-top" name="system.hp.value" type="text" value="{{system.hp.value}}"
+          data-dtype="Number" placeholder="0" title="{{localize 'ACKS.Health'}}" />
+        <input class="health-value health-bottom" name="system.hp.max" type="text" value="{{system.hp.max}}"
+          data-dtype="Number" placeholder="0" title="{{localize 'ACKS.HealthMax'}}" />
+        <div class="health-empty" style="height:{{counter false system.hp.value system.hp.max}}%"></div>
+        <div class="health-full" style="height:{{counter true system.hp.value system.hp.max}}%"></div>
+      </div>
+      <div class="health armor-class">
+        {{#if config.ascendingAC}}
+        <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.aac.value}}</div>
+        <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
+          {{system.aac.naked}}</div>
+        {{#if system.aac.shield}}<div class="shield"
+          title="{{localize 'ACKS.items.hasShield'}} ({{system.aac.shield}})"><i class="fas fa-shield-alt"></i></div>
+        {{/if}}
+        {{else}}
+        <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.ac.value}}</div>
+        <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
+          {{system.ac.naked}}</div>
+        {{#if system.ac.shield}}<div class="shield" title="{{localize 'ACKS.items.hasShield'}} ({{system.ac.shield}})">
+          <i class="fas fa-shield-alt"></i>
+        </div>{{/if}}
+        {{/if}}
+      </div>
 
-        <ul class="attributes flexrow">
-          <li class="attribute hit-dice">
-            <h4 class="attribute-name box-title" title="{{ localize 'ACKS.HitDice' }}">
-              <a>{{ localize "ACKS.HitDiceShort" }}</a>
-            </h4>
-            <div class="attribute-value">
-              <input name="system.hp.hd" type="text" value="{{system.hp.hd}}" placeholder="" data-dtype="String" />
-            </div>
-          </li>
+      <ul class="attributes flexrow">
+        <li class="attribute hit-dice">
+          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.HitDice' }}">
+            <a>{{ localize "ACKS.HitDiceShort" }}</a>
+          </h4>
+          <div class="attribute-value">
+            <input name="system.hp.hd" type="text" value="{{system.hp.hd}}" placeholder="" data-dtype="String" />
+          </div>
+        </li>
 
-          <li class="attribute">
-            <h4 class="attribute-name box-title" title="{{ localize 'ACKS.Initiative' }}">
-              {{ localize "ACKS.InitiativeShort" }}</h4>
+        <li class="attribute">
+          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.Initiative' }}">
+            {{ localize "ACKS.InitiativeShort" }}</h4>
+          <div class="attribute-value"
+            title="{{localize 'ACKS.scores.dex.long'}}({{system.scores.dex.init}}) + {{localize 'ACKS.Modifier'}}({{system.initiative.mod}})">
+            {{add system.scores.dex.init system.initiative.mod}}
+          </div>
+        </li>
+        <li class="attribute">
+          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.SurpriseOthers' }}">
+            {{ localize "ACKS.SurpriseOthers" }}</h4>
+          <div class="attribute-value">
+            <input name="system.surprise.surpriseothers" type="text" value="{{system.surprise.surpriseothers}}"
+              placeholder="" data-dtype="Number" />
+          </div>
+        </li>
+        <li class="attribute">
+          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.AvoidSurprise' }}">
+            {{ localize "ACKS.AvoidSurprise" }}</h4>
+          <div class="attribute-value">
+            <input name="system.surprise.avoidsurprise" type="text" value="{{system.surprise.avoidsurprise}}"
+              placeholder="" data-dtype="Number" />
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flexrow">
+      <ul class="attributes flexrow">
+        <li class="attribute attribute-secondaries">
+          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Encumbrance'}}">
+            <a>{{localize 'ACKS.Encumbrance'}}</a>
+          </h4>
+          <div class="flexrow">
+            <div class="attribute-value">{{system.encumbrance.value}} / {{system.encumbrance.max}}</div>
+          </div>
+        </li>
+
+        <li class="attribute attribute-secondaries">
+          <h4 class="attribute-name box-title" title="{{localize 'ACKS.HealingRate'}}">
+            <a>{{localize 'ACKS.HealingRate'}}</a>
+          </h4>
+          <div class="flexrow">
+            <input name="system.fight.healingrate" type="text" value="{{system.fight.healingrate}}" placeholder=""
+              data-dtype="String" />
+          </div>
+        </li>
+
+        <li class="attribute attribute-secondaries">
+          <h4 class="attribute-name box-title" title="{{localize 'ACKS.MortalWounds'}}">
+            {{localize 'ACKS.MortalWounds'}}
+          </h4>
+          <div class="flexrow">
+            <input name="system.fight.mortalwounds" type="text" value="{{system.fight.mortalwounds}}" placeholder=""
+              data-dtype="Number" />
+          </div>
+        </li>
+
+        <li class="attribute attribute-secondaries">
+          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Cleaves'}}">
+            {{localize 'ACKS.Cleaves'}}
+          </h4>
+          <div class="flexrow">
+            <input name="system.fight.cleaves" type="text" value="{{system.fight.cleaves}}" placeholder=""
+              data-dtype="Number" />
+          </div>
+        </li>
+
+        <li class="attribute attribute-secondaries attack" data-attack="melee">
+          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Melee'}}">
+            <a>{{localize 'ACKS.MeleeShort'}}</a>
+          </h4>
+          <div class="flexrow">
             <div class="attribute-value"
-              title="{{localize 'ACKS.scores.dex.long'}}({{system.scores.dex.init}}) + {{localize 'ACKS.Modifier'}}({{system.initiative.mod}})">
-              {{add system.scores.dex.init system.initiative.mod}}
+              title="{{localize 'ACKS.scores.str.long'}}({{system.scores.str.mod}}) + {{localize 'ACKS.Modifier'}}({{system.thac0.mod.melee}})">
+              {{add system.scores.str.mod system.thac0.mod.melee}}
             </div>
-          </li>
-          <li class="attribute">
-            <h4 class="attribute-name box-title" title="{{ localize 'ACKS.SurpriseOthers' }}">
-              {{ localize "ACKS.SurpriseOthers" }}</h4>
-              <div class="attribute-value">
-                <input name="system.surprise.surpriseothers" type="text" value="{{system.surprise.surpriseothers}}" placeholder="" data-dtype="Number" />
-              </div>
-            </li>
-            <li class="attribute">
-              <h4 class="attribute-name box-title" title="{{ localize 'ACKS.AvoidSurprise' }}">
-                {{ localize "ACKS.AvoidSurprise" }}</h4>
-                <div class="attribute-value">
-                  <input name="system.surprise.avoidsurprise" type="text" value="{{system.surprise.avoidsurprise}}" placeholder="" data-dtype="Number" />
-                </div>
-              </li>
-          </ul>
-        </div>  
+          </div>
+        </li>
+        <li class="attribute">
+          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.AB' }}">{{ localize "ACKS.ABShort"}}
+          </h4>
+          <div class="flexrow">
+            <div class="attribute-value">
+              <input name="system.thac0.throw" type="text" value="{{system.thac0.throw}}" placeholder=""
+                data-dtype="Number" + />
+            </div>
+          </div>
+        </li>
+        <li class="attribute attribute-secondaries attack" data-attack="missile">
+          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Missile'}}">
+            <a>{{localize 'ACKS.MissileShort'}}</a>
+          </h4>
+          <div class="flexrow">
+            <div class="attribute-value"
+              title="{{localize 'ACKS.scores.dex.long'}}({{system.scores.dex.mod}}) + {{localize 'ACKS.Modifier'}}({{system.thac0.mod.missile}})">
+              {{add system.scores.dex.mod system.thac0.mod.missile}}
+            </div>
+          </div>
+        </li>
 
-        <div class="flexrow">
-          <ul class="attributes flexrow">
-          
-          <li class="attribute attribute-secondaries attack" data-attack="melee">
-            <h4 class="attribute-name box-title" title="{{localize 'ACKS.Melee'}}">
-              <a>{{localize 'ACKS.MeleeShort'}}</a>
-            </h4>
-            <div class="flexrow">
-              <div class="attribute-value"
-                title="{{localize 'ACKS.scores.str.long'}}({{system.scores.str.mod}}) + {{localize 'ACKS.Modifier'}}({{system.thac0.mod.melee}})">
-                {{add system.scores.str.mod system.thac0.mod.melee}}
-              </div>
-            </div>
-          </li>
-          <li class="attribute">
-            <h4 class="attribute-name box-title" title="{{ localize 'ACKS.AB' }}">{{ localize "ACKS.ABShort"}}
-            </h4>
-            <div class="flexrow">
-              <div class="attribute-value">
-                <input name="system.thac0.throw" type="text" value="{{system.thac0.throw}}" placeholder=""
-                  data-dtype="Number" + />
-              </div>
-            </div>
-          </li>
-          <li class="attribute attribute-secondaries attack" data-attack="missile">
-            <h4 class="attribute-name box-title" title="{{localize 'ACKS.Missile'}}">
-              <a>{{localize 'ACKS.MissileShort'}}</a>
-            </h4>
-            <div class="flexrow">
-              <div class="attribute-value"
-                title="{{localize 'ACKS.scores.dex.long'}}({{system.scores.dex.mod}}) + {{localize 'ACKS.Modifier'}}({{system.thac0.mod.missile}})">
-                {{add system.scores.dex.mod system.thac0.mod.missile}}
-              </div>
-            </div>
-          </li>
-    
-        </ul>
+      </ul>
 
     </div>
     <div class="flexrow">
@@ -253,6 +292,17 @@
         </h4>
         <div class="attribute-value">
           <input name="system.saves.spell.value" type="text" value="{{system.saves.spell.value}}" placeholder="0" />
+      </li>
+      <h4 class="attribute">Favorites</h4>
+      <li class="item-entry" >
+        {{#each favorites as |item idx|}}
+          <div class="item-name flexrow">
+            <a class="favorite-rollable" data-item-id="{{item._id}}">
+              <i class="fa-solid fa-dice-d20"></i>
+                {{item.name~}}
+            </a>
+          </div>
+        {{/each}}
       </li>
     </ul>
   </div>

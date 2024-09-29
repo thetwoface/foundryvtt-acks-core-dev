@@ -101,6 +101,7 @@
       "config": {
         "movementAuto": true
       },
+      "henchmenList": [],
       "details": {
         "biography": "",
         "notes": "",
@@ -108,6 +109,8 @@
         "title": "",
         "alignment": "",
         "level": 1,
+        "age": 18,
+        "fatepoints": 0,
         "xp": {
           "share": 100,
           "next": 2000,
@@ -129,6 +132,11 @@
         "listening": 18,
         "searching": 18,
         "trapbreaking": 18
+      },
+      "fight": {
+        "healingrate": "1d3",
+        "mortalwounds": 0,
+        "cleaves": 0
       },
       "exploration": {
         "ld": 18,
@@ -169,7 +177,7 @@
         }
       },
       "encumbrance": {
-        "max": 20000
+        "max": 20
       },
       "languages": {
         "value": []
@@ -195,7 +203,10 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "spell", "ability"],
+    "types": ["item", "weapon", "armor", "spell", "ability", "language"],
+    "language": {
+      "description": ""
+    },
     "item": {
       "description": "",
       "quantity": {
@@ -212,6 +223,7 @@
         "medium": 0,
         "long": 0
       },
+      "favorite": false,
       "save": "",
       "pattern": "transparent",
       "description": "",
@@ -239,6 +251,7 @@
       "weight": 2000
     },
     "spell": {
+      "favorite": false,
       "lvl": 1,
       "class": "Magic-User",
       "duration": "",
@@ -250,6 +263,7 @@
       "save": ""
     },
     "ability": {
+      "favorite": false,
       "pattern": "white",
       "requirements": "",
       "roll": "",

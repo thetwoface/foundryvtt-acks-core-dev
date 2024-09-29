@@ -11,7 +11,8 @@
       "armor": "Armor",
       "treasure": "Treasure",
       "item": "Item",
-      "misc": "Misc"
+      "misc": "Misc",
+      "language": "Language"
     }
   },
   "COMBAT.TurnPrev": "Prev. Combatant",
@@ -90,6 +91,8 @@
   "ACKS.details.morale": "Morale",
   "ACKS.details.reaction": "Reaction",
   "ACKS.details.appearing": "NA",
+  "ACKS.details.age": "Age",
+  "ACKS.details.fate": "Fate points",
 
   "ACKS.Attack": "Attack",
   "ACKS.Encumbrance": "Encumbrance",
@@ -102,8 +105,8 @@
 
   "ACKS.scores.str.long": "Strength",
   "ACKS.scores.str.short": "STR",
-  "ACKS.scores.wis.long": "Wisdom",
-  "ACKS.scores.wis.short": "WIS",
+  "ACKS.scores.wis.long": "Will",
+  "ACKS.scores.wis.short": "WIL",
   "ACKS.scores.int.long": "Intelligence",
   "ACKS.scores.int.short": "INT",
   "ACKS.scores.dex.long": "Dexterity",
@@ -178,6 +181,11 @@
   "ACKS.AttacksShort": "ATT",
   "ACKS.Damage": "Damage",
   "ACKS.Spellcaster": "Spellcaster",
+  "ACKS.HealingRate": "Healing Rate",
+  "ACKS.MortalWounds": "Mortal Wounds",
+  "ACKS.Cleaves": "Cleaves",
+  "ACKS.favorite": "Favorite",
+  "ACKS.Henchman": "Henchman",
 
   "ACKS.Language": "Language",
   "ACKS.SpokenLanguages": "Spoken Languages",
@@ -213,6 +221,7 @@
   "ACKS.category.equipment": "Equipment",
   "ACKS.category.bonuses": "Bonuses",
   "ACKS.category.effects": "Effects",
+  "ACKS.category.henchmen": "Henchmen",
 
   "ACKS.bonuses.initiativebonus": "Initiative Bonus",
   "ACKS.bonuses.surprisebonus": "Surprise Bonus",
@@ -255,7 +264,7 @@
   "ACKS.items.Weapons": "Weapons",
   "ACKS.items.Treasure": "Heavy Items",
   "ACKS.items.Armors": "Armors",
-  "ACKS.items.Weight": "Wgt.",
+  "ACKS.items.Weight": "1/6 Stone",
   "ACKS.items.Qualities": "Qualities",
   "ACKS.items.Notes": "Notes",
   "ACKS.items.Cost": "Cost",
@@ -320,11 +329,11 @@
   "ACKS.exploration.ft.short": "Find Trap",
   "ACKS.exploration.ft.abrev": "FT",
 
-  "ACKS.adventuring.trapbreaking": "Trapbreaking",
-  "ACKS.adventuring.searching": "Searching",
-  "ACKS.adventuring.listening": "Listening",
+  "ACKS.adventuring.trapbreaking": "Trapbreak",
+  "ACKS.adventuring.searching": "Search",
+  "ACKS.adventuring.listening": "Listen",
   "ACKS.adventuring.climb": "Climb",
-  "ACKS.adventuring.dungeonbashing": "Dungeonbashing",
+  "ACKS.adventuring.dungeonbashing": "Dungeonbash",
 
   "ACKS.messages.GetExperience": "{name} gained {value} experience points!",
   "ACKS.messages.AttackSuccess": "<b>Hits AC {result}!</b> ({bonus})",

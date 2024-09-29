@@ -73,6 +73,51 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  getLanguages() {
+    let lang = this.items.filter((i) => i.type == "language");
+    return lang;
+  }
+
+  /* -------------------------------------------- */
+  getHenchmen() {
+    if (this.type != "character") {
+      return;
+    }
+
+    let subActors = [];
+    for (let id of this.system.henchmenList) {
+      subActors.push(duplicate(game.actors.get(id)));
+    }
+    return subActors;
+  }
+
+  /* -------------------------------------------- */
+  async addHenchman(subActorId) {
+    if (this.type != "character") {
+      return;
+    }
+
+    let subActors = duplicate(this.system.henchmenList);
+    subActors.push(subActorId);
+    await this.update({ 'system.henchmenList': subActors });
+  }
+  /* -------------------------------------------- */
+  async delHenchman(subActorId) {
+    let newArray = [];
+    for (let id of this.system.henchmenList) {
+      if (id != subActorId) {
+        newArray.push(id);
+      }
+    }
+    await this.update({ 'system.henchmenList': newArray });
+  }
+  /* -------------------------------------------- */
+  showHenchman(henchmanId) {
+    let henchman = game.actors.get(henchmanId);
+    henchman.sheet.render(true);
+  }
+
+  /* -------------------------------------------- */
   isNew() {
     const data = this.system;
     if (this.type == "character") {
@@ -131,14 +176,14 @@ export class AcksActor extends Actor {
     await this.update({
       system: {
         hp: {
-          max: roll.total,
+          maxfenc: roll.total,
           value: roll.total,
         }
       }
     });
   }
 
-  /* -------------------------------------------- */  
+  /* -------------------------------------------- */
   rollAdventuring(advKey, options = {}) {
     const label = game.i18n.localize(`ACKS.adventuring.${advKey}`);
     console.log("ROLLADV", advKey);
@@ -663,33 +708,24 @@ export class AcksActor extends Actor {
       return;
     }
 
-    const option = game.settings.get("acks", "encumbranceOption");
-
     let totalEncumbrance = 0;
 
     this.items.forEach((item) => {
       if (item.type === "item") {
-        if (option === "detailed") {
-          if (item.system.treasure) {
-            totalEncumbrance += item.system.weight * item.system.quantity.value;
-          } else {
-            totalEncumbrance += 166.6;
-          }
-        } else if (item.system.treasure) {
-          totalEncumbrance += 1000 * item.system.quantity.value;
+        if (item.system.treasure) {
+          totalEncumbrance += item.system.weight * item.system.quantity.value;
         } else {
-          totalEncumbrance += 1000;
+          totalEncumbrance += 166.6;
         }
       } else if (["weapon", "armor"].includes(item.type)) {
-        if (option === "detailed") {
-          totalEncumbrance += item.system.weight;
-        } else {
-          totalEncumbrance += 1000;
-        }
+        totalEncumbrance += item.system.weight;
       }
     });
 
-    const maxEncumbrance = this.system.encumbrance.max;
+    let maxEncumbrance = 20 + this.system.scores.str.mod;
+    if (this.system.encumbrance.max != maxEncumbrance) {
+      this.update({ 'system.encumbrance.max': maxEncumbrance });
+    }
 
     this.system.encumbrance = {
       pct: Math.clamp(
@@ -711,18 +747,23 @@ export class AcksActor extends Actor {
   _calculateMovement() {
     if (this.system.encumbrance.value > this.system.encumbrance.max) {
       this.system.movement.base = 0;
-    } else if (this.system.encumbrance.value > 10000) {
+    } else if (this.system.encumbrance.value > 10) {
       this.system.movement.base = 30;
-    } else if (this.system.encumbrance.value > 7000) {
+    } else if (this.system.encumbrance.value > 7) {
       this.system.movement.base = 60;
-    } else if (this.system.encumbrance.value > 5000) {
+    } else if (this.system.encumbrance.value > 5) {
       this.system.movement.base = 90;
     } else {
       this.system.movement.base = 120;
     }
   }
 
-  /* -------------------------------------------- */
+  /* -------------- ------------------------------ */
+  getFavorites() {
+    return this.items.filter((i) => i.system.favorite);
+  }
+
+  /* -------------- ------------------------------ */
   computeTreasure() {
     if (this.type != "character") {
       return;

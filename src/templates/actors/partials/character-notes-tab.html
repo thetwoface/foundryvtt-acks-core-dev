@@ -7,19 +7,17 @@
                         {{localize "ACKS.category.languages"}}
                     </div>
                     <div class="item-controls">
-                        <a class="item-control item-push" data-array="languages" title="{{localize 'ACKS.Add'}}"><i
-                                class="fa fa-plus"></i></a>
                     </div>
                 </div>
                 <ol>
-                    {{#each system.languages.value as |lang|}}
-                    <li class="item flexrow" data-lang="{{lang}}">
+                    {{#each languages as |lang idx|}}
+                    <li class="item flexrow" data-item-id="{{lang._id}}">
                         <div class="item-name">
-                            {{lang}}
+                            {{lang.name}}
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-pop" data-array="languages" title="{{localize 'ACKS.Del'}}"><i
-                                class="fa fa-trash"></i></a>
+                          <a class="item-control item-edit" title='{{localize "ACKS.Edit"}}'><i class="fas fa-edit"></i></a>
+                          <a class="item-control item-delete" title='{{localize "ACKS.Delete"}}'><i class="fas fa-trash"></i></a>
                         </div>
                     </li>
                     {{/each}}

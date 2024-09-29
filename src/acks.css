@@ -305,13 +305,14 @@
   flex-basis: 90px;
 }
 
-.acks.sheet.actor .sheet-body .effects .item-list .effect .item-name .item-image {
+.effect-image {
+  width: 32px;
+  max-width: 32px;
   flex-basis: 30px;
   flex-grow: 0;
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 .acks.sheet.actor .sheet-body .inventory .item-list .item-name .item-image {
   flex-basis: 30px;
   flex-grow: 0;
@@ -372,11 +373,13 @@
 }
 .acks.sheet.actor .sheet-body .inventory .item-controls {
   font-size: 12px;
-  flex-basis: 50px;
+  flex-basis: 64px;
   flex-grow: 0;
   text-align: right;
   margin-right: 4px;
 }
+
+.acks.sheet.actor .sheet-body .inventory .item-controls .item-notfavorite,
 .acks.sheet.actor .sheet-body .inventory .item-controls .item-unequipped {
   color: rgba(0, 0, 0, 0.2);
 }

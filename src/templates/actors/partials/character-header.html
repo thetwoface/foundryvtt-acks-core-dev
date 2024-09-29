@@ -22,6 +22,17 @@
          />
       <label>{{localize 'ACKS.details.alignment'}}</label>
     </li>
+    <li>
+      <input type="text" name="system.details.age" value="{{system.details.age}}" data-dtype="Number"
+         />
+      <label>{{localize 'ACKS.details.age'}}</label>
+    </li>
+    <li>
+      <input type="text" name="system.details.fate" value="{{system.details.fate}}" data-dtype="Number"
+         />
+      <label>{{localize 'ACKS.details.fate'}}</label>
+    </li>
+    
     {{#if system.retainer.enabled}}
     <li class="flexrow check-field">
       <div class="check morale-check" title="{{localize 'ACKS.roll.morale'}}"><a><i class="fas fa-dice"></i></a></div>
@@ -58,5 +69,10 @@
       <span class="xp-bonus">+{{system.details.xp.bonus}}%</span>
       {{/if}}
     </li>
+    <li class="flex2">
+      <input type="text" name="system.details.xp.next" id="experiencenext" value="{{system.details.xp.next}}" data-dtype="Number" />
+      <label>{{localize 'ACKS.details.experience.next'}}</label>
+    </li>
+
   </ul>
 </section>

@@ -19,6 +19,8 @@ export class AcksActorSheet extends ActorSheet {
 
     // Prepare owned items
     this._prepareItems(data);
+    data.henchmen = this.actor.getHenchmen();
+    data.languages = this.actor.getLanguages();
     data.description = await TextEditor.enrichHTML(this.object.system.details.description, { async: true })
     data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true })
 
@@ -33,6 +35,21 @@ export class AcksActorSheet extends ActorSheet {
       editorOptions.toolbar = "styleselect bullist hr table removeFormat save";
     }
     super.activateEditor(target, editorOptions, initialContent);
+  }
+
+  /* -------------------------------------------- */
+  async _onDrop(event) {
+    let data = event.dataTransfer.getData('text/plain');
+    if (data) {
+      let dataItem = JSON.parse( data);
+      let actorId = dataItem.uuid.split('.')[1]
+      let npc = game.actors.get( actorId);
+      if ( npc ) {
+        this.actor.addHenchman( actorId);
+        return;
+      }
+    }
+    super._onDrop(event);
   }
 
   /* -------------------------------------------- */
@@ -82,6 +99,7 @@ export class AcksActorSheet extends ActorSheet {
     data.abilities = abilities;
     data.spells = sortedSpells;
 
+    data.favorites = this.actor.getFavorites()
   }
 
   /* -------------------------------------------- */
@@ -169,6 +187,21 @@ export class AcksActorSheet extends ActorSheet {
     
     html.find(".item .item-rollable .item-image").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (item.type == "weapon") {
+        if (this.actor.type === "monster") {
+          item.update({ 'system.counter.value': item.system.counter.value - 1 });
+        }
+        item.rollWeapon({ skipDialog: ev.ctrlKey });
+      } else if (item.type == "spell") {
+        item.spendSpell({ skipDialog: ev.ctrlKey });
+      } else {
+        item.rollFormula({ skipDialog: ev.ctrlKey });
+      }
+    });
+
+    html.find(".favorite-rollable").click(async (ev) => {
+      const li = $(ev.currentTarget);
       const item = this.actor.items.get(li.data("itemId"));
       if (item.type == "weapon") {
         if (this.actor.type === "monster") {

@@ -127,8 +127,8 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     return item.update({ "data.quantity.value": parseInt(event.target.value) });
   }
 
-    /* -------------------------------------------- */
-_onShowModifiers(event) {
+  /* -------------------------------------------- */
+  _onShowModifiers(event) {
     event.preventDefault();
     new AcksCharacterModifiers(this.actor, {
       top: this.position.top + 40,
@@ -222,6 +222,23 @@ _onShowModifiers(event) {
       li.slideUp(200, () => this.render(false));
     });
 
+    // Delete Inventory Item
+    html.find(".open-henchman").click((ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.showHenchman(
+        li.data("henchmanId"),
+      );
+    });
+    
+    // Delete Inventory Item
+    html.find(".henchman-delete").click((ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.delHenchman(
+        li.data("henchmanId"),
+      );
+      li.slideUp(200, () => this.render(false));
+    });
+
     html.find(".item-push").click((ev) => {
       ev.preventDefault();
       const header = ev.currentTarget;
@@ -258,13 +275,25 @@ _onShowModifiers(event) {
     html.find(".item-toggle").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      console.log("item", item.system.equipped);
+      //console.log("item", item.system.equipped);
       await this.actor.updateEmbeddedDocuments("Item", [{
         _id: li.data("itemId"),
         system: {
           equipped: !item.system.equipped,
         },
-      } ] );
+      }]);
+    });
+
+    html.find(".item-favorite").click(async (ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      //console.log("item", item.system.favorite);
+      await this.actor.updateEmbeddedDocuments("Item", [{
+        _id: li.data("itemId"),
+        system: {
+          favorite: !item.system.favorite,
+        },
+      }]);
     });
 
     html

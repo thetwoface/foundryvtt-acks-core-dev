@@ -1,0 +1,27 @@
+
+<div class="inventory abilities">
+  <div class="item-titles flexrow">
+    <div class="item-name">{{localize 'ACKS.category.henchmen'}}</div>
+  </div>
+  <ol class="item-list resizable" data-base-size="260">
+    {{#each henchmen as |henchman idx|}}
+    <li class="item-entry">
+      <div class="item flexrow" data-henchman-id="{{henchman._id}}">
+        <div class="item-name flexrow">
+          <div class="item-image" style="background-image: url({{henchman.img}})"></div>
+          <a class="open-henchman">
+            <h4 title="{{henchman.name}}">
+              {{henchman.name~}}
+            </h4>
+          </a>
+        </div>
+        <div class="item-controls">
+          {{#if ../owner}}
+          <a class="item-control henchman-delete" title='{{localize "ACKS.Delete"}}'><i class="fas fa-trash"></i></a>
+          {{/if}}
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </ol>
+</div>

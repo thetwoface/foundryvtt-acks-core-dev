@@ -43,6 +43,10 @@
               title='{{localize "ACKS.items.Equip"}}'>
               <i class="fas fa-tshirt"></i>
             </a>
+            <a class="item-control item-favorite {{#unless item.system.favorite}}item-notfavorite{{/unless}}" 
+              title='{{localize "ACKS.favorite"}}'>
+              <i class="fas fa-star"></i>
+            </a>
             <a class="item-control item-edit" title='{{localize "ACKS.Edit"}}'><i class="fas fa-edit"></i></a>
             <a class="item-control item-delete" title='{{localize "ACKS.Delete"}}'><i class="fas fa-trash"></i></a>
             {{/if}}

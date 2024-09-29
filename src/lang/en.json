@@ -5,7 +5,7 @@
       "monster": "Monster"
     },
     "Item": {
-      "ability": "Ability",
+      "ability": "Proficiency",
       "spell": "Spell",
       "weapon": "Weapon",
       "armor": "Armor",
@@ -213,7 +213,7 @@
   "ACKS.category.saves": "Saves",
   "ACKS.category.attributes": "Attributes",
   "ACKS.category.inventory": "Inventory",
-  "ACKS.category.abilities": "Abilities",
+  "ACKS.category.abilities": "Proficiencies",
   "ACKS.category.spells": "Spells",
   "ACKS.category.notes": "Notes",
   "ACKS.category.languages": "Languages",
@@ -222,6 +222,9 @@
   "ACKS.category.bonuses": "Bonuses",
   "ACKS.category.effects": "Effects",
   "ACKS.category.henchmen": "Henchmen",
+
+  "ACKS.proficiencyType.general": "General",
+  "ACKS.proficiencyType.class": "Class",
 
   "ACKS.bonuses.initiativebonus": "Initiative Bonus",
   "ACKS.bonuses.surprisebonus": "Surprise Bonus",
@@ -285,6 +288,7 @@
   "ACKS.items.typeTag": "Type a comma separated list of tag e.g 'Melee,Missile (5’–10’ / 11’–20’ / 21’–30’)' and press ENTER",
   "ACKS.items.enterTag": "Tags",
   "ACKS.items.pattern": "Attack pattern marker",
+  "ACKS.items.proficiencyType": "Type",
 
   "ACKS.items.Range": "Range",
   "ACKS.items.Melee": "Melee",

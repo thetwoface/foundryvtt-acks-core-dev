@@ -75,6 +75,10 @@ export const ACKS = {
     orange: "ACKS.colors.orange",
     white: "ACKS.colors.white"
   },
+  proficiencyType: {
+    "general": "ACKS.proficiencyType.general",
+    "class": "ACKS.proficiencyType.class",
+  },
   languages: [
   "Common",
   "Jutlandic",

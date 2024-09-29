@@ -40,6 +40,9 @@
             </h4>
           </a>
         </div>
+        <div class="item-name flexrow">
+          {{localize (concat 'ACKS.proficiencyType.' item.system.proficiencytype)}}
+        </div>
         <div class="item-controls">
           {{#if ../owner}}
           <a class="item-control item-favorite {{#unless item.system.favorite}}item-notfavorite{{/unless}}" title='{{localize "ACKS.favorite"}}'><i class="fas fa-star"></i></a>

@@ -263,6 +263,7 @@
       "save": ""
     },
     "ability": {
+      "proficiencytype": "general",
       "favorite": false,
       "pattern": "white",
       "requirements": "",

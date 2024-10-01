@@ -205,7 +205,13 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "spell", "ability", "language"],
+    "types": ["item", "weapon", "armor", "spell", "ability", "language", "money"],
+    "money": {
+      "coppervalue": 1,
+      "quantity": 1,
+      "unitweight": 0,
+      "description": ""
+    },
     "language": {
       "description": ""
     },

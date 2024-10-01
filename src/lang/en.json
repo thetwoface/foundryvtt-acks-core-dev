@@ -12,7 +12,8 @@
       "treasure": "Treasure",
       "item": "Item",
       "misc": "Misc",
-      "language": "Language"
+      "language": "Language",
+      "money": "Money"
     }
   },
   "COMBAT.TurnPrev": "Prev. Combatant",
@@ -81,8 +82,10 @@
   "ACKS.details.alignment": "Alignment",
   "ACKS.details.level": "Level",
   "ACKS.details.experience.base": "Experience",
+  "ACKS.details.experience.baseshort": "XP",
   "ACKS.details.experience.bonus": "Bonus Experience",
   "ACKS.details.experience.next": "Next level",
+  "ACKS.details.experience.nextshort": "Next lvl",
   "ACKS.details.experience.share": "Experience Share",
   "ACKS.details.experience.award": "XP Award",
   "ACKS.details.treasure": "Treasure type",
@@ -97,11 +100,19 @@
   "ACKS.Attack": "Attack",
   "ACKS.Encumbrance": "Encumbrance",
 
+  "ACKS.moneytitle": "Money",
+  "ACKS.money.coppervalue": "Value (in Copper Coin)",
+  "ACKS.money.quantity": "Quantity",
+  "ACKS.money.valuecopper": "Value (CP)",
+
   "ACKS.Retainer": "Retainer",
   "ACKS.RetainerWage": "Wage",
   "ACKS.RetainerUpkeep": "Upkeep",
   "ACKS.Loyalty": "Loyalty",
   "ACKS.LoyaltyShort": "LYL",
+  "ACKS.totalWages": "Total Wages",
+  "ACKS.availableMoney": "Available Money",
+  "ACKS.payWages": "Pay Wages",
 
   "ACKS.scores.str.long": "Strength",
   "ACKS.scores.str.short": "STR",
@@ -351,6 +362,7 @@
   "ACKS.messages.applyDouble": "Apply 2x Damage",
   "ACKS.messages.Fumble": "<b>1! Automatic Miss!</b>",
   "ACKS.messages.Critical": "<b>20! Automatic Hit!</b>",
+  "ACKS.messages.PayWages": "{name} paid {value} GC in wages",
 
   "ACKS.colors.green": "Green",
   "ACKS.colors.red": "Red",
@@ -421,6 +433,7 @@
   "ACKS.error.HenchmanCharacter": "Henchman must be dropped on a character only",
   "ACKS.error.HenchmanMonster": "Henchman must be of character type",
   "ACKS.error.HenchmanNot": "Dropped character is not an Henchman",
-  "ACKS.error.HenchmanLinked": "Dropped Henchman mus be a linked Actor (see Token settings of the actor)"
-  
+  "ACKS.error.HenchmanLinked": "Dropped Henchman mus be a linked Actor (see Token settings of the actor)",
+  "ACKS.error.NotEnoughMoney": "Not enough money !"
+
 }

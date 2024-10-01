@@ -144,6 +144,20 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    html.find(".pay-wages").click((ev) => {
+      this.actor.payWages();
+    });
+    
+    html.find(".money-minus").click((ev) => {
+      let moneyId = $(ev.currentTarget).data("money-id");
+      this.actor.updateMoney(moneyId, -1);
+    });
+    html.find(".money-plus").click((ev) => {
+      let moneyId = $(ev.currentTarget).data("money-id");
+      this.actor.updateMoney(moneyId, 1);
+    });
+
+      
     html.find(".henchman-loyalty-check").click((ev) => {
       let henchId = $(ev.currentTarget).data("henchman-id");
       game.actors.get(henchId).rollLoyalty({ event: ev });

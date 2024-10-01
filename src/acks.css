@@ -1274,3 +1274,10 @@
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
+.wages-section {
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 4px;
+}

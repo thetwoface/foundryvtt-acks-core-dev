@@ -23,6 +23,8 @@ export class AcksActorSheet extends ActorSheet {
     data.languages = this.actor.getLanguages();
     data.description = await TextEditor.enrichHTML(this.object.system.details.description, { async: true })
     data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true })
+    data.totalWages = this.actor.getTotalWages();
+    data.totalMoneyGC = this.actor.getTotalMoneyGC();
 
     console.log("Actor sheet", data);
     return data;
@@ -43,7 +45,7 @@ export class AcksActorSheet extends ActorSheet {
     if (data) {
       let dataItem = JSON.parse( data);
       let actorId = dataItem.uuid.split('.')[1]
-      if ( actorId ) {
+      if ( dataItem.uuid.includes("Actor") && actorId ) {
         this.actor.addHenchman( actorId);
         return;
       }
@@ -58,7 +60,7 @@ export class AcksActorSheet extends ActorSheet {
    */
   _prepareItems(data) {
     // Partition items by category
-    let [items, weapons, armors, abilities, spells] = data.items.reduce(
+    let [items, weapons, armors, abilities, spells, languages, money] = data.items.reduce(
       (arr, item) => {
         // Classify items into types
         if (item.type === "item") arr[0].push(item);
@@ -66,9 +68,11 @@ export class AcksActorSheet extends ActorSheet {
         else if (item.type === "armor") arr[2].push(item);
         else if (item.type === "ability") arr[3].push(item);
         else if (item.type === "spell") arr[4].push(item);
+        else if (item.type === "language") arr[5].push(item);
+        else if (item.type === "money") arr[6].push(item);
         return arr;
       },
-      [[], [], [], [], []]
+      [[], [], [], [], [], [], []]
     );
 
     // Sort spells by level
@@ -94,9 +98,11 @@ export class AcksActorSheet extends ActorSheet {
       items: items,
       weapons: weapons,
       armors: armors,
+      money: money,
     };
     data.abilities = abilities;
     data.spells = sortedSpells;
+    data.languages = languages;
 
     data.favorites = this.actor.getFavorites()
   }

@@ -165,7 +165,15 @@
       "path": "packs/acks-journals.db",
       "type": "JournalEntry",
       "module": "acks-packs"
-    }    
+    },    
+    {
+      "name": "acks-money",
+      "label": "ACKS Money",
+      "system": "acks",
+      "path": "packs/acks-money.db",
+      "type": "Item",
+      "module": "acks-packs"
+    } 
   ],
   "languages": [
     {

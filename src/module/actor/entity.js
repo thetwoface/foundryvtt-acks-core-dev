@@ -86,7 +86,7 @@ export class AcksActor extends Actor {
 
     let subActors = [];
     for (let id of this.system.henchmenList) {
-      subActors.push(duplicate(game.actors.get(id)));
+      subActors.push(foundry.utils.duplicate(game.actors.get(id)));
     }
     return subActors;
   }
@@ -97,7 +97,7 @@ export class AcksActor extends Actor {
       ui.notifications.error("ACKS.error.HenchmanCharacter");
       return;
     }
-    let npc = game.actors.get( subActorId);
+    let npc = game.actors.get(subActorId);
     if (npc?.type != "character") {
       ui.notifications.error("ACKS.error.HenchmanMonster");
       return;
@@ -130,6 +130,79 @@ export class AcksActor extends Actor {
   showHenchman(henchmanId) {
     let henchman = game.actors.get(henchmanId);
     henchman.sheet.render(true);
+  }
+
+  /* -------------------------------------------- */
+  updateMoney(moneyId, value) {
+    let money = this.items.find((i) => i.id == moneyId);
+    let newValue = money.system.quantity + value;
+    if (newValue < 0) {
+      newValue = 0;
+    }
+    money.update({ 'system.quantity': newValue });
+  }
+
+  /* -------------------------------------------- */
+  getTotalWages() {
+    let total = 0;
+    if (this.type != "character") {
+      return 0;
+    }
+    this.system.henchmenList.forEach((id) => {
+      let henchman = game.actors.get(id);
+      total += Number(henchman.system.retainer.wage);
+    });
+    return total;
+  }
+
+  /* -------------------------------------------- */
+  payWages() {
+    if (this.type != "character") {
+      return;
+    }
+
+    let totalWages = this.getTotalWages() * 100;
+    let totalMoney = this.getTotalMoneyGC() * 100;
+    if (totalWages > totalMoney) {
+      ui.notifications.error( game.i18n.localize("ACKS.error.NotEnoughMoney"));
+      return;
+    }
+    // Get GC item
+    let moneyItems = this.items.filter((i) => i.type == "money");
+    // Sort money items per coppervalue, descending order
+    moneyItems.sort((a, b) => b.system.coppervalue - a.system.coppervalue);
+    // Loop through money items and decrement the totalWages value (expressed in copper)
+    for (let item of moneyItems) {
+      let quantity = Math.floor(totalWages / item.system.coppervalue);
+      if (quantity > item.system.quantity) {
+        quantity = item.system.quantity;
+      }
+      totalWages -= quantity * item.system.coppervalue;
+      item.update({ 'system.quantity': item.system.quantity - quantity });
+      if (totalWages == 0) {
+        break;
+      }
+    }
+    // Send result chat message
+    const speaker = ChatMessage.getSpeaker({ actor: this });
+    ChatMessage.create({
+      content: game.i18n.format("ACKS.messages.PayWages", {
+        name: this.name,
+        value: this.getTotalWages(),
+      }),
+      speaker,
+    });
+  }
+
+  /* -------------------------------------------- */
+  getTotalMoneyGC() {
+    let total = 0;
+    this.items.forEach((item) => {
+      if (item.type == "money") {
+        total += item.system.quantity * item.system.coppervalue;
+      }
+    });
+    return total / 100;
   }
 
   /* -------------------------------------------- */

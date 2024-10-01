@@ -3,6 +3,8 @@
     <li class="item-titles flexrow">
       <div class="item-caret"><i class="fas fa-caret-down"></i></div>
       <div class="item-name">{{localize "ACKS.items.Weapons"}}</div>
+      <div class="icon-row">{{localize "ACKS.items.Damage"}}</div>
+      <div class="icon-row">{{localize "ACKS.items.Range"}}</div>
       <div class="icon-row">{{localize "ACKS.items.Qualities"}}</div>
       <div class="field-short"><i class="fas fa-weight-hanging"></i></div>
       <div class="item-controls">
@@ -21,6 +23,14 @@
                 {{item.name~}}
               </h4>
             </a>
+          </div>
+          <div class="icon-row flexrow">
+            {{system.damage}}            
+          </div>
+          <div class="icon-row flexrow">
+            {{#if system.missile}}
+              {{system.range.short}}/{{system.range.medium}}/{{system.range.long}}
+            {{/if}}
           </div>
           <div class="icon-row flexrow">
             {{#each item.system.tags as |tag|}}

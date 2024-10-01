@@ -104,11 +104,13 @@
       "henchmenList": [],
       "details": {
         "biography": "",
+        "morale": 0,
         "notes": "",
         "class": "",
         "title": "",
         "alignment": "",
         "level": 1,
+        "casterlevel": 0,
         "age": 18,
         "fatepoints": 0,
         "xp": {

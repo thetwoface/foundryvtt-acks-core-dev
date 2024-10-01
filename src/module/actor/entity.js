@@ -94,6 +94,21 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   async addHenchman(subActorId) {
     if (this.type != "character") {
+      ui.notifications.error("ACKS.error.HenchmanCharacter");
+      return;
+    }
+    let npc = game.actors.get( subActorId);
+    if (npc?.type != "character") {
+      ui.notifications.error("ACKS.error.HenchmanMonster");
+      return;
+    }
+    if (!npc?.system.retainer?.enabled) {
+      ui.notifications.error("ACKS.error.HenchmanNot");
+      return;
+    }
+    // Check if it is a linked character
+    if (!npc.prototypeToken.actorLink) {
+      ui.notifications.error("ACKS.error.HenchmanLinked");
       return;
     }
 

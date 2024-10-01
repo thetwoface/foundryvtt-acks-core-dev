@@ -43,8 +43,7 @@ export class AcksActorSheet extends ActorSheet {
     if (data) {
       let dataItem = JSON.parse( data);
       let actorId = dataItem.uuid.split('.')[1]
-      let npc = game.actors.get( actorId);
-      if ( npc ) {
+      if ( actorId ) {
         this.actor.addHenchman( actorId);
         return;
       }

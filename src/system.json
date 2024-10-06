@@ -170,7 +170,7 @@
       "name": "acks-money",
       "label": "ACKS Money",
       "system": "acks",
-      "path": "packs/acks-money.db",
+      "path": "packs/acks-money",
       "type": "Item",
       "module": "acks-packs"
     } 

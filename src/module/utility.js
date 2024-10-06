@@ -1,5 +1,18 @@
 export class AcksUtility {
 
+  /* -------------------------------------------- */
+  static async loadCompendiumData(compendium) {
+    const pack = game.packs.get(compendium);
+    return await pack?.getDocuments() ?? [];
+  }
+
+  /* -------------------------------------------- */
+  static async loadCompendium(compendium, filter = item => true) {
+    let compendiumData = await AcksUtility.loadCompendiumData(compendium);
+    return compendiumData.filter(filter);
+  }
+
+  /* -------------------------------------------- */
   static prepareActiveEffect(effectId) {
     let status = CONFIG.ACKS.statusEffects.find(it => it.id.includes(effectId))
     if (status) {
@@ -9,8 +22,9 @@ export class AcksUtility {
     return status;
   }
 
+  /* -------------------------------------------- */
   static addUniqueStatus(actor, statusId) {
-    let status = actor.effects.find(it => it.statuses.has(statusId) )
+    let status = actor.effects.find(it => it.statuses.has(statusId))
     if (!status) {
       let effect = this.prepareActiveEffect(statusId)
       actor.createEmbeddedDocuments("ActiveEffect", [effect]);
@@ -43,7 +57,7 @@ export class AcksUtility {
         effects: [],
       },
     };
-  
+
     // Iterate over active effects, classifying them into categories
     for (let e of effects) {
       if (e.disabled) categories.inactive.effects.push(e);
@@ -52,7 +66,7 @@ export class AcksUtility {
     }
     return categories;
   }
-  
+
   static async onManageActiveEffect(event, owner) {
     event.preventDefault();
     const a = event.currentTarget;
@@ -82,5 +96,5 @@ export class AcksUtility {
         return effect.update({ disabled: !effect.disabled });
     }
   }
-  
+
 }

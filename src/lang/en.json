@@ -104,6 +104,7 @@
   "ACKS.money.coppervalue": "Value (in Copper Coin)",
   "ACKS.money.quantity": "Quantity",
   "ACKS.money.valuecopper": "Value (CP)",
+  "ACKS.money.valuegold": "Value (GP)" , 
 
   "ACKS.Retainer": "Retainer",
   "ACKS.RetainerWage": "Wage",

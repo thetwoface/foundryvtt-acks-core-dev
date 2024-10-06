@@ -165,24 +165,7 @@ export class AcksCharacterCreator extends FormApplication {
 
     // Generate gold
     let gold = event.target.elements.namedItem('gold').value;
-    console.log("Gold", gold);
-    const itemData = {
-      name: "GP",
-      type: "item",
-      img: "/systems/acks/assets/gold.png",
-      system: {
-        treasure: true,
-        cost: 1,
-        weight: 1,
-        quantity: {
-          value: gold
-        }
-      }
-    };
-
-    await this.object.createEmbeddedDocuments("Item", [
-      itemData,
-    ]);
+    this.object.manageMoney("Gold", gold);
   }
 
   /* -------------------------------------------- */

@@ -1,6 +1,27 @@
 import { AcksDice } from "../dice.js";
+import { AcksUtility } from "../utility.js";
 
 export class AcksActor extends Actor {
+  static async create(data, options) {
+
+    // Case of compendium global import
+    if (data instanceof Array) {
+      return super.create(data, options);
+    }
+    // If the created actor has items (only applicable to foundry.utils.duplicated actors) bypass the new actor creation logic
+    if (data.items) {
+      let actor = super.create(data, options);
+      return actor;
+    }
+
+    if (data.type == 'character') {
+      const skills = await AcksUtility.loadCompendium("acks.acks-money")
+      data.items = skills.map(i => i.toObject())
+    }
+
+    return super.create(data, options);
+  }
+
   /**
    * Extends data from base Actor class
    */
@@ -70,6 +91,19 @@ export class AcksActor extends Actor {
       }),
       speaker,
     });
+  }
+
+  /* -------------------------------------------- */
+  manageMoney(name, quantity) {
+    let money = this.items.find((i) => i.name.toLowerCase() == name.toLowerCase());
+    if (!money) {
+      return;
+    }
+    let newValue = Number(money.system.quantity) + Number(quantity);
+    if (newValue < 0) {
+      newValue = 0;
+    }
+    money.update({ 'system.quantity': newValue });
   }
 
   /* -------------------------------------------- */
@@ -834,14 +868,34 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   _calculateMovement() {
     if (this.system.encumbrance.value > this.system.encumbrance.max) {
+      this.system.movementacks.exploration = 0
+      this.system.movementacks.combat = 0
+      this.system.movementacks.chargerun = 0
+      this.system.movementacks.expedition = 0
       this.system.movement.base = 0;
     } else if (this.system.encumbrance.value > 10) {
+      this.system.movementacks.exploration = 30
+      this.system.movementacks.combat = 10
+      this.system.movementacks.chargerun = 30
+      this.system.movementacks.expedition = 6
       this.system.movement.base = 30;
     } else if (this.system.encumbrance.value > 7) {
+      this.system.movementacks.exploration = 60
+      this.system.movementacks.combat = 20
+      this.system.movementacks.chargerun = 60
+      this.system.movementacks.expedition = 12
       this.system.movement.base = 60;
     } else if (this.system.encumbrance.value > 5) {
+      this.system.movementacks.exploration = 90
+      this.system.movementacks.combat = 30
+      this.system.movementacks.chargerun = 90
+      this.system.movementacks.expedition = 18      
       this.system.movement.base = 90;
     } else {
+      this.system.movementacks.exploration = 120
+      this.system.movementacks.combat = 40
+      this.system.movementacks.chargerun = 120
+      this.system.movementacks.expedition = 24      
       this.system.movement.base = 120;
     }
   }

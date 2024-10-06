@@ -1281,3 +1281,53 @@
   margin-bottom: 4px;
   padding: 4px;
 }
+
+/** HUD SECTION */
+.tokenhudext {
+	display: flex; 
+	flex: 0 !important;
+  font-family: CaslonPro;
+  font-weight: 600;
+}
+.tokenhudext.left {
+  justify-content: flex-start;
+  flex-direction: column;
+  position: absolute;
+  top: 2.75rem;
+  right: 4rem;
+}
+.tokenhudext.right {
+  justify-content: flex-start;
+  flex-direction: column;
+  position: absolute;
+  /*transform: translate(0, -30%);*/
+  top: -4rem;
+  max-width: 250px;
+  left: 4rem;
+}
+.tokenhudext.right2 {
+  justify-content: flex-start;
+  flex-direction: column;
+  /*transform: translate(0, -30%);*/
+  position: absolute;
+  top: -4rem;
+  left: 11rem;
+}
+.control-icon.tokenhudicon {
+  width: fit-content;
+  height: fit-content;
+  min-width: 6rem;
+  flex-basis: auto;
+  padding: 0;
+  line-height: 1rem;
+  margin: 0.25rem;
+}
+.control-icon.tokenhudicon.right {
+  margin-left: 8px;
+}
+#token-hud .status-effects.active{
+  z-index: 2;
+}
+.acks-hud-menu label {
+  font-size: 0.6rem;
+}

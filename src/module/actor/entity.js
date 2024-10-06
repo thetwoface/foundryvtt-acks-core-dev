@@ -904,7 +904,19 @@ export class AcksActor extends Actor {
   getFavorites() {
     return this.items.filter((i) => i.system.favorite);
   }
-
+  buildFavoriteActions() {
+    let fav = this.getFavorites();
+    return fav;
+  }
+  /*-------------------------------------------- */
+  buildRollList() {
+    let rolls = []
+    for (let key in this.system.scores) {
+      let attr = this.system.scores[key]
+      rolls.push({ key: key, value: attr.value, name: game.i18n.localize("ACKS.scores."+key+".short"), type: "score" })
+    }
+    return rolls
+  }
   /* -------------- ------------------------------ */
   computeTreasure() {
     if (this.type != "character") {

@@ -13,6 +13,7 @@ import * as treasure from "./module/treasure.js";
 import * as macros from "./module/macros.js";
 import * as party from "./module/party.js";
 import { AcksCombat, AcksCombatClass } from "./module/combat.js";
+import { AcksTokenHud } from "./module/acks-token-hud.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -67,6 +68,9 @@ Hooks.once("init", async function () {
   });
 
   await preloadHandlebarsTemplates();
+
+  AcksTokenHud.init()
+
 });
 
 /**

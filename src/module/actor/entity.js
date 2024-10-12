@@ -453,7 +453,7 @@ export class AcksActor extends Actor {
           1: game.i18n.format("ACKS.morale.retreat", {
             name: this.name,
           }),
-          3: game.i18n.format("ACKS.morale.fightingWithdrawal", {
+          3: game.i18n.format("ACKS.morale.moralefaltering", {
             name: this.name,
           }),
           6: game.i18n.format("ACKS.morale.fight", {

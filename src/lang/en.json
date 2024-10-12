@@ -389,7 +389,8 @@
   "ACKS.loyalty.loyal": "Loyal",
   "ACKS.loyalty.fanatic": "Fanatic Loyalty",
 
-  "ACKS.morale.retreat": "Retreat",
+  "ACKS.morale.retreat": "Frightened Retreat",
+  "ACKS.morale.moralefaltering": "Morale Faltering",
   "ACKS.morale.fightingWithdrawal": "Fighting Withdrawl",
   "ACKS.morale.fight": "Fight On",
   "ACKS.morale.advanceAndPursue": "Advance and Pursue",

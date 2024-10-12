@@ -27,6 +27,7 @@ export class AcksActorSheet extends ActorSheet {
     data.totalWages = this.actor.getTotalWages();
     data.totalMoneyGC = this.actor.getTotalMoneyGC();
     data.moneyEncumbrance = this.actor.getTotalMoneyEncumbrance();
+    data.managerName = this.actor.getManagerName();
 
     console.log("Actor sheet", data);
     return data;

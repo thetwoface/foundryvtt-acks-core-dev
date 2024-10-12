@@ -435,8 +435,11 @@
   
   "ACKS.error.HenchmanCharacter": "Henchman must be dropped on a character only",
   "ACKS.error.HenchmanMonster": "Henchman must be of character type",
-  "ACKS.error.HenchmanNot": "Dropped character is not an Henchman",
-  "ACKS.error.HenchmanLinked": "Dropped Henchman mus be a linked Actor (see Token settings of the actor)",
-  "ACKS.error.NotEnoughMoney": "Not enough money !"
+  "ACKS.error.HenchmanNot": "Dropped character is not an Henchman (enable it in the Tweaks settings of the actor)",
+  "ACKS.error.HenchmanLinked": "Dropped Henchman must be a linked Actor (see Token settings of the actor)",
+  "ACKS.error.NotEnoughMoney": "Not enough money !",
+  "ACKS.error.ActorLinked": "Actor must be a linked Actor (see Token settings of the actor)",
+  "ACKS.error.HenchmanAlready": "Henchman already added to another actor",
+  "ACKS.employer" : "Employer"
 
 }

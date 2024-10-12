@@ -2,6 +2,7 @@ import { AcksDice } from "../dice.js";
 import { AcksUtility } from "../utility.js";
 
 export class AcksActor extends Actor {
+
   static async create(data, options) {
 
     // Case of compendium global import
@@ -20,6 +21,17 @@ export class AcksActor extends Actor {
     }
 
     return super.create(data, options);
+  }
+
+  _onUpdate(changed, options, userId) {
+    if (this.type == "character" && this.system.retainer?.enabled && this.system.retainer?.managerid != "") {
+      console.log("UPDATEHENCHMAN", this.system.retainer.managerid);
+      let manager = game.actors.get(this.system.retainer.managerid);
+      if (manager && manager.sheet.rendered) {
+        manager.sheet.render();
+      }
+    }
+    super._onUpdate(changed, options, userId);
   }
 
   /**
@@ -123,6 +135,32 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  requestHenchman(subActorId) {
+    let henchman = game.actors.get(subActorId);
+    let d = new Dialog({
+      title: "Do you want to make " + henchman.name + " a Henchman of " + this.name,
+      content: "<p>It will enable the Henchman flag in the actor, as well as an linked token actor.</p>",
+      buttons: {
+        one: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "Yes",
+          callback: async () =>  {
+            await henchman.update({ 'system.retainer.enabled': true, 'prototypeToken.actorLink': true} );
+            this.addHenchman(subActorId);
+          }
+        },
+        two: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "No",
+          callback: () => { return }
+        }
+      },
+      default: "two",
+    });
+    d.render(true);
+  }
+
+  /* -------------------------------------------- */
   async addHenchman(subActorId) {
     if (this.type != "character") {
       ui.notifications.error(game.i18n.localize("ACKS.error.HenchmanCharacter"));
@@ -134,18 +172,31 @@ export class AcksActor extends Actor {
       return;
     }
     if (!npc?.system.retainer?.enabled) {
-      ui.notifications.error( game.i18n.localize("ACKS.error.HenchmanNot"));
+      this.requestHenchman(subActorId);
       return;
     }
     // Check if it is a linked character
     if (!npc.prototypeToken.actorLink) {
-      ui.notifications.error(game.i18n.localize("ACKS.error.HenchmanLinked"));
+      this.requestHenchman(subActorId);
       return;
     }
-
+    // Check if the owner is a  linked character
+    if (!this.prototypeToken.actorLink) {
+      ui.notifications.error(game.i18n.localize("ACKS.error.ActorLinked"));
+      return;
+    }
+    // Check if the henchman is already in another actor
+    let henchmen = game.actors.filter((a) => a.type == "character" && a.system.henchmenList.includes(subActorId));
+    if (henchmen.length > 0) {
+      ui.notifications.error(game.i18n.localize("ACKS.error.HenchmanAlready"));
+      return
+    }
     let subActors = foundry.utils.duplicate(this.system.henchmenList);
     subActors.push(subActorId);
     await this.update({ 'system.henchmenList': subActors });
+
+    // Set the name of the manager in the henchman data 
+    await npc.update({ 'system.retainer.managerid': this.id });
   }
   /* -------------------------------------------- */
   async delHenchman(subActorId) {
@@ -156,13 +207,23 @@ export class AcksActor extends Actor {
       }
     }
     await this.update({ 'system.henchmenList': newArray });
+    // Cleanup the manager id 
+    let npc = game.actors.get(subActorId);
+    await npc.update({ 'system.retainer.managerid': "" });
   }
   /* -------------------------------------------- */
   showHenchman(henchmanId) {
     let henchman = game.actors.get(henchmanId);
     henchman.sheet.render(true);
   }
-
+  /* -------------------------------------------- */
+  getManagerName() {
+    if (this.type != "character" || this.system.retainer?.managerid == "") {
+      return "";
+    }
+    let manager = game.actors.get(this.system.retainer.managerid);
+    return manager.name;
+  }
   /* -------------------------------------------- */
   updateMoney(moneyId, value) {
     let money = this.items.find((i) => i.id == moneyId);
@@ -195,7 +256,7 @@ export class AcksActor extends Actor {
     let totalWages = this.getTotalWages() * 100;
     let totalMoney = this.getTotalMoneyGC() * 100;
     if (totalWages > totalMoney) {
-      ui.notifications.error( game.i18n.localize("ACKS.error.NotEnoughMoney"));
+      ui.notifications.error(game.i18n.localize("ACKS.error.NotEnoughMoney"));
       return;
     }
     // Get GC item
@@ -244,7 +305,7 @@ export class AcksActor extends Actor {
       }
     });
     let nbStone = Math.floor(total / 1000);
-    let nbItems = Math.ceil( (total - (nbStone * 1000)) / 166);
+    let nbItems = Math.ceil((total - (nbStone * 1000)) / 166);
     return { stone: nbStone, item: nbItems };
   }
 
@@ -899,13 +960,13 @@ export class AcksActor extends Actor {
       this.system.movementacks.exploration = 90
       this.system.movementacks.combat = 30
       this.system.movementacks.chargerun = 90
-      this.system.movementacks.expedition = 18      
+      this.system.movementacks.expedition = 18
       this.system.movement.base = 90;
     } else {
       this.system.movementacks.exploration = 120
       this.system.movementacks.combat = 40
       this.system.movementacks.chargerun = 120
-      this.system.movementacks.expedition = 24      
+      this.system.movementacks.expedition = 24
       this.system.movement.base = 120;
     }
   }
@@ -923,7 +984,7 @@ export class AcksActor extends Actor {
     let rolls = []
     for (let key in this.system.scores) {
       let attr = this.system.scores[key]
-      rolls.push({ key: key, value: attr.value, name: game.i18n.localize("ACKS.scores."+key+".short"), type: "score" })
+      rolls.push({ key: key, value: attr.value, name: game.i18n.localize("ACKS.scores." + key + ".short"), type: "score" })
     }
     return rolls
   }

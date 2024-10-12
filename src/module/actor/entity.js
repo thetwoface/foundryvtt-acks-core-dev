@@ -238,6 +238,18 @@ export class AcksActor extends Actor {
     });
     return total / 100;
   }
+  /* -------------------------------------------- */
+  getTotalMoneyEncumbrance() {
+    let total = 0;
+    this.items.forEach((item) => {
+      if (item.type == "money") {
+        total += item.system.quantity;
+      }
+    });
+    let nbStone = Math.floor(total / 1000);
+    let nbItems = Math.ceil( (total - (nbStone * 1000)) / 166);
+    return { stone: nbStone, item: nbItems };
+  }
 
   /* -------------------------------------------- */
   isNew() {
@@ -843,6 +855,7 @@ export class AcksActor extends Actor {
         totalEncumbrance += item.system.weight;
       }
     });
+    totalEncumbrance += this.getTotalMoneyEncumbrance().stone
 
     let maxEncumbrance = 20 + this.system.scores.str.mod;
     if (this.system.encumbrance.max != maxEncumbrance) {

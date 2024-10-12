@@ -49,6 +49,7 @@ export class AcksItemSheet extends ItemSheet {
     data.config = CONFIG.ACKS;
     data.system = this.object.system;
     data.effects = await AcksUtility.prepareActiveEffectCategories(this.item.effects);
+    data.isGM = game.user.isGM;
 
     data.description = await TextEditor.enrichHTML(this.object.system.description, { async: true })
 

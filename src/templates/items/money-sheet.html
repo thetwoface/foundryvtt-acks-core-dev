@@ -15,13 +15,19 @@
         <div class="form-group block-input">
           <label>{{localize 'ACKS.money.coppervalue'}}</label>
           <div class="form-fields">
-            <input type="text" name="system.coppervalue" value="{{system.coppervalue}}" data-dtype="Number" />
+            <input type="text" name="system.coppervalue" value="{{system.coppervalue}}" data-dtype="Number" {{#if isGM}} {{else}} disabled {{/if}} />
           </div>
         </div>
         <div class="form-group">
-          <label>{{localize 'ACKS.money.quantity'}}</label>
+          <label>{{localize 'ACKS.money.quantitycarried'}}</label>
           <div class="form-fields">
             <input type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{localize 'ACKS.money.quantitybank'}}</label>
+          <div class="form-fields">
+            <input type="text" name="system.quantitybank" value="{{system.quantitybank}}" data-dtype="Number" />
           </div>
         </div>
       </div>

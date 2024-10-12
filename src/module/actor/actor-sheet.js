@@ -16,6 +16,7 @@ export class AcksActorSheet extends ActorSheet {
     data.config.encumbrance = game.settings.get("acks", "encumbranceOption");
     data.effects = await AcksUtility.prepareActiveEffectCategories(this.actor.allApplicableEffects());
     data.system = this.actor.system;
+    data.isGM = game.user.isGM;
 
     // Prepare owned items
     this._prepareItems(data);
@@ -25,6 +26,7 @@ export class AcksActorSheet extends ActorSheet {
     data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true })
     data.totalWages = this.actor.getTotalWages();
     data.totalMoneyGC = this.actor.getTotalMoneyGC();
+    data.moneyEncumbrance = this.actor.getTotalMoneyEncumbrance();
 
     console.log("Actor sheet", data);
     return data;
@@ -93,6 +95,14 @@ export class AcksActorSheet extends ActorSheet {
     data.slots = {
       used: slots,
     };
+    // Sort money according to the 'coppervalue' field
+    money.sort((a, b) => b.system.coppervalue - a.system.coppervalue);
+    // Compute total money value
+    for (let m of money) {
+      let valuegp = (m.system.coppervalue * (m.system.quantity + m.system.quantitybank)) / 100;
+      m.system.totalvalue = valuegp
+    }
+
     // Assign and return
     data.owned = {
       items: items,

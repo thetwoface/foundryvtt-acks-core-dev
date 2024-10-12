@@ -54,7 +54,8 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     data.config.initiative = true; // game.settings.get("acks", "initiative") != "group";
     data.config.BHR = game.settings.get("acks", "bhr");
     data.config.removeMagicBonus = game.settings.get("acks", "removeMagicBonus");
-
+    data.isGM = game.user.isGM;
+    
     data.isNew = this.actor.isNew();
     return data;
   }

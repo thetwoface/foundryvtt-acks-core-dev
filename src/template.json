@@ -209,7 +209,9 @@
     "money": {
       "coppervalue": 1,
       "quantity": 1,
+      "quantitybank": 0,
       "unitweight": 0,
+      "totalvalue": 0,
       "description": ""
     },
     "language": {

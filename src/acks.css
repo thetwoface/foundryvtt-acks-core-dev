@@ -1282,6 +1282,11 @@
   padding: 4px;
 }
 
+/* Hide compendium background image */
+.compendium-sidebar .directory-item.compendium.locked .compendium-banner {
+  opacity: 00;
+}
+
 /** HUD SECTION */
 .tokenhudext {
 	display: flex; 

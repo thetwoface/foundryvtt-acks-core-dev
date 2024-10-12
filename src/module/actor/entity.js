@@ -47,9 +47,6 @@ export class AcksActor extends Actor {
         data.initiative.value -= 1;
       }
     }
-    /*} else {
-      data.initiative.value = 0;
-    } */
 
     data.movement.encounter = data.movement.base / 3;
 
@@ -146,7 +143,7 @@ export class AcksActor extends Actor {
       return;
     }
 
-    let subActors = duplicate(this.system.henchmenList);
+    let subActors = foundry.utils.duplicate(this.system.henchmenList);
     subActors.push(subActorId);
     await this.update({ 'system.henchmenList': subActors });
   }
@@ -858,7 +855,7 @@ export class AcksActor extends Actor {
     totalEncumbrance += this.getTotalMoneyEncumbrance().stone
 
     let maxEncumbrance = 20 + this.system.scores.str.mod;
-    if (this.system.encumbrance.max != maxEncumbrance) {
+    if (this.system.encumbrance.max != maxEncumbrance && this._id) {
       this.update({ 'system.encumbrance.max': maxEncumbrance });
     }
 

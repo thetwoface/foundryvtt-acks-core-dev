@@ -55,7 +55,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     data.config.BHR = game.settings.get("acks", "bhr");
     data.config.removeMagicBonus = game.settings.get("acks", "removeMagicBonus");
     data.isGM = game.user.isGM;
-    
+
     data.isNew = this.actor.isNew();
     return data;
   }
@@ -125,7 +125,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    return item.update({ "data.quantity.value": parseInt(event.target.value) });
+    return item.update({ "system.quantity.value": parseInt(event.target.value) });
   }
 
   /* -------------------------------------------- */

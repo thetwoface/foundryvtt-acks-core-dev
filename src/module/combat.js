@@ -19,7 +19,7 @@ export class AcksCombatClass extends Combat {
     // Update state tracking
     let c = turns[this.turn];
     this.current = this._getCurrentState(c);
-
+    //this.current = 
     // One-time initialization of the previous state
     if ( !this.previous ) this.previous = this.current;
 
@@ -34,7 +34,7 @@ export class AcksCombatClass extends Combat {
 
     // Get current groups 
     let groups = this.getFlag('acks', 'groups') || [];
-
+    let maxInit = { value: -1, cId: "" } 
     for (let cId of ids) {
       const c = this.combatants.get(cId);
       console.log("Init for combattant", cId, c, ids)
@@ -58,6 +58,10 @@ export class AcksCombatClass extends Combat {
         groupData.initiative = initValue
       }
       await this.updateEmbeddedDocuments("Combatant", [{ _id: id, initiative: initValue }]);
+      if (initValue > maxInit.value) {
+        maxInit.value = initValue;
+        maxInit.cId = id;
+      }
 
       if (showMessage) {
         // Determine the roll mode
@@ -95,6 +99,11 @@ export class AcksCombatClass extends Combat {
     this.pools = AcksCombat.getCombatantsPool();
     await this.processOutNumbering();
 
+    setTimeout(function () {
+      const updateData = { turn: 0 };
+      game.combat.update(updateData);
+    }, 200);
+    
     return this;
 
   }
@@ -218,7 +227,6 @@ export class AcksCombatClass extends Combat {
     let advanceTime = Math.max(this.turns.length - this.turn, 0) * CONFIG.time.turnTime;
     advanceTime += CONFIG.time.roundTime;
     let nextRound = this.round + 1;
-
 
     // Update the document, passing data through a hook first
     const updateData = { round: nextRound, turn };
@@ -362,7 +370,6 @@ export class AcksCombat {
         initiative: initiative,
       });
     }
-
     combat.setupTurns();
   }
 

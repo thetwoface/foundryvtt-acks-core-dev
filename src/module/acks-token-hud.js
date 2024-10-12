@@ -22,7 +22,7 @@ export class AcksTokenHud {
     let actor = token.actor
     app.hasExtension = true
 
-    const hudData = { actor: actor, actionsList: actor.buildFavoriteActions(), rollsList: actor.buildRollList() }
+    const hudData = { token: token, actor: actor, mode: "action", actionsList: actor.buildFavoriteActions() }
 
     const controlIconActions = html.find('.control-icon[data-action=combat]');
     // initiative
@@ -37,15 +37,16 @@ export class AcksTokenHud {
           actionItem.spendSpell();
         } else {
           actionItem.rollFormula();
-        } 
+        }
       })
-
+    
+    const hudRolls = { token: token, actor: actor, mode: "roll", rollsList: actor.buildRollList() }
     const controlIconTarget = html.find('.control-icon[data-action=config]');
     // att+apt+career
-    await AcksTokenHud._configureSubMenu(controlIconTarget, 'systems/acks/templates/token/hud-actor-rolls.html', hudData,
+    await AcksTokenHud._configureSubMenu(controlIconTarget, 'systems/acks/templates/token/hud-actor-rolls.html', hudRolls,
       (event) => {
         let rollIndex = Number(event.currentTarget.attributes['data-roll-index'].value)
-        let roll = hudData.rollsList[rollIndex]
+        let roll = hudRolls.rollsList[rollIndex]
         actor.rollCheck(roll.key)
       })
   }
@@ -63,27 +64,35 @@ export class AcksTokenHud {
     const hud = $(await renderTemplate(template, hudData))
     const list = hud.find('div.acks-hud-list')
 
-    AcksTokenHud._toggleHudListActive(hud, list);
+    if (hudData.token.document.getFlag('acks', 'hud-'+hudData.mode)) {
+      hud.addClass('active')
+      list.show()
+    } else {
+      hud.removeClass('active')
+      list.hide()
+    }
+    //AcksTokenHud._toggleHudListActive(hud, list, hudData);
 
-    hud.find('img.acks-hud-togglebutton').click(event => AcksTokenHud._toggleHudListActive(hud, list));
+    hud.find('img.acks-hud-togglebutton').click(event => AcksTokenHud._toggleHudListActive(hud, list, hudData));
     list.find('.acks-hud-menu').click(onMenuItem);
 
     insertionPoint.after(hud);
   }
 
   /* -------------------------------------------- */
-  static _showControlWhen(control, condition) {
+  static _showControlWhen(control, condition, hudData) {
     if (condition) {
       control.show()
-    }
-    else {
+      hudData.token.document.setFlag('acks', 'hud-'+hudData.mode, true)        
+    } else {
       control.hide()
+      hudData.token.document.setFlag('acks', 'hud-'+hudData.mode, false)        
     }
   }
 
   /* -------------------------------------------- */
-  static _toggleHudListActive(hud, list) {
+  static _toggleHudListActive(hud, list, hudData) {
     hud.toggleClass('active')
-    AcksTokenHud._showControlWhen(list, hud.hasClass('active'))
+    AcksTokenHud._showControlWhen(list, hud.hasClass('active'), hudData)
   }
 }

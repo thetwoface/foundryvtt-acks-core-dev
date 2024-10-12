@@ -1288,6 +1288,9 @@
 }
 
 /** HUD SECTION */
+.hud-action-label {
+  font-size: 2.0rem;
+}
 .tokenhudext {
 	display: flex; 
 	flex: 0 !important;
@@ -1334,5 +1337,5 @@
   z-index: 2;
 }
 .acks-hud-menu label {
-  font-size: 0.6rem;
+  font-size: 1.4rem;
 }

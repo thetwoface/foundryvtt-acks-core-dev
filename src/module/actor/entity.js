@@ -447,26 +447,7 @@ export class AcksActor extends Actor {
 
     const data = {
       actor: this,
-      roll: {
-        type: "table",
-        table: {
-          1: game.i18n.format("ACKS.morale.retreat", {
-            name: this.name,
-          }),
-          3: game.i18n.format("ACKS.morale.moralefaltering", {
-            name: this.name,
-          }),
-          6: game.i18n.format("ACKS.morale.fight", {
-            name: this.name,
-          }),
-          9: game.i18n.format("ACKS.morale.advanceAndPursue", {
-            name: this.name,
-          }),
-          12: game.i18n.format("ACKS.morale.fightToTheDeath", {
-            name: this.name,
-          }),
-        },
-      },
+      roll: {}
     };
 
     let skip = options?.event?.ctrlKey;

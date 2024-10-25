@@ -141,6 +141,11 @@ export const ACKS = {
     reload: "/systems/acks/assets/reload.png",
     charge: "/systems/acks/assets/charge.png",
   },
+  hireling_categories: {
+    mercenary: "ACKS.hireling.mercenary",
+    specialist: "ACKS.hireling.specialist",
+    henchman: "ACKS.hireling.henchman",
+  },
   monster_saves: {
     0: {
       label: "Normal Human",

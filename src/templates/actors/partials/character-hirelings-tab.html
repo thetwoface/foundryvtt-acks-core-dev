@@ -10,7 +10,8 @@
   <div>
     <div class="item-titles flexrow">
       <div class="item-caret"><i class="fas fa-caret-down"></i></div>
-      <div class="item-name">{{localize 'ACKS.category.henchmen'}}</div>
+      <div class="field-short">{{localize "ACKS.Quantity"}}</div>
+      <div class="item-name">{{localize "ACKS.category.hirelings"}}</div>
       <div class="icon-row">{{localize "ACKS.details.class"}}</div>
       <div class="icon-row">{{localize "ACKS.Loyalty"}}</div>
       <div class="icon-row">{{localize "ACKS.details.morale"}}</div>
@@ -26,23 +27,24 @@
       {{#each henchmen as |henchman idx|}}
       <li class="item-entry">
         <div class="item flexrow" data-henchman-id="{{henchman._id}}">
-          <div class="item-name flexrow">
+          <div class="field-short">
+            <input type="text" class="hireling-edit-quantity" value="{{henchman.system.retainer.quantity}}" />
+          </div>
+          <div class="item-name flexrow" >
             <div class="item-image" style="background-image: url({{henchman.img}})"></div>
-            <a class="open-henchman">
-              <h4 title="{{henchman.name}}">
-                {{henchman.name~}}
-              </h4>
+            <a class="open-henchman" data-henchman-id="{{henchman._id}}">
+              <h4>{{henchman.name~}}</h4>          
             </a>
           </div>
-          <div class="icon-row flexrow">
+          <div class="field-short">
             {{henchman.system.details.class}}
           </div>
-          <div class="icon-row flexrow">
+          <div class="field-short">
             <div class="check henchman-loyalty-check" data-henchman-id="{{henchman._id}}"
               title="{{localize 'ACKS.loyalty.check'}}"><a><i class="fas fa-dice"></i></a>
               {{henchman.system.retainer.loyalty}}</div>
           </div>
-          <div class="icon-row flexrow">
+          <div class="field-short">
             <div class="check henchman-morale-check" data-henchman-id="{{henchman._id}}"
               title="{{localize 'ACKS.roll.morale'}}"><a><i class="fas fa-dice"></i></a>
               {{henchman.system.details.morale}}</div>

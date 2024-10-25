@@ -1,5 +1,15 @@
 export class AcksUtility {
 
+  static updateWeights()
+  {
+    for (let a of game.actors) {
+      a.updateWeight();      
+    }
+    for (let i of game.items) {
+      i.updateWeight();
+    }
+  }
+
   /* -------------------------------------------- */
   static async loadCompendiumData(compendium) {
     const pack = game.packs.get(compendium);

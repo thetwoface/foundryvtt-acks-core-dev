@@ -35,6 +35,15 @@
     
     {{#if system.retainer.enabled}}
     <li class="flexrow check-field">
+      <div class="check morale-check" title="{{localize 'ACKS.hireling.category'}}"></div>
+      <div>
+        <select type="text" name="system.retainer.category" value="{{system.retainer.category}}">
+          {{selectOptions config.hireling_categories selected=system.retainer.category localize=true}}
+        </select>
+         
+      </div>
+    </li>
+    <li class="flexrow check-field">
       <div class="check morale-check" title="{{localize 'ACKS.roll.morale'}}"><a><i class="fas fa-dice"></i></a></div>
       <div>
         <input type="text" name="system.details.morale" value="{{system.details.morale}}" />

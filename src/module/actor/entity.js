@@ -211,11 +211,13 @@ export class AcksActor extends Actor {
     let npc = game.actors.get(subActorId);
     await npc.update({ 'system.retainer.managerid': "" });
   }
+
   /* -------------------------------------------- */
   showHenchman(henchmanId) {
     let henchman = game.actors.get(henchmanId);
     henchman.sheet.render(true);
   }
+
   /* -------------------------------------------- */
   getManagerName() {
     if (this.type != "character" || this.system.retainer?.managerid == "") {
@@ -242,7 +244,8 @@ export class AcksActor extends Actor {
     }
     this.system.henchmenList.forEach((id) => {
       let henchman = game.actors.get(id);
-      total += Number(henchman.system.retainer.wage);
+      let q = henchman.system.retainer?.quantity || 1
+      total += Number(henchman.system.retainer.wage) * Number(q);
     });
     return total;
   }
@@ -307,6 +310,20 @@ export class AcksActor extends Actor {
     let nbStone = Math.floor(total / 1000);
     let nbItems = Math.ceil((total - (nbStone * 1000)) / 166);
     return { stone: nbStone, item: nbItems };
+  }
+
+  /* -------------------------------------------- */
+  updateWeight() {
+    let toUpdate = []
+    for(let i of this.items) {
+      if (i.system?.weight != undefined && i.system?.weight6 == -1) {
+        let nbStones6 = Math.floor(i.system.weight / 166.66)
+        toUpdate.push({ _id: i.id, 'system.weight6': nbStones6, 'system.weight': -1 })        
+      }
+    }  
+    if (toUpdate.length > 0) {
+      this.updateEmbeddedDocuments("Item", toUpdate)
+    }
   }
 
   /* -------------------------------------------- */

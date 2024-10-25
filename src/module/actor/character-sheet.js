@@ -246,14 +246,21 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       li.slideUp(200, () => this.render(false));
     });
 
-    // Delete Inventory Item
+    // Open henchman/hireling sheet
     html.find(".open-henchman").click((ev) => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.showHenchman(
-        li.data("henchmanId"),
-      );
+      const li = $(ev.currentTarget);
+      this.actor.showHenchman( li.data("henchmanId") );
     });
-    
+    html.find(".hireling-edit-quantity").change((ev) => {
+      // Get input value of the field 
+      let quantity = $(ev.currentTarget).val();
+      // Get the hireling id
+      let hirelingId = $(ev.currentTarget).parents(".item").data("henchmanId");
+      // Update the hireling quantity
+      let hireling = game.actors.get(hirelingId);
+      hireling.update({ "system.retainer.quantity": quantity });
+    });
+      
     // Delete Inventory Item
     html.find(".henchman-delete").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");

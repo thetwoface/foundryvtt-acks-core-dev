@@ -35,6 +35,7 @@
   "ACKS.Roll": "Roll",
   "ACKS.Success": "Success",
   "ACKS.Failure": "Failure",
+  "ACKS.Quantity": "Quantity",
 
   "ACKS.dialog.tweaks": "Tweaks",
   "ACKS.dialog.partysheet": "Party Overview",
@@ -236,6 +237,7 @@
   "ACKS.category.bonuses": "Bonuses",
   "ACKS.category.effects": "Effects",
   "ACKS.category.henchmen": "Henchmen",
+  "ACKS.category.hirelings": "Hirelings",
 
   "ACKS.proficiencyType.general": "General",
   "ACKS.proficiencyType.class": "Class",
@@ -441,6 +443,10 @@
   "ACKS.error.NotEnoughMoney": "Not enough money !",
   "ACKS.error.ActorLinked": "Actor must be a linked Actor (see Token settings of the actor)",
   "ACKS.error.HenchmanAlready": "Henchman already added to another actor",
-  "ACKS.employer" : "Employer"
+  "ACKS.employer" : "Employer",
+  "ACKS.hirelings": "Hirelings",
+  "ACKS.hireling.mercenary": "Mercenary",
+  "ACKS.hireling.henchman": "Henchman",
+  "ACKS.hireling.specialist": "Specialist"
 
 }

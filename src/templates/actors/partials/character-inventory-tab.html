@@ -45,7 +45,7 @@
             {{/each}}
           </div>
           <div class="field-short">
-            {{#if (eq @root.config.encumbrance "detailed")}}{{item.system.weight}}{{else}}_{{/if}}
+            {{#if (eq @root.config.encumbrance "detailed")}}{{item.system.weight6}}{{else}}_{{/if}}
           </div>
           <div class="item-controls">
             {{#if ../owner}}
@@ -101,7 +101,7 @@
             {{/if}}
           </div>
           <div class="field-short">
-            {{#if (eq @root.config.encumbrance "detailed")}}{{item.system.weight}}{{else}}_{{/if}}
+            {{#if (eq @root.config.encumbrance "detailed")}}{{item.system.weight6}}{{else}}_{{/if}}
           </div>
           <div class="item-controls">
             {{#if ../owner}}
@@ -237,7 +237,7 @@
               placeholder="0" />{{#if item.system.quantity.max}}<span>/{{item.system.quantity.max}}</span>{{/if}}
           </div>
           <div class="field-short">
-            {{#if (eq @root.config.encumbrance "detailed")}}{{mult item.system.quantity.value item.system.weight}}{{else}}_{{/if}}
+            {{#if (eq @root.config.encumbrance "detailed")}}{{mult item.system.quantity.value item.system.weight6}}{{else}}_{{/if}}
           </div>
           <div class="item-controls">
             {{#if ../owner}}

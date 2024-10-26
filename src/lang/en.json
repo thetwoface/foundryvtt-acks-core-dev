@@ -36,6 +36,8 @@
   "ACKS.Success": "Success",
   "ACKS.Failure": "Failure",
   "ACKS.Quantity": "Quantity",
+  "ACKS.QuantityShort": "Qt.",
+  "ACKS.name": "Name",
 
   "ACKS.dialog.tweaks": "Tweaks",
   "ACKS.dialog.partysheet": "Party Overview",

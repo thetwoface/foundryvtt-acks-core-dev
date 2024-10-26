@@ -236,6 +236,7 @@
 .acks.sheet.actor .sheet-body .inventory .item-titles .item-name {
   text-align: left;
   text-indent: 8px;
+  flex-grow: 8;
 }
 .acks.sheet.actor .sheet-body .inventory .item-titles input {
   color: white;
@@ -303,6 +304,7 @@
   margin: 0;
   line-height: 30px;
   flex-basis: 90px;
+  min-width: 12rem;
 }
 
 .effect-image {

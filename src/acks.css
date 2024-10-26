@@ -1286,6 +1286,12 @@
 .compendium-sidebar .directory-item.compendium.locked .compendium-banner {
   opacity: 00;
 }
+.compendium-sidebar .directory-item.compendium:hover .compendium-banner {
+  opacity: 00;
+}
+.compendium-sidebar .directory-item.compendium .compendium-banner {
+  opacity: 00;
+}
 
 /** HUD SECTION */
 .hud-action-label {

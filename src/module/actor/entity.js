@@ -902,15 +902,12 @@ export class AcksActor extends Actor {
 
     this.items.forEach((item) => {
       if (item.type === "item") {
-        if (item.system.treasure) {
-          totalEncumbrance += item.system.weight * item.system.quantity.value;
-        } else {
-          totalEncumbrance += 166.6;
-        }
+        totalEncumbrance += item.system.weight6 * item.system.quantity.value;
       } else if (["weapon", "armor"].includes(item.type)) {
-        totalEncumbrance += item.system.weight;
+        totalEncumbrance += item.system.weight6;
       }
     });
+    totalEncumbrance /= 6 // Get the weight in stones
     totalEncumbrance += this.getTotalMoneyEncumbrance().stone
 
     let maxEncumbrance = 20 + this.system.scores.str.mod;

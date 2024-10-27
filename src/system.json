@@ -27,99 +27,58 @@
   "styles": ["acks.css"],
   "packs": [
     {
-      "name": "acks-arcane-spells-1",
-      "label": "ACKS Arcane Spells 1",
+      "name": "acks-arcane-spells",
+      "label": "ACKS Arcane Spells",
       "system": "acks",
-      "path": "packs/acks-arcane-spells-1.db",
+      "path": "packs/acks-arcane-spells",
       "type": "Item",
       "module": "acks-packs"
     },
-
     {
-      "name": "acks-arcane-spells-2",
-      "label": "ACKS Arcane Spells 2",
+      "name": "acks-divine-spells",
+      "label": "ACKS Divine Spells",
       "system": "acks",
-      "path": "packs/acks-arcane-spells-2.db",
+      "path": "packs/acks-divine-spells",
       "type": "Item",
       "module": "acks-packs"
     },
-
     {
-      "name": "acks-arcane-spells-3",
-      "label": "ACKS Arcane Spells 3",
+      "name": "acks-all-equipment",
+      "label": "ACKS All Equipment",
       "system": "acks",
-      "path": "packs/acks-arcane-spells-3.db",
+      "path": "packs/acks-all-equipment",
       "type": "Item",
       "module": "acks-packs"
     },
-
-    {
-      "name": "acks-arcane-spells-4",
-      "label": "ACKS Arcane Spells 4",
-      "system": "acks",
-      "path": "packs/acks-arcane-spells-4.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
-    {
-      "name": "acks-armor",
-      "label": "ACKS Armor",
-      "system": "acks",
-      "path": "packs/acks-armor.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
     {
       "name": "acks-class-abilities",
       "label": "ACKS Class Abilities",
       "system": "acks",
-      "path": "packs/acks-class-abilities.db",
+      "path": "packs/acks-class-abilities",
       "type": "Item",
       "module": "acks-packs"
     },
-
-    {
-      "name": "acks-divine-spells-1",
-      "label": "ACKS Divine Spells 1",
-      "system": "acks",
-      "path": "packs/acks-divine-spells-1.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
-    {
-      "name": "acks-divine-spells-2",
-      "label": "ACKS Divine Spells 2",
-      "system": "acks",
-      "path": "packs/acks-divine-spells-2.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-    { 
-      "name": "acks-equipment",
-      "label": "ACKS Equipment",
-      "system": "acks",
-      "path": "packs/acks-equipment.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
     { 
       "name": "acks-monster-abilities",
       "label": "ACKS Monster Abilities",
       "system": "acks",
-      "path": "packs/acks-monster-abilities.db",
+      "path": "packs/acks-monster-abilities",
       "type": "Item",
       "module": "acks-packs"
     },
-
+    { 
+      "name": "acks-languages",
+      "label": "ACKS Languages",
+      "system": "acks",
+      "path": "packs/acks-languages",
+      "type": "Item",
+      "module": "acks-packs"
+    },
     { 
       "name": "acks-monsters",
       "label": "ACKS Monsters",
       "system": "acks",
-      "path": "packs/acks-monsters.db",
+      "path": "packs/acks-monsters",
       "type": "Actor",
       "module": "acks-packs"
     },
@@ -128,7 +87,7 @@
       "name": "acks-proficiencies",
       "label": "ACKS Proficiencies",
       "system": "acks",
-      "path": "packs/acks-proficiencies.db",
+      "path": "packs/acks-proficiencies",
       "type": "Item",
       "module": "acks-packs"
     },
@@ -137,24 +96,16 @@
       "name": "acks-treasure",
       "label": "ACKS Treasure Tables",
       "system": "acks",
-      "path": "packs/acks-treasure.db",
+      "path": "packs/acks-treasure",
       "type": "RollTable",
       "module": "acks-packs"
     },
 
     {
-      "name": "acks-weapons",
-      "label": "ACKS Weapons",
-      "system": "acks",
-      "path": "packs/acks-weapons.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },    
-    {
       "name": "acks-maps",
       "label": "ACKS Maps",
       "system": "acks",
-      "path": "packs/acks-maps.db",
+      "path": "packs/acks-maps",
       "type": "Scene",
       "module": "acks-packs"
     },    
@@ -162,18 +113,72 @@
       "name": "acks-journals",
       "label": "ACKS Journals",
       "system": "acks",
-      "path": "packs/acks-journals.db",
+      "path": "packs/acks-journals",
       "type": "JournalEntry",
       "module": "acks-packs"
-    },    
+    }
+  ],
+  "packFolders": [
     {
-      "name": "acks-money",
-      "label": "ACKS Money",
-      "system": "acks",
-      "path": "packs/acks-money",
-      "type": "Item",
-      "module": "acks-packs"
-    } 
+      "name": "ACKS Compendiums",
+      "sorting": "m",
+      "color": "#00435c",
+      "folders": [
+        {
+          "name": "PC Features",
+          "sorting": "a",
+          "color": "#00435c",
+          "packs": [
+            "acks-proficiencies",
+            "acks-class-abilities",
+            "acks-arcane-spells",
+            "acks-divine-spells",
+            "acks-languages"
+          ],
+          "folders": []
+        },
+        {
+          "name": "NPC & Monsters",
+          "sorting": "a",
+          "color": "#00435c",
+          "packs": [
+            "acks-monsters",
+            "acks-monster-abilities"
+          ],
+          "folders": []
+        },
+        {
+          "name": "Equipments",
+          "sorting": "a",
+          "color": "#00435c",
+          "packs": [
+            "acks-all-equipment"
+          ],
+          "folders": []
+        },
+        {
+          "name": "Tables",
+          "sorting": "a",
+          "color": "#00435c",
+          "packs": [
+            "acks-treasure"
+          ],
+          "folders": []
+        },
+        {
+          "name": "Misc",
+          "sorting": "a",
+          "color": "#00435c",
+          "packs": [
+            "acks-maps",
+            "acks-journals"
+          ],
+          "folders": []
+        }
+      ],
+      "packs": [
+      ]
+    }
   ],
   "languages": [
     {

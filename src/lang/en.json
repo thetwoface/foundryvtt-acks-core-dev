@@ -369,7 +369,7 @@
   "ACKS.messages.applyDouble": "Apply 2x Damage",
   "ACKS.messages.Fumble": "<b>1! Automatic Miss!</b>",
   "ACKS.messages.Critical": "<b>20! Automatic Hit!</b>",
-  "ACKS.messages.PayWages": "{name} paid {value} GC in wages",
+  "ACKS.messages.PayWages": "{name} paid {value} gp in wages",
 
   "ACKS.colors.green": "Green",
   "ACKS.colors.red": "Red",

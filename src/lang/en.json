@@ -98,7 +98,7 @@
   "ACKS.details.reaction": "Reaction",
   "ACKS.details.appearing": "NA",
   "ACKS.details.age": "Age",
-  "ACKS.details.fate": "Fate points",
+  "ACKS.details.fate": "Fate Pts",
 
   "ACKS.Attack": "Attack",
   "ACKS.Encumbrance": "Encumbrance",
@@ -449,6 +449,6 @@
   "ACKS.hirelings": "Hirelings",
   "ACKS.hireling.mercenary": "Mercenary",
   "ACKS.hireling.henchman": "Henchman",
-  "ACKS.hireling.specialist": "Specialist"
-
+  "ACKS.hireling.specialist": "Specialist",
+  "ACKS.hireling.category": "Category"
 }

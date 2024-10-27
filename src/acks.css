@@ -64,6 +64,8 @@
   padding: 0;
   list-style: none;
   border-top: none;
+  text-align: left;
+  align-items: left;
 }
 .acks.sheet.actor .summary li {
   height: calc(100% - 6px);
@@ -73,14 +75,21 @@
   line-height: 30px;
   color: #4b4a44;
   position: relative;
+  text-align: left;
+  align-items: left;
 }
 .acks.sheet.actor .summary li label {
-  line-height: 10px;
+  line-height: 8px;
   position: absolute;
   font-size: 10px;
   color: #4b4a44;
   bottom: 0;
-  left: 12px;
+  left: 0px;
+  text-align: left;
+  align-items: left;
+}
+.acks.sheet.actor .summary li input {
+  text-align: left;
 }
 .acks.sheet.actor .summary li.notify input {
   font-weight: bold;
@@ -1283,7 +1292,12 @@
   margin-bottom: 4px;
   padding: 4px;
 }
-
+.medium-text-field-section {
+  max-width: 8rem;
+}
+.number-header-section {
+  max-width: 5rem;
+}
 /* Hide compendium background image */
 .compendium-sidebar .directory-item.compendium.locked .compendium-banner {
   opacity: 00;

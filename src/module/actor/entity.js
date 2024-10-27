@@ -138,8 +138,8 @@ export class AcksActor extends Actor {
   requestHenchman(subActorId) {
     let henchman = game.actors.get(subActorId);
     let d = new Dialog({
-      title: "Do you want to make " + henchman.name + " a Henchman of " + this.name,
-      content: "<p>It will enable the Henchman flag in the actor, as well as an linked token actor.</p>",
+      title: "Assign " + henchman.name + " as a Hireling of " + this.name + "?",
+      content: "<p>It will enable the Hireling flag in the actor, as well as an linked token actor.</p>",
       buttons: {
         one: {
           icon: '<i class="fas fa-check"></i>',

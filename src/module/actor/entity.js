@@ -25,11 +25,15 @@ export class AcksActor extends Actor {
 
   _onUpdate(changed, options, userId) {
     if (this.type == "character" && this.system.retainer?.enabled && this.system.retainer?.managerid != "") {
-      console.log("UPDATEHENCHMAN", this.system.retainer.managerid);
       let manager = game.actors.get(this.system.retainer.managerid);
       if (manager && manager.sheet.rendered) {
         manager.sheet.render();
       }
+    }
+    console.log("CHANGE : ", changed)
+    if (changed.system?.retainer?.enabled == false && this.system.retainer.managerid != "") {
+      let manager = game.actors.get(this.system.retainer.managerid);
+      setTimeout(() => { manager.delHenchman(this.id) }, 200);
     }
     super._onUpdate(changed, options, userId);
   }
@@ -878,6 +882,7 @@ export class AcksActor extends Actor {
     }
     return output;
   }
+
 
   /* -------------------------------------------- */
   _isSlow() {

@@ -10,6 +10,26 @@
   }
 }
 
+/* ----------------------------------------- */
+:root {
+  --acks-purple: rgb(78, 0, 56);
+  --acks-sheet-background: url("./assets/ui/acks_sheet_background.webp");
+  --acks-sheet-background-fade: url("./assets/ui/acks_sheet_background_fade01.webp");
+  --acks-red-background: url("./assets/ui/acks_red_background.webp");
+}
+
+/* ----------------------------------------- */
+/* Font section */
+@font-face {
+  font-family: "archeologicalcaps";
+  src: url('./assets/fonts/archeologicalcaps.ttf');
+}
+@font-face {
+  font-family: "crimsontext-regular";
+  src: url('./assets/fonts/crimsontext-regular.ttf');  
+}
+
+/* ----------------------------------------- */
 /* Combat tracker specific overloads */
 .combat-sidebar li.combatant .roll {
   background: url(/systems/acks/assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
@@ -19,8 +39,19 @@
 }
 
 .acks.sheet.actor {
+  background:rgba(212, 211, 211, 1)
   /* Header Summary Details */
 }
+.acks.sheet.actor .window-header{
+  background: var(--acks-red-background);
+}
+
+.acks.sheet.actor .window-content {
+  background: var(--acks-sheet-background-fade);
+  overflow:hidden;
+  padding: 0px;
+}
+.acks.sheet.actor
 .acks.sheet.actor .blinking {
   font-weight: bold;
   animation: 0.8s ease-in 1s infinite alternate notify;
@@ -51,6 +82,7 @@
 }
 .acks.sheet.actor .header-details h1 input {
   margin: 0 0 10px 0;
+  font-family: "archeologicalcaps";
 }
 .acks.sheet.actor .profile-img {
   border: 0;
@@ -129,16 +161,20 @@
 .acks.sheet.actor .sheet-tabs .item:not(.active) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
+
 .acks.sheet.actor .sheet-body {
+  z-index: 1;
   height: calc(100% - 140px);
 }
 .acks.sheet.actor .sheet-body .tab {
   height: 100%;
 }
 .acks.sheet.actor .sheet-body .attributes {
+  font-family: "crimsontext-regular";
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-left: 8px;
   justify-content: space-evenly;
 }
 .acks.sheet.actor .sheet-body .attributes .attribute {
@@ -151,7 +187,7 @@
   padding: 2px;
   margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.9);
-  background: url("/systems/acks/assets/back.png");
+  background: var(--acks-red-background);
   text-align: center;
 }
 .acks.sheet.actor .sheet-body .attributes .attribute.ability-score {
@@ -239,7 +275,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
   font-weight: 300;
   font-size: 13px;
-  background: url("/systems/acks/assets/back.png");
+  background: var(--acks-red-background);
   color: white;
 }
 .acks.sheet.actor .sheet-body .inventory .item-titles .item-name {
@@ -822,12 +858,17 @@
   justify-content: space-between;
   height: 100%;
 }
+.acks.sheet.actor.character .sheet-body .attributes-tab .saving-group {
+  margin-right: 8px;
+}
+
 .acks.sheet.actor.character .sheet-body .attributes-tab .attribute-group {
   position: relative;
 }
 .acks.sheet.actor.character .sheet-body .attributes-tab .attribute-group .modifiers-btn {
   position: absolute;
   left: 0;
+  margin-left: 8px;
   top: -8px;
 }
 .acks.sheet.actor.character .sheet-body .resources {
@@ -1062,7 +1103,6 @@
   margin-left: -5px;
   text-indent: 4px;
   line-height: 16px;
-  background: url("/ui/parchment.jpg");
   border-top-right-radius: 4px;
   border-top-left-radius: 80px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.9);

@@ -9,7 +9,12 @@ export class AcksCombatClass extends Combat {
    * @returns {Combatant[]}
    */
   setupTurns() {
-    console.log("setup turns !")
+    let locked = this.getFlag("acks", "lock-turns"); 
+    if (locked) {
+      return
+    }
+
+    console?.log("Setup Turns....");  
     this.turns ||= [];
 
     // Determine the turn order and the current turn
@@ -29,15 +34,20 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async rollInitiative(ids, options) {
+    console.log("%%%%%%%%% Roll Initiative", ids, options); 
+    await this.setFlag("acks", "lock-turns", true); 
+
     ids = typeof ids === "string" ? [ids] : ids;
     let messages = [];
+    let rollMode = game.settings.get("core", "rollMode");
 
     // Get current groups 
     let groups = this.getFlag('acks', 'groups') || [];
     let maxInit = { value: -1, cId: "" } 
+    let updates = [];
     for (let cId of ids) {
       const c = this.combatants.get(cId);
-      console.log("Init for combattant", cId, c, ids)
+      //console.log("Init for combattant", cId, c, ids)
       let id = c._id || c.id
       // get the associated token 
       let tokenId = c.token.id;
@@ -57,7 +67,7 @@ export class AcksCombatClass extends Combat {
       if ( groupData ) {
         groupData.initiative = initValue
       }
-      await this.updateEmbeddedDocuments("Combatant", [{ _id: id, initiative: initValue }]);
+      updates.push({ _id: id, initiative: initValue });
       if (initValue > maxInit.value) {
         maxInit.value = initValue;
         maxInit.cId = id;
@@ -65,7 +75,6 @@ export class AcksCombatClass extends Combat {
 
       if (showMessage) {
         // Determine the roll mode
-        let rollMode = game.settings.get("core", "rollMode");
         if ((c.token.hidden || c.hidden)
           && (rollMode === "roll")) {
           rollMode = "gmroll";
@@ -98,6 +107,9 @@ export class AcksCombatClass extends Combat {
     await CONFIG.ChatMessage.documentClass.create(messages);
     this.pools = AcksCombat.getCombatantsPool();
     await this.processOutNumbering();
+
+    await this.setFlag("acks", "lock-turns", false); 
+    await this.updateEmbeddedDocuments("Combatant", updates);
 
     setTimeout(function () {
       const updateData = { turn: 0 };
@@ -206,6 +218,8 @@ export class AcksCombatClass extends Combat {
   /*******************************************************/
   async nextRound() {
     console.log('NEXT ROUND')
+    this.turnsDone = false  
+
     let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
     // Remove surprised effects
     if (this.round == 1) {
@@ -334,6 +348,7 @@ export class AcksCombat {
 
   /*******************************************************/
   static async rollInitiative(combat, data) {
+    console.log(">>>>Roll Initiative", combat, data); 
     // Initialize groups.
     data.combatants = [];
     let groups = {};
@@ -370,7 +385,7 @@ export class AcksCombat {
         initiative: initiative,
       });
     }
-    combat.setupTurns();
+    //combat.setupTurns();
   }
 
   /*******************************************************/
@@ -498,7 +513,7 @@ export class AcksCombat {
         <i class="fa-duotone fa-solid fa-people-group"></i>
       </a>` );
 
-    console.log("Roll NPC", rollNPC);
+    //console.log("Roll NPC", rollNPC);
 
     html.find(".combatant").each((_, ct) => {
       // Append spellcast and retreat
@@ -535,7 +550,10 @@ export class AcksCombat {
       }
     });
 
-    AcksCombat.announceListener(html);
+    if (game.combat.round == 0) {
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!! Round 0");
+      AcksCombat.announceListener(html);
+    }
 
     html.find(".combatant").each((_, ct) => {
       // Get the groups 
@@ -552,7 +570,7 @@ export class AcksCombat {
           }
         })
         // Append colored flag
-        let color = combatant.token.disposition === 1 ? colorFriendlies : colorHostiles;
+        let color = combatant?.token?.disposition === 1 ? colorFriendlies : colorHostiles;
         //console.log("Token H4", tokenH4, color);
         tokenH4.css("color", color);
       }
@@ -783,7 +801,7 @@ export class AcksCombat {
   static getCombatantsPool() {
     let pools = { friendly: [], neutral: [], hostile: [] };
     game.combat.combatants.forEach((cbt) => {
-      console.log("Combatant", cbt);
+      //console.log("Combatant", cbt);
       if (!cbt.isDefeated) {
         if (cbt.token.disposition == 1) {
           pools.friendly.push(cbt);

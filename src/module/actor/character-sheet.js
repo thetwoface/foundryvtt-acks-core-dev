@@ -22,7 +22,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       classes: ["acks", "sheet", "actor", "character"],
       template: "systems/acks/templates/actors/character-sheet.html",
       width: 780,
-      height: 640,
+      height: 580,
       resizable: true,
       tabs: [
         {
@@ -202,7 +202,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     html.find(".adventuring .attribute-name a").click((ev) => {
       let actorObject = this.actor;
       let element = ev.currentTarget;
-      let advKey = element.parentElement.parentElement.dataset.adventuring;
+      let advKey = element.parentElement.dataset.adventuring;
       actorObject.rollAdventuring(advKey, { event: ev });
     });
 

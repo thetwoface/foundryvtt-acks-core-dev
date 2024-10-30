@@ -12,7 +12,7 @@
     <ul class="attributes">
       <li class="attribute ability-score" data-score="str">
         <h4 class="attribute-name box-title" title="{{ localize 'ACKS.scores.str.long' }}">
-          <a>{{ localize "ACKS.scores.str.short" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.scores.str.short" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.scores.str.value" type="text" value="{{system.scores.str.value}}" placeholder="0"
@@ -22,7 +22,7 @@
       </li>
       <li class="attribute ability-score" data-score="int">
         <h4 class="attribute-name box-title" title="{{ localize 'ACKS.scores.int.long' }}">
-          <a>{{ localize "ACKS.scores.int.short" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.scores.int.short" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.scores.int.value" type="text" value="{{system.scores.int.value}}" placeholder="0"
@@ -32,7 +32,7 @@
       </li>
       <li class="attribute ability-score" data-score="wis">
         <h4 class="attribute-name box-title" title="{{ localize 'ACKS.scores.wis.long' }}">
-          <a>{{ localize "ACKS.scores.wis.short" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.scores.wis.short" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.scores.wis.value" type="text" value="{{system.scores.wis.value}}" placeholder="0"
@@ -42,7 +42,7 @@
       </li>
       <li class="attribute ability-score" data-score="dex">
         <h4 class="attribute-name box-title" title="{{ localize 'ACKS.scores.dex.long' }}">
-          <a>{{ localize "ACKS.scores.dex.short" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.scores.dex.short" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.scores.dex.value" type="text" value="{{system.scores.dex.value}}" placeholder="0"
@@ -52,7 +52,7 @@
       </li>
       <li class="attribute ability-score" data-score="con">
         <h4 class="attribute-name box-title" title="{{ localize 'ACKS.scores.con.long' }}">
-          <a>{{ localize "ACKS.scores.con.short" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.scores.con.short" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.scores.con.value" type="text" value="{{system.scores.con.value}}" placeholder="0"
@@ -62,7 +62,7 @@
       </li>
       <li class="attribute ability-score" data-score="cha">
         <h4 class="attribute-name box-title" title="{{ localize 'ACKS.scores.cha.long' }}">
-          <a>{{ localize "ACKS.scores.cha.short" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.scores.cha.short" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.scores.cha.value" type="text" value="{{system.scores.cha.value}}" placeholder="0"
@@ -76,6 +76,7 @@
   {{!-- Resource Tracking --}}
   <div class="resources">
     <div class="flexrow">
+
       <div class="health">
         <input class="health-value health-top" name="system.hp.value" type="text" value="{{system.hp.value}}"
           data-dtype="Number" placeholder="0" title="{{localize 'ACKS.Health'}}" />
@@ -84,6 +85,7 @@
         <div class="health-empty" style="height:{{counter false system.hp.value system.hp.max}}%"></div>
         <div class="health-full" style="height:{{counter true system.hp.value system.hp.max}}%"></div>
       </div>
+
       <div class="health armor-class">
         {{#if config.ascendingAC}}
         <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.aac.value}}</div>
@@ -104,8 +106,8 @@
 
       <ul class="attributes flexrow">
         <li class="attribute hit-dice">
-          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.HitDice' }}">
-            <a>{{ localize "ACKS.HitDiceShort" }}</a>
+          <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.HitDice' }}">
+            <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.HitDiceShort" }}</a>
           </h4>
           <div class="attribute-value">
             <input name="system.hp.hd" type="text" value="{{system.hp.hd}}" placeholder="" data-dtype="String" />
@@ -113,7 +115,7 @@
         </li>
 
         <li class="attribute">
-          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.Initiative' }}">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.Initiative' }}">
             {{ localize "ACKS.InitiativeShort" }}</h4>
           <div class="attribute-value"
             title="{{localize 'ACKS.scores.dex.long'}}({{system.scores.dex.init}}) + {{localize 'ACKS.Modifier'}}({{system.initiative.mod}})">
@@ -121,7 +123,7 @@
           </div>
         </li>
         <li class="attribute">
-          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.SurpriseOthers' }}">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.SurpriseOthers' }}">
             {{ localize "ACKS.SurpriseOthers" }}</h4>
           <div class="attribute-value">
             <input name="system.surprise.surpriseothers" type="text" value="{{system.surprise.surpriseothers}}"
@@ -129,7 +131,7 @@
           </div>
         </li>
         <li class="attribute">
-          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.AvoidSurprise' }}">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.AvoidSurprise' }}">
             {{ localize "ACKS.AvoidSurprise" }}</h4>
           <div class="attribute-value">
             <input name="system.surprise.avoidsurprise" type="text" value="{{system.surprise.avoidsurprise}}"
@@ -142,8 +144,8 @@
     <div class="flexrow">
       <ul class="attributes flexrow">
         <li class="attribute attribute-secondaries">
-          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Encumbrance'}}">
-            <a>{{localize 'ACKS.Encumbrance'}}</a>
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.Encumbrance'}}">
+            {{localize 'ACKS.Encumbrance'}}
           </h4>
           <div class="flexrow">
             <div class="attribute-value">{{system.encumbrance.value}} / {{system.encumbrance.max}}</div>
@@ -151,8 +153,8 @@
         </li>
 
         <li class="attribute attribute-secondaries">
-          <h4 class="attribute-name box-title" title="{{localize 'ACKS.HealingRate'}}">
-            <a>{{localize 'ACKS.HealingRate'}}</a>
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.HealingRate'}}">
+            {{localize 'ACKS.HealingRate'}}
           </h4>
           <div class="flexrow">
             <input name="system.fight.healingrate" type="text" value="{{system.fight.healingrate}}" placeholder=""
@@ -161,7 +163,7 @@
         </li>
 
         <li class="attribute attribute-secondaries">
-          <h4 class="attribute-name box-title" title="{{localize 'ACKS.MortalWounds'}}">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.MortalWounds'}}">
             {{localize 'ACKS.MortalWounds'}}
           </h4>
           <div class="flexrow">
@@ -171,7 +173,7 @@
         </li>
 
         <li class="attribute attribute-secondaries">
-          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Cleaves'}}">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.Cleaves'}}">
             {{localize 'ACKS.Cleaves'}}
           </h4>
           <div class="flexrow">
@@ -181,8 +183,8 @@
         </li>
 
         <li class="attribute attribute-secondaries attack" data-attack="melee">
-          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Melee'}}">
-            <a>{{localize 'ACKS.MeleeShort'}}</a>
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.Melee'}}">
+            <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{localize 'ACKS.MeleeShort'}}</a>
           </h4>
           <div class="flexrow">
             <div class="attribute-value"
@@ -191,19 +193,18 @@
             </div>
           </div>
         </li>
-        <li class="attribute">
-          <h4 class="attribute-name box-title" title="{{ localize 'ACKS.AB' }}">{{ localize "ACKS.ABShort"}}
+        <li class="attribute attribute-secondaries ">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.AB' }}">{{ localize
+            "ACKS.ABShort"}}
           </h4>
           <div class="flexrow">
-            <div class="attribute-value">
-              <input name="system.thac0.throw" type="text" value="{{system.thac0.throw}}" placeholder=""
-                data-dtype="Number" + />
-            </div>
+            <input name="system.thac0.throw" type="text" value="{{system.thac0.throw}}" placeholder=""
+              data-dtype="Number" />
           </div>
         </li>
         <li class="attribute attribute-secondaries attack" data-attack="missile">
-          <h4 class="attribute-name box-title" title="{{localize 'ACKS.Missile'}}">
-            <a>{{localize 'ACKS.MissileShort'}}</a>
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.Missile'}}">
+            <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{localize 'ACKS.MissileShort'}}</a>
           </h4>
           <div class="flexrow">
             <div class="attribute-value"
@@ -216,7 +217,8 @@
       </ul>
 
     </div>
-    <div class="flexrow">
+    
+    <div class="flexrow acks-attribute-row">
       <ul class="attributes flexrow">
         <li class="attribute attribute-movement">
           {{#each system.movementacks as |move key|}}
@@ -231,19 +233,19 @@
     <div class="flexcol">
 
       {{!-- Adventuring throws --}}
-      <div class="">
+      <div class="acks-attribute-row">
         <ul class="attributes flexrow">
-          {{#each system.adventuring as |adv key|}}
-          <li class="attribute adventuring" data-adventuring="{{key}}">
-            <h4 class="attribute-name box-title">
-              <a>{{localize (concat "ACKS.adventuring." key)}}</a>
+          <li class="attribute adventuring attribute-movement">
+            {{#each system.adventuring as |adv key|}}
+            <h4 class="attribute-name box-title" data-adventuring="{{key}}">
+              <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{localize (concat "ACKS.adventuring." key)}}</a>
             </h4>
-            <div class="attribute-value">
+            <span class="attribute-value adventure-value">
               <input name="system.adventuring.{{key}}" type="text" value="{{adv}}" placeholder="0"
                 data-dtype="Number" />
-            </div>
+            </span>
+            {{/each}}
           </li>
-          {{/each}}
         </ul>
       </div>
 
@@ -256,52 +258,57 @@
     <ul class="attributes">
       <li class="attribute saving-throw" data-save="paralysis">
         <h4 class="attribute-name box-title">
-          <a>{{ localize "ACKS.saves.paralysis.long" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.saves.paralysis.long" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.saves.paralysis.value" type="text" value="{{system.saves.paralysis.value}}"
             placeholder="0" data-dtype="Number" />
+        </div>
       </li>
       <li class="attribute saving-throw" data-save="death">
         <h4 class="attribute-name box-title">
-          <a>{{ localize "ACKS.saves.death.long" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.saves.death.long" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.saves.death.value" type="text" value="{{system.saves.death.value}}" placeholder="0"
             data-dtype="Number" />
+        </div>
       </li>
       <li class="attribute saving-throw" data-save="breath">
         <h4 class="attribute-name box-title">
-          <a>{{ localize "ACKS.saves.breath.long" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.saves.breath.long" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.saves.breath.value" type="text" value="{{system.saves.breath.value}}" placeholder="0"
             data-dtype="Number" />
+        </div>
       </li>
       <li class="attribute saving-throw" data-save="implements">
         <h4 class="attribute-name box-title">
-          <a>{{ localize "ACKS.saves.implements.long" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.saves.implements.long" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.saves.implements.value" type="text" value="{{system.saves.implements.value}}"
             placeholder="0" data-dtype="Number" />
+        </div>
       </li>
       <li class="attribute saving-throw" data-save="spell">
         <h4 class="attribute-name box-title">
-          <a>{{ localize "ACKS.saves.spell.long" }}</a>
+          <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.saves.spell.long" }}</a>
         </h4>
         <div class="attribute-value">
           <input name="system.saves.spell.value" type="text" value="{{system.saves.spell.value}}" placeholder="0" />
+        </div>
       </li>
-      <h4 class="attribute">Favorites</h4>
-      <li class="item-entry" >
+      <li class="favorite-section">
+        <h4 class="favorite-title">Favorites</h4>
         {{#each favorites as |item idx|}}
-          <div class="item-name flexrow">
-            <a class="favorite-rollable" data-item-id="{{item._id}}">
-              <i class="fa-solid fa-dice-d20"></i>
-                {{item.name~}}
-            </a>
-          </div>
+        <div class="item-name flexrow favorite-item">
+          <a class="favorite-rollable" data-item-id="{{item._id}}">
+            <i class="acks-roll-small fa-solid fa-dice-d20"></i>
+            {{item.name~}}
+          </a>
+        </div>
         {{/each}}
       </li>
     </ul>

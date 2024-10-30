@@ -12,7 +12,7 @@
 
 /* ----------------------------------------- */
 :root {
-  --acks-purple: rgb(78, 0, 56);
+  --acks-purple: #4e0038;
   --acks-sheet-background: url("./assets/ui/acks_sheet_background.webp");
   --acks-sheet-background-fade: url("./assets/ui/acks_sheet_background_fade01.webp");
   --acks-red-background: url("./assets/ui/acks_red_background.webp");
@@ -38,6 +38,13 @@
   background: url(/systems/acks/assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
 }
 
+#sidebar {
+  font-family: "crimsontext-regular";
+}
+.window-content {
+  font-family: "crimsontext-regular";
+}
+
 .acks.sheet.actor {
   background:rgba(212, 211, 211, 1)
   /* Header Summary Details */
@@ -45,7 +52,9 @@
 .acks.sheet.actor .window-header{
   background: var(--acks-red-background);
 }
-
+.window-header{
+  background: var(--acks-red-background);
+}
 .acks.sheet.actor .window-content {
   background: var(--acks-sheet-background-fade);
   overflow:hidden;
@@ -191,10 +200,10 @@
   text-align: center;
 }
 .acks.sheet.actor .sheet-body .attributes .attribute.ability-score {
-  height: 40px;
+  height: 2.5rem;
 }
 .acks.sheet.actor .sheet-body .attributes .attribute.ability-score .attribute-value {
-  line-height: 36px;
+  line-height: 2.5rem;
 }
 .acks.sheet.actor .sheet-body .attributes .attribute .attribute-value {
   text-align: center;
@@ -230,19 +239,23 @@
   margin-top: 8px;
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute .attribute-name {
-  width: 40px;
+  width: 3.2rem;
   margin: 0;
-  /*line-height: 35px;*/
+  line-height: 2.5rem;
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute .attribute-name a {
   margin: auto;
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute.saving-throw .attribute-name {
-  line-height: 16px;
-  width: 80px;
+  min-width: 5.4rem;
+  max-height: 2.2rem;
+  line-height: 1.6rem;
+  /*line-height: 16px;
+  width: 80px;*/
 }
+
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute.saving-throw .attribute-value {
-  line-height: 29px;
+  /*line-height: 29px;*/
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute .attribute-value {
   width: 45px;
@@ -633,7 +646,7 @@
 .acks.chat-block .chat-header {
   height: 46px;
   margin: 4px 0;
-  background: url("/systems/acks/assets/back.png");
+  background: var(--acks-red-background);
   border: 1px solid black;
   border-radius: 3px;
   color: white;
@@ -873,22 +886,32 @@
 }
 .acks.sheet.actor.character .sheet-body .resources {
   display: flex;
-  justify-content: space-evenly;
+  /*justify-content: space-evenly;*/
   flex-direction: column;
-}
-.acks.sheet.actor.character .sheet-body .resources .attribute {
-  flex: 0 0 55px;
-}
-.acks.sheet.actor.character .sheet-body .resources .attribute.attribute-secondaries {
-  flex: 0 0 40px;
-  margin-bottom: 5px;
+  min-width: 20rem;
 }
 
+.acks.sheet.actor.character .sheet-body .resources .flexrow{
+  margin-bottom: 0.4rem;
+}
+.acks.sheet.actor.character .sheet-body .resources .attribute {
+  margin-left: 0.2rem;
+  /*flex: 0 0 55px;*/
+}
+.acks.sheet.actor.character .sheet-body .resources .attribute.attribute-secondaries {
+  margin-bottom: 5px;
+}
+.acks-roll-small {
+  font-size: 0.8rem;
+}
 .attribute-movement {
   display: flex;
   flex-direction: row;
+  min-height: 2.5rem;
 }
-
+.adventure-value {
+  max-width:1.5rem;
+}
 .acks.sheet.actor.character .sheet-body .notes-tab .inventory .languages {
   margin: 2px;
   flex: 0 0 130px;
@@ -930,10 +953,13 @@
 .acks.sheet.actor.character .sheet-body .health {
   height: 70px;
   position: relative;
+  margin-left:1rem;
+  max-width: 4rem;
 }
 .acks.sheet.actor.character .sheet-body .health.armor-class {
   background: url("/systems/acks/assets/shield.png") no-repeat center;
   background-size: 70px;
+  max-width: 4rem;
 }
 .acks.sheet.actor.character .sheet-body .health.armor-class .shield {
   text-align: right;
@@ -972,7 +998,8 @@
   background-position: bottom;
 }
 .acks.sheet.actor.character .sheet-body .saving-throw .attribute-value.flat {
-  line-height: 30px;
+  /*line-height: 1.0rem;
+  max-height: 2.0rem;*/
 }
 .acks.sheet.actor.character .sheet-body .exploration .attribute {
   margin: 4px;
@@ -986,7 +1013,7 @@
 .acks.sheet.actor.character .encumbrance {
   height: 12px;
   background: url("/systems/acks/assets/back.png");
-  margin: 1px 15px 0 1px;
+  margin: 4px 15px 8px 1px;
   border: 1px solid rgba(0, 0, 0, 0.9);
   border-radius: 3px;
   position: relative;
@@ -1278,7 +1305,8 @@
   flex: 0 0 85px;
 }
 .acks.actor.monster .sheet-body .attributes-tab .attributes .attribute.saving-throw {
-  flex: 0 0 40px;
+  /*flex: 0 0 40px;*/
+  /*max-height: 2.0rem;*/
 }
 .acks.actor.monster .attributes .attribute.health {
   position: relative;
@@ -1400,4 +1428,30 @@
 }
 .acks-hud-menu label {
   font-size: 1.4rem;
+}
+.box-title-min-height {
+  min-height: 2.8rem;
+}
+
+.favorite-section {
+  margin-top: 0.5rem;
+  border: 1px solid #7a7971;
+  box-shadow: 0 0 2px #7a7971;
+   min-height: 8rem;
+}
+.favorite-title {
+  padding-left: 0.4rem;
+  background: var(--acks-red-background);
+  color: whitesmoke
+}
+.favorite-item {
+  margin-left: 0.2rem;
+}
+.acks-attribute-row {
+  align-items: center;
+  align-self:center;
+  max-width: fit-content;
+}
+.acks-attribute-row .attribute-value {
+  min-width: 1.8rem;
 }

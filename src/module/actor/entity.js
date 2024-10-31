@@ -389,7 +389,7 @@ export class AcksActor extends Actor {
     await this.update({
       system: {
         hp: {
-          maxfenc: roll.total,
+          max: roll.total,
           value: roll.total,
         }
       }

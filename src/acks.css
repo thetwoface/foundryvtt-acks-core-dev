@@ -32,10 +32,10 @@
 /* ----------------------------------------- */
 /* Combat tracker specific overloads */
 .combat-sidebar li.combatant .roll {
-  background: url(/systems/acks/assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
+  background: url(systems/acks/assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
 }
 .combat-sidebar li.combatant .roll:hover {
-  background: url(/systems/acks/assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
+  background: url(systems/acks/assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
 }
 
 #sidebar {
@@ -70,7 +70,7 @@
 }
 .acks.sheet.actor .panel .panel-title {
   color: whitesmoke;
-  background: url("/systems/acks/assets/back.png");
+  background: url("./assets/back.png");
   line-height: 12px;
   height: 20px;
   text-align: center;
@@ -501,7 +501,7 @@
 }
 .acks.dialog.party-sheet .header {
   color: whitesmoke;
-  background: url("/systems/acks/assets/back.png");
+  background: url("./assets/back.png");
   padding: 4px 0;
   line-height: 20px;
   text-align: left;
@@ -596,7 +596,7 @@
   color: white;
   margin: 0 2px 5px 8px;
   border-radius: 8px;
-  background: url("/systems/acks/assets/treasure.png") no-repeat center;
+  background: url("./assets/treasure.png") no-repeat center;
   background-size: cover;
   padding: 16px 8px;
   cursor: pointer;
@@ -957,7 +957,7 @@
   max-width: 4rem;
 }
 .acks.sheet.actor.character .sheet-body .health.armor-class {
-  background: url("/systems/acks/assets/shield.png") no-repeat center;
+  background: url("./assets/shield.png") no-repeat center;
   background-size: 70px;
   max-width: 4rem;
 }
@@ -988,12 +988,12 @@
   right: calc(50% + -20px);
 }
 .acks.sheet.actor.character .sheet-body .health .health-empty {
-  background: url("/systems/acks/assets/heart_empty.png") no-repeat center;
+  background: url("./assets/heart_empty.png") no-repeat center;
   background-size: 70px;
   background-position: top;
 }
 .acks.sheet.actor.character .sheet-body .health .health-full {
-  background: url("/systems/acks/assets/heart_full.png") no-repeat center;
+  background: url("./assets/heart_full.png") no-repeat center;
   background-size: 70px;
   background-position: bottom;
 }
@@ -1012,7 +1012,7 @@
 }
 .acks.sheet.actor.character .encumbrance {
   height: 12px;
-  background: url("/systems/acks/assets/back.png");
+  background: url("./assets/back.png");
   margin: 4px 15px 8px 1px;
   border: 1px solid rgba(0, 0, 0, 0.9);
   border-radius: 3px;

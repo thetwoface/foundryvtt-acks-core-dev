@@ -66,7 +66,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
 
     let templateData = { choices: choices },
       dlg = await renderTemplate(
-        "/systems/acks/templates/actors/dialogs/lang-create.html",
+        "systems/acks/templates/actors/dialogs/lang-create.html",
         templateData
       );
     //Create Dialog window

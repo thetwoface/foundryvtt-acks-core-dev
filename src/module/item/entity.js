@@ -7,25 +7,25 @@ export class AcksItem extends Item {
 
   constructor(data, context) {
     if (!data.img) {
-      let img = "/systems/acks/assets/default/item.png";
+      let img = "systems/acks/assets/default/item.png";
       switch (data.type) {
         case "spell":
-          img = "/systems/acks/assets/default/spell.png";
+          img = "systems/acks/assets/default/spell.png";
           break;
         case "ability":
-          img = "/systems/acks/assets/default/ability.png";
+          img = "systems/acks/assets/default/ability.png";
           break;
         case "armor":
-          img = "/systems/acks/assets/default/armor.png";
+          img = "systems/acks/assets/default/armor.png";
           break;
         case "weapon":
-          img = "/systems/acks/assets/default/weapon.png";
+          img = "systems/acks/assets/default/weapon.png";
           break;
         case "money":
-          img = "/systems/acks/assets/gold.png";
+          img = "systems/acks/assets/gold.png";
           break;
         case "language":
-          img = "/systems/acks/assets/language.png";
+          img = "systems/acks/assets/language.png";
           break;
       }
       data.img = img;

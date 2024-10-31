@@ -120,7 +120,7 @@ export class AcksCharacterCreator extends FormApplication {
       stats: this.object.system.stats,
       gold: gold
     }
-    const content = await renderTemplate("/systems/acks/templates/chat/roll-creation.html", templateData)
+    const content = await renderTemplate("systems/acks/templates/chat/roll-creation.html", templateData)
     ChatMessage.create({
       content: content,
       speaker,

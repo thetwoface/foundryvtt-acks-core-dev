@@ -399,7 +399,7 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   rollAdventuring(advKey, options = {}) {
     const label = game.i18n.localize(`ACKS.adventuring.${advKey}`);
-    console.log("ROLLADV", advKey);
+    //console.log("ROLLADV", advKey);
     const rollParts = ["1d20"];
 
     const data = {

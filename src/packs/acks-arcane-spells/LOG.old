@@ -1,8 +1,5 @@
-2024/10/31-21:23:41.941334 7fd99d6006c0 Recovering log #44
-2024/10/31-21:23:41.951601 7fd99d6006c0 Delete type=3 #42
-2024/10/31-21:23:41.951655 7fd99d6006c0 Delete type=0 #44
-2024/10/31-21:24:16.542749 7fd997e006c0 Level-0 table #49: started
-2024/10/31-21:24:16.542777 7fd997e006c0 Level-0 table #49: 0 bytes OK
-2024/10/31-21:24:16.549606 7fd997e006c0 Delete type=0 #47
-2024/10/31-21:24:16.562691 7fd997e006c0 Manual compaction at level-0 from '!folders!FZdMTwbtjbvsh63O' @ 72057594037927935 : 1 .. '!items!zjwr1XtasXW7EPMq' @ 0 : 0; will stop at (end)
-2024/10/31-21:24:16.562719 7fd997e006c0 Manual compaction at level-1 from '!folders!FZdMTwbtjbvsh63O' @ 72057594037927935 : 1 .. '!items!zjwr1XtasXW7EPMq' @ 0 : 0; will stop at (end)
+2024/11/01-09:29:42.462700 7fd417e006c0 Log #55: 0 ops saved to Table #56 OK
+2024/11/01-09:29:42.462932 7fd417e006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-arcane-spells/000055.log: OK
+2024/11/01-09:29:42.463278 7fd417e006c0 Table #5: 64 entries OK
+2024/11/01-09:29:42.463549 7fd417e006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-arcane-spells/MANIFEST-000054: OK
+2024/11/01-09:29:42.467395 7fd417e006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-arcane-spells; recovered 1 files; 46650 bytes. Some data may have been lost. ****

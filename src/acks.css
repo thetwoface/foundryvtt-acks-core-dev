@@ -21,8 +21,8 @@
 /* ----------------------------------------- */
 /* Font section */
 @font-face {
-  font-family: "archeologicalcaps";
-  src: url('./assets/fonts/archeologicalcaps.ttf');
+  font-family: "oranienbaum";
+  src: url('./assets/fonts/oranienbaum.regular.ttf');
 }
 @font-face {
   font-family: "crimsontext-regular";
@@ -91,7 +91,7 @@
 }
 .acks.sheet.actor .header-details h1 input {
   margin: 0 0 10px 0;
-  font-family: "archeologicalcaps";
+  font-family: "oranienbaum";
 }
 .acks.sheet.actor .profile-img {
   border: 0;

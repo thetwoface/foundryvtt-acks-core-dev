@@ -1,7 +1,5 @@
-2024/10/31-21:23:42.026717 7fd99f4006c0 Recovering log #569
-2024/10/31-21:23:42.037406 7fd99f4006c0 Delete type=3 #567
-2024/10/31-21:23:42.037484 7fd99f4006c0 Delete type=0 #569
-2024/10/31-21:24:16.569888 7fd997e006c0 Level-0 table #574: started
-2024/10/31-21:24:16.569946 7fd997e006c0 Level-0 table #574: 0 bytes OK
-2024/10/31-21:24:16.576403 7fd997e006c0 Delete type=0 #572
-2024/10/31-21:24:16.590582 7fd997e006c0 Manual compaction at level-0 from '!actors!1eugequsJF72qLfi' @ 72057594037927935 : 1 .. '!actors.items!xTGRsj3YSonJ5nRH.zEnanNEpSJaUHv77' @ 0 : 0; will stop at (end)
+2024/11/01-09:29:42.522186 7fd41ce006c0 Log #580: 0 ops saved to Table #581 OK
+2024/11/01-09:29:42.522341 7fd41ce006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monsters/000580.log: OK
+2024/11/01-09:29:42.523271 7fd41ce006c0 Table #70: 204 entries OK
+2024/11/01-09:29:42.523468 7fd41ce006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monsters/MANIFEST-000579: OK
+2024/11/01-09:29:42.527097 7fd41ce006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monsters; recovered 1 files; 151984 bytes. Some data may have been lost. ****

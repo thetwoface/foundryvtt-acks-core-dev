@@ -1,1 +1,11 @@
 2024/11/01-17:44:24.635917 7fd99ea006c0 Delete type=3 #1
+2024/11/01-17:45:05.084398 7fd997e006c0 Level-0 table #586: started
+2024/11/01-17:45:05.084450 7fd997e006c0 Level-0 table #586: 0 bytes OK
+2024/11/01-17:45:05.090544 7fd997e006c0 Delete type=0 #584
+2024/11/01-17:45:05.122809 7fd997e006c0 Manual compaction at level-0 from '!actors!1eugequsJF72qLfi' @ 72057594037927935 : 1 .. '!actors.items!xTGRsj3YSonJ5nRH.zEnanNEpSJaUHv77' @ 0 : 0; will stop at '!actors.items!xTGRsj3YSonJ5nRH.zEnanNEpSJaUHv77' @ 406 : 1
+2024/11/01-17:45:05.122827 7fd997e006c0 Compacting 1@0 + 0@1 files
+2024/11/01-17:45:05.131046 7fd997e006c0 Generated table #587@0: 204 keys, 151984 bytes
+2024/11/01-17:45:05.131089 7fd997e006c0 Compacted 1@0 + 0@1 files => 151984 bytes
+2024/11/01-17:45:05.137201 7fd997e006c0 compacted to: files[ 0 1 0 0 0 0 0 ]
+2024/11/01-17:45:05.137350 7fd997e006c0 Delete type=2 #70
+2024/11/01-17:45:05.137564 7fd997e006c0 Manual compaction at level-0 from '!actors.items!xTGRsj3YSonJ5nRH.zEnanNEpSJaUHv77' @ 406 : 1 .. '!actors.items!xTGRsj3YSonJ5nRH.zEnanNEpSJaUHv77' @ 0 : 0; will stop at (end)

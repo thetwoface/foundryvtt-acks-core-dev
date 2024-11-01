@@ -1,5 +1,4 @@
-2024/11/01-09:29:42.472750 7fd417e006c0 Log #55: 0 ops saved to Table #56 OK
-2024/11/01-09:29:42.472883 7fd417e006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-divine-spells/000055.log: OK
-2024/11/01-09:29:42.473000 7fd417e006c0 Table #5: 23 entries OK
-2024/11/01-09:29:42.473147 7fd417e006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-divine-spells/MANIFEST-000054: OK
-2024/11/01-09:29:42.476713 7fd417e006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-divine-spells; recovered 1 files; 13811 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.518089 7fd99d6006c0 Log #56: 0 ops saved to Table #57 OK
+2024/11/01-17:44:24.518176 7fd99d6006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-divine-spells/000056.log: OK
+2024/11/01-17:44:24.518253 7fd99d6006c0 Table #5: 23 entries OK
+2024/11/01-17:44:24.521447 7fd99d6006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-divine-spells; recovered 1 files; 13811 bytes. Some data may have been lost. ****

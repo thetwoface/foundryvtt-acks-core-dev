@@ -1,5 +1,4 @@
-2024/11/01-09:29:42.502929 7fd416a006c0 Log #580: 0 ops saved to Table #581 OK
-2024/11/01-09:29:42.503128 7fd416a006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monster-abilities/000580.log: OK
-2024/11/01-09:29:42.503338 7fd416a006c0 Table #70: 52 entries OK
-2024/11/01-09:29:42.503578 7fd416a006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monster-abilities/MANIFEST-000579: OK
-2024/11/01-09:29:42.507424 7fd416a006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monster-abilities; recovered 1 files; 26944 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.579106 7fd99d6006c0 Log #581: 0 ops saved to Table #582 OK
+2024/11/01-17:44:24.579233 7fd99d6006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-monster-abilities/000581.log: OK
+2024/11/01-17:44:24.579345 7fd99d6006c0 Table #70: 52 entries OK
+2024/11/01-17:44:24.582590 7fd99d6006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-monster-abilities; recovered 1 files; 26944 bytes. Some data may have been lost. ****

@@ -1,5 +1,4 @@
-2024/11/01-09:29:42.462700 7fd417e006c0 Log #55: 0 ops saved to Table #56 OK
-2024/11/01-09:29:42.462932 7fd417e006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-arcane-spells/000055.log: OK
-2024/11/01-09:29:42.463278 7fd417e006c0 Table #5: 64 entries OK
-2024/11/01-09:29:42.463549 7fd417e006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-arcane-spells/MANIFEST-000054: OK
-2024/11/01-09:29:42.467395 7fd417e006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-arcane-spells; recovered 1 files; 46650 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.423790 7fd99f4006c0 Log #56: 0 ops saved to Table #57 OK
+2024/11/01-17:44:24.423848 7fd99f4006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-arcane-spells/000056.log: OK
+2024/11/01-17:44:24.423977 7fd99f4006c0 Table #5: 64 entries OK
+2024/11/01-17:44:24.427550 7fd99f4006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-arcane-spells; recovered 1 files; 46650 bytes. Some data may have been lost. ****

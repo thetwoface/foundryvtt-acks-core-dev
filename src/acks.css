@@ -1161,6 +1161,7 @@
 
 .acks.sheet.item .sheet-header h1 input {
   margin: 6px 2%;
+  font-family: "oranienbaum";
 }
 .acks.sheet.item .sheet-header .details {
   flex: 0 0 70px;

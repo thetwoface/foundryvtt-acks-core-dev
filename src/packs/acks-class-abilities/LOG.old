@@ -1,5 +1,4 @@
-2024/11/01-09:29:42.492838 7fd4174006c0 Log #580: 0 ops saved to Table #581 OK
-2024/11/01-09:29:42.492978 7fd4174006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-class-abilities/000580.log: OK
-2024/11/01-09:29:42.493099 7fd4174006c0 Table #70: 20 entries OK
-2024/11/01-09:29:42.493246 7fd4174006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-class-abilities/MANIFEST-000579: OK
-2024/11/01-09:29:42.497687 7fd4174006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-class-abilities; recovered 1 files; 9590 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.556619 7fd99f4006c0 Log #581: 0 ops saved to Table #582 OK
+2024/11/01-17:44:24.556713 7fd99f4006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-class-abilities/000581.log: OK
+2024/11/01-17:44:24.556779 7fd99f4006c0 Table #70: 20 entries OK
+2024/11/01-17:44:24.560092 7fd99f4006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-class-abilities; recovered 1 files; 9590 bytes. Some data may have been lost. ****

@@ -1,5 +1,4 @@
-2024/11/01-09:29:42.522186 7fd41ce006c0 Log #580: 0 ops saved to Table #581 OK
-2024/11/01-09:29:42.522341 7fd41ce006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monsters/000580.log: OK
-2024/11/01-09:29:42.523271 7fd41ce006c0 Table #70: 204 entries OK
-2024/11/01-09:29:42.523468 7fd41ce006c0 Archiving /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monsters/MANIFEST-000579: OK
-2024/11/01-09:29:42.527097 7fd41ce006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v11/Data/systems/acks/packs/acks-monsters; recovered 1 files; 151984 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.619143 7fd99ea006c0 Log #581: 0 ops saved to Table #582 OK
+2024/11/01-17:44:24.619269 7fd99ea006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-monsters/000581.log: OK
+2024/11/01-17:44:24.619609 7fd99ea006c0 Table #70: 204 entries OK
+2024/11/01-17:44:24.622907 7fd99ea006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-monsters; recovered 1 files; 151984 bytes. Some data may have been lost. ****

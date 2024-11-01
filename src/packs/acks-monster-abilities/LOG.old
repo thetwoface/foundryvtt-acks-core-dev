@@ -1,4 +1,11 @@
-2024/11/01-17:44:24.579106 7fd99d6006c0 Log #581: 0 ops saved to Table #582 OK
-2024/11/01-17:44:24.579233 7fd99d6006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-monster-abilities/000581.log: OK
-2024/11/01-17:44:24.579345 7fd99d6006c0 Table #70: 52 entries OK
-2024/11/01-17:44:24.582590 7fd99d6006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-monster-abilities; recovered 1 files; 26944 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.596243 7fd99d6006c0 Delete type=3 #1
+2024/11/01-17:45:05.077100 7fd997e006c0 Level-0 table #586: started
+2024/11/01-17:45:05.077124 7fd997e006c0 Level-0 table #586: 0 bytes OK
+2024/11/01-17:45:05.084221 7fd997e006c0 Delete type=0 #584
+2024/11/01-17:45:05.112600 7fd997e006c0 Manual compaction at level-0 from '!items!06YZS71eSQZQKaPW' @ 72057594037927935 : 1 .. '!items!zG5gaPX6ygxp4hiC' @ 0 : 0; will stop at '!items!zG5gaPX6ygxp4hiC' @ 104 : 1
+2024/11/01-17:45:05.112610 7fd997e006c0 Compacting 1@0 + 0@1 files
+2024/11/01-17:45:05.116055 7fd997e006c0 Generated table #587@0: 52 keys, 26944 bytes
+2024/11/01-17:45:05.116092 7fd997e006c0 Compacted 1@0 + 0@1 files => 26944 bytes
+2024/11/01-17:45:05.122450 7fd997e006c0 compacted to: files[ 0 1 0 0 0 0 0 ]
+2024/11/01-17:45:05.122597 7fd997e006c0 Delete type=2 #70
+2024/11/01-17:45:05.137554 7fd997e006c0 Manual compaction at level-0 from '!items!zG5gaPX6ygxp4hiC' @ 104 : 1 .. '!items!zG5gaPX6ygxp4hiC' @ 0 : 0; will stop at (end)

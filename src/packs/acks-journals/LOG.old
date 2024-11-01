@@ -1,4 +1,11 @@
-2024/11/01-17:44:24.704403 7fd99d6006c0 Log #448: 0 ops saved to Table #449 OK
-2024/11/01-17:44:24.704523 7fd99d6006c0 Archiving /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-journals/000448.log: OK
-2024/11/01-17:44:24.704578 7fd99d6006c0 Table #145: 2 entries OK
-2024/11/01-17:44:24.708338 7fd99d6006c0 **** Repaired leveldb /home/morr/foundry/foundrydata-v12/Data/systems/acks/packs/acks-journals; recovered 1 files; 2551 bytes. Some data may have been lost. ****
+2024/11/01-17:44:24.723231 7fd99d6006c0 Delete type=3 #1
+2024/11/01-17:45:05.158037 7fd997e006c0 Level-0 table #453: started
+2024/11/01-17:45:05.158070 7fd997e006c0 Level-0 table #453: 0 bytes OK
+2024/11/01-17:45:05.165102 7fd997e006c0 Delete type=0 #451
+2024/11/01-17:45:05.186576 7fd997e006c0 Manual compaction at level-0 from '!journal!qABtdArsoEoVTQjA' @ 72057594037927935 : 1 .. '!journal.pages!qABtdArsoEoVTQjA.RgBNyQ1EXObDyosG' @ 0 : 0; will stop at '!journal.pages!qABtdArsoEoVTQjA.RgBNyQ1EXObDyosG' @ 11 : 1
+2024/11/01-17:45:05.186587 7fd997e006c0 Compacting 1@0 + 0@1 files
+2024/11/01-17:45:05.189727 7fd997e006c0 Generated table #454@0: 2 keys, 2551 bytes
+2024/11/01-17:45:05.189754 7fd997e006c0 Compacted 1@0 + 0@1 files => 2551 bytes
+2024/11/01-17:45:05.195952 7fd997e006c0 compacted to: files[ 0 1 0 0 0 0 0 ]
+2024/11/01-17:45:05.196097 7fd997e006c0 Delete type=2 #145
+2024/11/01-17:45:05.196311 7fd997e006c0 Manual compaction at level-0 from '!journal.pages!qABtdArsoEoVTQjA.RgBNyQ1EXObDyosG' @ 11 : 1 .. '!journal.pages!qABtdArsoEoVTQjA.RgBNyQ1EXObDyosG' @ 0 : 0; will stop at (end)

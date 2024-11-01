@@ -25,8 +25,8 @@
   src: url('./assets/fonts/oranienbaum.regular.ttf');
 }
 @font-face {
-  font-family: "crimsontext-regular";
-  src: url('./assets/fonts/crimsontext-regular.ttf');  
+  font-family: "ebgaramond-regular";
+  src: url('./assets/fonts/EBGaramond-Regular.ttf');  
 }
 
 /* ----------------------------------------- */
@@ -39,10 +39,10 @@
 }
 
 #sidebar {
-  font-family: "crimsontext-regular";
+  font-family: "ebgaramond-regular";
 }
 .window-content {
-  font-family: "crimsontext-regular";
+  font-family: "ebgaramond-regular";
 }
 
 .acks.sheet.actor {

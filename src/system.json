@@ -28,7 +28,7 @@
   "packs": [
     {
       "name": "acks-arcane-spells",
-      "label": "ACKS Arcane Spells",
+      "label": "Arcane Spells",
       "system": "acks",
       "path": "packs/acks-arcane-spells",
       "type": "Item",
@@ -36,7 +36,7 @@
     },
     {
       "name": "acks-divine-spells",
-      "label": "ACKS Divine Spells",
+      "label": "Divine Spells",
       "system": "acks",
       "path": "packs/acks-divine-spells",
       "type": "Item",
@@ -44,7 +44,7 @@
     },
     {
       "name": "acks-all-equipment",
-      "label": "ACKS All Equipment",
+      "label": "All Equipment",
       "system": "acks",
       "path": "packs/acks-all-equipment",
       "type": "Item",
@@ -52,7 +52,7 @@
     },
     {
       "name": "acks-class-abilities",
-      "label": "ACKS Class Abilities",
+      "label": "Powers",
       "system": "acks",
       "path": "packs/acks-class-abilities",
       "type": "Item",
@@ -60,7 +60,7 @@
     },
     { 
       "name": "acks-monster-abilities",
-      "label": "ACKS Monster Abilities",
+      "label": "Monster Abilities",
       "system": "acks",
       "path": "packs/acks-monster-abilities",
       "type": "Item",
@@ -68,7 +68,7 @@
     },
     { 
       "name": "acks-languages",
-      "label": "ACKS Languages",
+      "label": "Languages",
       "system": "acks",
       "path": "packs/acks-languages",
       "type": "Item",
@@ -76,7 +76,7 @@
     },
     { 
       "name": "acks-monsters",
-      "label": "ACKS Monsters",
+      "label": "Monsters",
       "system": "acks",
       "path": "packs/acks-monsters",
       "type": "Actor",
@@ -85,7 +85,7 @@
 
     {
       "name": "acks-proficiencies",
-      "label": "ACKS Proficiencies",
+      "label": "Proficiencies",
       "system": "acks",
       "path": "packs/acks-proficiencies",
       "type": "Item",
@@ -94,7 +94,7 @@
 
     {
       "name": "acks-treasure",
-      "label": "ACKS Treasure Tables",
+      "label": "Treasure",
       "system": "acks",
       "path": "packs/acks-treasure",
       "type": "RollTable",
@@ -103,7 +103,7 @@
 
     {
       "name": "acks-maps",
-      "label": "ACKS Maps",
+      "label": "Maps",
       "system": "acks",
       "path": "packs/acks-maps",
       "type": "Scene",
@@ -111,7 +111,7 @@
     },    
     {
       "name": "acks-journals",
-      "label": "ACKS Journals",
+      "label": "Journals",
       "system": "acks",
       "path": "packs/acks-journals",
       "type": "JournalEntry",
@@ -120,63 +120,79 @@
   ],
   "packFolders": [
     {
-      "name": "ACKS Compendiums",
+      "name": "ACKS II Revised Rulebook",
       "sorting": "m",
-      "color": "#00435c",
+      "color": "#4e0038",
       "folders": [
         {
-          "name": "PC Features",
+          "name": "Classes",
           "sorting": "a",
-          "color": "#00435c",
+          "color": "#4e0038",
           "packs": [
-            "acks-proficiencies",
-            "acks-class-abilities",
-            "acks-arcane-spells",
-            "acks-divine-spells",
-            "acks-languages"
-          ],
-          "folders": []
+            "acks-class-abilities"
+          ]
         },
         {
-          "name": "NPC & Monsters",
+          "name": "Proficiencies",
           "sorting": "a",
-          "color": "#00435c",
+          "color": "#4e0038",
           "packs": [
-            "acks-monsters",
-            "acks-monster-abilities"
-          ],
-          "folders": []
+            "acks-proficiencies"
+          ]
         },
         {
-          "name": "Equipments",
+          "name": "Equipment",
           "sorting": "a",
-          "color": "#00435c",
+          "color": "#4e0038",
           "packs": [
             "acks-all-equipment"
           ],
           "folders": []
         },
         {
-          "name": "Tables",
+          "name": "Spells",
           "sorting": "a",
-          "color": "#00435c",
+          "color": "#4e0038",
           "packs": [
-            "acks-treasure"
+            "acks-arcane-spells",
+            "acks-divine-spells"
           ],
           "folders": []
         },
         {
-          "name": "Misc",
+          "name": "Setting",
           "sorting": "a",
-          "color": "#00435c",
+          "color": "#4e0038",
           "packs": [
-            "acks-maps",
-            "acks-journals"
+            "acks-languages",
+            "acks-maps"
           ],
           "folders": []
         }
       ],
       "packs": [
+        "acks-journals"
+      ]
+    },
+    {
+      "name": "ACKS II Judges Journal",
+      "sorting": "m",
+      "color": "#4e0038",
+      "folders": [
+      ],
+      "packs": [
+        "acks-treasure"
+      ]
+    },
+    {
+      "name": "ACKS II Monstrous Manual",
+      "sorting": "m",
+      "color": "#4e0038",
+      "folders": [
+      ], 
+      "packs": [
+        "acks-monster-abilities",
+        "acks-monsters"
       ]
     }
   ],

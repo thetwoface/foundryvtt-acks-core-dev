@@ -40,9 +40,16 @@
 
 #sidebar {
   font-family: "ebgaramond-regular";
+  font-size: 1.1rem;
 }
 .window-content {
   font-family: "ebgaramond-regular";
+}
+.chat-message {
+  font-size: 1.1rem;
+}
+.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to {
+  font-size: 0.9rem;
 }
 
 .acks.sheet.actor {
@@ -197,6 +204,7 @@
   margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.9);
   background: var(--acks-red-background);
+  /*background: var(--acks-purple);*/
   text-align: center;
 }
 .acks.sheet.actor .sheet-body .attributes .attribute.ability-score {

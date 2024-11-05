@@ -12,7 +12,7 @@
 
 /* ----------------------------------------- */
 :root {
-  --acks-purple: #4e0038;
+  --acks-purple: #620630;
   --acks-sheet-background: url("./assets/ui/acks_sheet_background.webp");
   --acks-sheet-background-fade: url("./assets/ui/acks_sheet_background_fade01.webp");
   --acks-red-background: url("./assets/ui/acks_red_background.webp");
@@ -39,11 +39,11 @@
 }
 
 #sidebar {
-  font-family: "ebgaramond-regular";
+  /*font-family: "ebgaramond-regular";*/
   font-size: 1.1rem;
 }
 .window-content {
-  font-family: "ebgaramond-regular";
+  /*font-family: "ebgaramond-regular";*/
 }
 .chat-message {
   font-size: 1.1rem;
@@ -57,10 +57,10 @@
   /* Header Summary Details */
 }
 .acks.sheet.actor .window-header{
-  background: var(--acks-red-background);
+  background: var(--acks-purple);
 }
 .window-header{
-  background: var(--acks-red-background);
+  background: var(--acks-purple);
 }
 .acks.sheet.actor .window-content {
   background: var(--acks-sheet-background-fade);
@@ -203,7 +203,7 @@
   padding: 2px;
   margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.9);
-  background: var(--acks-red-background);
+  background: var(--acks-purple);
   /*background: var(--acks-purple);*/
   text-align: center;
 }
@@ -296,7 +296,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
   font-weight: 300;
   font-size: 13px;
-  background: var(--acks-red-background);
+  background: var(--acks-purple);
   color: white;
 }
 .acks.sheet.actor .sheet-body .inventory .item-titles .item-name {
@@ -654,7 +654,7 @@
 .acks.chat-block .chat-header {
   height: 46px;
   margin: 4px 0;
-  background: var(--acks-red-background);
+  background: var(--acks-purple);
   border: 1px solid black;
   border-radius: 3px;
   color: white;
@@ -1450,7 +1450,7 @@
 }
 .favorite-title {
   padding-left: 0.4rem;
-  background: var(--acks-red-background);
+  background: var(--acks-purple);
   color: whitesmoke
 }
 .favorite-item {

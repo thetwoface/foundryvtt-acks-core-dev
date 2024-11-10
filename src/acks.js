@@ -92,7 +92,7 @@ Hooks.once("ready", async () => {
   Hooks.on("hotbarDrop", (bar, data, slot) =>
     macros.createAcksMacro(data, slot)
   );
-  AcksUtility.updateWeights()
+  AcksUtility.updateWeightsLanguages()
 });
 
 // License and KOFI infos

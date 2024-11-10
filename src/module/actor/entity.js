@@ -30,7 +30,7 @@ export class AcksActor extends Actor {
         manager.sheet.render();
       }
     }
-    console.log("CHANGE : ", changed)
+    //console.log("CHANGE : ", changed)
     if (changed.system?.retainer?.enabled == false && this.system.retainer.managerid != "") {
       let manager = game.actors.get(this.system.retainer.managerid);
       setTimeout(() => { manager.delHenchman(this.id) }, 200);
@@ -327,6 +327,29 @@ export class AcksActor extends Actor {
     }  
     if (toUpdate.length > 0) {
       this.updateEmbeddedDocuments("Item", toUpdate)
+    }
+  }
+
+  /* -------------------------------------------- */
+  async updateLanguages() {
+    if (this.type != "character") {
+      return;
+    }
+    // Load compendium languages
+    let languages = await AcksUtility.loadCompendium("acks.acks-languages");
+    let langList = languages.map(i => i.toObject())
+
+    let toPush = [];
+    for (let langName of this.system.languages?.value) {
+
+      let lang = langList.find((i) => i.name.toLowerCase() == langName.toLowerCase());
+      if (lang) {
+        toPush.push(lang);
+      }
+    }
+    if (toPush.length > 0) {
+      this.createEmbeddedDocuments("Item", toPush);
+      this.update({ 'system.languages.value': []  });
     }
   }
 

@@ -1,9 +1,10 @@
 export class AcksUtility {
 
-  static updateWeights()
+  static updateWeightsLanguages()
   {
     for (let a of game.actors) {
       a.updateWeight();      
+      a.updateLanguages();
     }
     for (let i of game.items) {
       i.updateWeight();

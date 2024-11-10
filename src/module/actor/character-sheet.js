@@ -106,7 +106,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       }
       let newData = {};
       newData[table] = update;
-      return this.actor.update({ data: newData });
+      return this.actor.update({ system: newData });
     });
   }
 
@@ -116,7 +116,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     let update = data[table].value.filter((el) => el != lang);
     let newData = {};
     newData[table] = { value: update };
-    return this.actor.update({ data: newData });
+    return this.actor.update({ system: newData });
   }
 
   /* -------------------------------------------- */
@@ -124,7 +124,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    return item.update({ "data.quantity.value": parseInt(event.target.value) });
+    return item.update({ "system.quantity.value": parseInt(event.target.value) });
   }
 
     /* -------------------------------------------- */

@@ -146,6 +146,10 @@ export const ACKS = {
     mercenary: "ACKS.hireling.mercenary",
     specialist: "ACKS.hireling.specialist"
   },
+  item_subtypes: {
+    item: "ACKS.items.item",
+    clothing: "ACKS.items.clothing"
+  },
   monster_saves: {
     0: {
       label: "Normal Human",

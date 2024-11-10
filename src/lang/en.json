@@ -320,6 +320,9 @@
   "ACKS.items.Splash": "Splash weapon",
   "ACKS.items.Reload": "Reload",
   "ACKS.items.Charge": "Charge",
+  "ACKS.items.item": "Item",
+  "ACKS.items.clothing": "Clothing",
+  "ACKS.items.subtype": "Subtype",
 
   "ACKS.armor.type": "Armor Type",
   "ACKS.armor.unarmored": "Unarmored",

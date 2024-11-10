@@ -66,7 +66,7 @@ export class AcksActor extends Actor {
 
     data.movement.encounter = data.movement.base / 3;
 
-    console.log("MODCOMPUTE2", data);
+    // console.log("MODCOMPUTE2", data);
   }
 
   /* -------------------------------------------- */
@@ -929,7 +929,7 @@ export class AcksActor extends Actor {
     let totalEncumbrance = 0;
 
     this.items.forEach((item) => {
-      if (item.type === "item") {
+      if (item.type === "item" && item.system.subtype != "clothing") {
         totalEncumbrance += item.system.weight6 * item.system.quantity.value;
       } else if (["weapon", "armor"].includes(item.type)) {
         totalEncumbrance += item.system.weight6;

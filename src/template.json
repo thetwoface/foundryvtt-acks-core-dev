@@ -221,6 +221,7 @@
       "description": ""
     },
     "item": {
+      "subtype": "item",
       "description": "",
       "quantity": {
         "value": 1,

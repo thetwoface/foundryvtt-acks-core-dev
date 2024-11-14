@@ -28,6 +28,7 @@
   "packs": [
     {
       "name": "acks-arcane-spells",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Arcane Spells",
       "system": "acks",
       "path": "packs/acks-arcane-spells",
@@ -36,6 +37,7 @@
     },
     {
       "name": "acks-divine-spells",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Divine Spells",
       "system": "acks",
       "path": "packs/acks-divine-spells",
@@ -44,6 +46,7 @@
     },
     {
       "name": "acks-all-equipment",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "All Equipment",
       "system": "acks",
       "path": "packs/acks-all-equipment",
@@ -52,6 +55,7 @@
     },
     {
       "name": "acks-class-abilities",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Powers",
       "system": "acks",
       "path": "packs/acks-class-abilities",
@@ -60,6 +64,7 @@
     },
     { 
       "name": "acks-monster-abilities",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Monster Abilities",
       "system": "acks",
       "path": "packs/acks-monster-abilities",
@@ -68,6 +73,7 @@
     },
     { 
       "name": "acks-languages",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Languages",
       "system": "acks",
       "path": "packs/acks-languages",
@@ -76,6 +82,7 @@
     },
     { 
       "name": "acks-monsters",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Monsters",
       "system": "acks",
       "path": "packs/acks-monsters",
@@ -85,6 +92,7 @@
 
     {
       "name": "acks-proficiencies",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Proficiencies",
       "system": "acks",
       "path": "packs/acks-proficiencies",
@@ -95,6 +103,7 @@
     {
       "name": "acks-treasure",
       "label": "Treasure",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "system": "acks",
       "path": "packs/acks-treasure",
       "type": "RollTable",
@@ -103,6 +112,7 @@
 
     {
       "name": "acks-maps",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Maps",
       "system": "acks",
       "path": "packs/acks-maps",
@@ -111,6 +121,7 @@
     },    
     {
       "name": "acks-journals",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "label": "Journals",
       "system": "acks",
       "path": "packs/acks-journals",

@@ -122,12 +122,12 @@
     {
       "name": "ACKS II Revised Rulebook",
       "sorting": "m",
-      "color": "#4e0038",
+      "color": "#620630",
       "folders": [
         {
           "name": "Classes",
           "sorting": "a",
-          "color": "#4e0038",
+          "color": "#620630",
           "packs": [
             "acks-class-abilities"
           ]
@@ -135,7 +135,7 @@
         {
           "name": "Proficiencies",
           "sorting": "a",
-          "color": "#4e0038",
+          "color": "#620630",
           "packs": [
             "acks-proficiencies"
           ]
@@ -143,7 +143,7 @@
         {
           "name": "Equipment",
           "sorting": "a",
-          "color": "#4e0038",
+          "color": "#620630",
           "packs": [
             "acks-all-equipment"
           ],
@@ -152,7 +152,7 @@
         {
           "name": "Spells",
           "sorting": "a",
-          "color": "#4e0038",
+          "color": "#620630",
           "packs": [
             "acks-arcane-spells",
             "acks-divine-spells"
@@ -162,7 +162,7 @@
         {
           "name": "Setting",
           "sorting": "a",
-          "color": "#4e0038",
+          "color": "#620630",
           "packs": [
             "acks-languages",
             "acks-maps"

@@ -269,7 +269,7 @@ export class AcksActor extends Actor {
     // Get GC item
     let moneyItems = this.items.filter((i) => i.type == "money");
     // Sort money items per coppervalue, descending order
-    moneyItems.sort((a, b) => b.system.coppervalue - a.system.coppervalue);
+    moneyItems.sort((a, b) => a.system.coppervalue - b.system.coppervalue);
     // Loop through money items and decrement the totalWages value (expressed in copper)
     for (let item of moneyItems) {
       let quantity = Math.floor(totalWages / item.system.coppervalue);

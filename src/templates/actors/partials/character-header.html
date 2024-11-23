@@ -26,19 +26,16 @@
          />
       <label>{{localize 'ACKS.RetainerWage'}}</label>
     </li>
-    <li class="flexrow check-field number-header-section">
-      <div class="check morale-check" title="{{localize 'ACKS.roll.morale'}}"><a><i class="fas fa-dice"></i></a></div>
-      <div>
-        <input type="text" name="system.details.morale" value="{{system.details.morale}}" />
-        <label>{{localize 'ACKS.details.morale'}}</label>  
-      </div>
+    <li class="number-header-section">
+        <input type="text" name="system.details.morale" value="{{system.details.morale}}" data-dtype="Number"/>
+        <label class="check morale-check" title="{{localize 'ACKS.roll.morale'}}"><a><i class="fas fa-dice"></i>
+        {{localize 'ACKS.details.morale'}}</a><label>
     </li>
-    <li class="flex2 check-field number-header-section" data-stat="lr">
-      <div class="check loyalty-check" title="{{localize 'ACKS.loyalty.check'}}"><a><i class="fas fa-dice"></i></a></div>
-      <div class="attribute-value">
-        <input name="system.retainer.loyalty" type="text" value="{{system.retainer.loyalty}}" placeholder="Loyal" data-dtype="String" />
-        <label>{{localize 'ACKS.Loyalty'}}</label>  
-      </div>
+    <li class="flex2 number-header-section" data-stat="lr">
+        <input name="system.retainer.loyalty" type="text" value="{{system.retainer.loyalty}}" data-dtype="Number" />
+        <label class="check loyalty-check" title="{{localize 'ACKS.loyalty.check'}}">
+          <a><i class="fas fa-dice"></i>{{localize 'ACKS.Loyalty'}}
+          </a></label>  
     </li>
     <li class="number-header-section">
         <input type="text" value="{{managerName}}" disabled />

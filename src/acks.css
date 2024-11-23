@@ -1458,3 +1458,7 @@
 .acks-attribute-row .attribute-value {
   min-width: 1.8rem;
 }
+.wage-text-center{
+  margin-top: 8px;
+  vertical-align: middle;
+}

@@ -16,8 +16,8 @@ export class AcksActor extends Actor {
     }
 
     if (data.type == 'character') {
-      const skills = await AcksUtility.loadCompendium("acks.acks-money")
-      data.items = skills.map(i => i.toObject())
+      const skills = await AcksUtility.loadCompendium("acks.acks-all-equipment")
+      data.items = skills.map(i => i.toObject()).filter(i => i.type == "money")
     }
 
     return super.create(data, options);

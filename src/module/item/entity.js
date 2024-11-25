@@ -25,7 +25,7 @@ export class AcksItem extends Item {
           img = "systems/acks/assets/gold.png";
           break;
         case "language":
-          img = "systems/acks/assets/language.png";
+          img = "systems/acks/assets/icons/language.png";
           break;
       }
       data.img = img;

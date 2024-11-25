@@ -1,7 +1,7 @@
-2024/11/24-00:21:31.469389 7fe9eb7fe6c0 Recovering log #704
-2024/11/24-00:21:31.525854 7fe9eb7fe6c0 Delete type=3 #702
-2024/11/24-00:21:31.525946 7fe9eb7fe6c0 Delete type=0 #704
-2024/11/24-00:21:43.536413 7fe9eabff6c0 Level-0 table #709: started
-2024/11/24-00:21:43.536438 7fe9eabff6c0 Level-0 table #709: 0 bytes OK
-2024/11/24-00:21:43.543609 7fe9eabff6c0 Delete type=0 #707
-2024/11/24-00:21:43.557174 7fe9eabff6c0 Manual compaction at level-0 from '!tables!3sTqq4rvSqzDLpQj' @ 72057594037927935 : 1 .. '!tables.results!tfovFVpRkOftcOnM.qao3qJepjYtXz6yV' @ 0 : 0; will stop at (end)
+2024/11/24-20:32:46.516252 7f171effd6c0 Recovering log #712
+2024/11/24-20:32:46.527752 7f171effd6c0 Delete type=3 #710
+2024/11/24-20:32:46.527830 7f171effd6c0 Delete type=0 #712
+2024/11/24-22:41:57.540146 7f171dbff6c0 Level-0 table #717: started
+2024/11/24-22:41:57.540199 7f171dbff6c0 Level-0 table #717: 0 bytes OK
+2024/11/24-22:41:57.546572 7f171dbff6c0 Delete type=0 #715
+2024/11/24-22:41:57.554317 7f171dbff6c0 Manual compaction at level-0 from '!tables!3sTqq4rvSqzDLpQj' @ 72057594037927935 : 1 .. '!tables.results!tfovFVpRkOftcOnM.qao3qJepjYtXz6yV' @ 0 : 0; will stop at (end)

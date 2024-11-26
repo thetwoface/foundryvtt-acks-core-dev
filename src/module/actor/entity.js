@@ -55,7 +55,6 @@ export class AcksActor extends Actor {
     this.computeAAB();
 
     // Determine Initiative
-    //if (game.settings.get("acks", "initiative") != "group") {
     data.initiative.value = data.initiative.mod || 0;
     if (this.type == "character") {
       data.initiative.value += data.scores.dex.mod;
@@ -65,7 +64,10 @@ export class AcksActor extends Actor {
     }
 
     data.movement.encounter = data.movement.base / 3;
-
+    if (this.type == "character") {
+      data.movementacks.stealth = data.movementacks.combat / 2;
+      data.movementacks.climb = data.movementacks.combat / 3;
+    }
     // console.log("MODCOMPUTE2", data);
   }
 
@@ -148,8 +150,8 @@ export class AcksActor extends Actor {
         one: {
           icon: '<i class="fas fa-check"></i>',
           label: "Yes",
-          callback: async () =>  {
-            await henchman.update({ 'system.retainer.enabled': true, 'prototypeToken.actorLink': true} );
+          callback: async () => {
+            await henchman.update({ 'system.retainer.enabled': true, 'prototypeToken.actorLink': true });
             this.addHenchman(subActorId);
           }
         },
@@ -319,14 +321,21 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   updateWeight() {
     let toUpdate = []
-    for(let i of this.items) {
+    for (let i of this.items) {
       if (i.system?.weight != undefined && i.system?.weight6 == -1) {
         let nbStones6 = Math.floor(i.system.weight / 166.66)
-        toUpdate.push({ _id: i.id, 'system.weight6': nbStones6, 'system.weight': -1 })        
+        toUpdate.push({ _id: i.id, 'system.weight6': nbStones6, 'system.weight': -1 })
       }
-    }  
+    }
     if (toUpdate.length > 0) {
       this.updateEmbeddedDocuments("Item", toUpdate)
+    }
+  }
+
+  /* -------------------------------------------- */
+  async updateImplements() {
+    if (this.system.saves.implements?.value == -1) {
+      this.update({ 'system.saves.implements.value': this.system.saves.wand.value });
     }
   }
 
@@ -349,7 +358,7 @@ export class AcksActor extends Actor {
     }
     if (toPush.length > 0) {
       this.createEmbeddedDocuments("Item", toPush);
-      this.update({ 'system.languages.value': []  });
+      this.update({ 'system.languages.value': [] });
     }
   }
 
@@ -387,6 +396,9 @@ export class AcksActor extends Actor {
           value: saves.d,
         },
         wand: {
+          value: saves.w,
+        },
+        implements: {
           value: saves.w,
         },
         paralysis: {

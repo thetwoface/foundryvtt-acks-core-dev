@@ -5,6 +5,7 @@ export class AcksUtility {
     for (let a of game.actors) {
       a.updateWeight();      
       a.updateLanguages();
+      a.updateImplements();
     }
     for (let i of game.items) {
       i.updateWeight();

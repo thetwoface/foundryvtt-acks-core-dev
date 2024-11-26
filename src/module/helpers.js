@@ -8,6 +8,16 @@ export const registerHelpers = async function () {
     return a >= b;
   });
 
+  Handlebars.registerHelper("toFixed", function(number, digits) {
+    if (!Number(number)) {
+      number = 0;
+    }
+    if (!Number(digits)) {
+      digits = 0;
+    }
+    return Number(number).toFixed(digits);
+  });
+
   Handlebars.registerHelper("mod", function (val) {
     if (val > 0) {
       return `+${val}`;

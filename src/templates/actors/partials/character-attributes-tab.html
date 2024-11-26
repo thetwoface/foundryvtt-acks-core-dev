@@ -222,9 +222,17 @@
       <ul class="attributes flexrow">
         <li class="attribute attribute-movement">
           {{#each system.movementacks as |move key|}}
-          <h4 class="attribute-name box-title" title="{{localize (concat 'ACKS.movement.' key)}}">
+            {{#if (eq key "exploration")}}
+              <h4 class="attribute-name box-title" title="{{localize (concat 'ACKS.movement.' key)}} feet/turn">
+            {{else}}
+              <h4 class="attribute-name box-title" title="{{localize (concat 'ACKS.movement.' key)}} feet/round">
+            {{/if}}
             {{localize (concat 'ACKS.movement.' key)}}</h4>
-          <span class="attribute-value">{{move}}</span>
+            {{#if (eq key "climb")}}
+              <span class="attribute-value">{{toFixed move 1}}</span>
+            {{else}}
+              <span class="attribute-value">{{move}}</span>
+            {{/if}}
           {{/each}}
         </li>
       </ul>

@@ -44,7 +44,7 @@
   "ACKS.dialog.partysheet": "Party Overview",
   "ACKS.dialog.selectActors": "Select PCs",
   "ACKS.dialog.dealXP": "Deal XP",
-  "ACKS.dialog.generator": "Character generator",
+  "ACKS.dialog.generator": "Attributes",
   "ACKS.dialog.generateSaves": "Generate Saves",
   "ACKS.dialog.generateScores": "Generate Scores",
   "ACKS.dialog.generateScore": "Rolling {score} ({count})",

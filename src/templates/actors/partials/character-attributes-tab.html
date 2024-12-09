@@ -229,9 +229,20 @@
             {{/if}}
             {{localize (concat 'ACKS.movement.' key)}}</h4>
             {{#if (eq key "climb")}}
+              {{#if @root.system.config.movementAuto}}
               <span class="attribute-value">{{toFixed move 1}}</span>
+              {{else}}
+              <input name="system.movementacks.{{key}}" type="text" value="{{toFixed move 1}}" placeholder="0"
+                data-dtype="Number" />
+              {{/if}}
             {{else}}
+              {{#if @root.system.config.movementAuto}}
               <span class="attribute-value">{{move}}</span>
+              {{else}}
+              <input name="system.movementacks.{{key}}" type="text" value="{{move}}" placeholder="0"
+                data-dtype="Number" />
+              {{/if}}
+  
             {{/if}}
           {{/each}}
         </li>

@@ -64,11 +64,10 @@ export class AcksActor extends Actor {
     }
 
     data.movement.encounter = data.movement.base / 3;
-    if (this.type == "character") {
+    if (this.type == "character" && system.config.movementAuto) {
       data.movementacks.stealth = data.movementacks.combat / 2;
       data.movementacks.climb = data.movementacks.combat / 3;
     }
-    // console.log("MODCOMPUTE2", data);
   }
 
   /* -------------------------------------------- */

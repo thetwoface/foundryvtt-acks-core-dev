@@ -64,7 +64,7 @@ export class AcksActor extends Actor {
     }
 
     data.movement.encounter = data.movement.base / 3;
-    if (this.type == "character" && system.config.movementAuto) {
+    if (this.type == "character" && this.system.config.movementAuto) {
       data.movementacks.stealth = data.movementacks.combat / 2;
       data.movementacks.climb = data.movementacks.combat / 3;
     }

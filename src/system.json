@@ -29,6 +29,7 @@
     {
       "name": "acks-arcane-spells",
       "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "color": "#822650",
       "label": "Arcane Spells",
       "system": "acks",
       "path": "packs/acks-arcane-spells",
@@ -47,7 +48,8 @@
     {
       "name": "acks-all-equipment",
       "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
-      "label": "All Equipment",
+      "color": "#822650",
+      "label": "Equipment",
       "system": "acks",
       "path": "packs/acks-all-equipment",
       "type": "Item",
@@ -118,11 +120,11 @@
       "path": "packs/acks-maps",
       "type": "Scene",
       "module": "acks-packs"
-    },    
+    },
     {
       "name": "acks-journals",
       "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
-      "label": "Journals",
+      "label": "Game System Help",
       "system": "acks",
       "path": "packs/acks-journals",
       "type": "JournalEntry",
@@ -138,7 +140,7 @@
         {
           "name": "Classes",
           "sorting": "a",
-          "color": "#620630",
+          "color": "#822638",
           "packs": [
             "acks-class-abilities"
           ]
@@ -154,7 +156,7 @@
         {
           "name": "Equipment",
           "sorting": "a",
-          "color": "#620630",
+          "color": "#822638",
           "packs": [
             "acks-all-equipment"
           ],
@@ -173,7 +175,7 @@
         {
           "name": "Setting",
           "sorting": "a",
-          "color": "#620630",
+          "color": "#822638",
           "packs": [
             "acks-languages",
             "acks-maps"
@@ -181,9 +183,7 @@
           "folders": []
         }
       ],
-      "packs": [
-        "acks-journals"
-      ]
+      "packs": []
     },
     {
       "name": "ACKS II Judges Journal",
@@ -204,6 +204,16 @@
       "packs": [
         "acks-monster-abilities",
         "acks-monsters"
+      ]
+    },
+    {
+      "name": "ACKS II VTT Vitals",
+      "sorting": "m",
+      "color": "#620630",
+      "folders": [
+      ],
+      "packs": [
+        "acks-journals"
       ]
     }
   ],

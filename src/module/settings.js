@@ -9,6 +9,14 @@ export const registerMainSettings = async () => {
     onChange: _ => window.location.reload()
   });
 
+  game.settings.register("acks", "welcome-message-12-2", {
+    name: "welcome-message-12-2",
+    default: false,
+    scope: "world",
+    type: Boolean,
+    config: false
+  });
+
   await game.settings.register('acks', 'color-friendlies', {
     name:  game.i18n.localize("ACKS.Setting.colorFriendlies"),           // The name of the setting in the settings menu
     hint: game.i18n.localize("ACKS.Setting.colorFriendlies"),        // A description of the registered setting and its behavior

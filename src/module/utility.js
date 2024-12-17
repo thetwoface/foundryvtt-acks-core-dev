@@ -11,7 +11,29 @@ export class AcksUtility {
       i.updateWeight();
     }
   }
+  /* -------------------------------------------- */
+  static displayWelcomeMessage() {
+    let welcomeMessage = game.settings.get('acks', 'welcome-message-12-2')
+    console.log("WELCOME", welcomeMessage)
+    if (!welcomeMessage) {
+      game.settings.set('acks', 'welcome-message-12-2', true)
+      // New dialog with full message 
+      let d = new Dialog({
+        title: game.i18n.localize('ACKS.Welcome.Title'),
+        content: `<p>${game.i18n.localize('ACKS.Welcome.Message-12-2')}</p>`,
+        buttons: {
+          ok: {
+            icon: '<i class="fas fa-check"></i>',
+            label: game.i18n.localize('ACKS.Welcome.Button'),
+          },
+        },
+        default: 'ok',
+      }, {width: 720});
+      d.render(true);
+    }
 
+  }
+  
   /* -------------------------------------------- */
   static async loadCompendiumData(compendium) {
     const pack = game.packs.get(compendium);

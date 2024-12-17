@@ -1,6 +1,6 @@
 import { AcksActor } from "./entity.js";
 import { AcksEntityTweaks } from "../dialog/entity-tweaks.js";
-
+import { AcksUtility } from "../utility.js";
 export class AcksActorSheet extends ActorSheet {
   constructor(...args) {
     super(...args);
@@ -14,14 +14,22 @@ export class AcksActorSheet extends ActorSheet {
     // Settings
     data.config.ascendingAC = game.settings.get("acks", "ascendingAC");
     data.config.encumbrance = game.settings.get("acks", "encumbranceOption");
+    data.effects = await AcksUtility.prepareActiveEffectCategories(this.actor.allApplicableEffects());
     data.system = this.actor.system;
+    data.isGM = game.user.isGM;
 
     // Prepare owned items
     this._prepareItems(data);
+    data.henchmen = this.actor.getHenchmen();
+    data.languages = this.actor.getLanguages();
     data.description = await TextEditor.enrichHTML(this.object.system.details.description, { async: true })
     data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true })
+    data.totalWages = this.actor.getTotalWages();
+    data.totalMoneyGC = this.actor.getTotalMoneyGC();
+    data.moneyEncumbrance = this.actor.getTotalMoneyEncumbrance();
+    data.managerName = this.actor.getManagerName();
 
-    console.log(data, this.object.system);
+    console.log("Actor sheet", data);
     return data;
   }
   /* -------------------------------------------- */
@@ -35,13 +43,27 @@ export class AcksActorSheet extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+  async _onDrop(event) {
+    let data = event.dataTransfer.getData('text/plain');
+    if (data) {
+      let dataItem = JSON.parse( data);
+      let actorId = dataItem.uuid.split('.')[1]
+      if ( dataItem.uuid.includes("Actor") && actorId ) {
+        this.actor.addHenchman( actorId);
+        return;
+      }
+    }
+    super._onDrop(event);
+  }
+
+  /* -------------------------------------------- */
   /**
    * Organize and classify Owned Items for Character sheets
    * @private
    */
   _prepareItems(data) {
     // Partition items by category
-    let [items, weapons, armors, abilities, spells] = data.items.reduce(
+    let [items, weapons, armors, abilities, spells, languages, money] = data.items.reduce(
       (arr, item) => {
         // Classify items into types
         if (item.type === "item") arr[0].push(item);
@@ -49,9 +71,11 @@ export class AcksActorSheet extends ActorSheet {
         else if (item.type === "armor") arr[2].push(item);
         else if (item.type === "ability") arr[3].push(item);
         else if (item.type === "spell") arr[4].push(item);
+        else if (item.type === "language") arr[5].push(item);
+        else if (item.type === "money") arr[6].push(item);
         return arr;
       },
-      [[], [], [], [], []]
+      [[], [], [], [], [], [], []]
     );
 
     // Sort spells by level
@@ -72,15 +96,26 @@ export class AcksActorSheet extends ActorSheet {
     data.slots = {
       used: slots,
     };
+    // Sort money according to the 'coppervalue' field
+    money.sort((a, b) => b.system.coppervalue - a.system.coppervalue);
+    // Compute total money value
+    for (let m of money) {
+      let valuegp = (m.system.coppervalue * (m.system.quantity + m.system.quantitybank)) / 100;
+      m.system.totalvalue = valuegp
+    }
+
     // Assign and return
     data.owned = {
       items: items,
       weapons: weapons,
       armors: armors,
+      money: money,
     };
     data.abilities = abilities;
     data.spells = sortedSpells;
+    data.languages = languages;
 
+    data.favorites = this.actor.getFavorites()
   }
 
   /* -------------------------------------------- */
@@ -144,6 +179,15 @@ export class AcksActorSheet extends ActorSheet {
       .find(".item .item-name h4")
       .click((event) => this._onItemSummary(event));
 
+    html.on('click', '.effect-control', (ev) => {
+      const row = ev.currentTarget.closest('li');
+      const document =
+        row.dataset.parentId === this.actor.id
+          ? this.actor
+          : this.actor.items.get(row.dataset.parentId);
+      AcksUtility.onManageActiveEffect(ev, document);
+    });
+
     html.find(".item .item-controls .item-show").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
@@ -156,9 +200,24 @@ export class AcksActorSheet extends ActorSheet {
       let save = element.parentElement.parentElement.dataset.save;
       actorObject.rollSave(save, { event: ev });
     });
-
+    
     html.find(".item .item-rollable .item-image").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (item.type == "weapon") {
+        if (this.actor.type === "monster") {
+          item.update({ 'system.counter.value': item.system.counter.value - 1 });
+        }
+        item.rollWeapon({ skipDialog: ev.ctrlKey });
+      } else if (item.type == "spell") {
+        item.spendSpell({ skipDialog: ev.ctrlKey });
+      } else {
+        item.rollFormula({ skipDialog: ev.ctrlKey });
+      }
+    });
+
+    html.find(".favorite-rollable").click(async (ev) => {
+      const li = $(ev.currentTarget);
       const item = this.actor.items.get(li.data("itemId"));
       if (item.type == "weapon") {
         if (this.actor.type === "monster") {

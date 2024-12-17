@@ -4,36 +4,33 @@ import { AcksDice } from "../dice.js";
  * Override and extend the basic :class:`Item` implementation
  */
 export class AcksItem extends Item {
-  /* -------------------------------------------- */
-  /*	Data Preparation														*/
-  /* -------------------------------------------- */
-  /**
-   * Augment the basic Item data model with additional dynamic data.
-   */
-  prepareData() {
-    // Set default image
-    let img = CONST.DEFAULT_TOKEN;
-    switch (this.type) {
-      case "spell":
-        img = "/systems/acks/assets/default/spell.png";
-        break;
-      case "ability":
-        img = "/systems/acks/assets/default/ability.png";
-        break;
-      case "armor":
-        img = "/systems/acks/assets/default/armor.png";
-        break;
-      case "weapon":
-        img = "/systems/acks/assets/default/weapon.png";
-        break;
-      case "item":
-        img = "/systems/acks/assets/default/item.png";
-        break;
+
+  constructor(data, context) {
+    if (!data.img) {
+      let img = "systems/acks/assets/default/item.png";
+      switch (data.type) {
+        case "spell":
+          img = "systems/acks/assets/default/spell.png";
+          break;
+        case "ability":
+          img = "systems/acks/assets/default/ability.png";
+          break;
+        case "armor":
+          img = "systems/acks/assets/default/armor.png";
+          break;
+        case "weapon":
+          img = "systems/acks/assets/default/weapon.png";
+          break;
+        case "money":
+          img = "systems/acks/assets/gold.png";
+          break;
+        case "language":
+          img = "systems/acks/assets/icons/language.png";
+          break;
+      }
+      data.img = img;
     }
-    if (!this.img) {
-      this.img = img;
-    }
-    super.prepareData();
+    super(data, context);
   }
 
   static chatListeners(html) {
@@ -80,7 +77,7 @@ export class AcksItem extends Item {
       }
     };
 
-    if ( (this.system.missile && this.system.melee) && !isNPC) {
+    if ((this.system.missile && this.system.melee) && !isNPC) {
       // Dialog
       new Dialog({
         title: "Choose Attack Range",
@@ -158,7 +155,7 @@ export class AcksItem extends Item {
       }
       return `<li class='tag'>${fa}${tag}</li>`;
     };
-    
+
     let wTags, sTags, roll
     switch (this.type) {
       case "weapon":
@@ -261,6 +258,8 @@ export class AcksItem extends Item {
         break;
       case "item":
       case "armor":
+      case "language":
+      case "money":
         this.show();
     }
   }
@@ -330,6 +329,13 @@ export class AcksItem extends Item {
     }
   }
 
+  updateWeight() {
+    if (this.system?.weight != undefined && this.system?.weight6 == -1) {
+      let nbStones6 = Math.ceil(this.system.weight / 166.66)
+      this.update({ 'system.weight6': nbStones6, 'system.weight': -1 })
+    }
+  }  
+
   static async _onChatCardAction(event) {
     event.preventDefault();
 
@@ -348,7 +354,7 @@ export class AcksItem extends Item {
     if (!(isTargetted || game.user.isGM || message.isAuthor)) {
       ui.notifications.warn(
         `You do not have permission to use this feature for the selected chat card.`
-      );  
+      );
       return;
     }
     // Get the Actor from a synthetic Token

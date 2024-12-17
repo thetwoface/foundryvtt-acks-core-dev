@@ -6,7 +6,10 @@
         "retainer": {
           "enabled": false,
           "loyalty": 0,
-          "wage": ""
+          "wage": "",
+          "managerid": "",
+          "category": "mercenary",
+          "quantity": 1
         },
         "hp": {
           "hd": "1d8",
@@ -51,6 +54,9 @@
           },
           "spell": {
             "value": 0
+          },
+          "implements": {
+            "value": -1
           }
         },
         "save": {
@@ -64,7 +70,9 @@
           "mod": 0
         },
         "surprise": {
-          "mod": 0
+          "mod": 0,
+          "surpriseothers": 0,
+          "avoidsurprise": 0
         }
       },
       "spellcaster": {
@@ -96,19 +104,44 @@
       "config": {
         "movementAuto": true
       },
+      "henchmenList": [],
       "details": {
         "biography": "",
+        "morale": 0,
         "notes": "",
         "class": "",
         "title": "",
         "alignment": "",
         "level": 1,
+        "casterlevel": 0,
+        "age": 18,
+        "fatepoints": 0,
         "xp": {
           "share": 100,
           "next": 2000,
           "value": 0,
           "bonus": 0
         }
+      },
+      "movementacks": {
+        "exploration": 0,
+        "combat": 0,
+        "chargerun": 0,
+        "expedition": 0,
+        "stealth": 0,
+        "climb": 0
+      },
+      "adventuring": {
+        "dungeonbashing":18,
+        "climb": 8,
+        "listening": 18,
+        "searching": 18,
+        "trapbreaking": 18
+      },
+      "fight": {
+        "healingrate": "1d3",
+        "mortalwounds": 0,
+        "cleaves": 0
       },
       "exploration": {
         "ld": 18,
@@ -149,7 +182,7 @@
         }
       },
       "encumbrance": {
-        "max": 20000
+        "max": 20
       },
       "languages": {
         "value": []
@@ -175,8 +208,20 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "spell", "ability"],
+    "types": ["item", "weapon", "armor", "spell", "ability", "language", "money"],
+    "money": {
+      "coppervalue": 1,
+      "quantity": 1,
+      "quantitybank": 0,
+      "unitweight": 0,
+      "totalvalue": 0,
+      "description": ""
+    },
+    "language": {
+      "description": ""
+    },
     "item": {
+      "subtype": "item",
       "description": "",
       "quantity": {
         "value": 1,
@@ -184,7 +229,8 @@
       },
       "treasure": false,
       "cost": 0,
-      "weight": 166.6
+      "weight": 166.6,
+      "weight6": -1
     },
     "weapon": {
       "range": {
@@ -192,6 +238,7 @@
         "medium": 0,
         "long": 0
       },
+      "favorite": false,
       "save": "",
       "pattern": "transparent",
       "description": "",
@@ -204,6 +251,7 @@
       "cost": 0,
       "equipped": false,
       "weight": 166.6,
+      "weight6": -1,
       "counter": {
         "value": 0,
         "max": 0
@@ -216,9 +264,11 @@
       "type": "light",
       "cost": 0,
       "equipped": false,
-      "weight": 2000
+      "weight": 2000,
+      "weight6": -1
     },
     "spell": {
+      "favorite": false,
       "lvl": 1,
       "class": "Magic-User",
       "duration": "",
@@ -230,6 +280,8 @@
       "save": ""
     },
     "ability": {
+      "proficiencytype": "general",
+      "favorite": false,
       "pattern": "white",
       "requirements": "",
       "roll": "",

@@ -1,6 +1,43 @@
 import { AcksDice } from "../dice.js";
+import { AcksUtility } from "../utility.js";
 
 export class AcksActor extends Actor {
+
+  static async create(data, options) {
+
+    // Case of compendium global import
+    if (data instanceof Array) {
+      return super.create(data, options);
+    }
+    // If the created actor has items (only applicable to foundry.utils.duplicated actors) bypass the new actor creation logic
+    if (data.items) {
+      let actor = super.create(data, options);
+      return actor;
+    }
+
+    if (data.type == 'character') {
+      const skills = await AcksUtility.loadCompendium("acks.acks-all-equipment")
+      data.items = skills.map(i => i.toObject()).filter(i => i.type == "money")
+    }
+
+    return super.create(data, options);
+  }
+
+  _onUpdate(changed, options, userId) {
+    if (this.type == "character" && this.system.retainer?.enabled && this.system.retainer?.managerid != "") {
+      let manager = game.actors.get(this.system.retainer.managerid);
+      if (manager && manager.sheet.rendered) {
+        manager.sheet.render();
+      }
+    }
+    //console.log("CHANGE : ", changed)
+    if (changed.system?.retainer?.enabled == false && this.system.retainer.managerid != "") {
+      let manager = game.actors.get(this.system.retainer.managerid);
+      setTimeout(() => { manager.delHenchman(this.id) }, 200);
+    }
+    super._onUpdate(changed, options, userId);
+  }
+
   /**
    * Extends data from base Actor class
    */
@@ -18,7 +55,6 @@ export class AcksActor extends Actor {
     this.computeAAB();
 
     // Determine Initiative
-    //if (game.settings.get("acks", "initiative") != "group") {
     data.initiative.value = data.initiative.mod || 0;
     if (this.type == "character") {
       data.initiative.value += data.scores.dex.mod;
@@ -26,13 +62,12 @@ export class AcksActor extends Actor {
         data.initiative.value -= 1;
       }
     }
-    /*} else {
-      data.initiative.value = 0;
-    } */
 
     data.movement.encounter = data.movement.base / 3;
-
-    console.log("MODCOMPUTE2", data);
+    if (this.type == "character" && this.system.config.movementAuto) {
+      data.movementacks.stealth = data.movementacks.combat / 2;
+      data.movementacks.climb = data.movementacks.combat / 3;
+    }
   }
 
   /* -------------------------------------------- */
@@ -73,6 +108,260 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  manageMoney(name, quantity) {
+    let money = this.items.find((i) => i.name.toLowerCase() == name.toLowerCase());
+    if (!money) {
+      return;
+    }
+    let newValue = Number(money.system.quantity) + Number(quantity);
+    if (newValue < 0) {
+      newValue = 0;
+    }
+    money.update({ 'system.quantity': newValue });
+  }
+
+  /* -------------------------------------------- */
+  getLanguages() {
+    let lang = this.items.filter((i) => i.type == "language");
+    return lang;
+  }
+
+  /* -------------------------------------------- */
+  getHenchmen() {
+    if (this.type != "character") {
+      return;
+    }
+
+    let subActors = [];
+    for (let id of this.system.henchmenList) {
+      subActors.push(foundry.utils.duplicate(game.actors.get(id)));
+    }
+    return subActors;
+  }
+
+  /* -------------------------------------------- */
+  requestHenchman(subActorId) {
+    let henchman = game.actors.get(subActorId);
+    let d = new Dialog({
+      title: "Assign " + henchman.name + " as a Hireling of " + this.name + "?",
+      content: "<p>It will enable the Hireling flag in the actor, as well as an linked token actor.</p>",
+      buttons: {
+        one: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "Yes",
+          callback: async () => {
+            await henchman.update({ 'system.retainer.enabled': true, 'prototypeToken.actorLink': true });
+            this.addHenchman(subActorId);
+          }
+        },
+        two: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "No",
+          callback: () => { return }
+        }
+      },
+      default: "two",
+    });
+    d.render(true);
+  }
+
+  /* -------------------------------------------- */
+  async addHenchman(subActorId) {
+    if (this.type != "character") {
+      ui.notifications.error(game.i18n.localize("ACKS.error.HenchmanCharacter"));
+      return;
+    }
+    let npc = game.actors.get(subActorId);
+    if (npc?.type != "character") {
+      ui.notifications.error(game.i18n.localize("ACKS.error.HenchmanMonster"));
+      return;
+    }
+    if (!npc?.system.retainer?.enabled) {
+      this.requestHenchman(subActorId);
+      return;
+    }
+    // Check if it is a linked character
+    if (!npc.prototypeToken.actorLink) {
+      this.requestHenchman(subActorId);
+      return;
+    }
+    // Check if the owner is a  linked character
+    if (!this.prototypeToken.actorLink) {
+      ui.notifications.error(game.i18n.localize("ACKS.error.ActorLinked"));
+      return;
+    }
+    // Check if the henchman is already in another actor
+    let henchmen = game.actors.filter((a) => a.type == "character" && a.system.henchmenList.includes(subActorId));
+    if (henchmen.length > 0) {
+      ui.notifications.error(game.i18n.localize("ACKS.error.HenchmanAlready"));
+      return
+    }
+    let subActors = foundry.utils.duplicate(this.system.henchmenList);
+    subActors.push(subActorId);
+    await this.update({ 'system.henchmenList': subActors });
+
+    // Set the name of the manager in the henchman data 
+    await npc.update({ 'system.retainer.managerid': this.id });
+  }
+  /* -------------------------------------------- */
+  async delHenchman(subActorId) {
+    let newArray = [];
+    for (let id of this.system.henchmenList) {
+      if (id != subActorId) {
+        newArray.push(id);
+      }
+    }
+    await this.update({ 'system.henchmenList': newArray });
+    // Cleanup the manager id 
+    let npc = game.actors.get(subActorId);
+    await npc.update({ 'system.retainer.managerid': "" });
+  }
+
+  /* -------------------------------------------- */
+  showHenchman(henchmanId) {
+    let henchman = game.actors.get(henchmanId);
+    henchman.sheet.render(true);
+  }
+
+  /* -------------------------------------------- */
+  getManagerName() {
+    if (this.type != "character" || this.system.retainer?.managerid == "") {
+      return "";
+    }
+    let manager = game.actors.get(this.system.retainer.managerid);
+    return manager.name;
+  }
+  /* -------------------------------------------- */
+  updateMoney(moneyId, value) {
+    let money = this.items.find((i) => i.id == moneyId);
+    let newValue = money.system.quantity + value;
+    if (newValue < 0) {
+      newValue = 0;
+    }
+    money.update({ 'system.quantity': newValue });
+  }
+
+  /* -------------------------------------------- */
+  getTotalWages() {
+    let total = 0;
+    if (this.type != "character") {
+      return 0;
+    }
+    this.system.henchmenList.forEach((id) => {
+      let henchman = game.actors.get(id);
+      let q = henchman.system.retainer?.quantity || 1
+      total += Number(henchman.system.retainer.wage) * Number(q);
+    });
+    return total;
+  }
+
+  /* -------------------------------------------- */
+  payWages() {
+    if (this.type != "character") {
+      return;
+    }
+
+    let totalWages = this.getTotalWages() * 100;
+    let totalMoney = this.getTotalMoneyGC() * 100;
+    if (totalWages > totalMoney) {
+      ui.notifications.error(game.i18n.localize("ACKS.error.NotEnoughMoney"));
+      return;
+    }
+    // Get GC item
+    let moneyItems = this.items.filter((i) => i.type == "money");
+    // Sort money items per coppervalue, descending order
+    moneyItems.sort((a, b) => a.system.coppervalue - b.system.coppervalue);
+    // Loop through money items and decrement the totalWages value (expressed in copper)
+    for (let item of moneyItems) {
+      let quantity = Math.floor(totalWages / item.system.coppervalue);
+      if (quantity > item.system.quantity) {
+        quantity = item.system.quantity;
+      }
+      totalWages -= quantity * item.system.coppervalue;
+      item.update({ 'system.quantity': item.system.quantity - quantity });
+      if (totalWages == 0) {
+        break;
+      }
+    }
+    // Send result chat message
+    const speaker = ChatMessage.getSpeaker({ actor: this });
+    ChatMessage.create({
+      content: game.i18n.format("ACKS.messages.PayWages", {
+        name: this.name,
+        value: this.getTotalWages(),
+      }),
+      speaker,
+    });
+  }
+
+  /* -------------------------------------------- */
+  getTotalMoneyGC() {
+    let total = 0;
+    this.items.forEach((item) => {
+      if (item.type == "money") {
+        total += item.system.quantity * item.system.coppervalue;
+      }
+    });
+    return total / 100;
+  }
+  /* -------------------------------------------- */
+  getTotalMoneyEncumbrance() {
+    let total = 0;
+    this.items.forEach((item) => {
+      if (item.type == "money") {
+        total += item.system.quantity;
+      }
+    });
+    let nbStone = Math.floor(total / 1000);
+    let nbItems = Math.ceil((total - (nbStone * 1000)) / 166);
+    return { stone: nbStone, item: nbItems };
+  }
+
+  /* -------------------------------------------- */
+  updateWeight() {
+    let toUpdate = []
+    for (let i of this.items) {
+      if (i.system?.weight != undefined && i.system?.weight6 == -1) {
+        let nbStones6 = Math.floor(i.system.weight / 166.66)
+        toUpdate.push({ _id: i.id, 'system.weight6': nbStones6, 'system.weight': -1 })
+      }
+    }
+    if (toUpdate.length > 0) {
+      this.updateEmbeddedDocuments("Item", toUpdate)
+    }
+  }
+
+  /* -------------------------------------------- */
+  async updateImplements() {
+    if (this.system.saves.implements?.value == -1) {
+      this.update({ 'system.saves.implements.value': this.system.saves.wand.value });
+    }
+  }
+
+  /* -------------------------------------------- */
+  async updateLanguages() {
+    if (this.type != "character") {
+      return;
+    }
+    // Load compendium languages
+    let languages = await AcksUtility.loadCompendium("acks.acks-languages");
+    let langList = languages.map(i => i.toObject())
+
+    let toPush = [];
+    for (let langName of this.system.languages?.value) {
+
+      let lang = langList.find((i) => i.name.toLowerCase() == langName.toLowerCase());
+      if (lang) {
+        toPush.push(lang);
+      }
+    }
+    if (toPush.length > 0) {
+      this.createEmbeddedDocuments("Item", toPush);
+      this.update({ 'system.languages.value': [] });
+    }
+  }
+
+  /* -------------------------------------------- */
   isNew() {
     const data = this.system;
     if (this.type == "character") {
@@ -108,6 +397,9 @@ export class AcksActor extends Actor {
         wand: {
           value: saves.w,
         },
+        implements: {
+          value: saves.w,
+        },
         paralysis: {
           value: saves.p,
         },
@@ -135,6 +427,37 @@ export class AcksActor extends Actor {
           value: roll.total,
         }
       }
+    });
+  }
+
+  /* -------------------------------------------- */
+  rollAdventuring(advKey, options = {}) {
+    const label = game.i18n.localize(`ACKS.adventuring.${advKey}`);
+    //console.log("ROLLADV", advKey);
+    const rollParts = ["1d20"];
+
+    const data = {
+      actor: this,
+      roll: {
+        type: "above",
+        target: this.system.adventuring[advKey],
+      },
+      details: game.i18n.format("ACKS.roll.details.adventuring", {
+        adventuring: label,
+      }),
+    };
+
+    let skip = options.event && options.event.ctrlKey;
+
+    // Roll and return
+    return AcksDice.Roll({
+      event: options.event,
+      parts: rollParts,
+      data: data,
+      skipDialog: skip,
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: game.i18n.format("ACKS.roll.adventuring", { adventuring: label }),
+      title: game.i18n.format("ACKS.roll.adventuring", { adventuring: label }),
     });
   }
 
@@ -179,26 +502,7 @@ export class AcksActor extends Actor {
 
     const data = {
       actor: this,
-      roll: {
-        type: "table",
-        table: {
-          1: game.i18n.format("ACKS.morale.retreat", {
-            name: this.name,
-          }),
-          3: game.i18n.format("ACKS.morale.fightingWithdrawal", {
-            name: this.name,
-          }),
-          6: game.i18n.format("ACKS.morale.fight", {
-            name: this.name,
-          }),
-          9: game.i18n.format("ACKS.morale.advanceAndPursue", {
-            name: this.name,
-          }),
-          12: game.i18n.format("ACKS.morale.fightToTheDeath", {
-            name: this.name,
-          }),
-        },
-      },
+      roll: {}
     };
 
     let skip = options?.event?.ctrlKey;
@@ -613,6 +917,7 @@ export class AcksActor extends Actor {
     return output;
   }
 
+
   /* -------------------------------------------- */
   _isSlow() {
     this.system.isSlow = false;
@@ -632,33 +937,22 @@ export class AcksActor extends Actor {
       return;
     }
 
-    const option = game.settings.get("acks", "encumbranceOption");
-
     let totalEncumbrance = 0;
 
     this.items.forEach((item) => {
-      if (item.type === "item") {
-        if (option === "detailed") {
-          if (item.system.treasure) {
-            totalEncumbrance += item.system.weight * item.system.quantity.value;
-          } else {
-            totalEncumbrance += 166.6;
-          }
-        } else if (item.system.treasure) {
-          totalEncumbrance += 1000 * item.system.quantity.value;
-        } else {
-          totalEncumbrance += 1000;
-        }
+      if (item.type === "item" && item.system.subtype != "clothing") {
+        totalEncumbrance += item.system.weight6 * item.system.quantity.value;
       } else if (["weapon", "armor"].includes(item.type)) {
-        if (option === "detailed") {
-          totalEncumbrance += item.system.weight;
-        } else {
-          totalEncumbrance += 1000;
-        }
+        totalEncumbrance += item.system.weight6;
       }
     });
+    totalEncumbrance /= 6 // Get the weight in stones
+    totalEncumbrance += this.getTotalMoneyEncumbrance().stone
 
-    const maxEncumbrance = this.system.encumbrance.max;
+    let maxEncumbrance = 20 + this.system.scores.str.mod;
+    if (this.system.encumbrance.max != maxEncumbrance && this._id) {
+      this.update({ 'system.encumbrance.max': maxEncumbrance });
+    }
 
     this.system.encumbrance = {
       pct: Math.clamp(
@@ -679,19 +973,56 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   _calculateMovement() {
     if (this.system.encumbrance.value > this.system.encumbrance.max) {
+      this.system.movementacks.exploration = 0
+      this.system.movementacks.combat = 0
+      this.system.movementacks.chargerun = 0
+      this.system.movementacks.expedition = 0
       this.system.movement.base = 0;
-    } else if (this.system.encumbrance.value > 10000) {
+    } else if (this.system.encumbrance.value > 10) {
+      this.system.movementacks.exploration = 30
+      this.system.movementacks.combat = 10
+      this.system.movementacks.chargerun = 30
+      this.system.movementacks.expedition = 6
       this.system.movement.base = 30;
-    } else if (this.system.encumbrance.value > 7000) {
+    } else if (this.system.encumbrance.value > 7) {
+      this.system.movementacks.exploration = 60
+      this.system.movementacks.combat = 20
+      this.system.movementacks.chargerun = 60
+      this.system.movementacks.expedition = 12
       this.system.movement.base = 60;
-    } else if (this.system.encumbrance.value > 5000) {
+    } else if (this.system.encumbrance.value > 5) {
+      this.system.movementacks.exploration = 90
+      this.system.movementacks.combat = 30
+      this.system.movementacks.chargerun = 90
+      this.system.movementacks.expedition = 18
       this.system.movement.base = 90;
     } else {
+      this.system.movementacks.exploration = 120
+      this.system.movementacks.combat = 40
+      this.system.movementacks.chargerun = 120
+      this.system.movementacks.expedition = 24
       this.system.movement.base = 120;
     }
   }
 
-  /* -------------------------------------------- */
+  /* -------------- ------------------------------ */
+  getFavorites() {
+    return this.items.filter((i) => i.system.favorite);
+  }
+  buildFavoriteActions() {
+    let fav = this.getFavorites();
+    return fav;
+  }
+  /*-------------------------------------------- */
+  buildRollList() {
+    let rolls = []
+    for (let key in this.system.scores) {
+      let attr = this.system.scores[key]
+      rolls.push({ key: key, value: attr.value, name: game.i18n.localize("ACKS.scores." + key + ".short"), type: "score" })
+    }
+    return rolls
+  }
+  /* -------------- ------------------------------ */
   computeTreasure() {
     if (this.type != "character") {
       return;

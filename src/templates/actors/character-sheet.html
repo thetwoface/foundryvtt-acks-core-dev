@@ -23,6 +23,12 @@
     <a class="item" data-tab="notes">
       {{localize "ACKS.category.notes"}}
     </a>
+    <a class="item" data-tab="hirelings">
+      {{localize "ACKS.category.hirelings"}}
+    </a>
+    <a class="item" data-tab="effects">
+      {{localize "ACKS.category.effects"}}
+    </a>
   </nav>
   {{! Sheet Body }}
   <section class="sheet-body">
@@ -41,11 +47,17 @@
     <div class="tab" data-group="primary" data-tab="inventory">
       {{> "systems/acks/templates/actors/partials/character-inventory-tab.html"}}
     </div>
+    <div class="tab" data-group="primary" data-tab="hirelings">
+      {{> "systems/acks/templates/actors/partials/character-hirelings-tab.html"}}
+    </div>
     <div class="tab" data-group="primary" data-tab="bonuses">
       {{> "systems/acks/templates/actors/partials/character-bonuses-tab.html"}}
     </div>
     <div class="tab" data-group="primary" data-tab="notes">
       {{> "systems/acks/templates/actors/partials/character-notes-tab.html"}}
+    </div>
+    <div class="tab" data-group="primary" data-tab="effects">
+      {{> "systems/acks/templates/actors/partials/character-effects-tab.html"}}
     </div>
   </section>
 </form>

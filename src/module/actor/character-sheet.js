@@ -21,8 +21,8 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "actor", "character"],
       template: "systems/acks/templates/actors/character-sheet.html",
-      width: 450,
-      height: 530,
+      width: 780,
+      height: 580,
       resizable: true,
       tabs: [
         {
@@ -54,6 +54,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     data.config.initiative = true; // game.settings.get("acks", "initiative") != "group";
     data.config.BHR = game.settings.get("acks", "bhr");
     data.config.removeMagicBonus = game.settings.get("acks", "removeMagicBonus");
+    data.isGM = game.user.isGM;
 
     data.isNew = this.actor.isNew();
     return data;
@@ -65,7 +66,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
 
     let templateData = { choices: choices },
       dlg = await renderTemplate(
-        "/systems/acks/templates/actors/dialogs/lang-create.html",
+        "systems/acks/templates/actors/dialogs/lang-create.html",
         templateData
       );
     //Create Dialog window
@@ -127,8 +128,8 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     return item.update({ "system.quantity.value": parseInt(event.target.value) });
   }
 
-    /* -------------------------------------------- */
-_onShowModifiers(event) {
+  /* -------------------------------------------- */
+  _onShowModifiers(event) {
     event.preventDefault();
     new AcksCharacterModifiers(this.actor, {
       top: this.position.top + 40,
@@ -143,6 +144,29 @@ _onShowModifiers(event) {
    */
   activateListeners(html) {
     super.activateListeners(html);
+
+    html.find(".pay-wages").click((ev) => {
+      this.actor.payWages();
+    });
+    
+    html.find(".money-minus").click((ev) => {
+      let moneyId = $(ev.currentTarget).data("money-id");
+      this.actor.updateMoney(moneyId, -1);
+    });
+    html.find(".money-plus").click((ev) => {
+      let moneyId = $(ev.currentTarget).data("money-id");
+      this.actor.updateMoney(moneyId, 1);
+    });
+
+      
+    html.find(".henchman-loyalty-check").click((ev) => {
+      let henchId = $(ev.currentTarget).data("henchman-id");
+      game.actors.get(henchId).rollLoyalty({ event: ev });
+    });
+    html.find(".henchman-morale-check").click((ev) => {
+      let henchId = $(ev.currentTarget).data("henchman-id");
+      game.actors.get(henchId).rollMorale({ event: ev });
+    });
 
     html.find(".morale-check a").click((ev) => {
       let actorObject = this.actor;
@@ -173,6 +197,13 @@ _onShowModifiers(event) {
       let element = ev.currentTarget;
       let expl = element.parentElement.parentElement.dataset.exploration;
       actorObject.rollExploration(expl, { event: ev });
+    });
+
+    html.find(".adventuring .attribute-name a").click((ev) => {
+      let actorObject = this.actor;
+      let element = ev.currentTarget;
+      let advKey = element.parentElement.dataset.adventuring;
+      actorObject.rollAdventuring(advKey, { event: ev });
     });
 
     html.find(".inventory .item-titles .item-caret").click((ev) => {
@@ -215,6 +246,30 @@ _onShowModifiers(event) {
       li.slideUp(200, () => this.render(false));
     });
 
+    // Open henchman/hireling sheet
+    html.find(".open-henchman").click((ev) => {
+      const li = $(ev.currentTarget);
+      this.actor.showHenchman( li.data("henchmanId") );
+    });
+    html.find(".hireling-edit-quantity").change((ev) => {
+      // Get input value of the field 
+      let quantity = $(ev.currentTarget).val();
+      // Get the hireling id
+      let hirelingId = $(ev.currentTarget).parents(".item").data("henchmanId");
+      // Update the hireling quantity
+      let hireling = game.actors.get(hirelingId);
+      hireling.update({ "system.retainer.quantity": quantity });
+    });
+      
+    // Delete Inventory Item
+    html.find(".henchman-delete").click((ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.delHenchman(
+        li.data("henchmanId"),
+      );
+      li.slideUp(200, () => this.render(false));
+    });
+
     html.find(".item-push").click((ev) => {
       ev.preventDefault();
       const header = ev.currentTarget;
@@ -251,13 +306,25 @@ _onShowModifiers(event) {
     html.find(".item-toggle").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      console.log("item", item.system.equipped);
+      //console.log("item", item.system.equipped);
       await this.actor.updateEmbeddedDocuments("Item", [{
         _id: li.data("itemId"),
         system: {
           equipped: !item.system.equipped,
         },
-      } ] );
+      }]);
+    });
+
+    html.find(".item-favorite").click(async (ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      //console.log("item", item.system.favorite);
+      await this.actor.updateEmbeddedDocuments("Item", [{
+        _id: li.data("itemId"),
+        system: {
+          favorite: !item.system.favorite,
+        },
+      }]);
     });
 
     html

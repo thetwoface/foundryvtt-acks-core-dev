@@ -13,6 +13,8 @@ import * as treasure from "./module/treasure.js";
 import * as macros from "./module/macros.js";
 import * as party from "./module/party.js";
 import { AcksCombat, AcksCombatClass } from "./module/combat.js";
+import { AcksTokenHud } from "./module/acks-token-hud.js";
+import { AcksUtility } from "./module/utility.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -67,6 +69,9 @@ Hooks.once("init", async function () {
   });
 
   await preloadHandlebarsTemplates();
+
+  AcksTokenHud.init()
+
 });
 
 /**
@@ -87,6 +92,7 @@ Hooks.once("ready", async () => {
   Hooks.on("hotbarDrop", (bar, data, slot) =>
     macros.createAcksMacro(data, slot)
   );
+  AcksUtility.updateWeightsLanguages()
 });
 
 // License and KOFI infos

@@ -99,7 +99,7 @@ export class AcksPartySheet extends FormApplication {
   async _selectActors(event) {
     event.preventDefault();
 
-    const template = "/systems/acks/templates/apps/party-select.html";
+    const template = "systems/acks/templates/apps/party-select.html";
     const templateData = {
       actors: this.object.documents,
     };

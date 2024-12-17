@@ -49,7 +49,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
 
     let templateData = { choices: choices },
       dlg = await renderTemplate(
-        "/systems/acks/templates/actors/dialogs/monster-saves.html",
+        "systems/acks/templates/actors/dialogs/monster-saves.html",
         templateData
       );
     //Create Dialog window

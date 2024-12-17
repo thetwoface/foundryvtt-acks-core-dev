@@ -8,22 +8,22 @@
             <ol class="flex2">
                 {{#each scores as |score id|}}
                 <li class="flexrow">
-                    <div style="text-align:right;">
+                    <div >
                         {{lookup ../config.scores id}}
                     </div>
-                    <div style="text-align:center;">
+                    <div >
                         {{score}}
                     </div>
                 </li>
                 {{/each}}
             </ol>
-            <div style="margin: 0.5em 0">
-                <div>Sum: {{stats.sum}}</div>
-                <div>Avg: {{stats.avg}}</div>
-                <div>σ: {{stats.std}}</div>
-                <hr>
-                <div>Gold: {{gold}}</div>
-            </div>
         </div>
+        <div style="margin: 0.5em 0">
+          <div>Sum: {{stats.sum}}</div>
+          <div>Avg: {{stats.avg}}</div>
+          <div>σ: {{stats.std}}</div>
+          <hr>
+          <div>Gold: {{gold}}</div>
+      </div>
     </div>
 </section>

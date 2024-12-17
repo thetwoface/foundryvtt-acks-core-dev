@@ -35,8 +35,8 @@
             <div class="form-fields">
               <input
                 type="text"
-                name="system.weight"
-                value="{{system.weight}}"
+                name="system.weight6"
+                value="{{system.weight6}}"
                 data-dtype="Number"
                 />
             </div>
@@ -53,102 +53,127 @@
       </ol>
     </div>
   </header>
-  <section class="sheet-body">
-    <div class="flexrow">
-      <div class="stats">
-        <div class="form-group">
-          <div class="form-fields">
-            <input
-              type="text"
-              data-action="add-tag"
-              title="{{localize 'ACKS.items.typeTag'}}"
-              placeholder="{{localize 'ACKS.items.enterTag'}}"
-              />
-          </div>
-        </div>
-        <div class="form-group block-input">
-          <label>{{localize 'ACKS.items.Damage'}}</label>
-          <div class="form-fields">
-            <input
-              type="text"
-              name="system.damage"
-              value="{{system.damage}}"
-              data-dtype="String"
-              />
-          </div>
-        </div>
-        <div class="form-group">
-          <label title="{{localize 'ACKS.items.AtkBonus'}}">{{localize
-            'ACKS.items.Bonus'}}</label>
-          <div class="form-fields">
-            <input
-              type="text"
-              name="system.bonus"
-              value="{{system.bonus}}"
-              data-dtype="Number"
-              />
-          </div>
-        </div>
-        <div class="form-group attack-type">
-          <a title="{{localize 'ACKS.items.Melee'}}" class="melee-toggle {{#if
-            system.melee}}active{{/if}}"><i class="fas fa-fist-raised"></i></a>
-          <a title="{{localize 'ACKS.items.Missile'}}" class="missile-toggle
-            {{#if system.missile}}active{{/if}}"><i class="fas fa-bullseye"></i></a>
-        </div>
-        {{#if system.missile}}
-        <div class="form-group block-input">
-          <label>{{localize 'ACKS.items.Range'}}</label>
-          <div class="form-fields range">
-            <input
-              type="text"
-              name="system.range.short"
-              value="{{system.range.short}}"
-              data-dtype="Number"
-              />
-              <div class="sep"></div>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">
+      {{localize "ACKS.category.description"}}
+    </a>
+    <a class="item" data-tab="effects">
+      {{localize "ACKS.category.effects"}}
+    </a>
+  </nav>
+
+    <section class="sheet-body">
+      <div class="tab" data-group="primary" data-tab="description">
+        <div class="flexrow">
+        <div class="stats">
+          <div class="form-group">
+            <div class="form-fields">
               <input
-              type="text"
-              name="system.range.medium"
-              value="{{system.range.medium}}"
-              data-dtype="Number"
-              />
-              <div class="sep"></div>
+                type="text"
+                data-action="add-tag"
+                title="{{localize 'ACKS.items.typeTag'}}"
+                placeholder="{{localize 'ACKS.items.enterTag'}}"
+                />
+            </div>
+          </div>
+          <div class="form-group block-input">
+            <label>{{localize 'ACKS.items.Damage'}}</label>
+            <div class="form-fields">
               <input
-              type="text"
-              name="system.range.long"
-              value="{{system.range.long}}"
-              data-dtype="Number"
-              />
+                type="text"
+                name="system.damage"
+                value="{{system.damage}}"
+                data-dtype="String"
+                />
+            </div>
           </div>
-        </div>
-        {{/if}}
-        <div class="form-group">
-          <label>{{localize 'ACKS.spells.Save'}}</label>
-          <div class="form-fields">
-            <select name="system.save">
-              <option value=""></option>
-              {{selectOptions config.saves_short selected=system.save}}
-            </select>
+          <div class="form-group">
+            <label title="{{localize 'ACKS.items.AtkBonus'}}">{{localize
+              'ACKS.items.Bonus'}}</label>
+            <div class="form-fields">
+              <input
+                type="text"
+                name="system.bonus"
+                value="{{system.bonus}}"
+                data-dtype="Number"
+                />
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>{{localize 'ACKS.items.Slow'}}</label>
-          <div class="form-fields">
-            <input
-              type="checkbox"
-              name="system.slow"
-              value="{{system.slow}}"
-              {{checked
-              system.slow}} 
-              data-dtype="Boolean"
-              />
+          <div class="form-group attack-type">
+            <a title="{{localize 'ACKS.items.Melee'}}" class="melee-toggle {{#if
+              system.melee}}active{{/if}}"><i class="fas fa-fist-raised"></i></a>
+            <a title="{{localize 'ACKS.items.Missile'}}" class="missile-toggle
+              {{#if system.missile}}active{{/if}}"><i class="fas fa-bullseye"></i></a>
           </div>
+          {{#if system.missile}}
+          <div class="form-group block-input">
+            <label>{{localize 'ACKS.items.Range'}}</label>
+            <div class="form-fields range">
+              <input
+                type="text"
+                name="system.range.short"
+                value="{{system.range.short}}"
+                data-dtype="Number"
+                />
+                <div class="sep"></div>
+                <input
+                type="text"
+                name="system.range.medium"
+                value="{{system.range.medium}}"
+                data-dtype="Number"
+                />
+                <div class="sep"></div>
+                <input
+                type="text"
+                name="system.range.long"
+                value="{{system.range.long}}"
+                data-dtype="Number"
+                />
+            </div>
+          </div>
+          {{/if}}
+          <div class="form-group">
+            <label>{{localize 'ACKS.spells.Save'}}</label>
+            <div class="form-fields">
+              <select name="system.save">
+                <option value=""></option>
+                {{selectOptions config.saves_short selected=system.save}}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{localize 'ACKS.items.Slow'}}</label>
+            <div class="form-fields">
+              <input
+                type="checkbox"
+                name="system.slow"
+                value="{{system.slow}}"
+                {{checked
+                system.slow}} 
+                data-dtype="Boolean"
+                />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{localize 'ACKS.favorite'}}</label>
+            <div class="form-fields">
+              <input type="checkbox" name="system.favorite" value="{{system.favorite}}" {{checked system.favorite}}
+                data-dtype="Boolean" />
+            </div>
+          </div>    
         </div>
-      </div>
-      <div class="description weapon-editor">
-        {{editor description target="system.description" button=true
-        owner=owner editable=editable}}
+        <div class="description weapon-editor">
+          {{editor description target="system.description" button=true
+          owner=owner editable=editable}}
+        </div>
       </div>
     </div>
+
+    <div class="tab" data-group="primary" data-tab="effects">
+      {{> "systems/acks/templates/items/partials/item-generic-effects-tab.html"}}
+    </div>
+
   </section>
+
 </form>

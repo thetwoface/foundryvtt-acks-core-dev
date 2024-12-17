@@ -16,7 +16,7 @@ export const registerMainSettings = async () => {
     config: true,       // false if you dont want it to show in module config
     type: String,       // Number, Boolean, String,  
     requiresReload: true,
-    default: '#FF0000',
+    default: '#afc2ee',
     onChange: value => {
       console.log(value)
     },
@@ -33,7 +33,7 @@ export const registerMainSettings = async () => {
     config: true,       // false if you dont want it to show in module config
     type: String,       // Number, Boolean, String,  
     requiresReload: true,
-    default: '#FF0000',
+    default: '#eb7272',
     onChange: value => {
       console.log(value)
     },

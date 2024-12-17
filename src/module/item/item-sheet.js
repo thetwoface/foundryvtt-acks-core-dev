@@ -1,3 +1,4 @@
+import { AcksUtility } from "../utility.js";
 /**
  * Extend the basic ItemSheet with some very simple modifications
  */
@@ -47,6 +48,9 @@ export class AcksItemSheet extends ItemSheet {
     const data = super.getData();
     data.config = CONFIG.ACKS;
     data.system = this.object.system;
+    data.effects = await AcksUtility.prepareActiveEffectCategories(this.item.effects);
+    data.isGM = game.user.isGM;
+  
     data.description = await TextEditor.enrichHTML(this.object.system.description, { async: true })
 
     return data;

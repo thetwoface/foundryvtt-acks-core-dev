@@ -88,15 +88,15 @@
   "ACKS.scores.cha.short": "CHA",
 
   "ACKS.saves.death.short": "MP",
-  "ACKS.saves.death.long": "Mort Poison",
+  "ACKS.saves.death.long": "Mort",
   "ACKS.saves.wand.short": "B",
   "ACKS.saves.wand.long": "Baguettes",
   "ACKS.saves.paralysis.short": "PP",
-  "ACKS.saves.paralysis.long": "Paralysie Pétrification",
+  "ACKS.saves.paralysis.long": "Paralysie",
   "ACKS.saves.breath.short": "S",
   "ACKS.saves.breath.long": "Souffle",
   "ACKS.saves.spell.short": "SBB",
-  "ACKS.saves.spell.long": "Sorts Bâtons",
+  "ACKS.saves.spell.long": "Sorts",
   "ACKS.saves.magic.long": "Sauv. Magie",
 
   "ACKS.Health": "Points de Vie",

@@ -75,6 +75,10 @@ export const ACKS = {
     orange: "ACKS.colors.orange",
     white: "ACKS.colors.white"
   },
+  proficiencyType: {
+    "general": "ACKS.proficiencyType.general",
+    "class": "ACKS.proficiencyType.class",
+  },
   languages: [
   "Common",
   "Jutlandic",
@@ -127,15 +131,24 @@ export const ACKS = {
     charge: "ACKS.items.Charge",
   },
   tag_images: {
-    melee: "/systems/acks/assets/melee.png",
-    missile: "/systems/acks/assets/missile.png",
-    slow: "/systems/acks/assets/slow.png",
-    twohanded: "/systems/acks/assets/twohanded.png",
-    blunt: "/systems/acks/assets/blunt.png",
-    brace: "/systems/acks/assets/brace.png",
-    splash: "/systems/acks/assets/splash.png",
-    reload: "/systems/acks/assets/reload.png",
-    charge: "/systems/acks/assets/charge.png",
+    melee: "systems/acks/assets/melee.png",
+    missile: "systems/acks/assets/missile.png",
+    slow: "systems/acks/assets/slow.png",
+    twohanded: "systems/acks/assets/twohanded.png",
+    blunt: "systems/acks/assets/blunt.png",
+    brace: "systems/acks/assets/brace.png",
+    splash: "systems/acks/assets/splash.png",
+    reload: "systems/acks/assets/reload.png",
+    charge: "systems/acks/assets/charge.png",
+  },
+  hireling_categories: {
+    henchman: "ACKS.hireling.henchman",
+    mercenary: "ACKS.hireling.mercenary",
+    specialist: "ACKS.hireling.specialist"
+  },
+  item_subtypes: {
+    item: "ACKS.items.item",
+    clothing: "ACKS.items.clothing"
   },
   monster_saves: {
     0: {

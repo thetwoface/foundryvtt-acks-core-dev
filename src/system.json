@@ -6,8 +6,14 @@
   "relationships": {
   },
   "compatibility": {
-    "minimum": "11",
+    "minimum": "12",
     "verified": "12"
+  },
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "html", "hbs", "json"],
+      "paths": ["acks.css", "./", "templates", "css", "lang/en.json"]
+    }
   },
   "authors": [
     {
@@ -21,145 +27,195 @@
   "styles": ["acks.css"],
   "packs": [
     {
-      "name": "acks-arcane-spells-1",
-      "label": "ACKS Arcane Spells 1",
+      "name": "acks-arcane-spells",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "color": "#822650",
+      "label": "Arcane Spells",
       "system": "acks",
-      "path": "packs/acks-arcane-spells-1.db",
+      "path": "packs/acks-arcane-spells",
       "type": "Item",
       "module": "acks-packs"
     },
-
     {
-      "name": "acks-arcane-spells-2",
-      "label": "ACKS Arcane Spells 2",
+      "name": "acks-divine-spells",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Divine Spells",
       "system": "acks",
-      "path": "packs/acks-arcane-spells-2.db",
+      "path": "packs/acks-divine-spells",
       "type": "Item",
       "module": "acks-packs"
     },
-
     {
-      "name": "acks-arcane-spells-3",
-      "label": "ACKS Arcane Spells 3",
+      "name": "acks-all-equipment",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "color": "#822650",
+      "label": "Equipment",
       "system": "acks",
-      "path": "packs/acks-arcane-spells-3.db",
+      "path": "packs/acks-all-equipment",
       "type": "Item",
       "module": "acks-packs"
     },
-
-    {
-      "name": "acks-arcane-spells-4",
-      "label": "ACKS Arcane Spells 4",
-      "system": "acks",
-      "path": "packs/acks-arcane-spells-4.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
-    {
-      "name": "acks-armor",
-      "label": "ACKS Armor",
-      "system": "acks",
-      "path": "packs/acks-armor.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
     {
       "name": "acks-class-abilities",
-      "label": "ACKS Class Abilities",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Powers",
       "system": "acks",
-      "path": "packs/acks-class-abilities.db",
+      "path": "packs/acks-class-abilities",
       "type": "Item",
       "module": "acks-packs"
     },
-
-    {
-      "name": "acks-divine-spells-1",
-      "label": "ACKS Divine Spells 1",
-      "system": "acks",
-      "path": "packs/acks-divine-spells-1.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
-    {
-      "name": "acks-divine-spells-2",
-      "label": "ACKS Divine Spells 2",
-      "system": "acks",
-      "path": "packs/acks-divine-spells-2.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-    { 
-      "name": "acks-equipment",
-      "label": "ACKS Equipment",
-      "system": "acks",
-      "path": "packs/acks-equipment.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
     { 
       "name": "acks-monster-abilities",
-      "label": "ACKS Monster Abilities",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Monster Abilities",
       "system": "acks",
-      "path": "packs/acks-monster-abilities.db",
+      "path": "packs/acks-monster-abilities",
       "type": "Item",
       "module": "acks-packs"
     },
-
+    { 
+      "name": "acks-languages",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Languages",
+      "system": "acks",
+      "path": "packs/acks-languages",
+      "type": "Item",
+      "module": "acks-packs"
+    },
     { 
       "name": "acks-monsters",
-      "label": "ACKS Monsters",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Monsters",
       "system": "acks",
-      "path": "packs/acks-monsters.db",
+      "path": "packs/acks-monsters",
       "type": "Actor",
       "module": "acks-packs"
     },
 
     {
       "name": "acks-proficiencies",
-      "label": "ACKS Proficiencies",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Proficiencies",
       "system": "acks",
-      "path": "packs/acks-proficiencies.db",
+      "path": "packs/acks-proficiencies",
       "type": "Item",
       "module": "acks-packs"
     },
 
     {
       "name": "acks-treasure",
-      "label": "ACKS Treasure Tables",
+      "label": "Treasure",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
       "system": "acks",
-      "path": "packs/acks-treasure.db",
+      "path": "packs/acks-treasure",
       "type": "RollTable",
       "module": "acks-packs"
     },
 
     {
-      "name": "acks-weapons",
-      "label": "ACKS Weapons",
-      "system": "acks",
-      "path": "packs/acks-weapons.db",
-      "type": "Item",
-      "module": "acks-packs"
-    },    
-    {
       "name": "acks-maps",
-      "label": "ACKS Maps",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Maps",
       "system": "acks",
-      "path": "packs/acks-maps.db",
+      "path": "packs/acks-maps",
       "type": "Scene",
       "module": "acks-packs"
-    },    
+    },
     {
       "name": "acks-journals",
-      "label": "ACKS Journals",
+      "banner": "systems/acks/assets/ui/acks_red_background_fade75.webp",
+      "label": "Game System Help",
       "system": "acks",
-      "path": "packs/acks-journals.db",
+      "path": "packs/acks-journals",
       "type": "JournalEntry",
       "module": "acks-packs"
-    }    
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "ACKS II Revised Rulebook",
+      "sorting": "m",
+      "color": "#620630",
+      "folders": [
+        {
+          "name": "Classes",
+          "sorting": "a",
+          "color": "#822638",
+          "packs": [
+            "acks-class-abilities"
+          ]
+        },
+        {
+          "name": "Proficiencies",
+          "sorting": "a",
+          "color": "#620630",
+          "packs": [
+            "acks-proficiencies"
+          ]
+        },
+        {
+          "name": "Equipment",
+          "sorting": "a",
+          "color": "#822638",
+          "packs": [
+            "acks-all-equipment"
+          ],
+          "folders": []
+        },
+        {
+          "name": "Spells",
+          "sorting": "a",
+          "color": "#620630",
+          "packs": [
+            "acks-arcane-spells",
+            "acks-divine-spells"
+          ],
+          "folders": []
+        },
+        {
+          "name": "Setting",
+          "sorting": "a",
+          "color": "#822638",
+          "packs": [
+            "acks-languages",
+            "acks-maps"
+          ],
+          "folders": []
+        }
+      ],
+      "packs": []
+    },
+    {
+      "name": "ACKS II Judges Journal",
+      "sorting": "m",
+      "color": "#620630",
+      "folders": [
+      ],
+      "packs": [
+        "acks-treasure"
+      ]
+    },
+    {
+      "name": "ACKS II Monstrous Manual",
+      "sorting": "m",
+      "color": "#620630",
+      "folders": [
+      ], 
+      "packs": [
+        "acks-monster-abilities",
+        "acks-monsters"
+      ]
+    },
+    {
+      "name": "ACKS II VTT Vitals",
+      "sorting": "m",
+      "color": "#620630",
+      "folders": [
+      ],
+      "packs": [
+        "acks-journals"
+      ]
+    }
   ],
   "languages": [
     {

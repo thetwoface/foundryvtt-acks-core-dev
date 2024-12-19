@@ -17,6 +17,16 @@ export const registerMainSettings = async () => {
     config: false
   });
 
+  game.settings.register("acks", "skip-dialog-key", {
+    name: "Key used to skip roll dialog ",
+    hint: "When pressed while clicking on a rollable item, the dialog will be skipped and the roll will be made with the default options",
+    default: "shiftKey",
+    scope: "world",
+    type: String,
+    choices: {"ctrlKey": "Ctrl", "shiftKey": "Shift", "altKey": "Alt"},
+    config: true
+  });
+
   await game.settings.register('acks', 'color-friendlies', {
     name:  game.i18n.localize("ACKS.Setting.colorFriendlies"),           // The name of the setting in the settings menu
     hint: game.i18n.localize("ACKS.Setting.colorFriendlies"),        // A description of the registered setting and its behavior
@@ -29,6 +39,7 @@ export const registerMainSettings = async () => {
       console.log(value)
     },
   });
+
   Hooks.on('renderSettingsConfig', (app, el, data) => {
     let col = game.settings.get('acks', 'color-friendlies')
     el.find('[name="acks.color-friendlies"]').parent().append(`<input type="color" value="${col}" data-edit="acks.color-friendlies">`)

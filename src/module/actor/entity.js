@@ -447,7 +447,11 @@ export class AcksActor extends Actor {
       }),
     };
 
-    let skip = options.event && options.event.ctrlKey;
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
 
     // Roll and return
     return AcksDice.Roll({
@@ -479,7 +483,11 @@ export class AcksActor extends Actor {
       details: game.i18n.format("ACKS.roll.details.save", { save: label }),
     };
 
-    let skip = options?.event?.ctrlKey;
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
 
     const rollMethod = this.type == "character" ? AcksDice.RollSave : AcksDice.Roll;
 
@@ -505,7 +513,11 @@ export class AcksActor extends Actor {
       roll: {}
     };
 
-    let skip = options?.event?.ctrlKey;
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
 
     // Roll and return
     return AcksDice.Roll({
@@ -548,7 +560,11 @@ export class AcksActor extends Actor {
       },
     };
 
-    let skip = options?.event?.ctrlKey;
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
 
     // Roll and return
     return AcksDice.Roll({
@@ -590,7 +606,11 @@ export class AcksActor extends Actor {
       },
     };
 
-    let skip = options?.event?.ctrlKey;
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
 
     // Roll and return
     return AcksDice.Roll({
@@ -625,9 +645,13 @@ export class AcksActor extends Actor {
         score: label,
       }),
     };
-
-    let skip = options?.event?.ctrlKey;
-
+    
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
+    
     // Roll and return
     return AcksDice.Roll({
       event: options.event,
@@ -742,7 +766,11 @@ export class AcksActor extends Actor {
       }),
     };
 
-    let skip = options.event && options.event.ctrlKey;
+    let skip = false
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      skip = true;
+    }
 
     // Roll and return
     return AcksDice.Roll({
@@ -879,6 +907,11 @@ export class AcksActor extends Actor {
         target: attData.roll.target,
       },
     };
+
+    let skipKey = game.settings.get("acks", "skip-dialog-key");
+    if (options.event && options.event[skipKey]) {
+      options.skipDialog = true;
+    }
 
     // Roll and return
     return AcksDice.Roll({

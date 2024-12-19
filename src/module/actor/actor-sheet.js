@@ -204,30 +204,44 @@ export class AcksActorSheet extends ActorSheet {
     html.find(".item .item-rollable .item-image").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
+      
+      let skip = false
+      let skipKey = game.settings.get("acks", "skip-dialog-key");
+      if (ev && ev[skipKey]) {
+        skip = true;
+      }
+
       if (item.type == "weapon") {
         if (this.actor.type === "monster") {
           item.update({ 'system.counter.value': item.system.counter.value - 1 });
         }
-        item.rollWeapon({ skipDialog: ev.ctrlKey });
+        item.rollWeapon({ skipDialog: skip });
       } else if (item.type == "spell") {
-        item.spendSpell({ skipDialog: ev.ctrlKey });
+        item.spendSpell({ skipDialog: skip });
       } else {
-        item.rollFormula({ skipDialog: ev.ctrlKey });
+        item.rollFormula({ skipDialog: skip });
       }
     });
 
     html.find(".favorite-rollable").click(async (ev) => {
       const li = $(ev.currentTarget);
       const item = this.actor.items.get(li.data("itemId"));
+      
+      let skip = false
+      let skipKey = game.settings.get("acks", "skip-dialog-key");
+      if (ev && ev[skipKey]) {
+        skip = true;
+      }
+  
       if (item.type == "weapon") {
         if (this.actor.type === "monster") {
           item.update({ 'system.counter.value': item.system.counter.value - 1 });
         }
-        item.rollWeapon({ skipDialog: ev.ctrlKey });
+        item.rollWeapon({ skipDialog: skip });
       } else if (item.type == "spell") {
-        item.spendSpell({ skipDialog: ev.ctrlKey });
+        item.spendSpell({ skipDialog: skip });
       } else {
-        item.rollFormula({ skipDialog: ev.ctrlKey });
+        item.rollFormula({ skipDialog: skip });
       }
     });
 
@@ -244,9 +258,16 @@ export class AcksActorSheet extends ActorSheet {
         actor: this.data,
         roll: {},
       };
+
+      let skip = false
+      let skipKey = game.settings.get("acks", "skip-dialog-key");
+      if (options.event && options.event[skipKey]) {
+        skip = true;
+      }
+  
       actorObject.targetAttack(rollData, attack, {
         type: attack,
-        skipDialog: ev.ctrlKey,
+        skipDialog: skip,
       });
 
       html.find(".spells .item-reset").click((ev) => {

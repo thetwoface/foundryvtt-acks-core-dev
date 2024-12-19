@@ -145,14 +145,14 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    $("form").bind("keydown", function(e) {
+    $("form").bind("keydown", function (e) {
       if (e.keyCode === 13) return false;
     });
 
     html.find(".pay-wages").click((ev) => {
       this.actor.payWages();
     });
-    
+
     html.find(".money-minus").click((ev) => {
       let moneyId = $(ev.currentTarget).data("money-id");
       this.actor.updateMoney(moneyId, -1);
@@ -162,7 +162,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       this.actor.updateMoney(moneyId, 1);
     });
 
-      
+
     html.find(".henchman-loyalty-check").click((ev) => {
       let henchId = $(ev.currentTarget).data("henchman-id");
       game.actors.get(henchId).rollLoyalty({ event: ev });
@@ -253,7 +253,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     // Open henchman/hireling sheet
     html.find(".open-henchman").click((ev) => {
       const li = $(ev.currentTarget);
-      this.actor.showHenchman( li.data("henchmanId") );
+      this.actor.showHenchman(li.data("henchmanId"));
     });
     html.find(".hireling-edit-quantity").change((ev) => {
       // Get input value of the field 
@@ -264,7 +264,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       let hireling = game.actors.get(hirelingId);
       hireling.update({ "system.retainer.quantity": quantity });
     });
-      
+
     // Delete Inventory Item
     html.find(".henchman-delete").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");

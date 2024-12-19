@@ -246,6 +246,7 @@
   "ACKS.proficiencyType.class": "Class",
 
   "ACKS.bonuses.initiativebonus": "Initiative Bonus",
+  "ACKS.bonuses.initiativebonushint": "Initiative Bonus (bonus from tweaks + dex modifier)",
   "ACKS.bonuses.surprisebonus": "Surprise Bonus",
   
   "ACKS.Setting.InitiativeHint": "Grouped or individual initiative.",

@@ -145,6 +145,10 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    $("form").bind("keydown", function(e) {
+      if (e.keyCode === 13) return false;
+    });
+
     html.find(".pay-wages").click((ev) => {
       this.actor.payWages();
     });

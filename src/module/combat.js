@@ -550,7 +550,7 @@ export class AcksCombat {
       }
     });
 
-    if (game.combat.round == 0) {
+    if (game.combat?.round == 0) {
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!! Round 0");
       AcksCombat.announceListener(html);
     }

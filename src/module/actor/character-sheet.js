@@ -146,6 +146,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     super.activateListeners(html);
 
     $("form").bind("keydown", function (e) {
+      console.log("keydown", e.keyCode);
       if (e.keyCode === 13) return false;
     });
 

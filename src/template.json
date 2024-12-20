@@ -183,9 +183,6 @@
       },
       "encumbrance": {
         "max": 20
-      },
-      "languages": {
-        "value": []
       }
     },
     "monster": {

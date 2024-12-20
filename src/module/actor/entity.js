@@ -356,8 +356,7 @@ export class AcksActor extends Actor {
       }
     }
     if (toPush.length > 0) {
-      this.createEmbeddedDocuments("Item", toPush);
-      this.update({ 'system.languages.value': [] });
+      this.createEmbeddedDocuments("Item", toPush)
     }
   }
 
@@ -1190,12 +1189,12 @@ export class AcksActor extends Actor {
       3: "ACKS.Illiterate",
       9: "ACKS.Literate",
     };
-    data.languages.literacy = AcksActor._valueFromTable(
+    /*data.languages.literacy = AcksActor._valueFromTable(
       literacy,
       data.scores.int.value
-    );
+    );*/
 
-    const spoken = {
+    /*const spoken = {
       0: "ACKS.NativeBroken",
       3: "ACKS.Native",
       13: "ACKS.NativePlus1",
@@ -1212,7 +1211,7 @@ export class AcksActor extends Actor {
     data.languages.spoken = AcksActor._valueFromTable(
       spoken,
       data.scores.int.value
-    );
+    );*/
 
   }
 

@@ -15,6 +15,7 @@ import * as party from "./module/party.js";
 import { AcksCombat, AcksCombatClass } from "./module/combat.js";
 import { AcksTokenHud } from "./module/acks-token-hud.js";
 import { AcksUtility } from "./module/utility.js";
+import { AcksPolyglot } from "./module/apps/polyglot-support.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -74,6 +75,9 @@ Hooks.once("init", async function () {
 
 });
 
+// Setup Polyglot stuff if needed
+AcksPolyglot.init()
+
 /**
  * This function runs after game data has been requested and loaded from the servers, so entities exist
  */
@@ -117,3 +121,4 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatMessage", chat.addChatMessageButtons);
 Hooks.on("renderRollTableConfig", treasure.augmentTable);
 Hooks.on("updateActor", party.update);
+

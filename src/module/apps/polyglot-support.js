@@ -8,7 +8,7 @@ export class AcksPolyglot {
         requiresReady = true;
 
         getSystemDefaultLanguage() {
-          return "Common";
+          return "Common Auran";
         }
 
         async getLanguages() {
@@ -36,7 +36,9 @@ export class AcksPolyglot {
             if (item.type === "language") {
               const name = item?.flags?.babele?.originalName || item.name;
               knownLanguages.add(name);
-              literateLanguages.add(name);
+              if (actor.system.scores.int.value >= 9) {                
+                literateLanguages.add(name);
+              }
             }
           }
           return [knownLanguages, literateLanguages];

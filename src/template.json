@@ -41,22 +41,22 @@
         },
         "saves": {
           "death": {
-            "value": 0
+            "value": 14
           },
           "wand": {
-            "value": 0
+            "value": 16
           },
           "paralysis": {
-            "value": 0
+            "value": 13
           },
           "breath": {
-            "value": 0
+            "value": 15
           },
           "spell": {
-            "value": 0
+            "value": 17
           },
           "implements": {
-            "value": -1
+            "value": 16
           }
         },
         "save": {

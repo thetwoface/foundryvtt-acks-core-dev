@@ -683,7 +683,7 @@ export class AcksActor extends Actor {
       event: options.event,
       parts: rollParts,
       data: data,
-      skipDialog: true,
+      skipDialog: false,
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: label,
       title: label,
@@ -1239,10 +1239,13 @@ export class AcksActor extends Actor {
       171: "6d10",
       200: "7d10",
     };
-    data.hp.bhr = AcksActor._valueFromTable(
-      bhrcalc,
-      data.hp.max
-    );
+
+    let newBHR = AcksActor._valueFromTable(bhrcalc, Number(data.hp.max));
+    if ( newBHR != data.hp.bhr) {
+      data.hp.bhr = newBHR;
+      this.update({ 'system.hp.bhr': newBHR });
+      this.update({ 'system.fight.healingrate': newBHR });
+    }
   };
 
   /* -------------------------------------------- */

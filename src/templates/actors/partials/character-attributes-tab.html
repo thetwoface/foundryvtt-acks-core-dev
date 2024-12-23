@@ -86,24 +86,6 @@
         <div class="health-full" style="height:{{counter true system.hp.value system.hp.max}}%"></div>
       </div>
 
-      <div class="health armor-class">
-        {{#if config.ascendingAC}}
-        <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.aac.value}}</div>
-        <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
-          {{system.aac.naked}}</div>
-        {{#if system.aac.shield}}<div class="shield"
-          title="{{localize 'ACKS.items.hasShield'}} ({{system.aac.shield}})"><i class="fas fa-shield-alt"></i></div>
-        {{/if}}
-        {{else}}
-        <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.ac.value}}</div>
-        <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
-          {{system.ac.naked}}</div>
-        {{#if system.ac.shield}}<div class="shield" title="{{localize 'ACKS.items.hasShield'}} ({{system.ac.shield}})">
-          <i class="fas fa-shield-alt"></i>
-        </div>{{/if}}
-        {{/if}}
-      </div>
-
       <ul class="attributes flexrow">
         <li class="attribute hit-dice">
           <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.HitDice' }}">
@@ -114,6 +96,16 @@
           </div>
         </li>
 
+        <li class="bhr attribute ">
+          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.HealingRate'}}">
+            <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{localize 'ACKS.HealingRate'}}</a>
+          </h4>
+          <div class="attribute-value">
+            <input name="system.fight.healingrate" type="text" value="{{system.fight.healingrate}}" placeholder=""
+              data-dtype="String" />
+          </div>
+        </li>
+  
         <li class="attribute">
           <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.Initiative' }}">
             {{ localize "ACKS.InitiativeShort" }}</h4>
@@ -142,6 +134,25 @@
     </div>
 
     <div class="flexrow">
+
+      <div class="health armor-class">
+        {{#if config.ascendingAC}}
+        <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.aac.value}}</div>
+        <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
+          {{system.aac.naked}}</div>
+        {{#if system.aac.shield}}<div class="shield"
+          title="{{localize 'ACKS.items.hasShield'}} ({{system.aac.shield}})"><i class="fas fa-shield-alt"></i></div>
+        {{/if}}
+        {{else}}
+        <div class="health-value health-top" title="{{localize 'ACKS.ArmorClass'}}">{{system.ac.value}}</div>
+        <div class="health-value health-bottom" title="{{localize 'ACKS.ArmorClassNaked'}}">
+          {{system.ac.naked}}</div>
+        {{#if system.ac.shield}}<div class="shield" title="{{localize 'ACKS.items.hasShield'}} ({{system.ac.shield}})">
+          <i class="fas fa-shield-alt"></i>
+        </div>{{/if}}
+        {{/if}}
+      </div>
+
       <ul class="attributes flexrow">
         <li class="attribute attribute-secondaries">
           <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.Encumbrance'}}">
@@ -149,16 +160,6 @@
           </h4>
           <div class="flexrow">
             <div class="attribute-value">{{system.encumbrance.value}} / {{system.encumbrance.max}}</div>
-          </div>
-        </li>
-
-        <li class="bhr attribute attribute-secondaries">
-          <h4 class="attribute-name box-title box-title-min-height" title="{{localize 'ACKS.HealingRate'}}">
-            <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{localize 'ACKS.HealingRate'}}</a>
-          </h4>
-          <div class="flexrow">
-            <input name="system.fight.healingrate" type="text" value="{{system.fight.healingrate}}" placeholder=""
-              data-dtype="String" />
           </div>
         </li>
 

@@ -139,6 +139,7 @@
         "searching": 18,
         "trapbreaking": 18
       },
+      "languages": [],
       "fight": {
         "healingrate": "1d3",
         "mortalwounds": 0,

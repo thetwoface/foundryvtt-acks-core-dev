@@ -963,7 +963,7 @@
   height: 150px;
 }
 .acks.sheet.actor.character .sheet-body .health {
-  height: 70px;
+  height: 64px;
   position: relative;
   margin-left:1rem;
   max-width: 4rem;
@@ -989,8 +989,8 @@
   position: absolute;
   font-size: 24px;
   top: 10px;
-  width: 70px;
-  left: calc(50% - 35px);
+  width: 64px;
+  left: calc(50% - 32px);
 }
 .acks.sheet.actor.character .sheet-body .health .health-bottom {
   border-bottom: none;
@@ -1001,12 +1001,12 @@
 }
 .acks.sheet.actor.character .sheet-body .health .health-empty {
   background: url("./assets/health_empty.webp") no-repeat center;
-  background-size: 70px;
+  background-size: 64px;
   background-position: top;
 }
 .acks.sheet.actor.character .sheet-body .health .health-full {
   background: url("./assets/health_full.webp") no-repeat center;
-  background-size: 70px;
+  background-size: 64px;
   background-position: bottom;
 }
 .acks.sheet.actor.character .sheet-body .saving-throw .attribute-value.flat {

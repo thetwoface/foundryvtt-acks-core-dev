@@ -348,7 +348,7 @@ export class AcksActor extends Actor {
     let langList = languages.map(i => i.toObject())
 
     let toPush = [];
-    for (let langName of this.system.languages?.value) {
+    for (let langName of this.system?.languages?.value) {
 
       let lang = langList.find((i) => i.name.toLowerCase() == langName.toLowerCase());
       if (lang) {
@@ -1236,11 +1236,17 @@ export class AcksActor extends Actor {
       90: "3d10",
       111: "4d10",
       141: "5d10",
-      171: "6d10",
-      200: "7d10",
+      171: "6d10"
     };
-
-    let newBHR = AcksActor._valueFromTable(bhrcalc, Number(data.hp.max));
+    
+    let newBHR = "1d3"
+    let value = data.hp.max
+    if ( value > 171) {
+      let diceNumber = Math.floor((value - 171) / 30) + 6;
+      newBHR = diceNumber + "d10";
+    } else {
+      newBHR = AcksActor._valueFromTable(bhrcalc, Number(data.hp.max));
+    }
     if ( newBHR != data.hp.bhr) {
       data.hp.bhr = newBHR;
       this.update({ 'system.hp.bhr': newBHR });

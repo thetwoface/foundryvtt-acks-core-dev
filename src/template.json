@@ -3,6 +3,7 @@
     "types": ["character", "monster"],
     "templates": {
       "common": {
+        "isNew": false,
         "retainer": {
           "enabled": false,
           "loyalty": 0,

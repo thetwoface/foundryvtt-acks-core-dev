@@ -15,6 +15,7 @@ export class AcksActor extends Actor {
       return actor;
     }
 
+    data.system = { isNew : true}; // Flag the actor as new
     if (data.type == 'character') {
       const skills = await AcksUtility.loadCompendium("acks.acks-all-equipment")
       data.items = skills.map(i => i.toObject()).filter(i => i.type == "money")
@@ -23,19 +24,21 @@ export class AcksActor extends Actor {
     return super.create(data, options);
   }
 
-  _onUpdate(changed, options, userId) {
+  async _onUpdate(changed, options, userId) {
     if (this.type == "character" && this.system.retainer?.enabled && this.system.retainer?.managerid != "") {
       let manager = game.actors.get(this.system.retainer.managerid);
       if (manager && manager.sheet.rendered) {
         manager.sheet.render();
       }
     }
-    //console.log("CHANGE : ", changed)
     if (changed.system?.retainer?.enabled == false && this.system.retainer.managerid != "") {
       let manager = game.actors.get(this.system.retainer.managerid);
       setTimeout(() => { manager.delHenchman(this.id) }, 200);
     }
-    super._onUpdate(changed, options, userId);
+    if ( (this.type == "character" && changed.system?.scores) || (this.type == "monster" && changed.system?.saves) ) {
+      setTimeout(() => { this.update({'system.isNew': false}) }, 200);
+    }
+    await super._onUpdate(changed, options, userId);
   }
 
   /**
@@ -363,7 +366,9 @@ export class AcksActor extends Actor {
   /* -------------------------------------------- */
   isNew() {
     const data = this.system;
-    if (this.type == "character") {
+    return data.isNew
+
+    /*if (this.type == "character") {
       let ct = 0;
       Object.values(data.scores).forEach((el) => {
         ct += el.value;
@@ -375,7 +380,7 @@ export class AcksActor extends Actor {
         ct += el.value;
       });
       return (ct == 0);
-    }
+    }*/
   }
 
   /* -------------------------------------------- */

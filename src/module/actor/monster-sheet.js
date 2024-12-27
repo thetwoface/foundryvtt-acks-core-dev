@@ -27,7 +27,7 @@ export class AcksActorSheetMonster extends AcksActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["acks", "sheet", "monster", "actor"],
       template: "systems/acks/templates/actors/monster-sheet.html",
-      width: 480,
+      width: 500,
       height: 560,
       resizable: true,
       tabs: [

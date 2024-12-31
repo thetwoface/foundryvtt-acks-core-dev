@@ -62,7 +62,7 @@
       "name": "acks-adventuring-equipment",
       "banner": "systems/acks/assets/ui/banners/page141_helmets_colored.webp",
       "color": "#822650",
-      "label": "Adventuring Equipment (ACKS II)",
+      "label": "Equipment (II)",
       "system": "acks",
       "path": "packs/acks-adventuring-equipment",
       "type": "Item",
@@ -137,7 +137,7 @@
     {
       "name": "acks-clothing",
       "banner": "systems/acks/assets/ui/banners/p146_chiton.webp",
-      "label": "Clothing (ACKS II)",
+      "label": "Clothing (II)",
       "system": "acks",
       "path": "packs/acks-clothing",
       "type": "Item",

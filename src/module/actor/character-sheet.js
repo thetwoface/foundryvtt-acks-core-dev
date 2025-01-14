@@ -2,6 +2,7 @@ import { AcksActor } from "./entity.js";
 import { AcksActorSheet } from "./actor-sheet.js";
 import { AcksCharacterModifiers } from "../dialog/character-modifiers.js";
 import { AcksCharacterCreator } from "../dialog/character-creation.js";
+import { CharacterGenerator } from "../apps/character-generator.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -36,10 +37,11 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
 
   /* -------------------------------------------- */
   generateScores() {
-    new AcksCharacterCreator(this.actor, {
+    new CharacterGenerator(this.actor).render(true);
+    /*new AcksCharacterCreator(this.actor, {
       top: this.position.top + 40,
       left: this.position.left + (this.position.width - 400) / 2,
-    }).render(true);
+    }).render(true);*/
   }
 
   /* -------------------------------------------- */
@@ -256,7 +258,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       this.actor.showHenchman(li.data("henchmanId"));
     });
     html.find(".hireling-edit-quantity").change((ev) => {
-      // Get input value of the field 
+      // Get input value of the field
       let quantity = $(ev.currentTarget).val();
       // Get the hireling id
       let hirelingId = $(ev.currentTarget).parents(".item").data("henchmanId");

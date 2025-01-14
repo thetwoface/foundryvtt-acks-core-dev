@@ -26,7 +26,7 @@
 }
 @font-face {
   font-family: "ebgaramond-regular";
-  src: url('./assets/fonts/EBGaramond-Regular.ttf');  
+  src: url('./assets/fonts/EBGaramond-Regular.ttf');
 }
 
 /* Compendium specific */
@@ -1403,7 +1403,7 @@
   font-size: 2.0rem;
 }
 .tokenhudext {
-	display: flex; 
+	display: flex;
 	flex: 0 !important;
   font-family: CaslonPro;
   font-weight: 600;
@@ -1479,3 +1479,27 @@
 .wage-text-center{
   margin-top: 8px;
 }
+
+/** CHARACTER GEN START **/
+div#character-generator {
+  background: rgba(212, 211, 211, 1);
+}
+
+div#character-generator.application .window-header {
+  background: var(--acks-purple);
+}
+
+div#character-generator .window-content {
+  background: var(--acks-sheet-background-fade);
+}
+
+div#character-generator .window-content .attributes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-template-rows: auto;
+}
+
+div#character-generator .text-center {
+  text-align: center;
+}
+/** CHARACTER GEN END **/

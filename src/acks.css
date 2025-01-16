@@ -394,7 +394,14 @@
   flex-basis: 90px;
   min-width: 12rem;
 }
-
+.weapon-name {
+  min-width: 7rem;
+  max-width: 7rem;
+}
+.weapon-range {
+  min-width: 4rem;
+  max-width: 4rem;
+}
 .effect-image {
   width: 32px;
   max-width: 32px;

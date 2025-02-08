@@ -53,10 +53,10 @@
 /* ----------------------------------------- */
 /* Combat tracker specific overloads */
 .combat-sidebar li.combatant .roll {
-  background: url(systems/acks/assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
+  background: url(./assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
 }
 .combat-sidebar li.combatant .roll:hover {
-  background: url(systems/acks/assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
+  background: url(./assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
 }
 
 #sidebar {

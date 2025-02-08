@@ -351,15 +351,17 @@ export class AcksActor extends Actor {
     let langList = languages.map(i => i.toObject())
 
     let toPush = [];
-    for (let langName of this.system?.languages?.value) {
+    if (this.system?.languages?.value) { 
+      for (let langName of this.system?.languages?.value) {
 
-      let lang = langList.find((i) => i.name.toLowerCase() == langName.toLowerCase());
-      if (lang) {
-        toPush.push(lang);
+        let lang = langList.find((i) => i.name.toLowerCase() == langName.toLowerCase());
+        if (lang) {
+          toPush.push(lang);
+        }
       }
-    }
-    if (toPush.length > 0) {
-      this.createEmbeddedDocuments("Item", toPush)
+      if (toPush.length > 0) {
+        this.createEmbeddedDocuments("Item", toPush)
+      }
     }
   }
 

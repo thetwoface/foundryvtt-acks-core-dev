@@ -99,6 +99,7 @@ Hooks.once("ready", async () => {
   
   AcksUtility.updateWeightsLanguages()
   AcksUtility.displayWelcomeMessage()
+  AcksUtility.setupSocket()
   
 });
 

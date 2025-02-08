@@ -3,6 +3,7 @@
   "title": "Adventurer Conqueror King System",
   "description": "Play B/X or other OSR compatible content using the ACKS system",
   "version": "#{VERSION}#",
+  "socket": true,
   "relationships": {
   },
   "compatibility": {

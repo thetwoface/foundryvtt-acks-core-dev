@@ -34,6 +34,11 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async rollInitiative(ids, options) {
+    if ( !game.user.isGM) {
+      console.log("Emit Roll Initiative", ids, options);
+      game.socket.emit("system.acks", { type: "rollInitiative", combatId: this.id, ids: ids, options: options });
+      return
+    }
     console.log("%%%%%%%%% Roll Initiative", ids, options); 
     await this.setFlag("acks", "lock-turns", true); 
 

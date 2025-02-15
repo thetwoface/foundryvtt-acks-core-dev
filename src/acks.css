@@ -16,6 +16,7 @@
   --acks-sheet-background: url("./assets/ui/acks_sheet_background.webp");
   --acks-sheet-background-fade: url("./assets/ui/acks_sheet_background_fade01.webp");
   --acks-red-background: url("./assets/ui/acks_red_background.webp");
+  --acks-sheet-tabs-background: rgb(190, 190, 161);
 }
 
 /* ----------------------------------------- */
@@ -181,8 +182,7 @@
   margin-left: -5px;
   text-indent: 4px;
   line-height: 16px;
-  background: rgb(190, 190, 161);
-  /*background: url("/ui/parchment.jpg");*/
+  background: var(--acks-sheet-tabs-background);
   border-top-right-radius: 4px;
   border-top-left-radius: 80px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.9);
@@ -1167,6 +1167,7 @@
   margin-left: -5px;
   text-indent: 4px;
   line-height: 16px;
+  background: var(--acks-sheet-tabs-background);
   border-top-right-radius: 4px;
   border-top-left-radius: 80px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.9);

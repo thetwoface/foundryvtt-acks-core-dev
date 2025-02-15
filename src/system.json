@@ -31,6 +31,34 @@
   "styles": ["acks.css"],
   "packs": [
     {
+      "name": "acks-class-abilities",
+      "banner": "systems/acks/assets/ui/banners/p94_nobiran_wonderworker_shooting_fire.webp",
+      "label": "Powers",
+      "system": "acks",
+      "path": "packs/acks-class-abilities",
+      "type": "Item",
+      "module": "acks-packs"
+    },
+    {
+      "name": "acks-proficiencies",
+      "banner": "systems/acks/assets/ui/banners/p108_proficiency_treatises2.webp",
+      "label": "Proficiencies",
+      "system": "acks",
+      "path": "packs/acks-proficiencies",
+      "type": "Item",
+      "module": "acks-packs"
+    },
+    {
+      "name": "acks-all-equipment",
+      "banner": "systems/acks/assets/ui/banners/page141_helmets_colored.webp",
+      "color": "#822650",
+      "label": "Equipment",
+      "system": "acks",
+      "path": "packs/acks-all-equipment",
+      "type": "Item",
+      "module": "acks-packs"
+    },
+    {
       "name": "acks-arcane-spells",
       "banner": "systems/acks/assets/ui/banners/p78_evil_eye2.webp",
       "color": "#822650",
@@ -50,31 +78,12 @@
       "module": "acks-packs"
     },
     {
-      "name": "acks-all-equipment",
-      "banner": "systems/acks/assets/ui/banners/page141_helmets_colored.webp",
-      "color": "#822650",
-      "label": "Equipment",
-      "system": "acks",
-      "path": "packs/acks-all-equipment",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-    {
       "name": "acks-adventuring-equipment",
       "banner": "systems/acks/assets/ui/banners/page141_helmets_colored.webp",
       "color": "#822650",
       "label": "Equipment (II)",
       "system": "acks",
       "path": "packs/acks-adventuring-equipment",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-    {
-      "name": "acks-class-abilities",
-      "banner": "systems/acks/assets/ui/banners/p94_nobiran_wonderworker_shooting_fire.webp",
-      "label": "Powers",
-      "system": "acks",
-      "path": "packs/acks-class-abilities",
       "type": "Item",
       "module": "acks-packs"
     },
@@ -105,17 +114,6 @@
       "type": "Actor",
       "module": "acks-packs"
     },
-
-    {
-      "name": "acks-proficiencies",
-      "banner": "systems/acks/assets/ui/banners/p108_proficiency_treatises2.webp",
-      "label": "Proficiencies",
-      "system": "acks",
-      "path": "packs/acks-proficiencies",
-      "type": "Item",
-      "module": "acks-packs"
-    },
-
     {
       "name": "acks-treasure",
       "label": "Treasure",
@@ -125,7 +123,6 @@
       "type": "RollTable",
       "module": "acks-packs"
     },
-
     {
       "name": "acks-maps",
       "banner": "systems/acks/assets/ui/banners/p273_marching_mapping.webp",
@@ -156,6 +153,21 @@
   ],
   "packFolders": [
     {
+      "name": "ACKS Rulebook",
+      "sorting": "m",
+      "color": "#822638",
+      "packs": [
+        "acks-class-abilities",
+        "acks-proficiencies",
+        "acks-all-equipment",
+        "acks-arcane-spells",
+        "acks-divine-spells",
+        "acks-monster-abilities",
+        "acks-monsters"
+      ],
+      "folders": []
+    },
+    {
       "name": "ACKS II Revised Rulebook",
       "sorting": "m",
       "color": "#620630",
@@ -165,15 +177,13 @@
           "sorting": "a",
           "color": "#822638",
           "packs": [
-            "acks-class-abilities"
           ]
         },
         {
           "name": "Proficiencies",
-          "sorting": "a",
+          "sorting": "m",
           "color": "#620630",
           "packs": [
-            "acks-proficiencies"
           ]
         },
         {
@@ -181,7 +191,6 @@
           "sorting": "m",
           "color": "#822638",
           "packs": [
-            "acks-all-equipment",
             "acks-clothing",
             "acks-adventuring-equipment"
           ],
@@ -192,14 +201,12 @@
           "sorting": "a",
           "color": "#620630",
           "packs": [
-            "acks-arcane-spells",
-            "acks-divine-spells"
           ],
           "folders": []
         },
         {
           "name": "Setting",
-          "sorting": "a",
+          "sorting": "m",
           "color": "#822638",
           "packs": [
             "acks-languages",
@@ -213,7 +220,7 @@
     {
       "name": "ACKS II Judges Journal",
       "sorting": "m",
-      "color": "#620630",
+      "color": "#822638",
       "folders": [
       ],
       "packs": [
@@ -227,8 +234,6 @@
       "folders": [
       ], 
       "packs": [
-        "acks-monster-abilities",
-        "acks-monsters"
       ]
     },
     {

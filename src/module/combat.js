@@ -9,12 +9,12 @@ export class AcksCombatClass extends Combat {
    * @returns {Combatant[]}
    */
   setupTurns() {
-    let locked = this.getFlag("acks", "lock-turns"); 
+    let locked = this.getFlag("acks", "lock-turns");
     if (locked) {
       return
     }
 
-    console?.log("Setup Turns....");  
+    console?.log("Setup Turns....");
     this.turns ||= [];
 
     // Determine the turn order and the current turn
@@ -26,7 +26,7 @@ export class AcksCombatClass extends Combat {
     this.current = this._getCurrentState(c);
     //this.current = 
     // One-time initialization of the previous state
-    if ( !this.previous ) this.previous = this.current;
+    if (!this.previous) this.previous = this.current;
 
     // Return the array of prepared turns
     return this.turns = turns;
@@ -34,13 +34,13 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async rollInitiative(ids, options) {
-    if ( !game.user.isGM) {
+    if (!game.user.isGM) {
       console.log("Emit Roll Initiative", ids, options);
       game.socket.emit("system.acks", { type: "rollInitiative", combatId: this.id, ids: ids, options: options });
       return
     }
-    console.log("%%%%%%%%% Roll Initiative", ids, options); 
-    await this.setFlag("acks", "lock-turns", true); 
+    console.log("%%%%%%%%% Roll Initiative", ids, options);
+    await this.setFlag("acks", "lock-turns", true);
 
     ids = typeof ids === "string" ? [ids] : ids;
     let messages = [];
@@ -48,7 +48,7 @@ export class AcksCombatClass extends Combat {
 
     // Get current groups 
     let groups = this.getFlag('acks', 'groups') || [];
-    let maxInit = { value: -1, cId: "" } 
+    let maxInit = { value: -1, cId: "" }
     let updates = [];
     for (let cId of ids) {
       const c = this.combatants.get(cId);
@@ -61,16 +61,20 @@ export class AcksCombatClass extends Combat {
       let initValue = -1;
       let showMessage = true
       let roll
-      if (groupData && groupData.initiative > 0) {
+      if (groupData) { 
+        if (groupData.initiative > 0) {
         initValue = groupData.initiative;
         showMessage = false
+        } else {
+          roll = new Roll(`1d6+${groupData.initiativeBonus}`)
+          await roll.evaluate();
+          initValue = roll.total;  
+          groupData.initiative = initValue
+        }
       } else {
         roll = c.getInitiativeRoll();
         await roll.evaluate();
         initValue = roll.total;
-      }
-      if ( groupData ) {
-        groupData.initiative = initValue
       }
       updates.push({ _id: id, initiative: initValue });
       if (initValue > maxInit.value) {
@@ -108,25 +112,25 @@ export class AcksCombatClass extends Combat {
         messages.push(chatData);
       }
     }
-    
+
     await CONFIG.ChatMessage.documentClass.create(messages);
     this.pools = AcksCombat.getCombatantsPool();
     await this.processOutNumbering();
 
-    await this.setFlag("acks", "lock-turns", false); 
+    await this.setFlag("acks", "lock-turns", false);
     await this.updateEmbeddedDocuments("Combatant", updates);
 
     setTimeout(function () {
       const updateData = { turn: 0 };
       game.combat.update(updateData);
     }, 200);
-    
+
     return this;
 
   }
   /*******************************************************/
   async rollAll(options) {
-    if ( !this.getFlag("acks", "initDone") ) {
+    if (!this.getFlag("acks", "initDone")) {
       ui.notifications.warn(game.i18n.localize("COMBAT.CombatNotStarted"));
       return;
     }
@@ -135,7 +139,7 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   async rollNPC(options) {
-    if ( !this.getFlag("acks", "initDone") ) {
+    if (!this.getFlag("acks", "initDone")) {
       ui.notifications.warn(game.i18n.localize("COMBAT.CombatNotStarted"));
       return;
     }
@@ -152,7 +156,7 @@ export class AcksCombatClass extends Combat {
 
     Hooks.callAll("combatStart", this, updateData);
     console.log(">>>>>>>>>> Start Combat", this, updateData);
-    
+
 
     return this.update(updateData);
   }
@@ -161,7 +165,7 @@ export class AcksCombatClass extends Combat {
   async cleanupStatus(status) {
     for (let cbt of this.combatants) {
       if (status == "outnumbering" || status == "prepareSpell") {
-        await cbt.setFlag("acks", status, false); // Flags management
+        await cbt?.setFlag("acks", status, false); // Flags management
       } else {
         if (cbt?.actor?.hasEffect(status)) {
           AcksUtility.removeEffect(cbt.actor, status);
@@ -223,7 +227,7 @@ export class AcksCombatClass extends Combat {
   /*******************************************************/
   async nextRound() {
     console.log('NEXT ROUND')
-    this.turnsDone = false  
+    this.turnsDone = false
 
     let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
     // Remove surprised effects
@@ -233,7 +237,7 @@ export class AcksCombatClass extends Combat {
     this.turns.forEach(t => t.actor.hasEffect("delayed") ? AcksUtility.removeEffect(t.actor, "delayed") : null);
     this.turns.forEach(t => t.actor.hasEffect("done") ? AcksUtility.removeEffect(t.actor, "done") : null);
     console.log("ROUND", this.round, this.turns);
-    
+
     AcksCombat.resetInitiative(this);
 
     if (this.settings.skipDefeated && (turn !== null)) {
@@ -282,10 +286,10 @@ export class AcksCombatClass extends Combat {
           return 1;
         }
       }
-      if (a.getFlag("acks", "outnumbering") ) {
+      if (a.getFlag("acks", "outnumbering")) {
         return 1;
       }
-      if (b.getFlag("acks", "outnumbering") ) {
+      if (b.getFlag("acks", "outnumbering")) {
         return -1;
       }
       return a.name.localeCompare(b.name);
@@ -325,7 +329,7 @@ export class AcksCombatClass extends Combat {
     let groups = foundry.utils.duplicate(this.getFlag('acks', 'groups') || [])
     // Group index is the group size
     let groupId = groups.length;
-    groups[groupId] = {initiative: -1, tokens: groupTokens.map(t => t.id) }
+    groups[groupId] = { initiative: -1, initiativeBonus:1000, tokens: groupTokens.map(t => t.id) }
 
     // Remove tokens already present in another group
     groups.forEach(function (groupData, id) {
@@ -341,6 +345,18 @@ export class AcksCombatClass extends Combat {
     groups = groups.filter((groupData) => {
       return groupData.tokens.length > 1;
     });
+
+    // Then get the worst initiative value
+    groups.forEach(function (groupData, id) {
+      groupData.initiativeBonus = 10000
+      groupTokens.forEach(t => {
+        let combatant = combatants.find(cb => cb.token.id == t.id);
+        if (combatant.actor.system.initiative.value < groupData.initiativeBonus) {
+          groupData.initiativeBonus = combatant.actor.system.initiative.value;
+        }
+      });
+    })
+
     // Save the groups
     this.setFlag('acks', 'groups', groups);
     ui.notifications.info("Groups created/updated");
@@ -353,7 +369,7 @@ export class AcksCombat {
 
   /*******************************************************/
   static async rollInitiative(combat, data) {
-    console.log(">>>>Roll Initiative", combat, data); 
+    console.log(">>>>Roll Initiative", combat, data);
     // Initialize groups.
     data.combatants = [];
     let groups = {};
@@ -493,11 +509,11 @@ export class AcksCombat {
   static format(object, html, user) {
     let colorEnabled = game.settings.get("acks", "enable-combatant-color");
     let colorFriendlies = "#00FF00";
-    let colorHostiles = "#FF0000";    
+    let colorHostiles = "#FF0000";
     try {
       colorFriendlies = game.settings.get("acks", "color-friendlies");
       colorHostiles = game.settings.get("acks", "color-hostiles");
-    } catch (e) { 
+    } catch (e) {
       console.log("Color settings not found", e);
     }
 
@@ -526,7 +542,7 @@ export class AcksCombat {
       //console.log("Combat controls", ct.dataset);
       if (ct?.dataset?.combatantId) {
         const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
-        if ( cmbtant?.actor) {
+        if (cmbtant?.actor) {
           const actionDone = cmbtant.actor.hasEffect("done") ? "active" : "";
           controls.eq(1).after(
             `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`

@@ -736,8 +736,8 @@ export class AcksCombat {
       // Check if all tokens are NPCs
       for (let token of groupTokens) {
         if (token.actor.hasPlayerOwner) {
-          ui.notifications.warn("You can't group player tokens");
-          return;
+          //ui.notifications.warn("You can't group player tokens");
+          //return;
         }
       }
       // Check if number of tokens is greater than 1 

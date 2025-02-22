@@ -61,14 +61,14 @@ export class AcksCombatClass extends Combat {
       let initValue = -1;
       let showMessage = true
       let roll
-      if (groupData) { 
+      if (groupData) {
         if (groupData.initiative > 0) {
-        initValue = groupData.initiative;
-        showMessage = false
+          initValue = groupData.initiative;
+          showMessage = false
         } else {
           roll = new Roll(`1d6+${groupData.initiativeBonus}`)
           await roll.evaluate();
-          initValue = roll.total;  
+          initValue = roll.total;
           groupData.initiative = initValue
         }
       } else {
@@ -152,13 +152,30 @@ export class AcksCombatClass extends Combat {
     this._playCombatSound("startEncounter");
     let updateData = { round: 1, turn: 0, initDone: true };
 
-    await this.rollAll()
+    let d = new Dialog({
+      title: "Actions declaration",
+      content: "<p>Start of Round 1. About to roll Initiative.</p><p>Ask players to declare any actions for this round.</p>",
+      buttons: {
+        init: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "Action declared, start rolling Initiative",
+          callback: async () => {
+            await this.rollAll()
+            Hooks.callAll("combatStart", this, updateData);
+            console.log(">>>>>>>>>> Start Combat", this, updateData)
+            return this.update(updateData);
+          }
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "Cancel",
+          callback: () => {}
+        }
+      },
+      default: "init"
+    });
+    d.render(true);
 
-    Hooks.callAll("combatStart", this, updateData);
-    console.log(">>>>>>>>>> Start Combat", this, updateData);
-
-
-    return this.update(updateData);
   }
 
   /*******************************************************/
@@ -250,6 +267,11 @@ export class AcksCombatClass extends Combat {
     let advanceTime = Math.max(this.turns.length - this.turn, 0) * CONFIG.time.turnTime;
     advanceTime += CONFIG.time.roundTime;
     let nextRound = this.round + 1;
+    // Display a chat message to remind declaring actions 
+    let chatData = {
+      content: `Round ${nextRound} has started, you can declare your actions before rolling initiative.`,
+    };
+    ChatMessage.create(chatData);
 
     // Update the document, passing data through a hook first
     const updateData = { round: nextRound, turn };
@@ -329,7 +351,7 @@ export class AcksCombatClass extends Combat {
     let groups = foundry.utils.duplicate(this.getFlag('acks', 'groups') || [])
     // Group index is the group size
     let groupId = groups.length;
-    groups[groupId] = { initiative: -1, initiativeBonus:1000, tokens: groupTokens.map(t => t.id) }
+    groups[groupId] = { initiative: -1, initiativeBonus: 1000, tokens: groupTokens.map(t => t.id) }
 
     // Remove tokens already present in another group
     groups.forEach(function (groupData, id) {

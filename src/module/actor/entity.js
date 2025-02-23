@@ -53,7 +53,6 @@ export class AcksActor extends Actor {
     this._isSlow();
     this.computeAC();
     this.computeEncumbrance();
-    this.computeTreasure();
     this.computeBHR();
     this.computeAAB();
 
@@ -1060,22 +1059,6 @@ export class AcksActor extends Actor {
       rolls.push({ key: key, value: attr.value, name: game.i18n.localize("ACKS.scores." + key + ".short"), type: "score" })
     }
     return rolls
-  }
-  /* -------------- ------------------------------ */
-  computeTreasure() {
-    if (this.type != "character") {
-      return;
-    }
-    const data = this.system;
-    // Compute treasure
-    let total = 0;
-    let treasure = this.items.filter(
-      (i) => i.type == "item" && i.system.treasure
-    );
-    treasure.forEach((item) => {
-      total += item.system.quantity.value * item.system.cost
-    });
-    data.treasure = total;
   }
 
   computeAC() {

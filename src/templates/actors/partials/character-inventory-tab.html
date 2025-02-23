@@ -145,7 +145,6 @@
     </li>
     <ol class="item-list">
       {{#each owned.items as |item|}}
-      {{#unless item.system.treasure}}
       <li class="item-entry">
         <div class="item flexrow" data-item-id="{{item._id}}">
           <div class="item-name flexrow">
@@ -172,7 +171,6 @@
           </div>
         </div>
       </li>
-      {{/unless}}
       {{/each}}
     </ol>
   </div>
@@ -222,7 +220,7 @@
     </ol>
   </div>
 
-  <div class="">
+  <!-- <div class="">
     {{!-- Treasure items --}}
     <li class="item-titles flexrow">
       <div class="item-caret"><i class="fas fa-caret-down"></i></div>
@@ -268,7 +266,7 @@
       {{/if}}
       {{/each}}
     </ol>
-  </div>
+  </div> -->
 
 </section>
 

@@ -16,6 +16,7 @@
   --acks-sheet-background: url("./assets/ui/acks_sheet_background.webp");
   --acks-sheet-background-fade: url("./assets/ui/acks_sheet_background_fade01.webp");
   --acks-red-background: url("./assets/ui/acks_red_background.webp");
+  --acks-sheet-tabs-background: rgb(190, 190, 161);
 }
 
 /* ----------------------------------------- */
@@ -53,10 +54,10 @@
 /* ----------------------------------------- */
 /* Combat tracker specific overloads */
 .combat-sidebar li.combatant .roll {
-  background: url(systems/acks/assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
+  background: url(./assets/icons/perspective-dice-five.svg) no-repeat 50% 50%;
 }
 .combat-sidebar li.combatant .roll:hover {
-  background: url(systems/acks/assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
+  background: url(./assets/icons/perspective-dice-five-hover.svg) no-repeat 50% 50%;
 }
 
 #sidebar {
@@ -181,8 +182,7 @@
   margin-left: -5px;
   text-indent: 4px;
   line-height: 16px;
-  background: rgb(190, 190, 161);
-  /*background: url("/ui/parchment.jpg");*/
+  background: var(--acks-sheet-tabs-background);
   border-top-right-radius: 4px;
   border-top-left-radius: 80px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.9);
@@ -394,7 +394,14 @@
   flex-basis: 90px;
   min-width: 12rem;
 }
-
+.weapon-name {
+  min-width: 7rem;
+  max-width: 7rem;
+}
+.weapon-range {
+  min-width: 4rem;
+  max-width: 4rem;
+}
 .effect-image {
   width: 32px;
   max-width: 32px;
@@ -1160,6 +1167,7 @@
   margin-left: -5px;
   text-indent: 4px;
   line-height: 16px;
+  background: var(--acks-sheet-tabs-background);
   border-top-right-radius: 4px;
   border-top-left-radius: 80px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.9);

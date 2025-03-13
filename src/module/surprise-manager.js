@@ -44,10 +44,21 @@ export class AcksSurprise extends FormApplication {
   async rollSurprise(surpriseDef, friendlyModifier = 0, hostileModifier = 0) {
     console.log("Rolling surprise", surpriseDef, friendlyModifier, hostileModifier, this.object.pools.hostile, this.object.pools.friendly);
     let monsters = this.object.pools.hostile;
+    let adventurers = this.object.pools.friendly;
+
+    let surpriseAdventurers = 200;
+    let surpriseMonsters = 200;
+    for (let c of monsters) {
+      surpriseAdventurers = Math.min(surpriseAdventurers, c.actor.system.surprise.surpriseothers);
+    }
+    for (let c of adventurers) {
+      surpriseMonsters = Math.min(surpriseMonsters, c.actor.system.surprise.surpriseothers);
+    }
+
     for (let c of monsters) {
       console.log("Combatant", c);
       let actorModifier = this.modifiers[c.id] || 0;
-      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseDef.monsterModifier + "+" + hostileModifier + "+" + actorModifier).roll();
+      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseMonsters + "+" +c.actor.system.surprise.avoidsurprise + "+" + surpriseDef.monsterModifier + "+" + hostileModifier + "+" + actorModifier).roll();
       let surprised = roll.total <= 2;
       let formula = roll.formula;
       let msgText = (surprised) ? "ACKS.surprise.surprised" : "ACKS.surprise.notsurprised";
@@ -65,10 +76,10 @@ export class AcksSurprise extends FormApplication {
         AcksUtility.addUniqueStatus(c.actor, "surprised")
       }
     }
-    let adventurers = this.object.pools.friendly;
+
     for (let c of adventurers) {
       let actorModifier = this.modifiers[c.id] || 0;
-      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseDef.adventurerModifier + "+" + friendlyModifier+ "+" + actorModifier).roll();
+      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseAdventurers + "+" + surpriseDef.adventurerModifier + "+" + friendlyModifier+ "+" + actorModifier).roll();
       let formula = roll.formula;
       let surprised = roll.total <= 2;
       let msgText = (surprised) ? "ACKS.surprise.surprised" : "ACKS.surprise.notsurprised";

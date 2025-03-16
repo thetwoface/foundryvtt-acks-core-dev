@@ -90,7 +90,23 @@
             <div class="attribute-value">
               <input name="system.surprise.mod" type="text" value="{{system.surprise.mod}}" value="0"  data-dtype="Number" placeholder="0" />
             </div>
-          </li>      
+          </li>
+          <li class="attribute flexrow">
+            <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.SurpriseOthers' }}">
+              {{ localize "ACKS.SurpriseOthers" }}</h4>
+            <div class="attribute-value">
+              <input name="system.surprise.surpriseothers" type="text" value="{{system.surprise.surpriseothers}}"
+                placeholder="" data-dtype="Number" />
+            </div>
+          </li>
+          <li class="attribute flexrow">
+            <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.AvoidSurprise' }}">
+              {{ localize "ACKS.AvoidSurprise" }}</h4>
+            <div class="attribute-value">
+              <input name="system.surprise.avoidsurprise" type="text" value="{{system.surprise.avoidsurprise}}"
+                placeholder="" data-dtype="Number" />
+            </div>
+          </li>  
       </ul>
   </section>
 

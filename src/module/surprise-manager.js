@@ -46,13 +46,21 @@ export class AcksSurprise extends FormApplication {
     let monsters = this.object.pools.hostile;
     let adventurers = this.object.pools.friendly;
 
-    let surpriseAdventurers = 200;
-    let surpriseMonsters = 200;
+    // surpriseAdventurers = the modifier added to the Monsters' surprise roll based on the adventuring party.
+    // surpriseMonsters    = the modifier added to the Adventurers' surprise roll based on the monster opponents.
+    // The modifier should be set to the "most positive" of all "Surprise Others" attributes.
+    // For example if one actor has a -2 Surprise Others, but all other actors are just 0 (no modifier),
+    // the 0 overrides the -2 and is considered the worse modifier.
+    // If an actor is "clumsy" and has a positive modifier, while other actors have 0, the positive number is used.
+    // In all cases, the most positive (max) number is picked.
+    // Both default to a large negative number then increase.
+    let surpriseAdventurers = -200;
+    let surpriseMonsters = -200;
     for (let c of monsters) {
-      surpriseAdventurers = Math.min(surpriseAdventurers, c.actor.system.surprise.surpriseothers);
+      surpriseAdventurers = Math.max(surpriseAdventurers, c.actor.system.surprise.surpriseothers);
     }
     for (let c of adventurers) {
-      surpriseMonsters = Math.min(surpriseMonsters, c.actor.system.surprise.surpriseothers);
+      surpriseMonsters = Math.max(surpriseMonsters, c.actor.system.surprise.surpriseothers);
     }
 
     for (let c of monsters) {
@@ -79,7 +87,7 @@ export class AcksSurprise extends FormApplication {
 
     for (let c of adventurers) {
       let actorModifier = this.modifiers[c.id] || 0;
-      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseAdventurers + "+" + surpriseDef.adventurerModifier + "+" + friendlyModifier+ "+" + actorModifier).roll();
+      let roll = await new Roll("1d6+" + c.actor.system.surprise.mod + "+" + surpriseAdventurers + "+" +c.actor.system.surprise.avoidsurprise + "+" + surpriseDef.adventurerModifier + "+" + friendlyModifier+ "+" + actorModifier).roll();
       let formula = roll.formula;
       let surprised = roll.total <= 2;
       let msgText = (surprised) ? "ACKS.surprise.surprised" : "ACKS.surprise.notsurprised";

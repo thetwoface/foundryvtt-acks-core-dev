@@ -426,8 +426,8 @@
   "ACKS.surprise.none.los": "Monsters roll surprise<br>Adventurers roll surprise (-1)<br>Adventurers cannot evade",
   "ACKS.surprise.none.none": "No encounter",
 
-  "ACKS.surprise.notsurprised": "Actor {name} is NOT surprised (result {result}, {formula})",
-  "ACKS.surprise.surprised": "Actor {name} is surprised (result {result}, {formula})",
+  "ACKS.surprise.notsurprised": "Not surprised.<br/>(result {result}, {formula})",
+  "ACKS.surprise.surprised": "<strong>Surprised!</strong><br/>(result {result}, {formula})",
   "ACKS.surprise.actormodifier": "Per actor modifiers",
 
   "ACKS.surprise.title.forelos": "Fore+LOS",

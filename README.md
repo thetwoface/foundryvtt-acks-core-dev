@@ -42,10 +42,7 @@ and more are available separately.
 - Spellcasting
 
 ### **Recent Updates**
-For a complete list of changes, [refer to the Changelog](https://github.com/AutarchLLC/foundryvtt-acks-core/blob/master/Changelog.txt). Here are some of the significant changes in the latest release:
-
-- Added the ACKS II specific Initiative sequencing including Surprise bonuses and Initiative conditions such as Delaying and Readied.
-- Updated the game system to add Foundry version 11 and version 12 compatibility.
+For a detailed list of changes for each release, [refer to the Changelog](https://github.com/AutarchLLC/foundryvtt-acks-core/blob/master/Changelog.md).
 
 ## Installation Instructions
 **Forge Hosting**

@@ -18,7 +18,7 @@ campaigns with a sweeping scope. Whether you want to crawl through dungeons,
 experiment with alchemy, crossbreed monsters, run a merchant emporium,
 raise an undead legion, or conquer an empire, ACKS II supports your playstyle.
 
-## **Adventurer Conqueror King System Imperial Imprint (ACKS II)** for Foundry VTT
+## Adventurer Conqueror King System Imperial Imprint (ACKS II) for Foundry VTT
 
 This is the ACKS II core game system module for Foundry Virtual Tabletop,
 providing character sheet and game system support for ACKS II.
@@ -29,8 +29,9 @@ Also included is a world map of the Auran Empire (the default setting of ACKS).
 A number of compendiums with Monsters, Items, Spells, Proficiencies, Abilities
 and more are available separately.
 
-## ACKS II for Foundry VTT Features
-### **Core Rules**
+## ACKS II Core Game System
+
+### ACKS II Rules
 - Armor Class (Ascending starting from 0)
 - Attack throws, saving throws, and proficiency throws
 - Attributes, class powers, and proficiency modifiers applied to character sheet
@@ -41,8 +42,33 @@ and more are available separately.
 - Party-based evasion rolls to end encounters
 - Spellcasting
 
-### **Recent Updates**
+### New Features and Updates
 For a detailed list of changes for each release, [refer to the Changelog](https://github.com/AutarchLLC/foundryvtt-acks-core/blob/master/Changelog.md).
+
+
+## Table of Contents
+
+   * [Adventurer Conqueror King System Imperial Imprint (ACKS II) for Foundry VTT](#adventurer-conqueror-king-systemimperial-imprint-acks-ii-for-foundry-vtt)
+   * [ACKS II Core Game System](#acks-ii-core-game-system)
+      * [ACKS II Rules](#acks-ii-rules)
+      * [New Features and Updates](#new-features-and-updates)
+   * [Table of Contents](#table-of-contents)
+   * [Before Installing or Updating](#before-installing-or-updating)
+   * [Installation Instructions](#installation-instructions)
+      * [Forge Hosting (Automated)](#forge-hosting-automated)
+      * [Installation from URL](#installation-from-url)
+      * [Manual Installation (Advanced Users)](#manual-installation-advanced-users)
+   * [Downgrading to an older ACKS Core System release](#downgrading-to-an-older-acks-core-system-release)
+      * [Finding the old ACKS releases](#finding-the-old-acks-releases)
+      * [Downgrade Instructions](#downgrade-instructions)
+   * [Developer Instructions](#developer-instructions)
+      * [The test suite](#the-test-suite)
+   * [Community Contribution](#community-contribution)
+   * [License](#license)
+      * [System](#system)
+      * [Artwork](#artwork)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 
 ## Before Installing or Updating
 
@@ -179,7 +205,7 @@ foundation of the ACKS compendium\! Both of them put in an enormous effort, all 
 save judges tons of work in getting their campaigns started.
 
 ## License
-#### System
+### System
 
 This system is offered and may be used under the terms of
 the [<span class="underline">Simulationist Adventure Game Authorization (SAGA) License v1.0</span>](saga-license.md),
@@ -194,7 +220,7 @@ You may find further information about the system
 at [<span class="underline">autarch.co</span>](https://autarch.co/).
 Auran Empire is trademark Alexander Macris.
 
-#### Artwork
+### Artwork
 
 We gratefully acknowledge all the contributions that make this module possible!
 Graphical assets used in this module and its compendia come from a variety of

@@ -19,7 +19,15 @@
 - **webp** Definitely needed to convert icons and other images from other formats into .webp formats.
 - **iconv** Converts the encoding of a file from 1 format to another, which can be very helpful when attempting to open data files generated on a PC app like Excel.
 
+### Required Node.JS tools
 
+For running the Compendium generation and parsing tools, you'll probably want these also.
+
+Listed separately because it's not needed for the main build, currently. You can create a separate project just to run your Node scripts if you want to make a standalone parser/processor for the data files.
+
+- **@foundryvtt/foundryvtt-cli** The Foundry VTT command-line interface which allows you to work with Compendium packs. Use this to unpack and repack from a compendium into a collection of JSON files.
+- **papaparse** An excellent CSV / TSV text file parsing library that reads and writes from comma-separated or tab-separated value text files into a collection of JS objects within your script.
+- **yargs** Command-line argument parsing library.
 
 ### Optional Tools
 - **curl** This is called from a table-of-contents generator script I found.
@@ -27,18 +35,10 @@
 - **mdview** Converts the specified markdown file into HTML and launches the system web browser (e.g. Firefox) to view it.
 - **pandoc** Converts formats like MS Word to Markdown and does a pretty good job of it too. Recommended if turning mostly text documents to markdown.
 
-**Mandatory Node.JS tools** For running the Compendium generation and parsing tools.
-
-- **@foundryvtt/foundryvtt-cli** The Foundry VTT command-line interface which allows you to work with Compendium packs. Use this to unpack and repack from a compendium into a collection of JSON files.
-- **papaparse** An excellent CSV / TSV text file parsing library that reads and writes from comma-separated or tab-separated value text files into a collection of JS objects within your script.
-- **yargs** Command-line argument parsing library.
-
 
 ### Installation
 
-**Mandatory Tools**
-
-This is kind of a questionable one, I don't remember why I did this? Possibly because the update to Ubuntu 24.04 screwed up my system terribly. `sudo apt-get install --reinstall ubuntu-desktop`
+**Required Tools**
 
 ```shell
 sudo apt-get install curl
@@ -50,7 +50,11 @@ sudo apt install graphviz
 sudo apt install webp
 ```
 
-**Node.js Tools**
+This reinstall is listed separately because I don't remember why I installed this one and you probably should not do it. Possibly I might have needed this after upgrading from Ubuntu 22.04 to Ubuntu 24.04. That was a mistake and it screwed up my system for days.  
+`sudo apt-get install --reinstall ubuntu-desktop`
+
+
+**Required Node.js Tools**
 
 I'm a bit fuzzy on whether these could / should be installed into the main ACKS Core Game System repository. I plan to do that for testing and see what breaks.
 
@@ -72,6 +76,8 @@ sudo apt-get install unix2dos
 sudo snap install mdview
 sudo apt install pandoc
 ```
+
+## Tool Usage Instructions
 
 ### pandoc Usage
 

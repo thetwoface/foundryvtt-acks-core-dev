@@ -108,7 +108,7 @@ jobs:
       
       # Create the intermediate building folder
       - name: Create build folder
-        run: mkdir -p build; cp -r src/* build/.; cp README.md build/.; cp Changelog.txt build/.
+        run: mkdir -p build; cp -r src/* build/.; cp README.md build/.; cp Changelog.md build/.
 
       # Create a "system.zip" archive containing all the module's required files.
       # If you have other directories or files that will need to be added to

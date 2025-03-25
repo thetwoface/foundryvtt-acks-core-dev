@@ -956,7 +956,11 @@ export class AcksActor extends Actor {
       }
     }
     if ( !output) {
-      output = table[0];
+      // Take the first key/value of the table object, whatever it is 
+      for (let key in table) {
+        output = table[key];
+        break;
+      }
     }
     return output;
   }

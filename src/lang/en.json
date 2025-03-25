@@ -173,7 +173,7 @@
   "ACKS.movement.expedition": "Expedition",
   "ACKS.movement.stealth": "Stealth",
   "ACKS.movement.climb": "Climb",
-  "ACKS.movement.bonus": "Movement Bonus (ft)",
+  "ACKS.movement.bonus": "Movement Bonus",
 
   "ACKS.SurpriseOthers": "Surprise Others",
   "ACKS.AvoidSurprise": "Avoid Surprise",

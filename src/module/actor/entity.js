@@ -24,7 +24,10 @@ export class AcksActor extends Actor {
     return super.create(data, options);
   }
 
+
   async _onUpdate(changed, options, userId) {
+    //console.log("Regular update", changed, options, userId);
+    
     if (this.type == "character" && this.system.retainer?.enabled && this.system.retainer?.managerid != "") {
       let manager = game.actors.get(this.system.retainer.managerid);
       if (manager && manager.sheet.rendered) {
@@ -952,6 +955,13 @@ export class AcksActor extends Actor {
         output = table[i];
       }
     }
+    if ( !output) {
+      // Take the first key/value of the table object, whatever it is 
+      for (let key in table) {
+        output = table[key];
+        break;
+      }
+    }
     return output;
   }
 
@@ -1227,6 +1237,9 @@ export class AcksActor extends Actor {
       newBHR = diceNumber + "d10";
     } else {
       newBHR = AcksActor._valueFromTable(bhrcalc, Number(data.hp.max));
+    }
+    if (!newBHR) {
+      newBHR = "1d2"
     }
     if ( newBHR != data.hp.bhr) {
       data.hp.bhr = newBHR;

@@ -261,7 +261,7 @@ export class AcksActorSheet extends ActorSheet {
 
       let skip = false
       let skipKey = game.settings.get("acks", "skip-dialog-key");
-      if (options.event && options.event[skipKey]) {
+      if (ev[skipKey]) {
         skip = true;
       }
   

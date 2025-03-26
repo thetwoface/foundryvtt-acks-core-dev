@@ -73,6 +73,8 @@ Hooks.once("init", async function () {
 
   AcksTokenHud.init()
 
+  // Ensure new effect transfer
+  CONFIG.ActiveEffect.legacyTransferral = false
 });
 
 // Setup Polyglot stuff if needed

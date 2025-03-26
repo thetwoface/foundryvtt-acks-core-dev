@@ -949,13 +949,13 @@ export class AcksActor extends Actor {
 
   /* -------------------------------------------- */
   static _valueFromTable(table, val) {
-    let output;
+    let output = undefined;
     for (let i = 0; i <= val; i++) {
       if (table[i] != undefined) {
         output = table[i];
       }
     }
-    if ( !output) {
+    if ( output == undefined) {
       // Take the first key/value of the table object, whatever it is 
       for (let key in table) {
         output = table[key];

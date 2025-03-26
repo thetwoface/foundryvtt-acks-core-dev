@@ -70,6 +70,13 @@ export class AcksItemSheet extends ItemSheet {
         this.object.pushTag(values);
       }
     });
+
+    html.on('click', '.effect-control', (ev) => {
+      const row = ev.currentTarget.closest('li');
+      const document = this.object;
+      AcksUtility.onManageActiveEffect(ev, document);
+    });
+
     html.find('.tag-delete').click((ev) => {
       let value = ev.currentTarget.parentElement.dataset.tag;
       this.object.popTag(value);

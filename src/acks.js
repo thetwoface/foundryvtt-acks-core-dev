@@ -25,6 +25,7 @@ import { AcksCommands } from "./module/apps/acks-commands.js";
 
 Hooks.once("init", async function () {
   //CONFIG.debug.hooks = true;
+  //CONFIG.debug.hooks = true;
 
   // Clamp/Clamped management v11/v12
   if (Math.clamp === undefined) {

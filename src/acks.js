@@ -24,6 +24,7 @@ import { AcksCommands } from "./module/apps/acks-commands.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", async function () {
+  //CONFIG.debug.hooks = true;
 
   // Clamp/Clamped management v11/v12
   if (Math.clamp === undefined) {
@@ -135,12 +136,9 @@ Hooks.once("ready", async () => {
     macros.createAcksMacro(data, slot)
   );
 
+  AcksUtility.updateWeightsLanguages()
+  AcksUtility.displayWelcomeMessage()
   AcksUtility.setupSocket()
-  AcksTableManager.init()
-  if (game.user.isGM) { // only for GM, to avoid dummy permissions issues
-    AcksUtility.updateWeightsLanguages()
-    AcksUtility.displayWelcomeMessage()
-  }
 
 });
 

@@ -2,6 +2,25 @@
 
 This is the change history for the FoundryVTT ACKS II core system module (search for *acks* in the Foundry installer).
 
+## Release 12.2.5 - Mainly a Bugfix Release
+
+### Updates
+
+- **2025-03-22:** Added first draft of developer information as ./notes/tools.md
+- **2025-03-22:** Update README.md:  
+  1. Add Table of Contents.
+  2. Add instructions for downgrading (reverting) to older releases.
+
+### Bugfixes
+
+- **2025-03-26:** Implements change to deal with ActiveEffect from Items
+- **2025-03-26:** Fix MEL/DIS
+- **2025-03-26:** Fix wrong table usage
+- **2025-03-25:** Prevent issue with out of bounds values
+- **2025-03-21:** Update actions
+- **2025-03-21:** Update Changelog for release.  
+Rename Changelog.txt to Markdown (Changelog.md).
+
 ## Release 12.2.4 - Updates to Initiative and Surprise
 
 ### Updates
@@ -13,7 +32,7 @@ This is the change history for the FoundryVTT ACKS II core system module (search
 - Update surprise calculations to correctly incorporate Surprise Others / Avoid Surprise. These now work exactly as described in the ACKS II RR page
 - Update Monster character sheet to add the fields for Surprise Others / Avoid Surprise.
 - Allow grouping of Player Characters (friendlies).
-- Fix initiatve
+- Fix initiative
 - Fix missing backgrounds in some dialog tabs
 
 ### Change List
@@ -434,7 +453,7 @@ Added a world map of Cybele if a judge would like to use the default ACKS settin
 **MINOR CHANGES:**
 On retainer sheets, Morale and Loyalty can now be rolled by clicking on their fields.
 Morale should be a number (typically between -6 and +4) and Loyalty is a text field, in which the Judge can write things to remind him of any bonuses or penalties that need to be applied to the Morale or Loyalty check.
-Morale rolls are made each time the henchman suffers a calamity. A calamity includes suffering an energy drain, a curse, a magical disease, or being nearly killed (Judge’s discretion).
+Morale rolls are made each time the henchman suffers a calamity. A calamity includes suffering an energy drain, a curse, a magical disease, or being nearly killed (Judge's discretion).
 Loyalty rolls should make a morale roll for each henchman at the end of each adventure whenever the henchman has leveled up, to determine if the henchman strikes off on his own or remains with the adventurer.
 
 **v0.5.2 Houserule: Wisdom bonus to all saves**

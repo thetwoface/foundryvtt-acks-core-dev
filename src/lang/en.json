@@ -103,6 +103,7 @@
 
   "ACKS.Attack": "Attack",
   "ACKS.Encumbrance": "Encumbrance",
+  "ACKS.EncumbranceStone": "Encumbrance (st)",
 
   "ACKS.moneytitle": "Money",
   "ACKS.money.coppervalue": "Value (in Copper Coin)",
@@ -172,7 +173,7 @@
   "ACKS.movement.expedition": "Expedition",
   "ACKS.movement.stealth": "Stealth",
   "ACKS.movement.climb": "Climb",
-  "ACKS.movement.bonus": "Movement Bonus",
+  "ACKS.movement.bonus": "Movement Bonus (ft)",
 
   "ACKS.SurpriseOthers": "Surprise Others",
   "ACKS.AvoidSurprise": "Avoid Surprise",

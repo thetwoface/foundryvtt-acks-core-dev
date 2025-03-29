@@ -677,7 +677,7 @@ export class AcksActor extends Actor {
     const label = game.i18n.localize(`ACKS.roll.hd`);
     const rollParts = [this.system.hp.hd];
     if (this.type == "character") {
-      rollParts.push(this.system.scores.con.mod);
+      rollParts.push(this.system.scores.con.mod*this.system.details.level);
     }
 
     const data = {

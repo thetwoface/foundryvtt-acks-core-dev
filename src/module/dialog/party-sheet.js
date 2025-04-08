@@ -100,9 +100,8 @@ export class AcksPartySheet extends FormApplication {
     event.preventDefault();
 
     const template = "systems/acks/templates/apps/party-select.html";
-    const characters = this.object.documents.filter((actor) => actor.type === "character");
     const templateData = {
-      actors: characters,
+      actors: this.object.documents,
     };
     const content = await renderTemplate(template, templateData);
     new Dialog({

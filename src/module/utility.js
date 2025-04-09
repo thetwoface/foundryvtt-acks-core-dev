@@ -28,7 +28,7 @@ export class AcksUtility {
   console.log("WELCOME", welcomeMessage)
   if (!welcomeMessage) {
     game.settings.set('acks', 'welcome-message-12-2', true)
-    // New dialog with full message 
+    // New dialog with full message
     let d = new Dialog({
       title: game.i18n.localize('ACKS.Welcome.Title'),
       content: `<p>${game.i18n.localize('ACKS.Welcome.Message-12-2')}</p>`,
@@ -59,13 +59,13 @@ export class AcksUtility {
 
   /* -------------------------------------------- */
   static prepareActiveEffect(effectId) {
-  let status = CONFIG.ACKS.statusEffects.find(it => it.id.includes(effectId))
-  if (status) {
-    status = foundry.utils.duplicate(status)
-    status.statuses = [effectId]
+    let status = CONFIG.ACKS.statusEffects.find(it => it.id.includes(effectId));
+    if (status) {
+      status = foundry.utils.duplicate(status);
+      status.statuses = [effectId];
+    }
+    return status;
   }
-  return status;
-}
 
   /* -------------------------------------------- */
   static addUniqueStatus(actor, statusId) {

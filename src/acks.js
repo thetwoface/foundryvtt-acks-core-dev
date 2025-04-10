@@ -47,13 +47,12 @@ Hooks.once("init", async function () {
 
   // Custom Handlebars helpers
   registerHelpers();
-  // Register custom system settings
   registerMainSettings();
 
   CONFIG.Actor.documentClass = AcksActor;
   CONFIG.Item.documentClass = AcksItem;
   CONFIG.Combat.documentClass = AcksCombatClass;
-  
+
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("acks", AcksActorSheetCharacter, {
@@ -98,13 +97,13 @@ Hooks.once("ready", async () => {
   Hooks.on("hotbarDrop", (bar, data, slot) =>
     macros.createAcksMacro(data, slot)
   );
-  
-  AcksUtility.displayWelcomeMessage()
+
   AcksUtility.setupSocket()
-if (game.user.isGM) { // only for GM, to avoid dummy permissions issues  
+  if (game.user.isGM) { // only for GM, to avoid dummy permissions issues
     AcksUtility.updateWeightsLanguages()
+    AcksUtility.displayWelcomeMessage()
   }
-  
+
 });
 
 // License and KOFI infos
@@ -126,4 +125,3 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatMessage", chat.addChatMessageButtons);
 Hooks.on("renderRollTableConfig", treasure.augmentTable);
 Hooks.on("updateActor", party.update);
-

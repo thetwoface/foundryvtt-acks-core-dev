@@ -2,6 +2,7 @@ import { AcksActor } from "./entity.js";
 import { AcksEntityTweaks } from "../dialog/entity-tweaks.js";
 import { AcksUtility } from "../utility.js";
 export class AcksActorSheet extends ActorSheet {
+
   constructor(...args) {
     super(...args);
   }
@@ -46,10 +47,10 @@ export class AcksActorSheet extends ActorSheet {
   async _onDrop(event) {
     let data = event.dataTransfer.getData('text/plain');
     if (data) {
-      let dataItem = JSON.parse( data);
+      let dataItem = JSON.parse(data);
       let actorId = dataItem.uuid.split('.')[1]
-      if ( dataItem.uuid.includes("Actor") && !dataItem.uuid.includes("Item") && actorId && actorId != this.actor.id) {  
-        this.actor.addHenchman( actorId);
+      if (dataItem.uuid.includes("Actor") && !dataItem.uuid.includes("Item") && actorId && actorId != this.actor.id) {
+        this.actor.addHenchman(actorId);
         return;
       }
     }
@@ -200,11 +201,11 @@ export class AcksActorSheet extends ActorSheet {
       let save = element.parentElement.parentElement.dataset.save;
       actorObject.rollSave(save, { event: ev });
     });
-    
+
     html.find(".item .item-rollable .item-image").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      
+
       let skip = false
       let skipKey = game.settings.get("acks", "skip-dialog-key");
       if (ev && ev[skipKey]) {
@@ -226,13 +227,13 @@ export class AcksActorSheet extends ActorSheet {
     html.find(".favorite-rollable").click(async (ev) => {
       const li = $(ev.currentTarget);
       const item = this.actor.items.get(li.data("itemId"));
-      
+
       let skip = false
       let skipKey = game.settings.get("acks", "skip-dialog-key");
       if (ev && ev[skipKey]) {
         skip = true;
       }
-  
+
       if (item.type == "weapon") {
         if (this.actor.type === "monster") {
           item.update({ 'system.counter.value': item.system.counter.value - 1 });
@@ -264,7 +265,7 @@ export class AcksActorSheet extends ActorSheet {
       if (ev[skipKey]) {
         skip = true;
       }
-  
+
       actorObject.targetAttack(rollData, attack, {
         type: attack,
         skipDialog: skip,

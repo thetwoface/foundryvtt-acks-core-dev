@@ -99,9 +99,11 @@ Hooks.once("ready", async () => {
     macros.createAcksMacro(data, slot)
   );
   
-  AcksUtility.updateWeightsLanguages()
   AcksUtility.displayWelcomeMessage()
   AcksUtility.setupSocket()
+if (game.user.isGM) { // only for GM, to avoid dummy permissions issues  
+    AcksUtility.updateWeightsLanguages()
+  }
   
 });
 

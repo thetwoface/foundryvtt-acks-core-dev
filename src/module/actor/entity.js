@@ -26,8 +26,8 @@ export class AcksActor extends Actor {
 
 
   async _onUpdate(changed, options, userId) {
-    //console.log("Regular update", changed, options, userId);
-    
+    console.log("Regular update", changed, options, userId);
+
     if (this.type == "character" && this.system.retainer?.enabled && this.system.retainer?.managerid != "") {
       let manager = game.actors.get(this.system.retainer.managerid);
       if (manager && manager.sheet.rendered) {
@@ -52,12 +52,14 @@ export class AcksActor extends Actor {
     const data = this.system;
 
     // Compute modifiers from actor scores
-    this.computeModifiers();
-    this._isSlow();
-    this.computeAC();
-    this.computeEncumbrance();
-    this.computeBHR();
-    this.computeAAB();
+    if (this.isOwner || game.user.isGM) {
+      this.computeModifiers();
+      this._isSlow();
+      this.computeAC();
+      this.computeEncumbrance();
+      this.computeBHR();
+      this.computeAAB();
+    }
 
     // Determine Initiative
     data.initiative.value = data.initiative.mod || 0;
@@ -956,7 +958,7 @@ export class AcksActor extends Actor {
       }
     }
     if ( output == undefined) {
-      // Take the first key/value of the table object, whatever it is 
+      // Take the first key/value of the table object, whatever it is
       for (let key in table) {
         output = table[key];
         break;

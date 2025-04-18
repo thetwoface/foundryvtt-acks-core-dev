@@ -2,6 +2,21 @@
 
 This is the change history for the FoundryVTT ACKS II core system module (search for *acks* in the Foundry installer).
 
+## Release 12.2.6 - Updates and Bugfixes
+
+Updates for Movement, base movement, rolling Hit Dice, and added developer documentation.
+
+### Updates
+- **2025-04-02:** Merge pull request #110 from thetwoface/feat-movement-speed-mod
+- **2025-03-31:** Expand documentation and usage instructions for ACKS development. (added new Markdown files)
+- **2025-03-29:** added ACKS.EncumbranceStone
+- **2025-03-29:** Update entity.js - Updating Hit Dice Roll to Multiply Con Mod by Level
+- **2025-03-25:** added base movement mod
+
+### Bugfixes
+- **2025-04-10:** Fix #123 - Avoid a user permissions issue if non-GM is first login after updating ACKS game system versions.
+- **2025-03-31:** Merge Hit Dice pull request #113 from wyatt-kinkade/master -- Fix to issue #94
+
 ## Release 12.2.5 - Mainly a Bugfix Release
 
 ### Updates
@@ -330,8 +345,24 @@ Updates Loyalty Roll to use correct modifiers
 - **2024-06-23:** Fix incorrect image path from images/ to system/acks/assets/
 - **2024-06-23:** Integrate colorsettings into the system itself
 
-git log --pretty=changelog e2c6fbf696b0c425eecff8cf9fba97b6cb5a7790..e57de163484f7fdafdf73f1c8cf7bc7992678237
-git log --pretty=changelog e57de163484f7fdafdf73f1c8cf7bc7992678237..135970ff2321485f9b78778db0f6c380c871029e
+## Helpful Git Notes
+
+1. Define a new git log format,
+2. Get the commit IDs for each tag you care about (e.g. tag-1 and tag-2),
+3. Use git log to print a changelog of all commits between the two git commit IDs from tag-1 and tag-2.
+4. Use that formatted outut to create the release info in the Changelog.md.
+
+
+1. Use this to define a new format style to be used with Git log:
+`git config --global --add pretty.changelog format:"- **%as:** %s  %n%-b"`
+
+2. Use this to get the commit associated with a specific tag name:
+`git rev-list -n 1 12.2.5`
+
+3. Use git log to print a changelog of the updates between commits:
+`git log --pretty=changelog old..new
+`git log --pretty=changelog 29f949a21e487c76d9eedc57072acf1ad0c31d40..1f2f4f137399d7cfb629eeb7e0aec66ae22df34e
+
 
 ## Releases 11.0.0 to 11.0.1: Early Development & FoundryVTT Updates
 

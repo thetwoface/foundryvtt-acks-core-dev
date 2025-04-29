@@ -1,0 +1,94 @@
+<div>
+
+  <div>
+    <span>Select Damage Type / Mortal Wounds Table</span>
+    <span></span>
+  </div>
+
+  <div class="flexrow">
+    <span>If Necromantic Magic, enter spell's level</span>
+    <select name="necromanticSpellLevel" class="necromantic-spell-level">
+      <option value="0" selected>None (0)</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+
+    <select name="treatmentTiming" class="treatment-timing">
+      <option value="2" selected>Treatment withing 1 Round (+2)</option>
+      <option value="-3">Treatment within 1 Turn of Injury(-3)</option>
+      <option value="-5">Treatment within 1 Hour of Injury(-5)</option>
+      <option value="-10">Treatment more than 1 day after Injury (-10)</option>
+    </select>
+
+  </div>
+
+  <div class="flexrow">
+    <div>
+      <div class="flexrow">
+        <span>Heavy Helm ?</span>
+        {{#if hasHeavyHelm}}
+        <input disabled=true type="number" name=heavyHelmMalus value="2" />
+        {{else}}
+        <input disabled=true type="number" name=heavyHelmMalus value="0" />
+        {{/if}}
+      </div>
+      <div class="flexrow">
+        <span>Hit Dice ({{hitDice}})</span>
+        <input type="number" disabled=true name="hitDiceModifier" value="{{hitDiceModifier}}" />
+      </div>
+      <div class="flexrow">
+        <span>Current Hit Points ({{currentHitPoints}} / {{maxHitPoints}})</span>
+        <input type="number" disabled=true name="hitPointsModifier" value="{{hitPointsModifier}}" />
+      </div>
+      <div class="flexrow">
+        <span>Constitution Modifier</span>
+        <input type="number" disabled=true name="conModifier" value="{{conModifier}}" />
+      </div>
+    </div>
+
+    <div>
+
+      <div class="flexrow">
+        <span>Horsetail Applied </span>
+        <input type="checkbox" name="horsetailApplied" data-action="toggle-horsetail" />
+        <input type="number" disabled=true name="horsetailModifier" value="0" />
+      </div>
+      <div class="flexrow">
+        <span>Healing magic level </span>
+        <select name="healingMagicLevel" class="healing-magic-level">
+          <option value="0" selected>None (0)</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="flexrow">
+        <span>Healing Proficiency<span>
+        <select name="healingProficiency" class="healing-proficiency">
+          <option value="0" selected>None (0)</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div>
+    <div class="flexrow">
+      <span >Final modifier value</span>
+      <input type="number" name="finalModifierValue" value="{{finalModifier}}" />
+    </div>
+  </div>
+</div>

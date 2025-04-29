@@ -87,9 +87,12 @@
       </div>
 
       <ul class="attributes flexrow">
-        <li class="attribute hit-dice">
-          <h4 class="attribute-name box-title box-title-min-height" title="{{ localize 'ACKS.HitDice' }}">
-            <a><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.HitDiceShort" }}</a>
+        <li class="attribute ">
+          <h4 class="attribute-name box-title box-title-min-height" ">
+            <a class="hit-dice" data-tooltip="{{localize 'ACKS.HitDice' }}"><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.HitDiceShort" }}</a>
+            {{#if (eq system.hp.value 0)}}
+              <a class="mortal-wound-dialog" data-tooltip="Roll Mortal Wound"><i class="fa-regular fa-skull"></i></a>
+            {{/if}}
           </h4>
           <div class="attribute-value">
             <input name="system.hp.hd" type="text" value="{{system.hp.hd}}" placeholder="" data-dtype="String" />

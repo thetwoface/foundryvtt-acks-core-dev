@@ -128,6 +128,43 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  hasHeavyHelm() {
+    if (this.type != "character") {
+      return false;
+    }
+    let hasHeavyHelm = false;
+    this.items.forEach((item) => {
+      if (item.type == "armor" && (item.name.toLowerCase().includes("heavy") && item.name.toLowerCase().includes("helmet"))) {
+        hasHeavyHelm = true;
+      }
+    });
+    return hasHeavyHelm;
+  }
+
+  /* -------------------------------------------- */
+  getHitDice() {
+    return this.system.hp.hd;
+  }
+
+  /* -------------------------------------------- */
+  getMaxHitPoints() {
+    return this.system.hp.max;
+  }
+
+  /* -------------------------------------------- */
+  getCurrentHitPoints() {
+    return this.system.hp.value;
+  }
+
+  /* -------------------------------------------- */
+  getConModifier() {
+    if (this.type != "character") {
+      return 0;
+    }
+    return this.system.scores.con.mod;
+  }
+
+  /* -------------------------------------------- */
   getLanguages() {
     let lang = this.items.filter((i) => i.type == "language");
     return lang;

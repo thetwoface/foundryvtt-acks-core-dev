@@ -40,7 +40,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
     finalModifier += Number(mortalWoundsData.healingMagicLevel)
     finalModifier -= Number(Math.floor(mortalWoundsData.necromanticSpellLevel/2))
     finalModifier += Number(mortalWoundsData.treatmentTiming)
-    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? Number(mortalWoundsData.healerClassLevel/2) : 0
+    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? Math.floor(Number(mortalWoundsData.healerClassLevel/2)) : 0
     $("input[name='finalModifierValue']").val(finalModifier)
     return finalModifier
   }
@@ -70,6 +70,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
 
     const dialogContext = await foundry.applications.api.DialogV2.wait({
       window: { title: mortalWoundsData.title },
+      classes: ["acks", "dialog", "party-sheet", "app", "window-app"],
       content,
       buttons: [{
         action: "roll",

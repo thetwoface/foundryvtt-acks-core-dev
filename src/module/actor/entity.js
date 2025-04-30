@@ -128,13 +128,16 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  /** Return true if the character has a "heavy helmet" equipped
+   *
+  */
   hasHeavyHelm() {
     if (this.type != "character") {
       return false;
     }
     let hasHeavyHelm = false;
     this.items.forEach((item) => {
-      if (item.type == "armor" && (item.name.toLowerCase().includes("heavy") && item.name.toLowerCase().includes("helmet"))) {
+      if (item.type == "armor" && item.system.equipped && (item.name.toLowerCase().includes("heavy") && item.name.toLowerCase().includes("helmet"))) {
         hasHeavyHelm = true;
       }
     });

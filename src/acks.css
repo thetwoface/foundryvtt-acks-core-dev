@@ -27,7 +27,7 @@
 }
 @font-face {
   font-family: "ebgaramond-regular";
-  src: url('./assets/fonts/EBGaramond-Regular.ttf');  
+  src: url('./assets/fonts/EBGaramond-Regular.ttf');
 }
 
 /* Compendium specific */
@@ -410,6 +410,7 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .acks.sheet.actor .sheet-body .inventory .item-list .item-name .item-image {
   flex-basis: 30px;
   flex-grow: 0;
@@ -1411,7 +1412,7 @@
   font-size: 2.0rem;
 }
 .tokenhudext {
-	display: flex; 
+	display: flex;
 	flex: 0 !important;
   font-family: CaslonPro;
   font-weight: 600;

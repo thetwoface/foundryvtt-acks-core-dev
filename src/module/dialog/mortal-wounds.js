@@ -2,26 +2,35 @@ const __HIT_DICE_MOD = { "d6": 2, "d8": 4, "d10": 6, "d12": 8 }
 
 export class AcksMortalWoundsDialog extends FormApplication {
 
+  /* -------------------------------------------- */
+  /*   * @param {number} hitPoints - The current hit points of the actor.
+    *   * @param {number} hitPointsMax - The maximum hit points of the actor.
+    *   * @returns {number} - The hit points modifier based on the current hit points.
+    *
+    * -------------------------------------------- */
   computeHitPointsModifier(hitPoints, hitPointsMax) {
     if (hitPoints >= 0) {
       return 5
     }
-    hitPoints = Math.abs(hitPoints)
-    if (hitPoints > 0 && hitPoints <= hitPointsMax / 4) {
+    if (hitPoints > -(hitPointsMax / 4) ) {
       return 0
     }
-    if (hitPoints > hitPointsMax / 4 && hitPoints <= hitPointsMax / 2) {
+    if (hitPoints >  -(hitPointsMax / 2)) {
       return -2
     }
-    if (hitPoints > hitPointsMax / 2 && hitPoints <= hitPointsMax) {
-      return -4
+    if (hitPoints > -hitPointsMax) {
+      return -5
     }
-    if (hitPoints > hitPointsMax && hitPoints <= hitPointsMax * 2) {
+    if (hitPoints > -(hitPointsMax * 2)) {
       return -10
     }
     return -20
   }
 
+  /* -------------------------------------------- */
+  /*   * @param {object} mortalWoundsData - The data object containing the values for the dialog.
+    *  *   @returns {number} - The final modifier for the mortal wounds roll.
+    * -------------------------------------------- */
   updateDialogResult(mortalWoundsData) {
     let finalModifier = (mortalWoundsData.hasHeavyHelm ? 2 : 0) + mortalWoundsData.hitPointsModifier + mortalWoundsData.hitDiceModifier + mortalWoundsData.conModifier
     if (mortalWoundsData.horsetailApplied) {
@@ -31,6 +40,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
     finalModifier += Number(mortalWoundsData.healingMagicLevel)
     finalModifier -= Number(Math.floor(mortalWoundsData.necromanticSpellLevel/2))
     finalModifier += Number(mortalWoundsData.treatmentTiming)
+    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? Number(mortalWoundsData.healerClassLevel/2) : 0
     $("input[name='finalModifierValue']").val(finalModifier)
     return finalModifier
   }
@@ -46,6 +56,8 @@ export class AcksMortalWoundsDialog extends FormApplication {
       conModifier: actor.getConModifier(),
       horsetailApplied: false,
       healingMagicLevel: 0,
+      layingOnHands: false,
+      healerClassLevel: 0,
       healingProficiency: 0,
       necromanticSpellLevel: 0,
       treatmentTiming: 2
@@ -80,10 +92,20 @@ export class AcksMortalWoundsDialog extends FormApplication {
           $("input[name='horsetailModifier']").val(mortalWoundsData.horsetailApplied ? 2 : 0)
           this.updateDialogResult(mortalWoundsData)
         },
+        "toggle-laying": (event, button, dialog) => {
+          mortalWoundsData.layingOnHands = !mortalWoundsData.layingOnHands
+          $(".healer-class-level-div").toggle(mortalWoundsData.layingOnHands)
+          this.updateDialogResult(mortalWoundsData)
+        },
       },
       render: (event, dialog) => {
+        $(".healer-class-level-div").hide()
         $(".healing-magic-level").change(event => {
           mortalWoundsData.healingMagicLevel = Number(event.target.value)
+          this.updateDialogResult(mortalWoundsData)
+        })
+        $(".healer-class-level").change(event => {
+          mortalWoundsData.healerClassLevel = Number(event.target.value)
           this.updateDialogResult(mortalWoundsData)
         })
         $(".healing-proficiency").change(event => {

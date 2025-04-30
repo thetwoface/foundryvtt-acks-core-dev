@@ -27,7 +27,7 @@
 }
 @font-face {
   font-family: "ebgaramond-regular";
-  src: url('./assets/fonts/EBGaramond-Regular.ttf');  
+  src: url('./assets/fonts/EBGaramond-Regular.ttf');
 }
 
 /* Compendium specific */
@@ -277,7 +277,7 @@
   margin: auto;
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute.saving-throw .attribute-name {
-  min-width: 5.4rem;
+  min-width: 5.6rem;
   max-height: 2.2rem;
   line-height: 1.6rem;
   /*line-height: 16px;
@@ -1411,7 +1411,7 @@
   font-size: 2.0rem;
 }
 .tokenhudext {
-	display: flex; 
+	display: flex;
 	flex: 0 !important;
   font-family: CaslonPro;
   font-weight: 600;
@@ -1486,4 +1486,8 @@
 }
 .wage-text-center{
   margin-top: 8px;
+}
+
+.combat-sidebar .combat-tracker .combatant-controls {
+  flex-wrap: wrap;
 }

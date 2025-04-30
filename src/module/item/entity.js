@@ -34,8 +34,9 @@ export class AcksItem extends Item {
   }
 
   static chatListeners(html) {
-    html.on("click", ".card-buttons button", this._onChatCardAction.bind(this));
-    html.on("click", ".item-name", this._onChatCardToggleContent.bind(this));
+    const $html = game.release.generation < 13 ? html : $(html);
+    $html.on("click", ".card-buttons button", this._onChatCardAction.bind(this));
+    $html.on("click", ".item-name", this._onChatCardToggleContent.bind(this));
   }
 
   async getChatData(htmlOptions) {
@@ -334,7 +335,7 @@ export class AcksItem extends Item {
       let nbStones6 = Math.ceil(this.system.weight / 166.66)
       this.update({ 'system.weight6': nbStones6, 'system.weight': -1 })
     }
-  }  
+  }
 
   static async _onChatCardAction(event) {
     event.preventDefault();

@@ -52,13 +52,14 @@ export class AcksActor extends Actor {
     const data = this.system;
 
     // Compute modifiers from actor scores
+    this.computeModifiers();
+    this._isSlow();
+    this.computeAC();
+    this.computeAAB();
+
     if (this.isOwner || game.user.isGM) {
-      this.computeModifiers();
-      this._isSlow();
-      this.computeAC();
       this.computeEncumbrance();
       this.computeBHR();
-      this.computeAAB();
     }
 
     // Determine Initiative

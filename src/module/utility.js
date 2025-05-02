@@ -2,7 +2,6 @@ export class AcksUtility {
 
   static updateWeightsLanguages() {
     for (let a of game.actors) {
-      console.log("UPDATE WEIGHT", a);
       a.updateWeight();
       a.updateLanguages();
       a.updateImplements();

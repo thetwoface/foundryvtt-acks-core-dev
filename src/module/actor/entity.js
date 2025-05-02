@@ -15,7 +15,7 @@ export class AcksActor extends Actor {
       return actor;
     }
 
-    data.system = { isNew : true}; // Flag the actor as new
+    data.system = { isNew: true }; // Flag the actor as new
     if (data.type == 'character') {
       const skills = await AcksUtility.loadCompendium("acks.acks-all-equipment")
       data.items = skills.map(i => i.toObject()).filter(i => i.type == "money")
@@ -38,8 +38,8 @@ export class AcksActor extends Actor {
       let manager = game.actors.get(this.system.retainer.managerid);
       setTimeout(() => { manager.delHenchman(this.id) }, 200);
     }
-    if ( (this.type == "character" && changed.system?.scores) || (this.type == "monster" && changed.system?.saves) ) {
-      setTimeout(() => { this.update({'system.isNew': false}) }, 200);
+    if ((this.type == "character" && changed.system?.scores) || (this.type == "monster" && changed.system?.saves)) {
+      setTimeout(() => { this.update({ 'system.isNew': false }) }, 200);
     }
     await super._onUpdate(changed, options, userId);
   }
@@ -52,13 +52,15 @@ export class AcksActor extends Actor {
     const data = this.system;
 
     // Compute modifiers from actor scores
+    this.computeModifiers();
+    this._isSlow();
+    this.computeAC();
+    this.computeAAB();
+
+    // Compute modifiers from actor scores
     if (this.isOwner || game.user.isGM) {
-      this.computeModifiers();
-      this._isSlow();
-      this.computeAC();
       this.computeEncumbrance();
       this.computeBHR();
-      this.computeAAB();
     }
 
     // Determine Initiative
@@ -679,7 +681,7 @@ export class AcksActor extends Actor {
     const label = game.i18n.localize(`ACKS.roll.hd`);
     const rollParts = [this.system.hp.hd];
     if (this.type == "character") {
-      rollParts.push(this.system.scores.con.mod*this.system.details.level);
+      rollParts.push(this.system.scores.con.mod * this.system.details.level);
     }
 
     const data = {
@@ -957,7 +959,7 @@ export class AcksActor extends Actor {
         output = table[i];
       }
     }
-    if ( output == undefined) {
+    if (output == undefined) {
       // Take the first key/value of the table object, whatever it is
       for (let key in table) {
         output = table[key];
@@ -1234,7 +1236,7 @@ export class AcksActor extends Actor {
 
     let newBHR = "1d3"
     let value = data.hp.max
-    if ( value > 171) {
+    if (value > 171) {
       let diceNumber = Math.floor((value - 171) / 30) + 6;
       newBHR = diceNumber + "d10";
     } else {
@@ -1243,7 +1245,7 @@ export class AcksActor extends Actor {
     if (!newBHR) {
       newBHR = "1d2"
     }
-    if ( newBHR != data.hp.bhr) {
+    if (newBHR != data.hp.bhr) {
       data.hp.bhr = newBHR;
       this.update({ 'system.hp.bhr': newBHR });
       this.update({ 'system.fight.healingrate': newBHR });

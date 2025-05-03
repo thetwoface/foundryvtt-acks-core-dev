@@ -1040,7 +1040,8 @@ export class AcksActor extends Actor {
     totalEncumbrance /= 6 // Get the weight in stones
     totalEncumbrance += this.getTotalMoneyEncumbrance().stone
 
-    let maxEncumbrance = 20 + this.system.scores.str.mod;
+    // Select the max encumbrance value
+    let maxEncumbrance = (this.system.encumbrance.forcemax>0) ? this.system.encumbrance.forcemax : 20 + this.system.scores.str.mod;
     if (this.system.encumbrance.max != maxEncumbrance && this._id) {
       this.update({ 'system.encumbrance.max': maxEncumbrance });
     }

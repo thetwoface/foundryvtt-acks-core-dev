@@ -16,6 +16,7 @@ import { AcksCombat, AcksCombatClass } from "./module/combat.js";
 import { AcksTokenHud } from "./module/acks-token-hud.js";
 import { AcksUtility } from "./module/utility.js";
 import { AcksPolyglot } from "./module/apps/polyglot-support.js";
+import { AcksTableManager } from "./module/apps/table-manager.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -123,7 +124,7 @@ Hooks.once("ready", async () => {
   );
 
   AcksUtility.setupSocket()
-  AcksUtility.loadInternalTables()
+  AcksTableManager.init()
   if (game.user.isGM) { // only for GM, to avoid dummy permissions issues
     AcksUtility.updateWeightsLanguages()
     AcksUtility.displayWelcomeMessage()

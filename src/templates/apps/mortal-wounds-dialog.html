@@ -2,16 +2,12 @@
 
   <fieldset>
     <legend>Mortal Wounds - Basic Information</legend>
-    <div>
-      <span>Select Damage Type / Mortal Wounds Table</span>
-      <select name="mortalWoundTabl" class="mortal-wound-table">
-        <option value="acid_electric" selected>Acid / Electric / Fire / Luminous Damage</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+    <div class="flexrow">
+      <span>Damage Type / Mortal Wounds Table</span>
+      <select name="mortalTablesChoice" class="mortal-wound-table">
+        {{#each mortalTablesChoices}}
+        <option value="{{this.key}}"> {{this.label}}</option>
+        {{/each}}
       </select>
     </div>
     <div class="flexrow">
@@ -62,7 +58,13 @@
         <span>Constitution Modifier</span>
         <input type="number" disabled=true name="conModifier" value="{{conModifier}}" />
       </div>
-    </fieldset>
+
+      <div class="flexrow">
+        <span>Additionnal modifier</span>
+        <input type="number" name="freeModifier" value="{{freeModifier}}" class="free-modifier"/>
+      </div>
+      </fieldset>
+
 
     <fieldset>
       <legend>Ally Performing Healing</legend>
@@ -90,7 +92,7 @@
       </div>
       <div class="flexrow healer-class-level-div">
         <span>Healer's class level </span>
-        <select name="healerClassLevel" class="healer-class-level">
+        <select name="healerClassLevel" disabled class="healer-class-level">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

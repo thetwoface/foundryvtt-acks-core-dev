@@ -2,6 +2,7 @@
   "mortal_wounds": {
     "acid": {
       "description": "Mortal Wounds - Acidic - Electrical - Fire - Luminous",
+      "name": "Acidic - Electrical - Fire - Luminous",
       "results": [
         {
           "result": "-6 or more",
@@ -119,6 +120,7 @@
     },
     "arcane": {
       "description": "Mortal Wounds - Arcane - Bludgeoning - Seismic",
+      "name": "Arcane - Bludgeoning - Seismic",
       "results": [
         {
           "result": "-6 or more",
@@ -236,6 +238,7 @@
     },
     "cold": {
       "description": "Mortal Wounds - Cold",
+      "name": "Cold",
       "results": [
         {
           "result": "-6 or more",
@@ -353,6 +356,7 @@
     },
     "necrotic": {
       "description": "Mortal Wounds - Necrotic",
+      "name": "Necrotic",
       "results": [
         {
           "result": "-6 or more",
@@ -470,6 +474,7 @@
     },
     "piercing": {
       "description": "Mortal Wounds - Piercing",
+      "name": "Piercing",
       "results": [
         {
           "result": "-6 or more",
@@ -587,6 +592,7 @@
     },
     "poisonous": {
       "description": "Mortal Wounds - Poisonous",
+      "name": "Poisonous",
       "results": [
         {
           "result": "-6 or more",
@@ -707,6 +713,7 @@
     },
     "savage": {
       "description": "Mortal Wounds - Savage",
+      "name": "Savage",
       "results": [
         {
           "result": "-6 or more",
@@ -824,6 +831,7 @@
     },
     "slashing": {
       "description": "Mortal Wounds - Slashing",
+      "name": "Slashing",
       "results": [
         {
           "result": "-6 or more",
@@ -945,6 +953,7 @@
   "tampering" : {
     "tampering_chaotic": {
       "description": "Tampering with Mortality - Chaotic",
+      "name": "Chaotic",
       "results": [
         {
           "result": "-6 or more",
@@ -1062,6 +1071,7 @@
     },
     "tampering_lawful": {
       "description": "Tampering with Mortality - Lawful",
+      "name": "Lawful",
       "results": [
         {
           "result": "-6 or more",
@@ -1179,6 +1189,7 @@
     },
     "tampering_neutral": {
       "description": "Tampering with Mortality - Neutral",
+      "name": "Neutral",
       "results": [
         {
           "result": "-6 or more",

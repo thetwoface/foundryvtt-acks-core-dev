@@ -1,28 +1,6 @@
 export class AcksUtility {
 
   /* -------------------------------------------- */
-  static loadInternalTables() {
-    // Fetch the internal tables from the ruledata/internal_tables.json file
-    // Fetch the file
-    const filePath = "systems/acks/module/ruledata/internal_tables.json";
-    const file = fetch(filePath)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Process the data
-        console.log("Internal Tables Loaded", data);
-        game.acks.tables = data;
-      })
-      .catch(error => {
-        console.error("Error loading internal tables:", error);
-      });
-  }
-
-  /* -------------------------------------------- */
   static updateWeightsLanguages() {
     for (let a of game.actors) {
       a.updateWeight();

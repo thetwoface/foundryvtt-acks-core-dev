@@ -1,0 +1,114 @@
+[
+  {
+    "result": "-6 or more",
+    "min": -1000000,
+    "max": 6,
+    "condition_recovery": "The spell fails to restore your life.",
+    "effects": {
+      "1": "Your soul is extinguished in the oblivion of nothingness. No additional attempts are permitted.",
+      "2": "You are surrounded by ghostly figures who torment and taunt you. No additional attempts are permitted.",
+      "3": "All you feel is the sensation of falling, falling, falling into nothings. Any additional attempts are at -5.",
+      "4": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+      "5": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+      "6": "Your deity may allow your return on a second attempt, but you must perform a Quest immediately upon revival."
+    }
+  },
+  {
+    "result": "-5 – 0",
+    "min": -5,
+    "max": 0,
+    "condition_recovery": "The spell fails to restore your life.",
+    "effects": {
+      "1": "Your spirit wanders in emptiness. No additional attempts are permitted.",
+      "2": "All you feel is the sensation of falling, falling, falling into nothings. Any additional attempts are at -5.",
+      "3": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+      "4": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+      "5": "Your deity may allow your return on a second attempt, but you must perform a quest immediately upon revival.",
+      "6": "A stirring wind and a light come from somewhere, and you slowly move towards them. A second attempt is permitted."
+    }
+  },
+  {
+    "result": "1 – 5",
+    "min": 1,
+    "max": 5,
+    "condition_recovery": "The powers of the spell restore you but at great cost. You need a month of bed rest.",
+    "effects": {
+      "1": "Heart beats and blood flows, but life doesn’t feel the same. Your CON and WIS are reduced by 1d4 each.",
+      "2": "All you see is darkness. You are now blind (blinded, -4 to all attack throws, no line of sight for spells, movement ¼ normal, -2 to surprise rolls) in full daylight, but you can see invisible as the spell once per day.",
+      "3": "You either (50% either way) shrink to tiny size (as per shrinking) or grow to giant size (as per growth). Since you are unused to your new size, your DEX is immediately reduced to 3; it increases by 1 point per week until reaches its normal score.",
+      "4": "Who were you? Fragments of your mind are missing. You permanently forget 1 general proficiency and no longer recognize one random henchman, who suffers -2 penalty to morale for being seen as forgettable",
+      "5": "Tampering with mortality takes a toll. You permanently lose 1 point of Constitution.",
+      "6": "You smell of the wild. You suffer a -4 to reaction rolls with normal humans, but animals treat you like one of them unless you attack them or engage in civilized behavior in their presence."
+    }
+  },
+  {
+    "result": "6 – 10",
+    "min": 6,
+    "max": 10,
+    "condition_recovery": "Your life and limb are restored, but with weird, lingering effects. You need 3 weeks of bed rest.",
+    "effects": {
+      "1": "Your soul is marked and all extraplanar beings wish you dead, targeting you over allies. Every week, there is a 1 in 6 chance an 8 HD elemental will be sent to destroy you.",
+      "2": "The fabric of your mind frays and cracks. Each day upon awakening, you must make a Spells save or completely forget who you are. Once dementia sets in, the effect lasts for 1d6 days.",
+      "3": "You did not return altogether human. You begin to resemble whatever animal best represents you (Judge’s discretion). You suffer -4 to reaction rolls with normal humans.",
+      "4": "Tampering with mortality has a deleterious effect on your mind. You permanently lose 1 point of Wisdom.",
+      "5": "Your metabolism slows down. You need only half normal rations, but gain 1d10 lbs now +  1d10 lbs / year no matter how much you adventure.",
+      "6": "Something wicked has taken an interest in you. A cacodemon spawn becomes your familiar, as the proficiency, but it does not always obey your comments."
+    }
+  },
+  {
+    "result": "11 – 15",
+    "min": 11,
+    "max": 15,
+    "condition_recovery": "The restoration of life and limb was intense, and you remember little of the ordeal. You need 2 weeks of bed rest.",
+    "effects": {
+      "1": "It feels like another being sometimes controls your right arm. When you roll a natural 1 on an attack throw, you hit an adjacent ally instead of an enemy.",
+      "2": "There is a 5% cumulative chance each day you sink into madness. Roll for your actions each round as if suffering madness. The madness lasts for 1d6 days; the chance then resets.",
+      "3": "You grow an alien eye on the center of your forehead. The eye stays lidded most of the time. Three times per day you may unlid the eye and use the telepathy spell). Normal men view you with fear and trepidation (-3 to reaction rolls).",
+      "4": "You have trouble managing slumber. Anytime you rest, you slumber for a random 2d6+2 hours; during this time you cannot be woke unless damaged, and even then you fall asleep again after one round.",
+      "5": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+      "6": "No side effects."
+    }
+  },
+  {
+    "result": "16 – 20",
+    "min": 16,
+    "max": 20,
+    "condition_recovery": "You open your eyes to a body made whole. You need 2 weeks of bed rest.",
+    "effects": {
+      "1": "Your body is healthy, but… different. You are now a member of the opposite sex. -2 reaction rolls with characters who knew your prior gender unless your CHA is 13+.",
+      "2": "Your restored body has bottomless hungers. If you casually smoke or consume alcohol, you are fully addicted. You suffer a cumulative -1 penalty to all Saving Throws after each hour you don’t consume something",
+      "3": "You take on a minor physical trait of an animal associated with your culture or religion. You suffer a -2 penalty to reaction rolls with those from outside your culture.",
+      "4": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+      "5": "No side effects.",
+      "6": "You feel blessed by your god. You recover 1d6 days quicker than you normally would. All negative side effects are removed."
+    }
+  },
+  {
+    "result": "21 – 25",
+    "min": 21,
+    "max": 25,
+    "condition_recovery": "The touch of your friends restores your health. You need 1 week of bed rest.",
+    "effects": {
+      "1": "Your life has come at the cost of the life of your future offspring. You are sterile and cannot have children naturally.",
+      "2": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 penalty to initiative and surprise rolls.",
+      "3": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+      "4": "No side effects.",
+      "5": "You feel blessed by your god and recover 1d6 days quicker than you normally would. All negative side effects are removed.",
+      "6": "Your brush with death has gifted you with the ability to speak with dead once per week. All negative side effects are removed."
+    }
+  },
+  {
+    "result": "26+",
+    "min": 26,
+    "max": 1000000,
+    "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
+    "effects": {
+      "1": "The flavors of food reverse – salty becomes sweet, sour becomes bitter. Ordinary food tastes inedible to you and you must have your meals and rations prepared just for you.",
+      "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+      "3": "No side effects.",
+      "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",
+      "5": "A sublime power grants you a vision which you believe is of terrible import. The GM will give you a (true?) prophecy.",
+      "6": "You gain permanent power. Gain +2 in your class’s prime requisite statistic. All negative side effects are removed."
+    }
+  }
+]

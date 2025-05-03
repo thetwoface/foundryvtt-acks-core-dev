@@ -1,0 +1,114 @@
+[
+  {
+    "result": "-6 or more",
+    "min": -1000000,
+    "max": 6,
+    "condition_recovery": "You were instantly killed.",
+    "effects": {
+      "1": "Impaled from mouth to rectum, you die agonizingly unable to scream or defecate. Your corpse is hard to look at it.",
+      "2": "A terrible wound penetrates the soft tissue of your upper palate and you die choking on your own leaking brain fluid. Awful.",
+      "3": "Blood leaking everywhere around your hips reveals the terrible wound in your groin.",
+      "4": "Air wheezes from the hole in your chest as your lungs deflate for the last time.",
+      "5": "A ghastly puncture that left your guts spilling out messily betrays your grisly end.",
+      "6": "A deep stab wound reveals your harsh demise."
+    }
+  },
+  {
+    "result": "-5 – 0",
+    "min": -5,
+    "max": 0,
+    "condition_recovery": "You were instantly killed",
+    "effects": {
+      "1": "A terrible wound penetrated the soft tissue of your upper palate and you died choking on your own leaking brain fluid. Awful.",
+      "2": "Blood leaking everywhere around your hips reveals the terrible wound in your groin.",
+      "3": "Air wheezes from the hole in your chest as your lungs deflate for the last time.",
+      "4": "A ghastly puncture that left your guts spilling out messily betrays your grisly end.",
+      "5": "A deep stab wound reveals your harsh demise.",
+      "6": "Your corpse is largely and intact and ready for a noble funeral."
+    }
+  },
+  {
+    "result": "1 – 5",
+    "min": 1,
+    "max": 5,
+    "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+    "effects": {
+      "1": "Your spinal cord is severed at the neck (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each month or die from complications).",
+      "2": "Your spinal cord is severed at the waist (as per legs crushed, cannot reproduce, and must make Death save each year or die from complications).",
+      "3": "A puncture near the heart leaves you an invalid (CON reduced by 1/3, movement rate reduced by 30’, must make Death save each year or die from complications).",
+      "4": "A puncture in the abdominal cavity leaves you infection-prone and weak (CON reduced by 1/3, -4 to saving throws vs. diseases and poisons)",
+      "5": "A strike thru the eye into the brain leaves you blind (blinded, -4 attack throws, no LOS, move reduced to ¼ normal, -2 to surprise rolls)",
+      "6": "A puncture wound to the throat leaves you mute and breathing through a hole (mute, cannot speak, cast spells, or use magic items involving speech, -4 to reactions)."
+    }
+  },
+  {
+    "result": "6 – 10",
+    "min": 6,
+    "max": 10,
+    "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+    "effects": {
+      "1": "A projectile/weapon that pierced your skull has left you permanently addled (-2 on magical research and proficiency throws, -10% penalty on earned XP).",
+      "2": "A punctured lung leaves you forever breathless (must rest for 2 turns every 6, wilderness move reduced by 1/3, cannot force march, CON reduced by 1/3).",
+      "3": "One leg is lamed by broken bone and destroyed muscle (movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+      "4": "One arm is lamed by broke bone and destroyed muscle (cannot climb, dual wield, use shield or two-handed weapon).",
+      "5": "One of your eyes is punctured and ruined (-2 to missile attack throws).",
+      "6": "A puncture wound to the throat leaves several vocal cords severed (raspy voice, -2 to throws involving speech)"
+    }
+  },
+  {
+    "result": "11 – 15",
+    "min": 11,
+    "max": 15,
+    "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+    "effects": {
+      "1": "The shard of a weapon inside your skull leaves you impulsive and angry (shift alignment one step towards Chaotic, suffer 1 in 6 chance each round of combat of going berserk, as proficiency).",
+      "2": "The deep wound has destroyed your manhood/ womanhood. (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+      "3": "The shard of a weapon lodged irretrievably in your innards leaves you in constant pain (-2 to all initiative rolls)",
+      "4": "A puncture ruins one hand (cannot dual-wield or use two-handed weapons).",
+      "5": "One of your eyes is damaged (-2 to missile attacks throws at medium and long range).",
+      "6": "A puckered scar shows you’ve suffered a puncture wound (minor scarring)."
+    }
+  },
+  {
+    "result": "16 – 20",
+    "min": 16,
+    "max": 20,
+    "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+    "effects": {
+      "1": "A hideous puncture scar is worsened by the deformation of spongy facial bone under the shock of a penetration. (gruesome scarring)",
+      "2": "A pair of ribs are shattered by the forceful puncture (cannot force march).",
+      "3": "Your ear is torn clean off (-1 to Listening throws and -1 to surprise rolls).",
+      "4": "A deflected strike left a long streak of scar tissue along your jawline (noticeable scarring).",
+      "5": "A puckered scar shows you’ve suffered a puncture wound. (minor scarring).",
+      "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+    }
+  },
+  {
+    "result": "21 – 25",
+    "min": 21,
+    "max": 25,
+    "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bedrest.",
+    "effects": {
+      "1": "You are left with a deep wound that perpetually aches (-1 to all initiative rolls).",
+      "2": "A puncture to your pectoral muscles leaves you slightly numb and weak (carrying capacity reduced by 3 stone).",
+      "3": "A penetrating blow left a gaping hole through your upper ear (noticeable scarring).",
+      "4": "A puckered scar shows you’ve suffered a puncture wound. (minor scarring).",
+      "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "6": "A vision of the afterlife haunts you, then fades as you awaken."
+    }
+  },
+  {
+    "result": "26+",
+    "min": 26,
+    "max": 1000000,
+    "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+    "effects": {
+      "1": "The puncture heals poorly and aches in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+      "2": "A puncture wound on your cheek heals into a large and ragged round scar (noticeable scarring).",
+      "3": "A puckered scar shows you’ve suffered a puncture wound. (minor scarring).",
+      "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+      "6": "The Choosers of the Slain pass you by, and you awaken."
+    }
+  }
+]

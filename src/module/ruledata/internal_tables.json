@@ -1,0 +1,1299 @@
+{
+  "mortal_wounds": {
+    "acid": {
+      "description": "Mortal Wounds - Acidic - Electrical - Fire - Luminous",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -100000,
+          "max": -6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "You were cremated alive and all that remains of who you once were are the ashes of our flesh and bone.",
+            "2": "Flesh, fat, and muscle have burned away to reveal scorched and crumbling bone.",
+            "3": "Your flesh is too blackened to even be edible by the crows.",
+            "4": "Your friends might find the smell of your cooked body pleasant if they weren’t your friends.",
+            "5": "The scarred ruin of your flesh betrays your fiery end.",
+            "6": "Ghastly burns reveal your harsh demise."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "Flesh, fat, and muscle have burned away to reveal scorched and crumbling bone.",
+            "2": "Your flesh is too blackened by fire to even be edible by the crows.",
+            "3": "Your friends might find the smell of your cooked body pleasant if they weren’t your friends.",
+            "4": "The scarred ruin of your flesh betrays your fiery end.",
+            "5": "Ghastly burns reveal your harsh demise.",
+            "6": "Your corpse is largely intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "1": "All your limbs are burned off, your lungs are scorched, and your face hideously scarred (as per both arms burned off both, both legs burned off, lungs blackened, gruesome scarring)",
+            "2": "Your eyes, ears, nose, and lips sloughed off under the terrible heat (as per both eyes lost, both ears lost, lips and tongue lost, and gruesome scarring)",
+            "3": "Both legs are burned off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+            "4": "Both arms are burned off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+            "5": "Both your eyes were melted in the heat (blinded, -4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+            "6": "Your fiery screams just left your lips and tongues to be burned away (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "One leg and one arm were burned off; the other half was merely reduced to pink scar tissue (as per one leg lost, one arm lost, notable scarring)",
+            "2": "Both of your ears and most of your face were burned away (-2 to Listening throws, -2 to surprise rolls, gruesome scarring)",
+            "3": "One leg is burned off (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One arm is burned off (cannot climb, use shields, dual wield, or use two-handed weapon).",
+            "5": "One of your eyes melted in the heat (-2 to missile attack throws).",
+            "6": "Your lips and jaw were burned white (notable scarring)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "Your struggle to draw breath through scorched and blackened lungs (must rest for 2 turns every 6, wilder-ness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+            "2": "The flame burns away your genitals and leaves just blackened lumps (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "One foot is burned off (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One hand is burned off (cannot dual-wield or use two-handed weapons).",
+            "5": "The flesh of one of your cheeks is pink and lump with a large burn scar (notable scarring).",
+            "6": "Your fingernails are blackened from the burning (minor scarring)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "effects": {
+            "1": "Your face melts like wax and chars like beef in the flame (gruesome scarring).",
+            "2": "Your ear is burned off (-1 to Listening throws and -1 to surprise rolls).",
+            "3": "1d3 toes on one foot are burned off (3 lost toes on one foot makes foot useless).",
+            "4": "1d3 fingers on one hand are burned off (3 lost fingers on one hand makes hand useless.)",
+            "5": "The smallest finger on one hand is burned off (3 lost fingers on a hand makes it useless).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "The pain of the burns never goes away – never (-1 to all initiative rolls).",
+            "2": "Your hair burned away, and half your torso and one arm are pink and lumpy with burn scars (two notable scarrings).",
+            "3": "Your hair caught fire and burned away, leaving your scalp blackened and hairline patchy (notable scarring).",
+            "4": "Your hand has a white and ragged scar where it burned (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 100000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "Your scarred skin aches in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Half your torso and one arm are pink and lumpy with burn scars (notable scarring).",
+            "3": "Your shoulder has a white and ragged scar where the flames burned hot (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "arcane": {
+      "description": "Mortal Wounds - Arcane - Bludgeoning - Seismic",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "No one would believe a human body could be crushed into a puddle.",
+            "2": "Your dead flesh hangs like a wet red blanket over your shattered skeleton.",
+            "3": "Your skull is crushed like an eggshell, cerebral fluid leaking out like yolk.",
+            "4": "Your rib cage’s collapse leads to an agonizing death gasping for air from ruptured lungs.",
+            "5": "Crushed bones and splattered brains betray your grisly end.",
+            "6": "A bone-shattering wound reveals your harsh demise."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "Your dead flesh hangs like a wet red blanket over your shattered skeleton.",
+            "2": "Your skull is crushed like an eggshell, cerebral fluid leaking out like yolk.",
+            "3": "Your rib cage collapsed, leading to an agonizing death gasping for air from ruptured lungs.",
+            "4": "Crushed bones and splattered brains betray your grisly end.",
+            "5": "A bone-shattering wound reveals your harsh demise.",
+            "6": "Your corpse is largely and intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "1": "The bone-crushing impact drives you into a coma; you are alive but permanently unconscious and will starve unless force-fed.",
+            "2": "Your spine is broken at the neck (paralyzed, cannot move, fight, use items, or cast spells, Death save each month or die from complications).",
+            "3": "Both your legs are crushed and must be amputated (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+            "4": "Both your arms are crushed and must be amputated (cannot climb, use weapons or items, open locks, remove traps, or similar actions)",
+            "5": "You are permanently addled by a blow to the head (-2 on magical research and proficiency throws, -10% penalty on earned XP).",
+            "6": "Your jaw is irreparably broken, and all your teeth pulverized (cannot speak clearly, cast spells, or use magic items involving speech, -4 to reaction rolls)"
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "Your spine is shattered at the waist (as per legs crushed, cannot reproduce, and must make Death save each year or die from complications).",
+            "2": "Both your legs are lamed by bad breaks (crutch required, movement reduced by 60’, DEX reduced by 2/3 for AC purposes).",
+            "3": "One of your legs is crushed and must be amputated (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One of your arms is crushed and must be amputated (cannot climb, use shields, dual wield, or use two-handed weapon)",
+            "5": "A skull-shaking blow leaves you partly deaf and suffering ear-ringing head-aches (-2 to Listening throws, -2 to surprise rolls, -1 initiative).",
+            "6": "3d6 teeth are broken inward by a forceful blow, leaving you slurring and gap-toothed (-4 to all reaction rolls, -1 to initiative when  spellcasting)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "Your shattered ribs press on your lungs, causing constant fatigue and pain (must rest for 2 turns every 6, wilderness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+            "2": "One of your legs is lamed by a bad break (movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "3": "One of your knees is damaged (normal load reduced by 6 stone, cannot force march).",
+            "4": "One of your hands is crushed and must be amputated (cannot dual-wield or use two-handed weapons)",
+            "5": "One of your ear drums is popped, partially deafening you (-1 to Listening throws, -1 to surprise rolls).",
+            "6": "1d6 of your teeth are knocked out (-2 to reaction rolls with opposite sex and upper-class NPCs)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+          "effects": {
+            "1": "Your nose is flattened, cheek crushed, and ear turned to cauliflower (gruesome scarring)",
+            "2": "Scrotum crushed or womb ruptured (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known)",
+            "3": "Your hips are fractured and the break heals poorly (cannot force march).",
+            "4": "1d3 fingers one hand are smashed into bloody pulp. (3 lost fingers on one hand makes hand useless.)",
+            "5": "Your ear is turned to cauliflower (minor scarring).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "A broken rib heals badly and it aches when you move too fast (-1 to all initiative rolls).",
+            "2": "1d3 toes on one foot smashed into bloody pulp. (3 lost toes on one foot makes leg lame).",
+            "3": "The wrenching blow leaves you with lower back pain (normal load reduced by 3 stone).",
+            "4": "1d3 nails on a hand are blackened & ruinous (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "Your bones ache in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Your nose is flattened and ear turned to cauliflower (notable scarring).",
+            "3": "Your nose is broken (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "cold": {
+      "description": "Mortal Wounds - Cold",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -100000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "You were frozen solid, and all that remains of who you once were is a statue of ice in your likeness",
+            "2": "Flesh, fat, and muscle have hardened to ice, encasing your bones in a frozen shell.",
+            "3": "Your flesh is frozen too solid for even the crows to peck at.",
+            "4": "Your friends might mistake your frozen form for a statue.",
+            "5": "The frostbitten pallor of your skin tells of your chilling end.",
+            "6": "Frozen to the core, your icy fate is evident."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "Flesh, fat, and muscle have hardened to ice, encasing your bones in a frozen shell.",
+            "2": "Your flesh is frozen too solid for even the crows to peck at.",
+            "3": "Your friends might mistake your frozen form for a statue.",
+            "4": "The frostbitten pallor of your skin tells of your chilling end.",
+            "5": "Frozen to the core, your icy fate is evident.",
+            "6": "Your corpse is largely intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "1": "All your limbs are lost to frostbite, your lungs are ruined, and your face frozen in a grimace (as per both arms burned off both, both legs burned off, lungs blackened, gruesome scarring)",
+            "2": "Your eyes, ears, nose, and lips were destroyed by the frigid cold (as per both eyes lost, both ears lost, lips and tongue lost, and gruesome scarring)",
+            "3": "Both legs are lost to frostbite (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+            "4": "Both arms are lost to frostbite (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+            "5": "Both your eyes were frozen solid by the cold (blinded, -4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+            "6": "Your chilling screams were silenced as frostbite claimed your lips and tongue (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "One leg and one arm were lost to frostbite; the other half were merely blackened (as per one leg lost, one arm lost, notable scarring)",
+            "2": "Both of your ears and most of your face were lost to frostbite (-2 to Listening throws, -2 to surprise rolls, gruesome scarring)",
+            "3": "One leg is lost to frostbite (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One arm is lost to frostbite (cannot climb, use shields, dual wield, or use two-handed weapon).",
+            "5": "One of your eyes froze in the cold  (-2 to missile attack throws).",
+            "6": "Part of your lips and jaw is black with frostbite  (notable scarring)."
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "Your lungs were ruined by inhaling icy frost (must rest for 2 turns every 6, wilder-ness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+            "2": "Your genitals are lost to frostbite (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "One foot is lost to frostbite (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One hand is lost to frostbite (cannot dual-wield or use two-handed weapons).",
+            "5": "The flesh of one of your cheeks is numb and marked by frostbite (notable scarring).",
+            "6": "Your fingernails are blued from frostbite (minor scarring)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "effects": {
+            "1": "Your face stiffens like a mask, its muscles permanently frozen into a horrific grimace (gruesome scarring).",
+            "2": "Your ear is lost to frostbite  (-1 to Listening throws and -1 to surprise rolls).",
+            "3": "1d3 toes on one foot are lost to frostbite (3 lost toes on one foot makes foot useless).",
+            "4": "1d3 fingers on one hand are lost to frostbite (3 lost fingers on one hand makes hand useless.)",
+            "5": "The smallest finger on one hand is lost to frostbite (3 lost fingers on a hand makes it useless).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "The numbness from the frostbite is ever-present and unending (-1 to all initiative rolls).",
+            "2": "Your hair froze and broke off like brittle icicles. Half your torso and one arm are blackened with frostbite (two notable scarrings).",
+            "3": "Your hair froze and broke off and your scalp blackened with frostbite, leaving your scalp (notable scarring).",
+            "4": "Your hand has a scar where the flesh died in the cold (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "In bad weather, you remember the bone-chilling cold (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Half your torso and one arm are pale and stiff with frostbite patterns (notable scarring).",
+            "3": "Your shoulder has blueish numb mark where the cold bit deepest (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "necrotic": {
+      "description": "Mortal Wounds - Necrotic",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -100000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "Decay consumed you, leaving only a withered and lifeless husk.",
+            "2": "Flesh, fat, and muscle have rotted away, revealing tainted and brittle bone.",
+            "3": "Your flesh is too putrid for even vultures to feast upon.",
+            "4": "The stench of your decaying form is so unbearable that your friends are tempted to burn it.",
+            "5": "The rotting, corrupted tissue of your corpse speaks of your necrotic doom.",
+            "6": "Darkened, decaying flesh marks your unnerving end."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "Flesh, fat, and muscle have rotted away, revealing tainted and brittle bone.",
+            "2": "Your flesh is too putrid for even vultures to feast upon.",
+            "3": "Your friends might find the smell of your cooked body pleasant if they weren’t your friends.",
+            "4": "The rotting, corrupted tissue of your corpse speaks of your necrotic doom.",
+            "5": "Darkened, decaying flesh marks your unnerving end.",
+            "6": "Your corpse is largely intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "1": "All your limbs haver rotted, your lungs are diseased, and your face hideously scarred (as per both arms burned off both, both legs burned off, lungs blackened, gruesome scarring)",
+            "2": "Your eyes, ears, nose, and lips sloughed off under the corrupting darkness (as per both eyes lost, both ears lost, lips and tongue lost, and gruesome scarring)",
+            "3": "Both legs have rotted and must be amputated (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+            "4": "Both arms have rotted and must be amputated (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+            "5": "Both your eyes were consumed by corrupting darkness (blinded, -4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+            "6": "Your screams of despair ended when necrosis claimed your lips and tongue (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "One leg and one arm have rotted; the other half was merely scarred with necrosis (as per one leg lost, one arm lost, notable scarring)",
+            "2": "Both of your ears and most of your facial sloughed off (-2 to Listening throws, -2 to surprise rolls, gruesome scarring)",
+            "3": "One leg has rotted and must be amputated (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One arm has rotted and must be amputated (cannot climb, use shields, dual wield, or use two-handed weapon).",
+            "5": "One of your eyes melted in the heat (-2 to missile attack throws).",
+            "6": "Your lips and jaw were burned white (notable scarring)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "Your struggle to draw breath through diseased and ruined lungs (must rest for 2 turns every 6, wilder-ness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+            "2": "Your genitals have been reduced to rotten, pustulous ruin (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "One foot has rotted and must be amputated (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One hand has rotted and must be amputated (cannot dual-wield or use two-handed weapons).",
+            "5": "The flesh of one of your cheeks is pink and lump with a large burn scar (notable scarring).",
+            "6": "Your fingers are scarred where the flesh sloughed off (minor scarring)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "effects": {
+            "1": "The skin on your face sloughs off leaving your face a hideous mask of necrotic tissue (gruesome scarring).",
+            "2": "Where once you had an ear, now you have a blackened mass of necrotic tissue (-1 to Listening throws and -1 to surprise rolls).",
+            "3": "1d3 toes on one foot have rotted and must be amputated (3 lost toes on one foot makes foot useless).",
+            "4": "1d3 fingers on one hand have rotted and must be amputated (3 lost fingers on one hand makes hand useless.)",
+            "5": "The smallest finger on one hand is burned off (3 lost fingers on a hand makes it useless).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "The suffering that your body experienced lingers eternally (-1 to all initiative rolls).",
+            "2": "Your hair fell out in clumps, and half your torso and one arm are scarred by flesh-eating necrosis (two notable scarrings).",
+            "3": "Your hair fell out in clumps, leaving bald patches amidst a rotting scalp (notable scarring).",
+            "4": "Your hand is scarred where the flesh sloughed off (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "Your necrosis-marred body aches in bad weather  (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Half your torso and one arm are scarred by flesh-eating necrosis (notable scarring).",
+            "3": "Your shoulder has an oozing necrotic scar where decay took hold (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "piercing": {
+      "description": "Mortal Wounds - Piercing",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "Impaled from mouth to rectum, you die agonizingly unable to scream or defecate. Your corpse is hard to look at it.",
+            "2": "A terrible wound penetrates the soft tissue of your upper palate and you die choking on your own leaking brain fluid. Awful.",
+            "3": "Blood leaking everywhere around your hips reveals the terrible wound in your groin.",
+            "4": "Air wheezes from the hole in your chest as your lungs deflate for the last time.",
+            "5": "A ghastly puncture that left your guts spilling out messily betrays your grisly end.",
+            "6": "A deep stab wound reveals your harsh demise."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "A terrible wound penetrated the soft tissue of your upper palate and you died choking on your own leaking brain fluid. Awful.",
+            "2": "Blood leaking everywhere around your hips reveals the terrible wound in your groin.",
+            "3": "Air wheezes from the hole in your chest as your lungs deflate for the last time.",
+            "4": "A ghastly puncture that left your guts spilling out messily betrays your grisly end.",
+            "5": "A deep stab wound reveals your harsh demise.",
+            "6": "Your corpse is largely and intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "1": "Your spinal cord is severed at the neck (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each month or die from complications).",
+            "2": "Your spinal cord is severed at the waist (as per legs crushed, cannot reproduce, and must make Death save each year or die from complications).",
+            "3": "A puncture near the heart leaves you an invalid (CON reduced by 1/3, movement rate reduced by 30’, must make Death save each year or die from complications).",
+            "4": "A puncture in the abdominal cavity leaves you infection-prone and weak (CON reduced by 1/3, -4 to saving throws vs. diseases and poisons)",
+            "5": "A strike thru the eye into the brain leaves you blind (blinded, -4 attack throws, no LOS, move reduced to ¼ normal, -2 to surprise rolls)",
+            "6": "A puncture wound to the throat leaves you mute and breathing through a hole (mute, cannot speak, cast spells, or use magic items involving speech, -4 to reactions)."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "A projectile/weapon that pierced your skull has left you permanently addled (-2 on magical research and proficiency throws, -10% penalty on earned XP).",
+            "2": "A punctured lung leaves you forever breathless (must rest for 2 turns every 6, wilderness move reduced by 1/3, cannot force march, CON reduced by 1/3).",
+            "3": "One leg is lamed by broken bone and destroyed muscle (movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One arm is lamed by broke bone and destroyed muscle (cannot climb, dual wield, use shield or two-handed weapon).",
+            "5": "One of your eyes is punctured and ruined (-2 to missile attack throws).",
+            "6": "A puncture wound to the throat leaves several vocal cords severed (raspy voice, -2 to throws involving speech)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "The shard of a weapon inside your skull leaves you impulsive and angry (shift alignment one step towards Chaotic, suffer 1 in 6 chance each round of combat of going berserk, as proficiency).",
+            "2": "The deep wound has destroyed your manhood/ womanhood. (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "The shard of a weapon lodged irretrievably in your innards leaves you in constant pain (-2 to all initiative rolls)",
+            "4": "A puncture ruins one hand (cannot dual-wield or use two-handed weapons).",
+            "5": "One of your eyes is damaged (-2 to missile attacks throws at medium and long range).",
+            "6": "A puckered scar shows you’ve suffered a puncture wound (minor scarring)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+          "effects": {
+            "1": "A hideous puncture scar is worsened by the deformation of spongy facial bone under the shock of a penetration. (gruesome scarring)",
+            "2": "A pair of ribs are shattered by the forceful puncture (cannot force march).",
+            "3": "Your ear is torn clean off (-1 to Listening throws and -1 to surprise rolls).",
+            "4": "A deflected strike left a long streak of scar tissue along your jawline (noticeable scarring).",
+            "5": "A puckered scar shows you’ve suffered a puncture wound. (minor scarring).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bedrest.",
+          "effects": {
+            "1": "You are left with a deep wound that perpetually aches (-1 to all initiative rolls).",
+            "2": "A puncture to your pectoral muscles leaves you slightly numb and weak (carrying capacity reduced by 3 stone).",
+            "3": "A penetrating blow left a gaping hole through your upper ear (noticeable scarring).",
+            "4": "A puckered scar shows you’ve suffered a puncture wound. (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "The puncture heals poorly and aches in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "A puncture wound on your cheek heals into a large and ragged round scar (noticeable scarring).",
+            "3": "A puckered scar shows you’ve suffered a puncture wound. (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "poisonous": {
+      "description": "Mortal Wounds - Poisonous",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "You die in so much agony that you wish you had never been born.",
+            "2": "The agonizing contortions of your death throes has left your spine and neck broken and body twisted",
+            "3": "You died in suffocating as the poison paralyzed your lungs and diaphragm.",
+            "4": "A deep, festering wound striated with spider veins signals your poisoned end.",
+            "5": "Spider veins and blistered flesh betray your toxic demise.",
+            "6": "Only the darkened veins near your injury reveal the cause of your death."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "The agonizing contortions of your death throes has left your spine and neck broken and body twisted.",
+            "2": "You died in suffocating agony as the poison paralyzed your lungs and diaphragm.",
+            "3": "A deep, festering wound striated with spider veins signals your poisoned end.",
+            "4": "Spider veins and blistered flesh betray your toxic demise.",
+            "5": "Only the darkened veins near your injury reveal the cause of your death.",
+            "6": "Your corpse is largely and intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "5": "The poison takes your sight (blinded,",
+            "6": "Your lips and tongue are permanently paralyzed by the poison (cannot speak clearly, cast spells, or use magic items involving speech, -4 to reaction rolls)"
+          }
+        },
+        {
+          "result": "-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls);Both your arms are permanently paralyzed because of the poison (cannot climb, use weapons or items, open locks, remove traps, or similar actions);Both your legs are permanently paralyzed by the poison (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).;The poison has left you utterly and permanently paralyzed from the neck down. (paralyzed, cannot move, fight, use items, or cast spells, Death save each month or die from complications).;The poison leaves you in a coma",
+          "min": null,
+          "max": 4,
+          "condition_recovery": "you are alive but permanently unconscious and will starve unless force-fed.",
+          "effects": {}
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "The poison has left you permanently paralyzed from the waist down (as per legs crushed, cannot reproduce, and must make Death save each year or die from complications).",
+            "2": "Both your legs are partially but permanently paralyzed by the poison (crutch required, movement reduced by 60’, DEX reduced by 2/3 for AC purposes).",
+            "3": "One of your legs is permanently paralyzed by the poison (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One of your arms is permanently paralyzed and limp because of the poison (cannot climb, use shields, dual wield, or use two-handed weapon)",
+            "5": "Both eyes become clouded by the poison (-4 to missile attack throws at medium/long range)",
+            "6": "Your lips and tongue are partially paralyzed, leaving you drooling and slurring (-4 to all reaction rolls, -1 to initiative when spellcasting)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "The poison permanently disrupts the rhythm of your heart (must rest for 2 turns every 6, wilderness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+            "2": "One of your legs is partially but permanently paralyzed by the poison (movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "3": "The poison takes a severe toll on your heart and lungs (normal load reduced by 6 stone, cannot force march).",
+            "4": "One of your hands is permanently locked up by the poison (cannot dual-wield or use two-handed weapons)",
+            "5": "One eye becomes clouded by the poison (-2 to missile attack throws at medium/long range)",
+            "6": "Your lips are partially paralyzed, leaving your speech slurred (-2 to reaction rolls)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+          "effects": {
+            "1": "The poison causes your face to become limp, droopy and scarred by spider veins (gruesome scarring)",
+            "2": "The poison has permanently sterilized you (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known)",
+            "3": "The poison has damaged your respiration, leaving you short of breath (cannot force march).",
+            "4": "1d3 fingers on one hand become permanently stiff and twisted. (3 lost fingers on one hand makes hand useless.)",
+            "5": "The poison causes swelling and discoloration on your cheek (minor scarring).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "The poison has left your reflexes dulled and sluggish (-1 to all initiative rolls).",
+            "2": "1d3 toes on one foot are numb, stiff, and useless (3 lost toes on one foot makes leg lame).",
+            "3": "The poison leaves you with spider veins visible on your cheeks (noticeable scarring).",
+            "4": "1d3 nails on a hand fall off and never re-grow (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "The poison leaves you prone to fevers and sweats in foul weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Your nose becomes swollen, bumpy and reddened because of the poison (notable scarring).",
+            "3": "The poison leaves you with spider veins crisscrossing your legs  (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "savage": {
+      "description": "Mortal Wounds - Savage",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "There’s little left of your body save the droppings left behind when it was digested.",
+            "2": "You’ll make a poor feast for crows. Others have already dined too well on you.",
+            "3": "To call what happened to your body butchery is an insult to the butcher’s art. This is savagery.",
+            "4": "You are a now just a thing of cracked bone, masticated flesh, and chewed gristle.",
+            "5": "Entrails spill from your sliced belly like noodles in an overflowing bowl, betraying a grisly end.",
+            "6": "Ghastly marks of tooth and claw reveal your harsh demise."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "You’ll make a poor feast for crows. Others have already dined too well on you.",
+            "2": "To call what happened to your body butchery is an insult to the butcher’s art. This is savagery.",
+            "3": "You are a now just a thing of cracked bone, masticated flesh, and chewed gristle",
+            "4": "Entrails spill from your sliced belly like noodles in an overflowing bowl, betraying a grisly end.",
+            "5": "Ghastly marks of tooth and claw reveal your harsh demise.",
+            "6": "Your corpse is largely intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "1": "Your spine is broken at the neck when your throat was torn open (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each month or die from complications).",
+            "2": "Your spinal cord is snapped the waist where the beast tore you down (as per legs torn off, cannot reproduce, and must make Death save each year or die from complications).",
+            "3": "Both legs are torn off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+            "4": "Both arms are torn off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+            "5": "Your eyes are a delicious treat (blinded, -4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+            "6": "Your lips and tongue have been chewed off hideously (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "More than half your face has been gnawed off, including an eye, an ear, and all of your nose (as per eye clawed out, ear bitten off, and gruesome scarring)",
+            "2": "Your intestines are mangled and ruined (must rest for 2 turns of 6, CON reduced by 1/3, -4 to save vs. poison, chronic indigestion and flatulence cause  -4 to reaction rolls).",
+            "3": "One leg is torn off (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One arm is ripped off (cannot climb, use shields, dual wield, or use two-handed weapon).",
+            "5": "One eye is clawed or pecked out (-2 to missile attack throws).",
+            "6": "You narrowly avoided having your throat torn out (raspy voice, -2 to throws involving speech)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "Almost half your face has been mauled, including an eye and ear (as per eye clawed out and ear bitten off).",
+            "2": "Your scrotum has been chewed offed or your womb gnawed upon (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "One foot is chewed off (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One hand is bitten off (cannot dual-wield or use two-handed weapons).",
+            "5": "Your neck carries the marks of terrible bites (notable scarring).",
+            "6": "The fang marks on your neck are only somewhat visible (minor scarring)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "effects": {
+            "1": "Your nose is bitten off and your lips chewed to ruin, leaving your visage monstrous (gruesome scarring).",
+            "2": "Your ear is bitten off (-1 to Listening throws and -1 to surprise rolls).",
+            "3": "1d3 toes on one foot are bitten off (3 lost toes on one foot makes foot useless).",
+            "4": "1d3 fingers on one hand are bitten off (3 lost fingers on one hand makes hand useless.)",
+            "5": "The smallest finger on one hand is bitten off (3 lost fingers on a hand makes it useless).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "Your ragged and savage wounds heal stiff and scarred (-1 to all initiative rolls).",
+            "2": "Your calf aches where it was almost chewed through (cannot force march unless mounted).",
+            "3": "Your neck carries the marks of terrible bites (notable scarring).",
+            "4": "A nasty-looking fang mark suggests your hand almost got bitten off (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "You suffer lasting wounds that ache in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Your cheek is marred by the scars of great claws and fangs (notable scarring).",
+            "3": "A claw to the cheek leaves a mark (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    },
+    "slashing": {
+      "description": "Mortal Wounds - Slashing",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "You were instantly killed.",
+          "effects": {
+            "1": "Your body lies cleaved into so many pieces that a butcher would find his work done for him.",
+            "2": "Your body lies cleaved in two, and the halves lay entangled like conjoined twins in bloody embrace.",
+            "3": "From the vantage point of your severed head, you get to eye your own corpse for a few seconds before the blackness.",
+            "4": "Cruel fate has left your jowls sliced open as if you died smiling at your own demise.",
+            "5": "Entrails spill from your sliced belly like noodles in an overflowing bowl, betraying a grisly end.",
+            "6": "A ghastly cut across the belly reveals your harsh demise."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "You were instantly killed",
+          "effects": {
+            "1": "Your body lies cleaved in two, and the halves lay entangled like conjoined twins in bloody embrace.",
+            "2": "From the vantage point of your severed head, you get to eye your own corpse for a few seconds before the blackness.",
+            "3": "Cruel fate has left your jowls sliced open as if you died smiling at your own demise.",
+            "4": "Entrails spill from your sliced belly like noodles in an overflowing bowl, betraying a grisly end.",
+            "5": "A ghastly cut across the belly reveals your harsh demise.",
+            "6": "Your corpse is largely intact and ready for a noble funeral."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+          "effects": {
+            "5": "Blinded by slash to the eyes (blinded,",
+            "6": "Your lips and tongue are severed (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+          }
+        },
+        {
+          "result": "-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls);Both arms are cut off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).;Both legs are hacked off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).;Your body is severed in half at the waist (as per legs sliced off, cannot reproduce, -3 to reaction rolls, must make Death save each year or die from complications).;All of your arms and legs are sliced off in a whirlwind of flying limbs (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each year or die from complications).",
+          "min": null,
+          "max": 4,
+          "effects": {}
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+          "effects": {
+            "1": "Your intestines are mangled and ruined (must rest for 2 turns of 6, CON reduced by 1/3, -4 to saves vs. poison, chronic indigestion and flatulence give -4 to reaction rolls).",
+            "2": "Your genitals are completely sliced off or womb shredded (as loss of scrotum, and must make Death save each year or die from complications)",
+            "3": "One leg is hacked off (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One arm is cut off (cannot climb, use shields, dual wield, or use two-handed weapon).",
+            "5": "One eye is ruined by a downward slash through the brow ridge (-2 to missile attack throws).",
+            "6": "A narrowly-avoided decapitation leaves several vocal cords cut (raspy voice, -2 to throws involving speech)"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+          "effects": {
+            "1": "The slash cuts into your skull and your brain-fluid leaks out (-2 on magical research and proficiency throws, 10% penalty on earned XP).",
+            "2": "Your scrotum is sliced away or your womb cut open (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "One foot is sliced off (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One hand is cut off (cannot dual-wield or use two-handed weapons).",
+            "5": "One eye is damaged by downward slash through brow ridge (-2 to missile attack throws at medium/ long range)",
+            "6": "A whirling stroke leaves a thin scar just below your throat (minor scarring)."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+          "effects": {
+            "1": "Your nose is cut off and your palate cleft, leaving your visage monstrous (gruesome scarring).",
+            "2": "Your ear is sliced off (-1 to Listening throws and -1 to surprise rolls).",
+            "3": "1d3 toes on one foot are sliced away (3 lost toes on one foot makes foot useless).",
+            "4": "1d3 fingers on one hand are sliced away (3 lost fingers on one hand makes hand useless.)",
+            "5": "The smallest finger on one hand is sliced off.(3 lost fingers on one hand makes hand useless).",
+            "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+          "effects": {
+            "1": "Your wounds heal stiff and scarred (-1 to all initiative rolls).",
+            "2": "Your hamstring aches where it was severed in one leg (cannot force march unless mounted).",
+            "3": "A slice through your lips leaves you with a permanent sneer (notable scarring).",
+            "4": "A sharp cut on the back of your hand leaves a raised scar (minor scarring).",
+            "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "6": "A vision of the afterlife haunts you, then fades as you awaken."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+          "effects": {
+            "1": "You suffer lasting wounds that ache in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "A harsh cut across your brow ridge that barely misses your eye leaves an aristocrat scar (notable scarring).",
+            "3": "A clean cut across your cheek leaves a mark (minor scarring).",
+            "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+            "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+            "6": "The Choosers of the Slain pass you by, and you awaken."
+          }
+        }
+      ]
+    }
+  },
+  "tampering" : {
+    "tampering_chaotic": {
+      "description": "Tampering with Mortality - Chaotic",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your soul is damned to the Outer Darkness. No additional attempts are permitted.",
+            "2": "You are surrounded by ghostly figures who torment and taunt you. No additional attempts are permitted.",
+            "3": "All you feel is the cold embrace of darkness enshrouding you. Any additional attempts are at -5.",
+            "4": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "5": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "6": "Your deity may allow your return on a second attempt, but you must perform a Quest immediately upon revival."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your spirit wanders the pathways of the dead. No additional attempts are permitted.",
+            "2": "All you feel is the cold embrace of darkness enshrouding you. Any additional attempts are at -5.",
+            "3": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "4": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "5": "Your deity may allow your return on a second attempt, but you must perform a Quest immediately upon revival.",
+            "6": "A stirring wind and a light come from somewhere, and you slowly move towards them. A second attempt is permitted."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "The powers of the spell restore you but at great cost. You need a month of bed rest.",
+          "effects": {
+            "1": "Your body degenerates into a rotting piece of meat. Maggots constantly crawl from your orifices, and flies buzz around you ceaselessly. Your CHA is reduced to 3, and your movement rate is halved. You no longer heal naturally.",
+            "2": "Your body is afflicted with a wasting disease. Your CHA and CON are permanently reduced by 1d3 points immediately. You lose an additional point each month unless you sacrifice a sapient Lawful creature and consume its flesh and blood. A cure disease prevents the wasting for one day but does not dispel the effect.",
+            "3": "One of your arms becomes a hideous tentacle. You can make tentacle attacks for 1d8 damage, but your CHA is reduced by 3, and you have a -4 on rolls involving fine manipulation, use of weapons, or similar actions. You cannot use bows or two-handed weapons.",
+            "4": "Dark power leaked in while you were being restored. Holy water and rebuking now affects you as if you were a wight. “Destroy” results bewitch you.",
+            "5": "Tampering with mortality takes a toll. You permanently lose 1 point of Constitution.",
+            "6": "You have the pallor of death about you, and no tincture or perfume can conceal it. CHA reduced by 4, but you gain +2 to reaction rolls with non-intelligent Undead."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "Your life and limb are restored, but with weird, lingering effects. You need 3 weeks of bed rest.",
+          "effects": {
+            "1": "Your soul is marked and all extraplanar beings wish you dead, targeting you over allies. Every week, there is a 1 in 6 chance a lamassu will be sent to destroy you.",
+            "2": "Dead dumb flesh loses its appeal. Only when you feast upon the living flesh and blood of a sapient creature struggling against your bites do you feel satiated.",
+            "3": "You did not return altogether human. You gain a body from a Chaotic creature on the Reincarnation table. -4 to reaction rolls with normal humans.",
+            "4": "Tampering with mortality has a deleterious effect on your mind. You permanently lose 1 point of Wisdom.",
+            "5": "Your nails become long and sharp. You may make claw attacks for 1d4 damage but suffer a -1 on throws involving fine manipulation. If cut  they re-grow in 1 turn.",
+            "6": "Animals growl, hiss, rear up, etc. whenever you are within 10’. You suffer a -4 reaction rolls with them and cannot ride normal mounts. Characters with Beast Friendship find you “off.”"
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "The restoration of life and limb was intense, and you remember little of the ordeal. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "It feels like another being sometimes controls your right arm. When you roll a natural 1 on an attack throw, you hit an adjacent ally instead of an enemy.",
+            "2": "You are disturbed by what you experienced and cannot stop muttering nonsense to yourself, making it impossible to move silently. Spellcasting initiative rolls are at -1.",
+            "3": "Your mouth grows large and your teeth fanged. You can bite for 1d6 damage, but can no longer speak human or demi-human languages intelligibly. You can still cast spells and speak any monster languages you know.",
+            "4": "Creatures of darkness and evil hunt by night, and sleep by day. So do you. You cannot regain spells unless you rest during the day and suffer a penalty of -2 to all throws when in sunlight.",
+            "5": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "6": "No side effects."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You open your eyes to a body made whole. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "Sleep? Time enough to sleep in the grave. Each time you attempt to rest, roll 1d6. On a 1, you toss and turn all night, can’t recover spells, and regain no hit points.",
+            "2": "Water cannot satiate your thirst. You must drink blood. Animal blood suffices, but only fresh blood from a sapient creature truly tastes sweet.",
+            "3": "Your body begins to reveal the monster you are inside. You gain a disfigurement such as misshapen limbs or strange eyes. Each disfigurement imposes a -2 reaction rolls with sapient creatures of Lawful or Neutral alignment",
+            "4": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "5": "No side effects.",
+            "6": "You feel blessed by your god. You recover 1d6 days quicker than you normally would. All negative side effects are removed."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "The touch of your friends restores your health. You need 1 week of bed rest.",
+          "effects": {
+            "1": "Your seed is despoiled. Any children you sire or birth are monstrous, or even monsters. Roll on Magical Mutations table (GM’s choice) for each child.",
+            "2": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 penalty to initiative and surprise rolls.",
+            "3": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "4": "No side effects.",
+            "5": "You feel blessed by your god and recover 1d6 days quicker than you normally would. All negative side effects are removed.",
+            "6": "Your brush with death has gifted you with the ability to speak with dead once per week. All negative side effects are removed."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
+          "effects": {
+            "1": "Your renewed body needs energy that plants and mushrooms cannot provide. All rations must contain meat.",
+            "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "3": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 to surprise rolls.",
+            "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",
+            "5": "A sublime power grants you a vision which you believe is of terrible import. The GM will give you a (true?) prophecy.",
+            "6": "You gain permanent power. Gain +2 in your class’s prime requisite statistic. All negative side effects are removed."
+          }
+        }
+      ]
+    },
+    "tampering_lawful": {
+      "description": "Tampering with Mortality - Lawful",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your soul is illuminated in the light of the Logos. No additional attempts are permitted.",
+            "2": "You are surrounded by ghostly figures who admire and love you. No additional attempts are permitted.",
+            "3": "All you feel is the sensation of rising, rising into the light. Any additional attempts are at -5.",
+            "4": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "5": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "6": "Your deity may allow your return on a second attempt, but you must perform a quest immediately upon revival."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your spirit dwells in paradise. No additional attempts are permitted.",
+            "2": "All you feel is the sensation of rising, rising into the light. Any additional attempts are at -5.",
+            "3": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "4": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "5": "Your deity may allow your return on a second attempt, but you must perform a Quest upon revival.",
+            "6": "A stirring wind and a light come from somewhere, and you slowly move towards them. A second attempt is permitted."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "The powers of the spell restore you but at great cost. You need a month of bed rest.",
+          "effects": {
+            "1": "Your spirit returns, but not your body. You appear as a blue glowing figure equipped as in life. You can see, hear, & speak normally and can cast spells, but cannot otherwise interact with the world. You can only be harmed by spells, magic weapons, or incorporeal creatures. Your touch deals 1d10 to Chaotic creatures. Use CHA in lieu of STR; add fighter damage bonus.",
+            "2": "You sprout a pair of angel wings from your shoulder blades, but your bones become brittle and hollow. Your CON is halved, and you take double damage from bludgeoning and seismic. Your weight is reduced by 30%. You gain a 30’ Flight speed.",
+            "3": "You instantly age halfway to your racial maximum age. If already over halfway, you age to 1 year from racial maximum age",
+            "4": "Your physical form becomes exceptionally delicate, but very beautiful. You gain 4 points of CHA (maximum 18) but lose 4 points of STR (minimum 3). You are a subject of objectification and jealousy by those attracted to your sex but tend to be scorned as useless by those not attracted to your sex.",
+            "5": "Tampering with mortality takes a toll. You permanently lose 1 point of Constitution.",
+            "6": "You carry permanent bear markings of your faith (stigmata etc.). You suffer a -4 to reaction rolls with all those who do not worship your pantheon, but +2 to reaction rolls with those who share your faith."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "Your life and limb are restored, but with weird, lingering effects. You need 3 weeks of bed rest.",
+          "effects": {
+            "1": "Your soul is marked and all extraplanar beings wish you dead, targeting you over allies. Every week, there is a 1 in 6 chance an 8 HD cacodemon will be sent to destroy you.",
+            "2": "You have been permanently connected to the spiritual plane and glow like a candle to the unliving. All undead can sense your presence within 60’.",
+            "3": "You did not return altogether human. You begin to resemble whatever animal best represents you (Judge’s discretion). You suffer -4 to reaction rolls with normal humans.",
+            "4": "Tampering with mortality has a deleterious effect on your mind. You permanently lose 1 point of Wisdom.",
+            "5": "Your hair is restored to its youthful vigor… over and over. You must shave twice a day or witness an inch of growth by sunset. Untrimmed hair growth hinders performance in combat, giving you a -1 to attack throwss.",
+            "6": "Domestic animals, fuzzy herbivores, and songbirds are delighted by you. They bark in greeting, hop over to meet you, and sing excitedly. Gain a +4 bonus to reaction rolls with them but suffer a -4 penalty to hide and sneak when any are within 30’."
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "The restoration of life and limb was intense, and you remember little of the ordeal. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "It feels like another being sometimes controls your right arm. When you roll a natural 1 on an attack throw, you hit an adjacent ally instead of an enemy.",
+            "2": "Your connection to the Divine is lessened. You can cast 1 less Divine spell per level per day and your WIS is reduced by 1d3.",
+            "3": "Your voice becomes loud, like rolling thunder. You cannot whisper. When you cast spells, it is like a loud shout; with Quiet Magic, you can cast spells at ordinary speaking volume.",
+            "4": "Everything seems brighter and louder than before. If a very loud noise or bright light occurs in battle, make a Paralysis save or be surprised for one round. The save suffers a -2 penalty each time this effect occurs.",
+            "5": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "6": "No side effects."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You open your eyes to a body made whole. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "Your body is healthy, but… different. You are now a member of the opposite sex. -2 reaction rolls with characters who knew your prior gender unless your CHA is 13+.",
+            "2": "You become an ascetic who take no pleasure in the appetites of the body. All food tastes like old porridge, all drink tastes like vinegar. Take a -2 penalty to saves vs. poison you ingest.",
+            "3": "Your body reveals its inner light through bronze skin, golden eyes, or a slight halo. Suffer a -2 penalty to reaction rolls with Chaotic creatures.",
+            "4": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "5": "No side effects.",
+            "6": "You feel blessed by your god. You recover 1d6 days quicker than you normally would. All negative side effects are removed."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "The touch of your friends restores your health. You need 1 week of bed rest.",
+          "effects": {
+            "1": "The wearying of years visits you early. You age 1d10 years if human, or 5d10 years if any demi-human.",
+            "2": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 penalty to initiative and surprise rolls.",
+            "3": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "4": "No side effects.",
+            "5": "You feel blessed by your god and recover 1d6 days quicker than normal. All negative side effects removed.",
+            "6": "Your brush with death has gifted you with the ability to speak with dead once per week. All negative side effects removed."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
+          "effects": {
+            "1": "Meat is too much like murder. You may only eat plants, mushrooms and herbs. The taste of flesh makes you vomit.",
+            "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "3": "No side effects.",
+            "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",
+            "5": "A sublime power grants you a vision which you believe is of terrible import. The GM will give you a (true?) prophecy.",
+            "6": "You gain permanent power. Gain +2 in your class’s prime requisite statistic. All negative side effects are removed."
+          }
+        }
+      ]
+    },
+    "tampering_neutral": {
+      "description": "Tampering with Mortality - Neutral",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": 6,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your soul is extinguished in the oblivion of nothingness. No additional attempts are permitted.",
+            "2": "You are surrounded by ghostly figures who torment and taunt you. No additional attempts are permitted.",
+            "3": "All you feel is the sensation of falling, falling, falling into nothings. Any additional attempts are at -5.",
+            "4": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "5": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "6": "Your deity may allow your return on a second attempt, but you must perform a Quest immediately upon revival."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your spirit wanders in emptiness. No additional attempts are permitted.",
+            "2": "All you feel is the sensation of falling, falling, falling into nothings. Any additional attempts are at -5.",
+            "3": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "4": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "5": "Your deity may allow your return on a second attempt, but you must perform a quest immediately upon revival.",
+            "6": "A stirring wind and a light come from somewhere, and you slowly move towards them. A second attempt is permitted."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "The powers of the spell restore you but at great cost. You need a month of bed rest.",
+          "effects": {
+            "1": "Heart beats and blood flows, but life doesn’t feel the same. Your CON and WIS are reduced by 1d4 each.",
+            "2": "All you see is darkness. You are now blind (blinded, -4 to all attack throws, no line of sight for spells, movement ¼ normal, -2 to surprise rolls) in full daylight, but you can see invisible as the spell once per day.",
+            "3": "You either (50% either way) shrink to tiny size (as per shrinking) or grow to giant size (as per growth). Since you are unused to your new size, your DEX is immediately reduced to 3; it increases by 1 point per week until reaches its normal score.",
+            "4": "Who were you? Fragments of your mind are missing. You permanently forget 1 general proficiency and no longer recognize one random henchman, who suffers -2 penalty to morale for being seen as forgettable",
+            "5": "Tampering with mortality takes a toll. You permanently lose 1 point of Constitution.",
+            "6": "You smell of the wild. You suffer a -4 to reaction rolls with normal humans, but animals treat you like one of them unless you attack them or engage in civilized behavior in their presence."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "Your life and limb are restored, but with weird, lingering effects. You need 3 weeks of bed rest.",
+          "effects": {
+            "1": "Your soul is marked and all extraplanar beings wish you dead, targeting you over allies. Every week, there is a 1 in 6 chance an 8 HD elemental will be sent to destroy you.",
+            "2": "The fabric of your mind frays and cracks. Each day upon awakening, you must make a Spells save or completely forget who you are. Once dementia sets in, the effect lasts for 1d6 days.",
+            "3": "You did not return altogether human. You begin to resemble whatever animal best represents you (Judge’s discretion). You suffer -4 to reaction rolls with normal humans.",
+            "4": "Tampering with mortality has a deleterious effect on your mind. You permanently lose 1 point of Wisdom.",
+            "5": "Your metabolism slows down. You need only half normal rations, but gain 1d10 lbs now +  1d10 lbs / year no matter how much you adventure.",
+            "6": "Something wicked has taken an interest in you. A cacodemon spawn becomes your familiar, as the proficiency, but it does not always obey your comments."
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "The restoration of life and limb was intense, and you remember little of the ordeal. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "It feels like another being sometimes controls your right arm. When you roll a natural 1 on an attack throw, you hit an adjacent ally instead of an enemy.",
+            "2": "There is a 5% cumulative chance each day you sink into madness. Roll for your actions each round as if suffering madness. The madness lasts for 1d6 days; the chance then resets.",
+            "3": "You grow an alien eye on the center of your forehead. The eye stays lidded most of the time. Three times per day you may unlid the eye and use the telepathy spell). Normal men view you with fear and trepidation (-3 to reaction rolls).",
+            "4": "You have trouble managing slumber. Anytime you rest, you slumber for a random 2d6+2 hours; during this time you cannot be woke unless damaged, and even then you fall asleep again after one round.",
+            "5": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "6": "No side effects."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You open your eyes to a body made whole. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "Your body is healthy, but… different. You are now a member of the opposite sex. -2 reaction rolls with characters who knew your prior gender unless your CHA is 13+.",
+            "2": "Your restored body has bottomless hungers. If you casually smoke or consume alcohol, you are fully addicted. You suffer a cumulative -1 penalty to all Saving Throws after each hour you don’t consume something",
+            "3": "You take on a minor physical trait of an animal associated with your culture or religion. You suffer a -2 penalty to reaction rolls with those from outside your culture.",
+            "4": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "5": "No side effects.",
+            "6": "You feel blessed by your god. You recover 1d6 days quicker than you normally would. All negative side effects are removed."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "The touch of your friends restores your health. You need 1 week of bed rest.",
+          "effects": {
+            "1": "Your life has come at the cost of the life of your future offspring. You are sterile and cannot have children naturally.",
+            "2": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 penalty to initiative and surprise rolls.",
+            "3": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "4": "No side effects.",
+            "5": "You feel blessed by your god and recover 1d6 days quicker than you normally would. All negative side effects are removed.",
+            "6": "Your brush with death has gifted you with the ability to speak with dead once per week. All negative side effects are removed."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
+          "effects": {
+            "1": "The flavors of food reverse – salty becomes sweet, sour becomes bitter. Ordinary food tastes inedible to you and you must have your meals and rations prepared just for you.",
+            "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "3": "No side effects.",
+            "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",
+            "5": "A sublime power grants you a vision which you believe is of terrible import. The GM will give you a (true?) prophecy.",
+            "6": "You gain permanent power. Gain +2 in your class’s prime requisite statistic. All negative side effects are removed."
+          }
+        }
+      ]
+    }
+
+  }
+}

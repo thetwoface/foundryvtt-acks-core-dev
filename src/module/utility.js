@@ -1,5 +1,28 @@
 export class AcksUtility {
 
+  /* -------------------------------------------- */
+  static loadInternalTables() {
+    // Fetch the internal tables from the ruledata/internal_tables.json file
+    // Fetch the file
+    const filePath = "systems/acks/module/ruledata/internal_tables.json";
+    const file = fetch(filePath)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Process the data
+        console.log("Internal Tables Loaded", data);
+        game.acks.tables = data;
+      })
+      .catch(error => {
+        console.error("Error loading internal tables:", error);
+      });
+  }
+
+  /* -------------------------------------------- */
   static updateWeightsLanguages() {
     for (let a of game.actors) {
       a.updateWeight();
@@ -116,7 +139,7 @@ export class AcksUtility {
     event.preventDefault();
     const a = event.currentTarget;
     const li = a.closest('li');
-    const effect = li.dataset.effectId
+    let effect = li.dataset.effectId
       ? owner.effects.get(li.dataset.effectId)
       : null;
     switch (a.dataset.action) {
@@ -133,18 +156,6 @@ export class AcksUtility {
           }]
         }, { parent: owner });
         return effect.sheet.render(true);
-      /*return owner.createEmbeddedDocuments('ActiveEffect', [
-        {
-          name: game.i18n.format('DOCUMENT.New', {
-            type: game.i18n.localize('DOCUMENT.ActiveEffect'),
-          }),
-          icon: 'icons/svg/aura.svg',
-          origin: owner.uuid,
-          'duration.rounds':
-            li.dataset.effectType === 'temporary' ? 1 : undefined,
-          disabled: li.dataset.effectType === 'inactive',
-        },
-      ]);*/
       case 'edit':
         return effect.sheet.render(true);
       case 'delete':

@@ -123,6 +123,7 @@ Hooks.once("ready", async () => {
   );
 
   AcksUtility.setupSocket()
+  AcksUtility.loadInternalTables()
   if (game.user.isGM) { // only for GM, to avoid dummy permissions issues
     AcksUtility.updateWeightsLanguages()
     AcksUtility.displayWelcomeMessage()

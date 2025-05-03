@@ -90,7 +90,7 @@
         <li class="attribute ">
           <h4 class="attribute-name box-title box-title-min-height" ">
             <a class="hit-dice" data-tooltip="{{localize 'ACKS.HitDice' }}"><i class="acks-roll-small fa-solid fa-dice-d20"></i>{{ localize "ACKS.HitDiceShort" }}</a>
-            {{#if (eq system.hp.value 0)}}
+            {{#if (lte system.hp.value 0)}}
               <a class="mortal-wound-dialog" data-tooltip="Roll Mortal Wound"><i class="fa-regular fa-skull"></i></a>
             {{/if}}
           </h4>

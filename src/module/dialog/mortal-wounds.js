@@ -1,4 +1,5 @@
 import { AcksTableManager } from "../apps/table-manager.js"
+import { AcksUtility } from "../utility.js"
 
 const __HIT_DICE_MOD = { "d6": 2, "d8": 4, "d10": 6, "d12": 8 }
 
@@ -40,10 +41,10 @@ export class AcksMortalWoundsDialog extends FormApplication {
     }
     finalModifier += Number(mortalWoundsData.healingProficiency)
     finalModifier += Number(mortalWoundsData.healingMagicLevel)
-    finalModifier -= Number(Math.floor(mortalWoundsData.necromanticSpellLevel/2))
+    finalModifier -= Number(AcksUtility.roundToEven(mortalWoundsData.necromanticSpellLevel/2))
     finalModifier += Number(mortalWoundsData.treatmentTiming)
     finalModifier += Number(mortalWoundsData.freeModifier)
-    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? Math.floor(Number(mortalWoundsData.healerClassLevel/2)) : 0
+    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? AcksUtility.roundToEven(Number(mortalWoundsData.healerClassLevel/2)) : 0
     $("input[name='finalModifierValue']").val(finalModifier)
     return finalModifier
   }
@@ -69,6 +70,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
     let mortalWoundsData = {
       title: "Roll Mortal Wounds",
       hasHeavyHelm: actor.hasHeavyHelm(),
+      heavyHelmMalus: actor.hasHeavyHelm() ? 2 : 0,
       hitDice: actor.getHitDice(),
       maxHitPoints: actor.getMaxHitPoints(),
       currentHitPoints: actor.getCurrentHitPoints(),
@@ -116,6 +118,11 @@ export class AcksMortalWoundsDialog extends FormApplication {
         "toggle-horsetail": (event, button, dialog) => {
           mortalWoundsData.horsetailApplied = !mortalWoundsData.horsetailApplied
           $("input[name='horsetailModifier']").val(mortalWoundsData.horsetailApplied ? 2 : 0)
+          this.updateDialogResult(mortalWoundsData)
+        },
+        "toggle-heavy-helm": (event, button, dialog) => {
+          mortalWoundsData.hasHeavyHelm = !mortalWoundsData.hasHeavyHelm
+          $("input[name='heavyHelmMalus']").val(mortalWoundsData.hasHeavyHelm ? 2 : 0)
           this.updateDialogResult(mortalWoundsData)
         },
         "toggle-laying": (event, button, dialog) => {

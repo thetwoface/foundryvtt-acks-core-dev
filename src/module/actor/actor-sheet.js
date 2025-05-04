@@ -1,6 +1,7 @@
 import { AcksEntityTweaks } from "../dialog/entity-tweaks.js";
 import { AcksUtility } from "../utility.js";
 import { AcksMortalWoundsDialog } from "../dialog/mortal-wounds.js";
+import { AcksTamperingDialog } from "../dialog/tampering-mortality.js";
 export class AcksActorSheet extends ActorSheet {
 
   /* -------------------------------------------- */
@@ -188,6 +189,12 @@ export class AcksActorSheet extends ActorSheet {
     html.find(".mortal-wound-dialog").click((ev) => {
       let actorObject = this.actor;
       let dialog = new AcksMortalWoundsDialog();
+      dialog.init(actorObject);
+    })
+
+    html.find(".tampering-dialog").click((ev) => {
+      let actorObject = this.actor;
+      let dialog = new AcksTamperingDialog();
       dialog.init(actorObject);
     })
 

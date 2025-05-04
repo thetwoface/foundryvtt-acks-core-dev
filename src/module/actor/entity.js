@@ -169,6 +169,14 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  getWillModifier() {
+    if (this.type != "character") {
+      return 0;
+    }
+    return this.system.scores.wis.mod;
+  }
+
+  /* -------------------------------------------- */
   getLanguages() {
     let lang = this.items.filter((i) => i.type == "language");
     return lang;

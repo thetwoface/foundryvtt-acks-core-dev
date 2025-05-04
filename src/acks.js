@@ -17,6 +17,7 @@ import { AcksTokenHud } from "./module/acks-token-hud.js";
 import { AcksUtility } from "./module/utility.js";
 import { AcksPolyglot } from "./module/apps/polyglot-support.js";
 import { AcksTableManager } from "./module/apps/table-manager.js";
+import { AcksCommands } from "./module/apps/acks-commands.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -73,6 +74,7 @@ Hooks.once("init", async function () {
   await preloadHandlebarsTemplates();
 
   AcksTokenHud.init()
+  AcksCommands.init()
 
   // Ensure new effect transfer
   CONFIG.ActiveEffect.legacyTransferral = false;
@@ -116,6 +118,17 @@ Hooks.once("setup", function () {
       return obj;
     }, {});
   }
+});
+
+Hooks.on("chatMessage", (html, content, msg) => {
+  if (content[0] == '/') {
+    let regExp = /(\S+)/g;
+    let commands = content.match(regExp);
+    if (game.acks.commands.processChatCommand(commands, content, msg)) {
+      return false;
+    }
+  }
+  return true;
 });
 
 Hooks.once("ready", async () => {

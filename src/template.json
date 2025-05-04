@@ -186,7 +186,8 @@
         }
       },
       "encumbrance": {
-        "max": 20
+        "max": 20,
+        "forcemax": -1
       }
     },
     "monster": {

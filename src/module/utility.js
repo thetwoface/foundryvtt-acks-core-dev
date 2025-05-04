@@ -1,3 +1,4 @@
+
 export class AcksUtility {
 
   /* -------------------------------------------- */
@@ -10,6 +11,22 @@ export class AcksUtility {
     for (let i of game.items) {
       i.updateWeight();
     }
+  }
+
+  /* -------------------------------------------- */
+  static roundToEven(num) {
+    // Get the fractional part
+    const fraction = Math.abs(num) - Math.floor(Math.abs(num));
+
+    // If exactly 0.5
+    if (fraction === 0.5) {
+      // Round to the nearest even integer
+      const floorValue = Math.floor(num);
+      return floorValue % 2 === 0 ? floorValue : floorValue + 1;
+    }
+
+    // Otherwise use normal rounding
+    return Math.round(num);
   }
 
   /* -------------------------------------------- */

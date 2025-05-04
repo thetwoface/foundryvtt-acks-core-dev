@@ -40,11 +40,8 @@
       <legend>Combatant</legend>
       <div class="flexrow">
         <span>Heavy Helm ?</span>
-        {{#if hasHeavyHelm}}
-        <input disabled=true type="number" name=heavyHelmMalus value="2" />
-        {{else}}
-        <input disabled=true type="number" name=heavyHelmMalus value="0" />
-        {{/if}}
+        <input type="checkbox" name="hasHeavyHelm" data-action="toggle-heavy-helm" {{#if hasHeavyHelm}}checked{{/if}} />
+        <input disabled=true type="number" name="heavyHelmMalus" value="2" />
       </div>
       <div class="flexrow">
         <span>Hit Dice ({{hitDice}})</span>
@@ -70,7 +67,7 @@
       <legend>Ally Performing Healing</legend>
 
       <div class="flexrow">
-        <span>Horsetail Applied </span>
+        <span>Horsetail Applied ?</span>
         <input type="checkbox" name="horsetailApplied" data-action="toggle-horsetail" />
         <input type="number" disabled=true name="horsetailModifier" value="0" />
       </div>
@@ -93,20 +90,21 @@
       <div class="flexrow healer-class-level-div">
         <span>Healer's class level </span>
         <select name="healerClassLevel" disabled class="healer-class-level">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
+          <option value="0">Not applicable</option>
+          <option value="1">1 (+1)</option>
+          <option value="2">2 (+1)</option>
+          <option value="3">3 (+2)</option>
+          <option value="4">4 (+2)</option>
+          <option value="5">5 (+2)</option>
+          <option value="6">6 (+3)</option>
+          <option value="7">7 (+4)</option>
+          <option value="8">8 (+4)</option>
+          <option value="9">9 (+4)</option>
+          <option value="10">10 (+5)</option>
+          <option value="11">11 (+6)</option>
+          <option value="12">12 (+6)</option>
+          <option value="13">13 (+6)</option>
+          <option value="14">14 (+7)</option>
         </select>
       </div>
 

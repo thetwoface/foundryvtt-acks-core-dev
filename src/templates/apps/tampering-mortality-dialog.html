@@ -92,10 +92,18 @@
     <fieldset>
       <legend>State of the Creature's Soul</legend>
 
+      {{#if actor}}
       <div class="flexrow">
         <span>Will Modifier </span>
         <input type="number" disabled=true name="willModifier" value="{{willModifier}}" class="will-modifier"/>
       </div>
+      {{else}}
+      <div class="flexrow">
+        <span>Will Modifier </span>
+        <input type="number" name="willModifier" value="{{willModifier}}" class="will-modifier"/>
+      </div>
+      {{/if}}
+
       <div class="flexrow">
         <span>Days Since Death </span>
         <select name="daysSinceDeath" class="days-since-death">

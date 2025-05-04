@@ -65,17 +65,18 @@ export class AcksMortalWoundsDialog extends FormApplication {
   }
 
   /* -------------------------------------------- */
-  async init(actor) {
+  async init(actor = undefined) {
 
     let mortalWoundsData = {
       title: "Roll Mortal Wounds",
-      hasHeavyHelm: actor.hasHeavyHelm(),
-      heavyHelmMalus: actor.hasHeavyHelm() ? 2 : 0,
-      hitDice: actor.getHitDice(),
-      maxHitPoints: actor.getMaxHitPoints(),
-      currentHitPoints: actor.getCurrentHitPoints(),
-      conModifier: actor.getConModifier(),
+      hasHeavyHelm: actor?.hasHeavyHelm() || 0,
+      heavyHelmMalus: actor?.hasHeavyHelm() ? 2 : 0,
+      hitDice: actor?.getHitDice() || "d6",
+      maxHitPoints: actor?.getMaxHitPoints() || 10,
+      currentHitPoints: actor?.getCurrentHitPoints() || 0,
+      conModifier: actor?.getConModifier() || 0,
       mortalTablesChoices: this.buildMortalTablesChoices(),
+      actor: actor,
       horsetailApplied: false,
       healingMagicLevel: 0,
       layingOnHands: false,
@@ -136,6 +137,26 @@ export class AcksMortalWoundsDialog extends FormApplication {
         },
       },
       render: (event, dialog) => {
+        $(".max-hit-points").change(event => {
+          mortalWoundsData.maxHitPoints = Number(event.target.value)
+          mortalWoundsData.hitPointsModifier = this.computeHitPointsModifier(mortalWoundsData.currentHitPoints, mortalWoundsData.maxHitPoints)
+          $("input[name='hitPointsModifier']").val(mortalWoundsData.hitPointsModifier)
+          this.updateDialogResult(mortalWoundsData)
+        })
+        $(".current-hit-points").change(event => {
+          mortalWoundsData.currentHitPoints = Number(event.target.value)
+          mortalWoundsData.hitPointsModifier = this.computeHitPointsModifier(mortalWoundsData.currentHitPoints, mortalWoundsData.maxHitPoints)
+          $("input[name='hitPointsModifier']").val(mortalWoundsData.hitPointsModifier)
+          this.updateDialogResult(mortalWoundsData)
+        })
+        $(".con-modifier").change(event => {
+          mortalWoundsData.conModifier = Number(event.target.value)
+          this.updateDialogResult(mortalWoundsData)
+        })
+        $(".hit-dice-selector").change(event => {
+          mortalWoundsData.hitDiceModifier = Number(event.target.value)
+          this.updateDialogResult(mortalWoundsData)
+        })
         $(".free-modifier").change(event => {
           mortalWoundsData.freeModifier = Number(event.target.value)
           this.updateDialogResult(mortalWoundsData)
@@ -179,7 +200,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       content: chatContent,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
       flags: {
         "acks": {
           "mortalWounds": true,

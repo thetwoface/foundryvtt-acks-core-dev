@@ -1530,11 +1530,15 @@
 .mortal-wounds-dialog  .final-modifier-div input {
   font-size: 1.2rem;
 }
+.mortal-wounds-dialog input[type="number"] {
+  color: rgb(71, 70, 70, 0.85);
+}
 
 .mortal-wounds-dialog input:disabled {
   background: var(--acks-sheet-tabs-background);
-  color: rgb(71, 70, 70, 0.85);
+  color: #7a7971;
 }
+
 .mortal-wounds-dialog .final-modifier-value {
   font-weight: bold;
   color : darkgreen;
@@ -1582,9 +1586,13 @@
   font-size: 1.2rem;
 }
 
+.tampering-dialog input[type="number"] {
+  color: rgb(71, 70, 70, 0.85);
+}
+
 .tampering-dialog input:disabled {
   background: var(--acks-sheet-tabs-background);
-  color: rgb(71, 70, 70, 0.85);
+  color: #7a7971;
 }
 .tampering-dialog .final-modifier-value {
   font-weight: bold;

@@ -158,3 +158,5 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatMessage", chat.addChatMessageButtons);
 Hooks.on("renderRollTableConfig", treasure.augmentTable);
 Hooks.on("updateActor", party.update);
+
+Hooks.on("renderActorDirectory", (app, html, data) => AcksUtility.addButtons(app, html, data));

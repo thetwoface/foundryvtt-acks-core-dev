@@ -1,3 +1,5 @@
+import { AcksMortalWoundsDialog } from "./dialog/mortal-wounds.js";
+import { AcksTamperingDialog } from "./dialog/tampering-mortality.js";
 
 export class AcksUtility {
 
@@ -27,6 +29,26 @@ export class AcksUtility {
 
     // Otherwise use normal rounding
     return Math.round(num);
+  }
+
+  /* -------------------------------------------- */
+  static addButtons(app, html, data) {
+    const button = document.createElement('button');
+    button.style.width = '45%';
+    button.innerHTML = 'Mortal Wounds'
+    button.addEventListener('click', () => {
+      let cr = new AcksMortalWoundsDialog();
+      cr.init()
+    })
+    const buttonTampering = document.createElement('button');
+    buttonTampering.style.width = '45%';
+    buttonTampering.innerHTML = 'Tampering'
+    buttonTampering.addEventListener('click', () => {
+      let cr = new AcksTamperingDialog();
+      cr.init()
+    })
+    html.find('.header-actions').after(buttonTampering)
+    html.find('.header-actions').after(button)
   }
 
   /* -------------------------------------------- */

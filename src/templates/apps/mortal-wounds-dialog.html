@@ -41,20 +41,52 @@
       <div class="flexrow">
         <span>Heavy Helm ?</span>
         <input type="checkbox" name="hasHeavyHelm" data-action="toggle-heavy-helm" {{#if hasHeavyHelm}}checked{{/if}} />
-        <input disabled=true type="number" name="heavyHelmMalus" value="2" />
+        <input disabled=true type="number" name="heavyHelmMalus" value="{{heavyHelmMalus}}" />
       </div>
+      {{#if actor}}
       <div class="flexrow">
         <span>Hit Dice ({{hitDice}})</span>
-        <input type="number" disabled=true name="hitDiceModifier" value="{{hitDiceModifier}}" />
+        <input type="number" disabled name="hitDiceModifier" value="{{hitDiceModifier}}" />
       </div>
+      {{else}}
+      <div class="flexrow">
+        <span>Hit Dice </span>
+        <select name="hitDiceModifier" class="hit-dice-selector">
+          <option value="2" selected>d6 (+2)</option>
+          <option value="4">d8 (+4)</option>
+          <option value="6">d10 (+6)</option>
+          <option value="8">d12 (+8)</option>
+        </select>
+      </div>
+      {{/if}}
+
+      {{#if actor}}
       <div class="flexrow">
         <span>Current Hit Points ({{currentHitPoints}} / {{maxHitPoints}})</span>
-        <input type="number" disabled=true name="hitPointsModifier" value="{{hitPointsModifier}}" />
+        <input type="number" disabled name="hitPointsModifier" value="{{hitPointsModifier}}" />
       </div>
       <div class="flexrow">
         <span>Constitution Modifier</span>
-        <input type="number" disabled=true name="conModifier" value="{{conModifier}}" />
+        <input type="number" disabled name="conModifier" value="{{conModifier}}" />
       </div>
+      {{else}}
+      <div class="flexrow">
+        <span>Max Hit Points </span>
+        <input type="number" name="maxHitPoints" value="{{maxHitPoints}}" class="max-hit-points"/>
+      </div>
+      <div class="flexrow">
+        <span>Current Hit Points </span>
+        <input type="number" name="currentHitPoints" value="{{currentHitPoints}}" class="current-hit-points"/>
+      </div>
+      <div class="flexrow">
+        <span>Hit Points modifier</span>
+        <input type="number" disabled name="hitPointsModifier" value="{{hitPointsModifier}}" />
+      </div>
+      <div class="flexrow">
+        <span>Constitution Modifier</span>
+        <input type="number"  name="conModifier" value="{{conModifier}}" class="con-modifier"/>
+      </div>
+      {{/if}}
 
       <div class="flexrow">
         <span>Additionnal modifier</span>

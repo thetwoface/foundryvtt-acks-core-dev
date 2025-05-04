@@ -46,11 +46,11 @@ export class AcksTamperingDialog extends FormApplication {
   }
 
   /* -------------------------------------------- */
-  async init(actor) {
+  async init(actor = undefined) {
 
     let tamperingData = {
       title: "Roll Tampering with Mortality",
-      willModifier: actor.getWillModifier(),
+      willModifier: actor?.getWillModifier() || 0,
       tamperingChoices: this.buildTamperingTablesChoices(),
       creatureLife: 2,
       spellcasterLevel: 1,
@@ -107,6 +107,10 @@ export class AcksTamperingDialog extends FormApplication {
         },
       },
       render: (event, dialog) => {
+        $(".will-modifier").change(event => {
+          tamperingData.willModifier = Number(event.target.value)
+          this.updateDialogResult(tamperingData)
+        })
         $(".free-modifier").change(event => {
           tamperingData.freeModifier = Number(event.target.value)
           this.updateDialogResult(tamperingData)
@@ -157,7 +161,7 @@ export class AcksTamperingDialog extends FormApplication {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       content: chatContent,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
       flags: {
         "acks": {
           "tampering": true,

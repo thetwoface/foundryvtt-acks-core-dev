@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/AutarchLLC/foundryvtt-acks-core#readme",
   "devDependencies": {
-    "@foundryvtt/foundryvtt-cli": "^1.0.4"
+    "@foundryvtt/foundryvtt-cli": "^1.0.4",
+    "prettier": "3.5.3"
   }
 }

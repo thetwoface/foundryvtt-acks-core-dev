@@ -16,7 +16,7 @@ export class AcksTokenHud {
   }
 
   /* -------------------------------------------- */
-  static async addExtensionHud(app, html, tokenId) {
+  static async addExtensionHud(app, $html, tokenId) {
 
     let token = canvas.tokens.get(tokenId)
     let actor = token.actor
@@ -24,7 +24,7 @@ export class AcksTokenHud {
 
     const hudData = { token: token, actor: actor, mode: "action", actionsList: actor.buildFavoriteActions() }
 
-    const controlIconActions = html.find('.control-icon[data-action=combat]');
+    const controlIconActions = $html.find('.control-icon[data-action=combat]');
     // initiative
     await AcksTokenHud._configureSubMenu(controlIconActions, 'systems/acks/templates/token/hud-actor-actions.html', hudData,
       (event) => {
@@ -39,9 +39,9 @@ export class AcksTokenHud {
           actionItem.rollFormula();
         }
       })
-    
+
     const hudRolls = { token: token, actor: actor, mode: "roll", rollsList: actor.buildRollList() }
-    const controlIconTarget = html.find('.control-icon[data-action=config]');
+    const controlIconTarget = $html.find('.control-icon[data-action=config]');
     // att+apt+career
     await AcksTokenHud._configureSubMenu(controlIconTarget, 'systems/acks/templates/token/hud-actor-rolls.html', hudRolls,
       (event) => {
@@ -53,9 +53,10 @@ export class AcksTokenHud {
 
   /* -------------------------------------------- */
   static async addTokenHudExtensions(app, html, tokenId) {
-    const controlIconCombat = html.find('.control-icon[data-action=combat]')
+    const $html = game.release.generation < 13 ? html : $(html);
+    const controlIconCombat = $html.find('.control-icon[data-action=combat]')
     if (controlIconCombat.length > 0) {
-      AcksTokenHud.addExtensionHud(app, html, tokenId);
+      AcksTokenHud.addExtensionHud(app, $html, tokenId);
     }
   }
 
@@ -82,11 +83,11 @@ export class AcksTokenHud {
   /* -------------------------------------------- */
   static _showControlWhen(control, condition, hudData) {
     if (condition) {
-      control.show()
-      hudData.token.document.setFlag('acks', 'hud-'+hudData.mode, true)        
+      control.show();
+      hudData.token.document.setFlag('acks', 'hud-'+hudData.mode, true);
     } else {
-      control.hide()
-      hudData.token.document.setFlag('acks', 'hud-'+hudData.mode, false)        
+      control.hide();
+      hudData.token.document.setFlag('acks', 'hud-'+hudData.mode, false);
     }
   }
 

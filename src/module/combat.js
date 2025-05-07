@@ -24,7 +24,6 @@ export class AcksCombatClass extends Combat {
     // Update state tracking
     let c = turns[this.turn];
     this.current = this._getCurrentState(c);
-    //this.current = 
     // One-time initialization of the previous state
     if (!this.previous) this.previous = this.current;
 
@@ -46,7 +45,7 @@ export class AcksCombatClass extends Combat {
     let messages = [];
     let rollMode = game.settings.get("core", "rollMode");
 
-    // Get current groups 
+    // Get current groups
     let groups = this.getFlag('acks', 'groups') || [];
     let maxInit = { value: -1, cId: "" }
     let updates = [];
@@ -54,9 +53,9 @@ export class AcksCombatClass extends Combat {
       const c = this.combatants.get(cId);
       //console.log("Init for combattant", cId, c, ids)
       let id = c._id || c.id
-      // get the associated token 
+      // get the associated token
       let tokenId = c.token.id;
-      // Check if the current token ID is in a group  
+      // Check if the current token ID is in a group
       let groupData = groups.find((groupData) => groupData.tokens.includes(tokenId));
       let initValue = -1;
       let showMessage = true
@@ -267,7 +266,7 @@ export class AcksCombatClass extends Combat {
     let advanceTime = Math.max(this.turns.length - this.turn, 0) * CONFIG.time.turnTime;
     advanceTime += CONFIG.time.roundTime;
     let nextRound = this.round + 1;
-    // Display a chat message to remind declaring actions 
+    // Display a chat message to remind declaring actions
     let chatData = {
       content: `Round ${nextRound} has started, you can declare your actions before rolling initiative.`,
     };
@@ -339,7 +338,7 @@ export class AcksCombatClass extends Combat {
 
   /*******************************************************/
   manageGroup(groupTokens) {
-    // Check if the tokens are in the current combatant list 
+    // Check if the tokens are in the current combatant list
     let combatants = this.combatants;
     let combatantTokens = combatants.map(c => c.token.id);
     let missingTokens = groupTokens.filter(t => !combatantTokens.includes(t.id));
@@ -528,7 +527,7 @@ export class AcksCombat {
   }
 
   /*******************************************************/
-  static format(object, html, user) {
+  static format(object, html) {
     let colorEnabled = game.settings.get("acks", "enable-combatant-color");
     let colorFriendlies = "#00FF00";
     let colorHostiles = "#FF0000";
@@ -539,7 +538,10 @@ export class AcksCombat {
       console.log("Color settings not found", e);
     }
 
-    html.find(".initiative").each((_, span) => {
+    const V13 = game.release.generation >= 13;
+    // in Application v2 html is NOT jQuery by default
+    const $html = V13 ? $(html) : html;
+    $html.find(".initiative").each((_, span) => {
       span.innerHTML =
         span.innerHTML == "-789.00"
           ? '<i class="fas fa-weight-hanging"></i>'
@@ -550,15 +552,16 @@ export class AcksCombat {
           : span.innerHTML;
     });
 
-    let rollNPC = html.find(`[data-control='rollNPC']`);
-    rollNPC.after(` <a class="combat-button combat-control create-group" aria-label="{{localize 'COMBAT.createGroup'}}" role="button"
-        data-tooltip="COMBAT.createGroup" data-control="create-group" {{#unless turns}}disabled{{/unless}}>
+    if(object.viewed) {
+      let rollNPC = V13 ? $html.find(`[data-action='rollNPC']`) : $html.find(`[data-control='rollNPC']`);
+      rollNPC.after(` <a class="combat-button combat-control create-group" aria-label="{{localize 'COMBAT.createGroup'}}" role="button"
+        data-tooltip="COMBAT.createGroup" data-control="create-group">
         <i class="fa-duotone fa-solid fa-people-group"></i>
-      </a>` );
-
+      </a>`);
+    }
     //console.log("Roll NPC", rollNPC);
 
-    html.find(".combatant").each((_, ct) => {
+    $html.find(".combatant").each((_, ct) => {
       // Append spellcast and retreat
       const controls = $(ct).find(".combatant-controls .combatant-control");
       //console.log("Combat controls", ct.dataset);
@@ -566,44 +569,55 @@ export class AcksCombat {
         const cmbtant = game.combat.combatants.get(ct.dataset.combatantId);
         if (cmbtant?.actor) {
           const actionDone = cmbtant.actor.hasEffect("done") ? "active" : "";
-          controls.eq(1).after(
-            `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`
-          );
+          const actionDoneHtml = V13 ?
+              `<button type="button" class="inline-control combatant-control action-done ${actionDone} icon fa-solid fa-check" data-tooltip aria-label="Done"></button>` :
+              `<a class='combatant-control action-done ${actionDone}' data-tooltip="Done"><i class='fas fa-check'></i></a>`;
+          controls.eq(1).after(actionDoneHtml);
+
           const readied = cmbtant.actor.hasEffect("readied") ? "active" : "";
-          controls.eq(1).after(
-            `<a class='combatant-control click-readied ${readied}' data-tooltip="Readied"><i class='fas fa-thumbs-up'></i></a>`
-          );
+          const readiedHtml = V13 ?
+              `<button type="button" class="inline-control combatant-control click-readied ${readied} icon fa-solid fa-thumbs-up" data-tooltip aria-label="Readied"></button>` :
+              `<a class='combatant-control click-readied ${readied}' data-tooltip="Readied"><i class='fas fa-thumbs-up'></i></a>`;
+          controls.eq(1).after(readiedHtml);
+
           const delayed = cmbtant.actor.hasEffect("delayed") ? "active" : "";
-          controls.eq(1).after(
-            `<a class='combatant-control click-delayed ${delayed}' data-tooltip="Delayed"><i class='fas fa-clock'></i></a>`
-          );
+          const delayedHtml = V13 ?
+              `<button type="button" class="inline-control combatant-control click-delayed ${delayed} icon fa-solid fa-clock" data-tooltip aria-label="Delayed"></button>` :
+              `<a class='combatant-control click-delayed ${delayed}' data-tooltip="Delayed"><i class='fas fa-clock'></i></a>`;
+          controls.eq(1).after(delayedHtml);
+
           const slumbering = cmbtant.actor.hasEffect("slumbering") ? "active" : "";
-          controls.eq(1).after(
-            `<a class='combatant-control click-slumbering ${slumbering}' data-tooltip="Slumbering"><i class='fas fa-person-falling-burst'></i></a>`
-          );
+          const slumberingHtml = V13 ?
+              `<button type="button" class="inline-control combatant-control click-slumbering ${slumbering} icon fa-solid fa-person-falling-burst" data-tooltip aria-label="Slumbering"></button>` :
+              `<a class='combatant-control click-slumbering ${slumbering}' data-tooltip="Slumbering"><i class='fas fa-person-falling-burst'></i></a>`;
+          controls.eq(1).after(slumberingHtml);
+
           const spellActive = cmbtant.flags.acks?.prepareSpell ? "active" : "";
-          controls.eq(1).after(
-            `<a class='combatant-control prepare-spell ${spellActive}' data-tooltip="Casting"><i class='fas fa-magic'></i></a>`
-          );
+          const spellActiveHtml = V13 ?
+              `<button type="button" class="inline-control combatant-control prepare-spell ${spellActive} icon fa-solid fa-magic" data-tooltip aria-label="Casting"></button>` :
+              `<a class='combatant-control prepare-spell ${spellActive}' data-tooltip="Casting"><i class='fas fa-magic'></i></a>`;
+          controls.eq(1).after(spellActiveHtml);
+
           const outNumbering = cmbtant.flags.acks?.outnumbering ? "active" : "";
-          controls.eq(1).after(
-            `<span class='combatant-control outnumbering ${outNumbering}' data-tooltip="Outnumbering"><i class='fas fa-people-group'></i></span>`
-          );
+          const outNumberingHtml = V13 ?
+              `<button type="button" class="inline-control combatant-control outnumbering ${outNumbering} icon fa-solid fa-people-group" data-tooltip aria-label="Outnumbering"></button>` :
+              `<span class='combatant-control outnumbering ${outNumbering}' data-tooltip="Outnumbering"><i class='fas fa-people-group'></i></span>`;
+          controls.eq(1).after(outNumberingHtml);
         }
       }
     });
 
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!! Round 0");
-    AcksCombat.announceListener(html);
+    AcksCombat.announceListener($html);
 
-    html.find(".combatant").each((_, ct) => {
-      // Get the groups 
+    $html.find(".combatant").each((_, ct) => {
+      // Get the groups
       const groups = game.combat.getFlag('acks', 'groups') || [];
 
       if (colorEnabled) {
         const combatant = object.viewed.combatants.get(ct.dataset.combatantId);
         // Search if the combatant token is inside a group
-        let tokenH4 = $(ct).find("h4");
+        let tokenH4 = V13 ? $(ct).find("strong.name") : $(ct).find("h4");
         groups.forEach((groupData, index) => {
           if (groupData.tokens?.includes(combatant.token.id)) {
             // Add the group ID to the H4 content text
@@ -616,7 +630,7 @@ export class AcksCombat {
         tokenH4.css("color", color);
       }
     });
-    //AcksCombat.addListeners(html);
+    //AcksCombat.addListeners($html);
   }
 
   /*******************************************************/
@@ -757,7 +771,7 @@ export class AcksCombat {
           //return;
         }
       }
-      // Check if number of tokens is greater than 1 
+      // Check if number of tokens is greater than 1
       if (groupTokens.length < 2) {
         ui.notifications.warn("You can't group a single token");
         return;
@@ -860,7 +874,7 @@ export class AcksCombat {
 
   /*******************************************************/
   static combatRound(combat, data, options) {
-    // Cleanup surprised effects 
+    // Cleanup surprised effects
 
   }
 

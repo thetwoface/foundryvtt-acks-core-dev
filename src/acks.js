@@ -77,26 +77,35 @@ Hooks.once("init", async function () {
   CONFIG.ActiveEffect.legacyTransferral = false;
 
   Hooks.on("getSceneControlButtons", (controls) => {
-    const targetControl = controls.find((control) => control.name === "token");
+    const V13 = game.release.generation >= 13;
+    const targetControl = V13 ? controls?.tokens : controls.find((control) => control.name === "token");
     const isGM = game.user.isGM;
     if(!targetControl) {
       return;
     }
-    targetControl.tools.push({
-      name: "party-button",
+    const partyBtnAction = () => {
+      const actorDirectory = game.actors.apps.find((app) => app instanceof ActorDirectory);
+      if(actorDirectory) {
+        party.showPartySheet(actorDirectory);
+      } else {
+        ui.notifications.error("Something went wrong. Can't find ActorDirectory.");
+      }
+    };
+    const partyButtonTool = {
+      name: "acksPartyButton",
       title: "ACKS.dialog.partysheet",
       icon: "fas fa-users",
       button: true,
       visible: isGM,
-      onClick: () => {
-        const actorDirectory = game.actors.apps.find((app) => app instanceof ActorDirectory);
-        if(actorDirectory) {
-          party.showPartySheet(actorDirectory);
-        } else {
-          ui.notifications.error("Something went wrong. Can't find ActorDirectory.");
-        }
-      }
-    });
+    };
+    if(V13) {
+      partyButtonTool.onChange = () => partyBtnAction();
+      targetControl.tools.acksPartyButton = partyButtonTool;
+    } else {
+      // onClick is deprecated in v13
+      partyButtonTool.onClick = () => partyBtnAction();
+      targetControl.tools.push(partyButtonTool);
+    }
   });
 });
 

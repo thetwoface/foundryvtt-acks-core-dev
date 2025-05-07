@@ -32,7 +32,7 @@ export class AcksPartySheet extends FormApplication {
     };
 
     const data = {
-      data: this.object,
+      data: game.actors.contents,
       config: CONFIG.ACKS,
       user: game.user,
       settings: settings
@@ -66,7 +66,7 @@ export class AcksPartySheet extends FormApplication {
       </form>
     `;
 
-    let pcs = this.object.documents.filter((actor) => {
+    let pcs = game.actors.contents.filter((actor) => {
       return actor.getFlag('acks', 'party') && actor.type === "character";
     });
 
@@ -101,7 +101,7 @@ export class AcksPartySheet extends FormApplication {
 
     const template = "systems/acks/templates/apps/party-select.html";
     const templateData = {
-      actors: this.object.documents,
+      actors: game.actors.contents,
     };
     const content = await renderTemplate(template, templateData);
     new Dialog({
@@ -115,7 +115,7 @@ export class AcksPartySheet extends FormApplication {
             const checks = html.find("input[data-action='select-actor']");
             checks.each(async (_, c) => {
               const actorId = c.dataset.actorId;
-              const actor = this.object.documents.find((actor) => actor.id === actorId);
+              const actor = game.actors.contents.find((actor) => actor.id === actorId);
               if(actor) {
                 await actor.setFlag('acks', 'party', c.checked);
               } else {

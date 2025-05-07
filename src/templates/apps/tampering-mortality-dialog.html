@@ -3,7 +3,7 @@
   <fieldset>
     <legend>Tampering with Mortality - Basic Information</legend>
     <div class="flexrow">
-      <span>Alignement</span>
+      <span>Alignment</span>
       <select name="tamperingChoice" class="tampering-table">
         {{#each tamperingChoices}}
         <option value="{{this.key}}"> {{this.label}}</option>
@@ -21,7 +21,11 @@
     </div>
 
     <div class="flexrow">
-      <span><input type="checkbox" name="castTemple" data-action="cast-temple" />Casting in temple of Spellcaster's God (+2)</span>
+      <span>Casting in Temple of Spellcaster's God (+2)</span>
+      <input type="checkbox" name="castTemple" data-action="cast-temple" />
+    </div>
+    <div class="flexrow">
+      <span>Healer's Spell Level</span>
       <select name="spellcasterlLevel" class="spellcaster-level">
         <option value="1">1 (+1)</option>
         <option value="2">2 (+1)</option>
@@ -41,11 +45,11 @@
     </div>
   </fieldset>
 
-  <div class="flexrow">
-    <fieldset>
+  <div class="flexrow align-top">-
+    <fieldset class="tampering-creature-fieldset">
       <legend>State of the Creature's Body</legend>
       <div class="flexrow">
-        <span>Still Alive (+5) ?</span>
+        <span class="still-alive">Still Alive (+5) ?</span>
         <input type="checkbox" name="stillAlive" data-action="still-alive" />
         <span>Instantly Killed (-10) ?</span>
         <input type="checkbox" name="instantKilled" data-action="instant-killed" />
@@ -59,7 +63,7 @@
         </select>
       </div>
       <div class="flexrow">
-        <span>Limbs destroyed</span>
+        <span>Limbs Destroyed</span>
         <select name="limbsDestroyed" class="limbs-destroyed">
           <option value="0" selected>None (0)</option>
           <option value="-2">1 (-2)</option>
@@ -70,7 +74,7 @@
         </select>
       </div>
       <div class="flexrow">
-        <span>Organs destroyed</span>
+        <span>Organs Destroyed</span>
         <select name="organsDestroyed" class="organs-destroyed">
           <option value="0" selected>None (0)</option>
           <option value="-1">1 (-1)</option>
@@ -82,66 +86,68 @@
       </div>
 
       <div class="flexrow">
-        <span>Additionnal modifier</span>
+        <span>Additional Modifier</span>
         <input type="number" name="freeModifier" value="{{freeModifier}}" class="free-modifier"/>
       </div>
 
       </fieldset>
 
 
-    <fieldset>
-      <legend>State of the Creature's Soul</legend>
+    <div class="flexcol tampering-soul-fieldset">
+      <fieldset class="">
+        <legend>State of the Creature's Soul</legend>
 
-      {{#if actor}}
-      <div class="flexrow">
-        <span>Will Modifier </span>
-        <input type="number" disabled=true name="willModifier" value="{{willModifier}}" class="will-modifier"/>
-      </div>
-      {{else}}
-      <div class="flexrow">
-        <span>Will Modifier </span>
-        <input type="number" name="willModifier" value="{{willModifier}}" class="will-modifier"/>
-      </div>
-      {{/if}}
+        {{#if actor}}
+        <div class="flexrow">
+          <span>Will Modifier </span>
+          <input type="number" disabled=true name="willModifier" value="{{willModifier}}" class="will-modifier"/>
+        </div>
+        {{else}}
+        <div class="flexrow">
+          <span>Will Modifier </span>
+          <input type="number" name="willModifier" value="{{willModifier}}" class="will-modifier"/>
+        </div>
+        {{/if}}
 
-      <div class="flexrow">
-        <span>Days Since Death </span>
-        <select name="daysSinceDeath" class="days-since-death">
-          <option value="0" selected>Zero (0)</option>
-          <option value="-1">One (-1)</option>
-          <option value="-2">Two (-2)</option>
-          <option value="-3">Three (-3)</option>
-          <option value="-4">Four (-4)</option>
-          <option value="-5">Five (-5)</option>
-          <option value="-6">Six (-6)</option>
-          <option value="-7">Seven (-7)</option>
-          <option value="-8">Eight (-8)</option>
-          <option value="-9">Nine (-9)</option>
-          <option value="-10">Ten (-10)</option>
-        </select>
-      </div>
-      <div class="flexrow ">
-        <span>Existing Side Effects </span>
-        <select name="sideEffects" class="side-effects">
-          <option value="0" selected>None (0)</option>
-          <option value="-1">1 (-1)</option>
-          <option value="-2">2 (-2)</option>
-          <option value="-3">3 (-3)</option>
-          <option value="-4">4 (-4)</option>
-          <option value="-5">5 (-5)</option>
-        </select>
-      </div>
+        <div class="flexrow">
+          <span>Days Since Death </span>
+          <select name="daysSinceDeath" class="days-since-death">
+            <option value="0" selected>Zero (0)</option>
+            <option value="-1">One (-1)</option>
+            <option value="-2">Two (-2)</option>
+            <option value="-3">Three (-3)</option>
+            <option value="-4">Four (-4)</option>
+            <option value="-5">Five (-5)</option>
+            <option value="-6">Six (-6)</option>
+            <option value="-7">Seven (-7)</option>
+            <option value="-8">Eight (-8)</option>
+            <option value="-9">Nine (-9)</option>
+            <option value="-10">Ten (-10)</option>
+          </select>
+        </div>
+        <div class="flexrow ">
+          <span>Existing Side Effects </span>
+          <select name="sideEffects" class="side-effects">
+            <option value="0" selected>None (0)</option>
+            <option value="-1">1 (-1)</option>
+            <option value="-2">2 (-2)</option>
+            <option value="-3">3 (-3)</option>
+            <option value="-4">4 (-4)</option>
+            <option value="-5">5 (-5)</option>
+          </select>
+        </div>
 
-    </fieldset>
+      </fieldset>
 
-  </div>
+        <div class="flexrow final-modifier-div">
+          <span>Final Modifier</span>
+          <input type="number" class="final-modifier-value" disabled name="finalModifierValue" value="{{finalModifier}}" />
+        </div>
 
-
-  <div class="final-modifier-div">
-    <div class="flexrow">
-      <span>Final modifier value</span>
-      <input type="number" class="final-modifier-value" disabled name="finalModifierValue" value="{{finalModifier}}" />
     </div>
+
   </div>
+
+
 
 </div>

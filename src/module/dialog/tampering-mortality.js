@@ -151,7 +151,6 @@ export class AcksTamperingDialog extends FormApplication {
     }
     // Get the final result from the dialog
     let modifier = this.updateDialogResult(tamperingData)
-    console.log("Final Modifier", modifier)
     let tableKey = dialogContext.tamperingChoice
     let rollResult = await AcksTableManager.rollD20Table("tampering", tableKey, modifier)
     console.log("Roll Result", rollResult)

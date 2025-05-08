@@ -12,7 +12,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:check": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+    "format:githook": "prettier --write --ignore-unknown",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -35,6 +37,11 @@
   "homepage": "https://github.com/AutarchLLC/foundryvtt-acks-core#readme",
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "prettier": "3.5.3"
+  },
+  "lint-staged": {
+    "**/*": "npm run format:githook"
   }
 }

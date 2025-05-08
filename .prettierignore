@@ -3,6 +3,7 @@ build
 coverage
 
 .github
+.husky
 .idea
 7.5
 acks-tests

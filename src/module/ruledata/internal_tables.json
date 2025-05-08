@@ -832,16 +832,16 @@
       "results": [
         {
           "result": "-6 or more",
-          "min": -1000000,
+          "min": -100000,
           "max": -6,
           "condition_recovery": "You were instantly killed.",
           "effects": {
-            "1": "Your body lies cleaved into so many pieces that a butcher would find his work done for him.",
-            "2": "Your body lies cleaved in two, and the halves lay entangled like conjoined twins in bloody embrace.",
-            "3": "From the vantage point of your severed head, you get to eye your own corpse for a few seconds before the blackness.",
-            "4": "Cruel fate has left your jowls sliced open as if you died smiling at your own demise.",
-            "5": "Entrails spill from your sliced belly like noodles in an overflowing bowl, betraying a grisly end.",
-            "6": "A ghastly cut across the belly reveals your harsh demise."
+            "1": "You were cremated alive and all that remains of who you once were are the ashes of our flesh and bone.",
+            "2": "Flesh, fat, and muscle have burned away to reveal scorched and crumbling bone.",
+            "3": "Your flesh is too blackened to even be edible by the crows.",
+            "4": "Your friends might find the smell of your cooked body pleasant if they weren’t your friends.",
+            "5": "The scarred ruin of your flesh betrays your fiery end.",
+            "6": "Ghastly burns reveal your harsh demise."
           }
         },
         {
@@ -850,11 +850,11 @@
           "max": 0,
           "condition_recovery": "You were instantly killed",
           "effects": {
-            "1": "Your body lies cleaved in two, and the halves lay entangled like conjoined twins in bloody embrace.",
-            "2": "From the vantage point of your severed head, you get to eye your own corpse for a few seconds before the blackness.",
-            "3": "Cruel fate has left your jowls sliced open as if you died smiling at your own demise.",
-            "4": "Entrails spill from your sliced belly like noodles in an overflowing bowl, betraying a grisly end.",
-            "5": "A ghastly cut across the belly reveals your harsh demise.",
+            "1": "Flesh, fat, and muscle have burned away to reveal scorched and crumbling bone.",
+            "2": "Your flesh is too blackened by fire to even be edible by the crows.",
+            "3": "Your friends might find the smell of your cooked body pleasant if they weren’t your friends.",
+            "4": "The scarred ruin of your flesh betrays your fiery end.",
+            "5": "Ghastly burns reveal your harsh demise.",
             "6": "Your corpse is largely intact and ready for a noble funeral."
           }
         },
@@ -864,15 +864,13 @@
           "max": 5,
           "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
           "effects": {
-            "5": "Blinded by slash to the eyes (blinded,",
-            "6": "Your lips and tongue are severed (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+            "1": "All your limbs are burned off, your lungs are scorched, and your face hideously scarred (as per both arms burned off both, both legs burned off, lungs blackened, gruesome scarring)",
+            "2": "Your eyes, ears, nose, and lips sloughed off under the terrible heat (as per both eyes lost, both ears lost, lips and tongue lost, and gruesome scarring)",
+            "3": "Both legs are burned off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+            "4": "Both arms are burned off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+            "5": "Both your eyes were melted in the heat (blinded, -4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+            "6": "Your fiery screams just left your lips and tongues to be burned away (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
           }
-        },
-        {
-          "result": "-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls);Both arms are cut off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).;Both legs are hacked off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).;Your body is severed in half at the waist (as per legs sliced off, cannot reproduce, -3 to reaction rolls, must make Death save each year or die from complications).;All of your arms and legs are sliced off in a whirlwind of flying limbs (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each year or die from complications).",
-          "min": null,
-          "max": 4,
-          "effects": {}
         },
         {
           "result": "6 – 10",
@@ -880,12 +878,12 @@
           "max": 10,
           "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
           "effects": {
-            "1": "Your intestines are mangled and ruined (must rest for 2 turns of 6, CON reduced by 1/3, -4 to saves vs. poison, chronic indigestion and flatulence give -4 to reaction rolls).",
-            "2": "Your genitals are completely sliced off or womb shredded (as loss of scrotum, and must make Death save each year or die from complications)",
-            "3": "One leg is hacked off (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
-            "4": "One arm is cut off (cannot climb, use shields, dual wield, or use two-handed weapon).",
-            "5": "One eye is ruined by a downward slash through the brow ridge (-2 to missile attack throws).",
-            "6": "A narrowly-avoided decapitation leaves several vocal cords cut (raspy voice, -2 to throws involving speech)"
+            "1": "One leg and one arm were burned off; the other half was merely reduced to pink scar tissue (as per one leg lost, one arm lost, notable scarring)",
+            "2": "Both of your ears and most of your face were burned away (-2 to Listening throws, -2 to surprise rolls, gruesome scarring)",
+            "3": "One leg is burned off (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+            "4": "One arm is burned off (cannot climb, use shields, dual wield, or use two-handed weapon).",
+            "5": "One of your eyes melted in the heat (-2 to missile attack throws).",
+            "6": "Your lips and jaw were burned white (notable scarring)"
           }
         },
         {
@@ -894,25 +892,25 @@
           "max": 15,
           "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
           "effects": {
-            "1": "The slash cuts into your skull and your brain-fluid leaks out (-2 on magical research and proficiency throws, 10% penalty on earned XP).",
-            "2": "Your scrotum is sliced away or your womb cut open (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
-            "3": "One foot is sliced off (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
-            "4": "One hand is cut off (cannot dual-wield or use two-handed weapons).",
-            "5": "One eye is damaged by downward slash through brow ridge (-2 to missile attack throws at medium/ long range)",
-            "6": "A whirling stroke leaves a thin scar just below your throat (minor scarring)."
+            "1": "Your struggle to draw breath through scorched and blackened lungs (must rest for 2 turns every 6, wilder-ness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+            "2": "The flame burns away your genitals and leaves just blackened lumps (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+            "3": "One foot is burned off (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+            "4": "One hand is burned off (cannot dual-wield or use two-handed weapons).",
+            "5": "The flesh of one of your cheeks is pink and lump with a large burn scar (notable scarring).",
+            "6": "Your fingernails are blackened from the burning (minor scarring)."
           }
         },
         {
           "result": "16 – 20",
           "min": 16,
           "max": 20,
-          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
           "effects": {
-            "1": "Your nose is cut off and your palate cleft, leaving your visage monstrous (gruesome scarring).",
-            "2": "Your ear is sliced off (-1 to Listening throws and -1 to surprise rolls).",
-            "3": "1d3 toes on one foot are sliced away (3 lost toes on one foot makes foot useless).",
-            "4": "1d3 fingers on one hand are sliced away (3 lost fingers on one hand makes hand useless.)",
-            "5": "The smallest finger on one hand is sliced off.(3 lost fingers on one hand makes hand useless).",
+            "1": "Your face melts like wax and chars like beef in the flame (gruesome scarring).",
+            "2": "Your ear is burned off (-1 to Listening throws and -1 to surprise rolls).",
+            "3": "1d3 toes on one foot are burned off (3 lost toes on one foot makes foot useless).",
+            "4": "1d3 fingers on one hand are burned off (3 lost fingers on one hand makes hand useless.)",
+            "5": "The smallest finger on one hand is burned off (3 lost fingers on a hand makes it useless).",
             "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
           }
         },
@@ -922,10 +920,10 @@
           "max": 25,
           "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
           "effects": {
-            "1": "Your wounds heal stiff and scarred (-1 to all initiative rolls).",
-            "2": "Your hamstring aches where it was severed in one leg (cannot force march unless mounted).",
-            "3": "A slice through your lips leaves you with a permanent sneer (notable scarring).",
-            "4": "A sharp cut on the back of your hand leaves a raised scar (minor scarring).",
+            "1": "The pain of the burns never goes away – never (-1 to all initiative rolls).",
+            "2": "Your hair burned away, and half your torso and one arm are pink and lumpy with burn scars (two notable scarrings).",
+            "3": "Your hair caught fire and burned away, leaving your scalp blackened and hairline patchy (notable scarring).",
+            "4": "Your hand has a white and ragged scar where it burned (minor scarring).",
             "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
             "6": "A vision of the afterlife haunts you, then fades as you awaken."
           }
@@ -933,12 +931,12 @@
         {
           "result": "26+",
           "min": 26,
-          "max": 1000000,
+          "max": 100000,
           "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
           "effects": {
-            "1": "You suffer lasting wounds that ache in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
-            "2": "A harsh cut across your brow ridge that barely misses your eye leaves an aristocrat scar (notable scarring).",
-            "3": "A clean cut across your cheek leaves a mark (minor scarring).",
+            "1": "Your scarred skin aches in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+            "2": "Half your torso and one arm are pink and lumpy with burn scars (notable scarring).",
+            "3": "Your shoulder has a white and ragged scar where the flames burned hot (minor scarring).",
             "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
             "5": "A vision of the afterlife haunts you, then fades as you awaken.",
             "6": "The Choosers of the Slain pass you by, and you awaken."

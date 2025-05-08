@@ -33,15 +33,13 @@
     "max": 5,
     "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
     "effects": {
-      "5": "Blinded by slash to the eyes (blinded,",
-      "6": "Your lips and tongue are severed (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+      "6": "Your lips and tongue are severed (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls).",
+      "5" : "Blinded by slash to the eyes (blinded,-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+      "4": "Both arms are cut off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+      "3" : "Both legs are hacked off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+      "2": "Your body is severed in half at the waist (as per legs sliced off, cannot reproduce, -3 to reaction rolls, must make Death save each year or die from complications).",
+      "1": "All of your arms and legs are sliced off in a whirlwind of flying limbs (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each year or die from complications). "
     }
-  },
-  {
-    "result": "-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls);Both arms are cut off (cannot climb, use weapons or items, open locks, remove traps, or similar actions).;Both legs are hacked off (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).;Your body is severed in half at the waist (as per legs sliced off, cannot reproduce, -3 to reaction rolls, must make Death save each year or die from complications).;All of your arms and legs are sliced off in a whirlwind of flying limbs (DEX reduced to 3, cannot move, fight, use items, or cast spells, must make Death save each year or die from complications).",
-    "min": null,
-    "max": 4,
-    "effects": {}
   },
   {
     "result": "6 – 10",

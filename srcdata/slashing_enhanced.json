@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -1000000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "Your body lies cleaved into so many pieces that a butcher would find his work done for him.",

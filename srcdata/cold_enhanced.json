@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -100000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "You were frozen solid, and all that remains of who you once were is a statue of ice in your likeness",

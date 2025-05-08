@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -1000000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "No one would believe a human body could be crushed into a puddle.",

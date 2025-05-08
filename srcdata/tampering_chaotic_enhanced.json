@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -1000000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "The spell fails to restore your life.",
     "effects": {
       "1": "Your soul is damned to the Outer Darkness. No additional attempts are permitted.",

@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -100000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "Decay consumed you, leaving only a withered and lifeless husk.",

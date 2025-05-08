@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -1000000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "There’s little left of your body save the droppings left behind when it was digested.",

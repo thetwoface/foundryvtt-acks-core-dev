@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -1000000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "Impaled from mouth to rectum, you die agonizingly unable to scream or defecate. Your corpse is hard to look at it.",

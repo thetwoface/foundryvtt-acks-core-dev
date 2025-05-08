@@ -2,7 +2,7 @@
   {
     "result": "-6 or more",
     "min": -1000000,
-    "max": 6,
+    "max": -6,
     "condition_recovery": "You were instantly killed.",
     "effects": {
       "1": "You die in so much agony that you wish you had never been born.",
@@ -33,16 +33,13 @@
     "max": 5,
     "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
     "effects": {
-      "5": "The poison takes your sight (blinded,",
+      "1": "The poison leaves you in a coma; you are alive but permanently unconscious and will starve unless force-fed.",
+      "2": "The poison has left you utterly and permanently paralyzed from the neck down. (paralyzed, cannot move, fight, use items, or cast spells, Death save each month or die from complications).",
+      "3": "Both your legs are permanently paralyzed by the poison (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+      "4":"Both your arms are permanently paralyzed because of the poison (cannot climb, use weapons or items, open locks, remove traps, or similar actions)",
+      "5": "The poison takes your sight (blinded,-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
       "6": "Your lips and tongue are permanently paralyzed by the poison (cannot speak clearly, cast spells, or use magic items involving speech, -4 to reaction rolls)"
     }
-  },
-  {
-    "result": "-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls);Both your arms are permanently paralyzed because of the poison (cannot climb, use weapons or items, open locks, remove traps, or similar actions);Both your legs are permanently paralyzed by the poison (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).;The poison has left you utterly and permanently paralyzed from the neck down. (paralyzed, cannot move, fight, use items, or cast spells, Death save each month or die from complications).;The poison leaves you in a coma",
-    "min": null,
-    "max": 4,
-    "condition_recovery": "you are alive but permanently unconscious and will starve unless force-fed.",
-    "effects": {}
   },
   {
     "result": "6 – 10",

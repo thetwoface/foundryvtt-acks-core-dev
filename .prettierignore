@@ -11,3 +11,6 @@ old_packs
 package
 src/assets
 src/packs
+
+**/*.md
+**/*.html

@@ -1,38 +1,144 @@
 export const ACKS = {
   // label and icon are deprecated, see https://github.com/foundryvtt/foundryvtt/issues/10430
-  statusEffects : [
-    { acks: true, id: "surprised", name: 'Surprised', img: 'systems/acks/assets/icons/surprised.svg', duration: {rounds: 1} },
-    { acks: true, id: "overnumbering", name: 'OverNumbered', img: 'icons/svg/regen.svg' },
-    { acks: true, id: "done", name: 'Done', img: 'icons/svg/cancel.svg' },
-    { acks: true, id: "readied", name: 'Readied', img: 'icons/svg/ice-aura.svg' },
-    { acks: true, id: "delayed", name: 'Delayed', img: 'icons/svg/clockwork.svg' },
-    { acks: true, id: "slumbering", name: 'Slumbering', img: 'icons/svg/stoned.svg' },
+  statusEffects: [
+    {
+      acks: true,
+      id: "surprised",
+      name: "Surprised",
+      img: "systems/acks/assets/icons/surprised.svg",
+      duration: { rounds: 1 },
+    },
+    {
+      acks: true,
+      id: "overnumbering",
+      name: "OverNumbered",
+      img: "icons/svg/regen.svg",
+    },
+    { acks: true, id: "done", name: "Done", img: "icons/svg/cancel.svg" },
+    {
+      acks: true,
+      id: "readied",
+      name: "Readied",
+      img: "icons/svg/ice-aura.svg",
+    },
+    {
+      acks: true,
+      id: "delayed",
+      name: "Delayed",
+      img: "icons/svg/clockwork.svg",
+    },
+    {
+      acks: true,
+      id: "slumbering",
+      name: "Slumbering",
+      img: "icons/svg/stoned.svg",
+    },
   ],
-  surpriseTableAdventurers : {
-    "forelos": {
-      "forelos": {monsterModifier: +10, adventurerModifier: +10, canEvade: false, description: "ACKS.surprise.forelos.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.los"},
-      "none": {monsterModifier: -1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.none"}
+  surpriseTableAdventurers: {
+    forelos: {
+      forelos: {
+        monsterModifier: +10,
+        adventurerModifier: +10,
+        canEvade: false,
+        description: "ACKS.surprise.forelos.forelos",
+      },
+      fore: {
+        monsterModifier: 1,
+        adventurerModifier: +10,
+        canEvade: true,
+        description: "ACKS.surprise.forelos.fore",
+      },
+      los: {
+        monsterModifier: 0,
+        adventurerModifier: +10,
+        canEvade: true,
+        description: "ACKS.surprise.forelos.los",
+      },
+      none: {
+        monsterModifier: -1,
+        adventurerModifier: +10,
+        canEvade: true,
+        description: "ACKS.surprise.forelos.none",
+      },
     },
-    "fore": {
-      "forelos": {monsterModifier: 10, adventurerModifier: +1, canEvade: false, description: "ACKS.surprise.fore.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.los"},
-      "none": {monsterModifier: -1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.none"}
+    fore: {
+      forelos: {
+        monsterModifier: 10,
+        adventurerModifier: +1,
+        canEvade: false,
+        description: "ACKS.surprise.fore.forelos",
+      },
+      fore: {
+        monsterModifier: 1,
+        adventurerModifier: 1,
+        canEvade: true,
+        description: "ACKS.surprise.fore.fore",
+      },
+      los: {
+        monsterModifier: 0,
+        adventurerModifier: 1,
+        canEvade: true,
+        description: "ACKS.surprise.fore.los",
+      },
+      none: {
+        monsterModifier: -1,
+        adventurerModifier: 1,
+        canEvade: true,
+        description: "ACKS.surprise.fore.none",
+      },
     },
-    "los": {
-      "forelos": {monsterModifier: 10, adventurerModifier: 0, canEvade: false, description: "ACKS.surprise.los.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.los"},
-      "none": {monsterModifier: -1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.none"}
+    los: {
+      forelos: {
+        monsterModifier: 10,
+        adventurerModifier: 0,
+        canEvade: false,
+        description: "ACKS.surprise.los.forelos",
+      },
+      fore: {
+        monsterModifier: 1,
+        adventurerModifier: 0,
+        canEvade: true,
+        description: "ACKS.surprise.los.fore",
+      },
+      los: {
+        monsterModifier: 0,
+        adventurerModifier: 0,
+        canEvade: true,
+        description: "ACKS.surprise.los.los",
+      },
+      none: {
+        monsterModifier: -1,
+        adventurerModifier: 0,
+        canEvade: true,
+        description: "ACKS.surprise.los.none",
+      },
     },
-    "none": {
-      "forelos": {monsterModifier: 10, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.los"},
-      "none": {monsterModifier: -10, adventurerModifier: -10, canEvade: false, description: "ACKS.surprise.none.none"}
-    }
+    none: {
+      forelos: {
+        monsterModifier: 10,
+        adventurerModifier: -1,
+        canEvade: false,
+        description: "ACKS.surprise.none.forelos",
+      },
+      fore: {
+        monsterModifier: 1,
+        adventurerModifier: -1,
+        canEvade: false,
+        description: "ACKS.surprise.none.fore",
+      },
+      los: {
+        monsterModifier: 0,
+        adventurerModifier: -1,
+        canEvade: false,
+        description: "ACKS.surprise.none.los",
+      },
+      none: {
+        monsterModifier: -10,
+        adventurerModifier: -10,
+        canEvade: false,
+        description: "ACKS.surprise.none.none",
+      },
+    },
   },
   scores: {
     str: "ACKS.scores.str.long",
@@ -45,7 +151,7 @@ export const ACKS = {
   roll_type: {
     result: "=",
     above: "≥",
-    below: "≤"
+    below: "≤",
   },
   saves_short: {
     death: "ACKS.saves.death.short",
@@ -61,7 +167,7 @@ export const ACKS = {
     breath: "ACKS.saves.breath.long",
     spell: "ACKS.saves.spell.long",
   },
-  armor : {
+  armor: {
     unarmored: "ACKS.armor.unarmored",
     light: "ACKS.armor.light",
     heavy: "ACKS.armor.heavy",
@@ -74,11 +180,11 @@ export const ACKS = {
     purple: "ACKS.colors.purple",
     blue: "ACKS.colors.blue",
     orange: "ACKS.colors.orange",
-    white: "ACKS.colors.white"
+    white: "ACKS.colors.white",
   },
   proficiencyType: {
-    "general": "ACKS.proficiencyType.general",
-    "class": "ACKS.proficiencyType.class",
+    general: "ACKS.proficiencyType.general",
+    class: "ACKS.proficiencyType.class",
   },
   tags: {
     melee: "ACKS.items.Melee",
@@ -105,11 +211,11 @@ export const ACKS = {
   hireling_categories: {
     henchman: "ACKS.hireling.henchman",
     mercenary: "ACKS.hireling.mercenary",
-    specialist: "ACKS.hireling.specialist"
+    specialist: "ACKS.hireling.specialist",
   },
   item_subtypes: {
     item: "ACKS.items.item",
-    clothing: "ACKS.items.clothing"
+    clothing: "ACKS.items.clothing",
   },
   monster_saves: {
     0: {
@@ -118,7 +224,7 @@ export const ACKS = {
       w: 17,
       p: 14,
       b: 16,
-      s: 18
+      s: 18,
     },
     1: {
       label: "1",
@@ -126,7 +232,7 @@ export const ACKS = {
       w: 16,
       p: 13,
       b: 15,
-      s: 17
+      s: 17,
     },
     2: {
       label: "2-3",
@@ -134,7 +240,7 @@ export const ACKS = {
       w: 15,
       p: 12,
       b: 14,
-      s: 16
+      s: 16,
     },
     4: {
       label: "4",
@@ -142,7 +248,7 @@ export const ACKS = {
       w: 14,
       p: 11,
       b: 13,
-      s: 15
+      s: 15,
     },
     5: {
       label: "5-6",
@@ -150,7 +256,7 @@ export const ACKS = {
       w: 13,
       p: 10,
       b: 12,
-      s: 14
+      s: 14,
     },
     7: {
       label: "7",
@@ -158,7 +264,7 @@ export const ACKS = {
       w: 12,
       p: 9,
       b: 11,
-      s: 13
+      s: 13,
     },
     8: {
       label: "8-9",
@@ -166,7 +272,7 @@ export const ACKS = {
       w: 11,
       p: 8,
       b: 10,
-      s: 12
+      s: 12,
     },
     10: {
       label: "10",
@@ -174,7 +280,7 @@ export const ACKS = {
       w: 10,
       p: 7,
       b: 9,
-      s: 11
+      s: 11,
     },
     11: {
       label: "11-12",
@@ -182,7 +288,7 @@ export const ACKS = {
       w: 9,
       p: 6,
       b: 8,
-      s: 10
+      s: 10,
     },
     13: {
       label: "13",
@@ -190,7 +296,7 @@ export const ACKS = {
       w: 8,
       p: 5,
       b: 7,
-      s: 9
+      s: 9,
     },
     14: {
       label: "14+",
@@ -198,7 +304,7 @@ export const ACKS = {
       w: 7,
       p: 4,
       b: 6,
-      s: 8
+      s: 8,
     },
   },
   base_speed: {
@@ -206,6 +312,6 @@ export const ACKS = {
     low_encumbrance: 90,
     mid_encumbrance: 60,
     high_encumbrance: 30,
-    overburdened: 0
+    overburdened: 0,
   },
 };

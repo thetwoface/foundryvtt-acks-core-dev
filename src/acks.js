@@ -29,7 +29,7 @@ Hooks.once("init", async function () {
     Math.clamp = function (a, b, c) {
       return Math.max(b, Math.min(c, a));
     };
-  };
+  }
 
   /**
    * Set an initiative formula for the system
@@ -71,7 +71,7 @@ Hooks.once("init", async function () {
 
   await preloadHandlebarsTemplates();
 
-  AcksTokenHud.init()
+  AcksTokenHud.init();
 
   // Ensure new effect transfer
   CONFIG.ActiveEffect.legacyTransferral = false;
@@ -80,12 +80,12 @@ Hooks.once("init", async function () {
     const V13 = game.release.generation >= 13;
     const targetControl = V13 ? controls?.tokens : controls.find((control) => control.name === "token");
     const isGM = game.user.isGM;
-    if(!targetControl) {
+    if (!targetControl) {
       return;
     }
     const partyBtnAction = () => {
       const actorDirectory = game.actors.apps.find((app) => app instanceof ActorDirectory);
-      if(actorDirectory) {
+      if (actorDirectory) {
         party.showPartySheet(actorDirectory);
       } else {
         ui.notifications.error("Something went wrong. Can't find ActorDirectory.");
@@ -98,7 +98,7 @@ Hooks.once("init", async function () {
       button: true,
       visible: isGM,
     };
-    if(V13) {
+    if (V13) {
       partyButtonTool.onChange = () => partyBtnAction();
       targetControl.tools.acksPartyButton = partyButtonTool;
     } else {
@@ -110,7 +110,7 @@ Hooks.once("init", async function () {
 });
 
 // Setup Polyglot stuff if needed
-AcksPolyglot.init()
+AcksPolyglot.init();
 
 /**
  * This function runs after game data has been requested and loaded from the servers, so entities exist
@@ -127,16 +127,14 @@ Hooks.once("setup", function () {
 });
 
 Hooks.once("ready", async () => {
-  Hooks.on("hotbarDrop", (bar, data, slot) =>
-    macros.createAcksMacro(data, slot)
-  );
+  Hooks.on("hotbarDrop", (bar, data, slot) => macros.createAcksMacro(data, slot));
 
-  AcksUtility.setupSocket()
-  if (game.user.isGM) { // only for GM, to avoid dummy permissions issues
-    AcksUtility.updateWeightsLanguages()
-    AcksUtility.displayWelcomeMessage()
+  AcksUtility.setupSocket();
+  if (game.user.isGM) {
+    // only for GM, to avoid dummy permissions issues
+    AcksUtility.updateWeightsLanguages();
+    AcksUtility.displayWelcomeMessage();
   }
-
 });
 
 // License and KOFI infos
@@ -144,8 +142,8 @@ Hooks.on("preUpdateCombatant", AcksCombat.updateCombatant);
 Hooks.on("renderCombatTracker", AcksCombat.format);
 Hooks.on("preUpdateCombat", AcksCombat.preUpdateCombat);
 Hooks.on("getCombatTrackerEntryContext", AcksCombat.addContextEntry);
-Hooks.on('combatTurn', AcksCombat.combatTurn);
-Hooks.on('combatRound', AcksCombat.combatRound);
+Hooks.on("combatTurn", AcksCombat.combatTurn);
+Hooks.on("combatRound", AcksCombat.combatRound);
 
 Hooks.on("renderChatLog", (app, html, data) => AcksItem.chatListeners(html));
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);

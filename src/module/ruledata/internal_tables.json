@@ -1065,124 +1065,6 @@
         }
       ]
     },
-    "tampering_lawful": {
-      "description": "Tampering with Mortality - Lawful",
-      "name": "Lawful",
-      "results": [
-        {
-          "result": "-6 or more",
-          "min": -1000000,
-          "max": -6,
-          "condition_recovery": "The spell fails to restore your life.",
-          "effects": {
-            "1": "Your soul is illuminated in the light of the Logos. No additional attempts are permitted.",
-            "2": "You are surrounded by ghostly figures who admire and love you. No additional attempts are permitted.",
-            "3": "All you feel is the sensation of rising, rising into the light. Any additional attempts are at -5.",
-            "4": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
-            "5": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
-            "6": "Your deity may allow your return on a second attempt, but you must perform a quest immediately upon revival."
-          }
-        },
-        {
-          "result": "-5 – 0",
-          "min": -5,
-          "max": 0,
-          "condition_recovery": "The spell fails to restore your life.",
-          "effects": {
-            "1": "Your spirit dwells in paradise. No additional attempts are permitted.",
-            "2": "All you feel is the sensation of rising, rising into the light. Any additional attempts are at -5.",
-            "3": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
-            "4": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
-            "5": "Your deity may allow your return on a second attempt, but you must perform a Quest upon revival.",
-            "6": "A stirring wind and a light come from somewhere, and you slowly move towards them. A second attempt is permitted."
-          }
-        },
-        {
-          "result": "1 – 5",
-          "min": 1,
-          "max": 5,
-          "condition_recovery": "The powers of the spell restore you but at great cost. You need a month of bed rest.",
-          "effects": {
-            "1": "Your spirit returns, but not your body. You appear as a blue glowing figure equipped as in life. You can see, hear, & speak normally and can cast spells, but cannot otherwise interact with the world. You can only be harmed by spells, magic weapons, or incorporeal creatures. Your touch deals 1d10 to Chaotic creatures. Use CHA in lieu of STR; add fighter damage bonus.",
-            "2": "You sprout a pair of angel wings from your shoulder blades, but your bones become brittle and hollow. Your CON is halved, and you take double damage from bludgeoning and seismic. Your weight is reduced by 30%. You gain a 30’ Flight speed.",
-            "3": "You instantly age halfway to your racial maximum age. If already over halfway, you age to 1 year from racial maximum age",
-            "4": "Your physical form becomes exceptionally delicate, but very beautiful. You gain 4 points of CHA (maximum 18) but lose 4 points of STR (minimum 3). You are a subject of objectification and jealousy by those attracted to your sex but tend to be scorned as useless by those not attracted to your sex.",
-            "5": "Tampering with mortality takes a toll. You permanently lose 1 point of Constitution.",
-            "6": "You carry permanent bear markings of your faith (stigmata etc.). You suffer a -4 to reaction rolls with all those who do not worship your pantheon, but +2 to reaction rolls with those who share your faith."
-          }
-        },
-        {
-          "result": "6 – 10",
-          "min": 6,
-          "max": 10,
-          "condition_recovery": "Your life and limb are restored, but with weird, lingering effects. You need 3 weeks of bed rest.",
-          "effects": {
-            "1": "Your soul is marked and all extraplanar beings wish you dead, targeting you over allies. Every week, there is a 1 in 6 chance an 8 HD cacodemon will be sent to destroy you.",
-            "2": "You have been permanently connected to the spiritual plane and glow like a candle to the unliving. All undead can sense your presence within 60’.",
-            "3": "You did not return altogether human. You begin to resemble whatever animal best represents you (Judge’s discretion). You suffer -4 to reaction rolls with normal humans.",
-            "4": "Tampering with mortality has a deleterious effect on your mind. You permanently lose 1 point of Wisdom.",
-            "5": "Your hair is restored to its youthful vigor… over and over. You must shave twice a day or witness an inch of growth by sunset. Untrimmed hair growth hinders performance in combat, giving you a -1 to attack throwss.",
-            "6": "Domestic animals, fuzzy herbivores, and songbirds are delighted by you. They bark in greeting, hop over to meet you, and sing excitedly. Gain a +4 bonus to reaction rolls with them but suffer a -4 penalty to hide and sneak when any are within 30’."
-          }
-        },
-        {
-          "result": "11 – 15",
-          "min": 11,
-          "max": 15,
-          "condition_recovery": "The restoration of life and limb was intense, and you remember little of the ordeal. You need 2 weeks of bed rest.",
-          "effects": {
-            "1": "It feels like another being sometimes controls your right arm. When you roll a natural 1 on an attack throw, you hit an adjacent ally instead of an enemy.",
-            "2": "Your connection to the Divine is lessened. You can cast 1 less Divine spell per level per day and your WIS is reduced by 1d3.",
-            "3": "Your voice becomes loud, like rolling thunder. You cannot whisper. When you cast spells, it is like a loud shout; with Quiet Magic, you can cast spells at ordinary speaking volume.",
-            "4": "Everything seems brighter and louder than before. If a very loud noise or bright light occurs in battle, make a Paralysis save or be surprised for one round. The save suffers a -2 penalty each time this effect occurs.",
-            "5": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
-            "6": "No side effects."
-          }
-        },
-        {
-          "result": "16 – 20",
-          "min": 16,
-          "max": 20,
-          "condition_recovery": "You open your eyes to a body made whole. You need 2 weeks of bed rest.",
-          "effects": {
-            "1": "Your body is healthy, but… different. You are now a member of the opposite sex. -2 reaction rolls with characters who knew your prior gender unless your CHA is 13+.",
-            "2": "You become an ascetic who take no pleasure in the appetites of the body. All food tastes like old porridge, all drink tastes like vinegar. Take a -2 penalty to saves vs. poison you ingest.",
-            "3": "Your body reveals its inner light through bronze skin, golden eyes, or a slight halo. Suffer a -2 penalty to reaction rolls with Chaotic creatures.",
-            "4": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
-            "5": "No side effects.",
-            "6": "You feel blessed by your god. You recover 1d6 days quicker than you normally would. All negative side effects are removed."
-          }
-        },
-        {
-          "result": "21 – 25",
-          "min": 21,
-          "max": 25,
-          "condition_recovery": "The touch of your friends restores your health. You need 1 week of bed rest.",
-          "effects": {
-            "1": "The wearying of years visits you early. You age 1d10 years if human, or 5d10 years if any demi-human.",
-            "2": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 penalty to initiative and surprise rolls.",
-            "3": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
-            "4": "No side effects.",
-            "5": "You feel blessed by your god and recover 1d6 days quicker than normal. All negative side effects removed.",
-            "6": "Your brush with death has gifted you with the ability to speak with dead once per week. All negative side effects removed."
-          }
-        },
-        {
-          "result": "26+",
-          "min": 26,
-          "max": 1000000,
-          "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
-          "effects": {
-            "1": "Meat is too much like murder. You may only eat plants, mushrooms and herbs. The taste of flesh makes you vomit.",
-            "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
-            "3": "No side effects.",
-            "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",
-            "5": "A sublime power grants you a vision which you believe is of terrible import. The GM will give you a (true?) prophecy.",
-            "6": "You gain permanent power. Gain +2 in your class’s prime requisite statistic. All negative side effects are removed."
-          }
-        }
-      ]
-    },
     "tampering_neutral": {
       "description": "Tampering with Mortality - Neutral",
       "name": "Neutral",
@@ -1292,6 +1174,124 @@
           "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
           "effects": {
             "1": "The flavors of food reverse – salty becomes sweet, sour becomes bitter. Ordinary food tastes inedible to you and you must have your meals and rations prepared just for you.",
+            "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "3": "No side effects.",
+            "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",
+            "5": "A sublime power grants you a vision which you believe is of terrible import. The GM will give you a (true?) prophecy.",
+            "6": "You gain permanent power. Gain +2 in your class’s prime requisite statistic. All negative side effects are removed."
+          }
+        }
+      ]
+    },
+    "tampering_lawful": {
+      "description": "Tampering with Mortality - Lawful",
+      "name": "Lawful",
+      "results": [
+        {
+          "result": "-6 or more",
+          "min": -1000000,
+          "max": -6,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your soul is illuminated in the light of the Logos. No additional attempts are permitted.",
+            "2": "You are surrounded by ghostly figures who admire and love you. No additional attempts are permitted.",
+            "3": "All you feel is the sensation of rising, rising into the light. Any additional attempts are at -5.",
+            "4": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "5": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "6": "Your deity may allow your return on a second attempt, but you must perform a quest immediately upon revival."
+          }
+        },
+        {
+          "result": "-5 – 0",
+          "min": -5,
+          "max": 0,
+          "condition_recovery": "The spell fails to restore your life.",
+          "effects": {
+            "1": "Your spirit dwells in paradise. No additional attempts are permitted.",
+            "2": "All you feel is the sensation of rising, rising into the light. Any additional attempts are at -5.",
+            "3": "You hear the calls of your friends but you can do nothing to respond. Any additional attempts are at -3.",
+            "4": "The embrace of your deity is all you feel, and it holds you tightly. Any additional attempts are permitted at -1.",
+            "5": "Your deity may allow your return on a second attempt, but you must perform a Quest upon revival.",
+            "6": "A stirring wind and a light come from somewhere, and you slowly move towards them. A second attempt is permitted."
+          }
+        },
+        {
+          "result": "1 – 5",
+          "min": 1,
+          "max": 5,
+          "condition_recovery": "The powers of the spell restore you but at great cost. You need a month of bed rest.",
+          "effects": {
+            "1": "Your spirit returns, but not your body. You appear as a blue glowing figure equipped as in life. You can see, hear, & speak normally and can cast spells, but cannot otherwise interact with the world. You can only be harmed by spells, magic weapons, or incorporeal creatures. Your touch deals 1d10 to Chaotic creatures. Use CHA in lieu of STR; add fighter damage bonus.",
+            "2": "You sprout a pair of angel wings from your shoulder blades, but your bones become brittle and hollow. Your CON is halved, and you take double damage from bludgeoning and seismic. Your weight is reduced by 30%. You gain a 30’ Flight speed.",
+            "3": "You instantly age halfway to your racial maximum age. If already over halfway, you age to 1 year from racial maximum age",
+            "4": "Your physical form becomes exceptionally delicate, but very beautiful. You gain 4 points of CHA (maximum 18) but lose 4 points of STR (minimum 3). You are a subject of objectification and jealousy by those attracted to your sex but tend to be scorned as useless by those not attracted to your sex.",
+            "5": "Tampering with mortality takes a toll. You permanently lose 1 point of Constitution.",
+            "6": "You carry permanent bear markings of your faith (stigmata etc.). You suffer a -4 to reaction rolls with all those who do not worship your pantheon, but +2 to reaction rolls with those who share your faith."
+          }
+        },
+        {
+          "result": "6 – 10",
+          "min": 6,
+          "max": 10,
+          "condition_recovery": "Your life and limb are restored, but with weird, lingering effects. You need 3 weeks of bed rest.",
+          "effects": {
+            "1": "Your soul is marked and all extraplanar beings wish you dead, targeting you over allies. Every week, there is a 1 in 6 chance an 8 HD cacodemon will be sent to destroy you.",
+            "2": "You have been permanently connected to the spiritual plane and glow like a candle to the unliving. All undead can sense your presence within 60’.",
+            "3": "You did not return altogether human. You begin to resemble whatever animal best represents you (Judge’s discretion). You suffer -4 to reaction rolls with normal humans.",
+            "4": "Tampering with mortality has a deleterious effect on your mind. You permanently lose 1 point of Wisdom.",
+            "5": "Your hair is restored to its youthful vigor… over and over. You must shave twice a day or witness an inch of growth by sunset. Untrimmed hair growth hinders performance in combat, giving you a -1 to attack throwss.",
+            "6": "Domestic animals, fuzzy herbivores, and songbirds are delighted by you. They bark in greeting, hop over to meet you, and sing excitedly. Gain a +4 bonus to reaction rolls with them but suffer a -4 penalty to hide and sneak when any are within 30’."
+          }
+        },
+        {
+          "result": "11 – 15",
+          "min": 11,
+          "max": 15,
+          "condition_recovery": "The restoration of life and limb was intense, and you remember little of the ordeal. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "It feels like another being sometimes controls your right arm. When you roll a natural 1 on an attack throw, you hit an adjacent ally instead of an enemy.",
+            "2": "Your connection to the Divine is lessened. You can cast 1 less Divine spell per level per day and your WIS is reduced by 1d3.",
+            "3": "Your voice becomes loud, like rolling thunder. You cannot whisper. When you cast spells, it is like a loud shout; with Quiet Magic, you can cast spells at ordinary speaking volume.",
+            "4": "Everything seems brighter and louder than before. If a very loud noise or bright light occurs in battle, make a Paralysis save or be surprised for one round. The save suffers a -2 penalty each time this effect occurs.",
+            "5": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "6": "No side effects."
+          }
+        },
+        {
+          "result": "16 – 20",
+          "min": 16,
+          "max": 20,
+          "condition_recovery": "You open your eyes to a body made whole. You need 2 weeks of bed rest.",
+          "effects": {
+            "1": "Your body is healthy, but… different. You are now a member of the opposite sex. -2 reaction rolls with characters who knew your prior gender unless your CHA is 13+.",
+            "2": "You become an ascetic who take no pleasure in the appetites of the body. All food tastes like old porridge, all drink tastes like vinegar. Take a -2 penalty to saves vs. poison you ingest.",
+            "3": "Your body reveals its inner light through bronze skin, golden eyes, or a slight halo. Suffer a -2 penalty to reaction rolls with Chaotic creatures.",
+            "4": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "5": "No side effects.",
+            "6": "You feel blessed by your god. You recover 1d6 days quicker than you normally would. All negative side effects are removed."
+          }
+        },
+        {
+          "result": "21 – 25",
+          "min": 21,
+          "max": 25,
+          "condition_recovery": "The touch of your friends restores your health. You need 1 week of bed rest.",
+          "effects": {
+            "1": "The wearying of years visits you early. You age 1d10 years if human, or 5d10 years if any demi-human.",
+            "2": "Whispers from beyond plague you. It is difficult to ignore them and you suffer -2 to Listening throws and -1 penalty to initiative and surprise rolls.",
+            "3": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
+            "4": "No side effects.",
+            "5": "You feel blessed by your god and recover 1d6 days quicker than normal. All negative side effects removed.",
+            "6": "Your brush with death has gifted you with the ability to speak with dead once per week. All negative side effects removed."
+          }
+        },
+        {
+          "result": "26+",
+          "min": 26,
+          "max": 1000000,
+          "condition_recovery": "The gods bless their favor upon you. You are instantly recovered without need of rest.",
+          "effects": {
+            "1": "Meat is too much like murder. You may only eat plants, mushrooms and herbs. The taste of flesh makes you vomit.",
             "2": "Your brush with death has shattered your former confidence. Take a 10% penalty to XP until your next level.",
             "3": "No side effects.",
             "4": "You are filled with divine energy. For one day, you gain the benefits of a Valor potion. All negative side effects are removed.",

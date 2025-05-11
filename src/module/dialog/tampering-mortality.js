@@ -12,18 +12,18 @@ export class AcksTamperingDialog extends FormApplication {
     let finalModifier = 0
     finalModifier += Number(tamperingData.willModifier)
     finalModifier += Number(tamperingData.creatureLife)
-    finalModifier += Number(AcksUtility.roundToEven(tamperingData.spellcasterLevel/2))
+    finalModifier += Number(AcksUtility.roundToEven(tamperingData.spellcasterLevel / 2))
     let bodyModifier = (tamperingData.stillAlive) ? 5 : 0;
     bodyModifier += (tamperingData.instantKilled) ? -10 : 0;
     bodyModifier += Number(tamperingData.spine)
     bodyModifier += Number(tamperingData.limbsDestroyed)
-    bodyModifier += Number(tamperingData.organsDestroyed)
+    bodyModifier += Number(-tamperingData.organsDestroyed)
     if (bodyModifier < -10) { // Penalty for too many body parts destroyed is capped at -10
       bodyModifier = -10
     }
     finalModifier += bodyModifier
-    finalModifier += Number(tamperingData.daysSinceDeath)
-    finalModifier += Number(tamperingData.sideEffects)
+    finalModifier += Number(-tamperingData.daysSinceDeath)
+    finalModifier += Number(-tamperingData.sideEffects)
     finalModifier += (tamperingData.castTemple) ? 2 : 0;
 
     $("input[name='finalModifierValue']").val(finalModifier)
@@ -46,24 +46,31 @@ export class AcksTamperingDialog extends FormApplication {
   }
 
   /* -------------------------------------------- */
-  async init(actor = undefined) {
+  async init(actor = undefined, tamperingData = undefined) {
 
-    let tamperingData = {
-      title: "Roll Tampering with Mortality",
-      willModifier: actor?.getWillModifier() || 0,
-      tamperingChoices: this.buildTamperingTablesChoices(),
-      creatureLife: 2,
-      spellcasterLevel: 1,
-      castTemple: false,
-      stillAlive: false,
-      instantKilled: false,
-      spine: 0,
-      limbsDestroyed: 0,
-      organsDestroyed: 0,
-      freeModifier: 0,
-      daysSinceDeath: 0,
-      sideEffects: 0,
-      finalModifier: 0,
+    if (!tamperingData) {
+      tamperingData = {
+        title: "Roll Tampering with Mortality",
+        willModifier: actor?.getWillModifier() || 0,
+        tamperingChoices: this.buildTamperingTablesChoices(),
+        tamperingChoice: "tampering_neutral",
+        spanChoices: CONFIG.ACKS.tampering_span,
+        classLevelChoices: CONFIG.ACKS.mortal_class_levels,
+        spineChoices: CONFIG.ACKS.tampering_spine,
+        limbsChoices: CONFIG.ACKS.tampering_limbs,
+        creatureLife: 2,
+        spellcasterLevel: 1,
+        castTemple: false,
+        stillAlive: false,
+        instantKilled: false,
+        spine: 0,
+        limbsDestroyed: 0,
+        organsDestroyed: 0,
+        freeModifier: 0,
+        daysSinceDeath: 0,
+        sideEffects: 0,
+        finalModifier: 0,
+      }
     }
     tamperingData.finalModifier = this.updateDialogResult(tamperingData)
     console.log("Tampering Data", tamperingData)
@@ -74,6 +81,7 @@ export class AcksTamperingDialog extends FormApplication {
       window: { title: tamperingData.title },
       classes: ["acks", "dialog", "party-sheet", "app", "window-app"],
       content,
+      rejectClose: false,
       buttons: [{
         action: "roll",
         label: "Roll Tampering with Mortality",
@@ -86,8 +94,8 @@ export class AcksTamperingDialog extends FormApplication {
           return output
         },
       }, {
-        action: "cancel",
-        label: "Cancel",
+        action: "close",
+        label: "Close",
         callback: (event, button, dialog) => {
           return null
         }
@@ -143,8 +151,8 @@ export class AcksTamperingDialog extends FormApplication {
           tamperingData.sideEffects = Number(event.target.value)
           this.updateDialogResult(tamperingData)
         })
-        }
-      })
+      }
+    })
 
     if (dialogContext == null) {
       return
@@ -171,6 +179,13 @@ export class AcksTamperingDialog extends FormApplication {
     ChatMessage.create(chatData).then((msg) => {
       console.log("Chat Message Created", msg)
     })
+
+    // Re-opens the dialog window and keep the data
+    setTimeout(() => {
+      let d = new AcksTamperingDialog()
+      d.init(actor, tamperingData)
+    }, 500)
+
     return dialogContext
   }
 

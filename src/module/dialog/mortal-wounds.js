@@ -1,7 +1,7 @@
 import { AcksTableManager } from "../apps/table-manager.js"
 import { AcksUtility } from "../utility.js"
 
-const __HIT_DICE_MOD = { "d6": 2, "d8": 4, "d10": 6, "d12": 8 }
+const __HIT_DICE_MOD = { "d4": 0, "d6": 2, "d8": 4, "d10": 6, "d12": 8 }
 
 export class AcksMortalWoundsDialog extends FormApplication {
 
@@ -15,10 +15,10 @@ export class AcksMortalWoundsDialog extends FormApplication {
     if (hitPoints >= 0) {
       return 5
     }
-    if (hitPoints > -(hitPointsMax / 4) ) {
+    if (hitPoints > -(hitPointsMax / 4)) {
       return 0
     }
-    if (hitPoints >  -(hitPointsMax / 2)) {
+    if (hitPoints > -(hitPointsMax / 2)) {
       return -2
     }
     if (hitPoints > -hitPointsMax) {
@@ -41,10 +41,10 @@ export class AcksMortalWoundsDialog extends FormApplication {
     }
     finalModifier += Number(mortalWoundsData.healingProficiency)
     finalModifier += Number(mortalWoundsData.healingMagicLevel)
-    finalModifier -= Number(AcksUtility.roundToEven(mortalWoundsData.necromanticSpellLevel/2))
+    finalModifier -= Number(AcksUtility.roundToEven(mortalWoundsData.necromanticSpellLevel / 2))
     finalModifier += Number(mortalWoundsData.treatmentTiming)
     finalModifier += Number(mortalWoundsData.freeModifier)
-    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? AcksUtility.roundToEven(Number(mortalWoundsData.healerClassLevel/2)) : 0
+    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? AcksUtility.roundToEven(Number(mortalWoundsData.healerClassLevel / 2)) : 0
     $("input[name='finalModifierValue']").val(finalModifier)
     return finalModifier
   }
@@ -65,29 +65,35 @@ export class AcksMortalWoundsDialog extends FormApplication {
   }
 
   /* -------------------------------------------- */
-  async init(actor = undefined) {
+  async init(actor = undefined, mortalWoundsData = undefined) {
 
-    let mortalWoundsData = {
-      title: "Roll Mortal Wounds",
-      hasHeavyHelm: actor?.hasHeavyHelm() || 0,
-      heavyHelmMalus: actor?.hasHeavyHelm() ? 2 : 0,
-      hitDice: actor?.getHitDice() || "d6",
-      maxHitPoints: actor?.getMaxHitPoints() || 10,
-      currentHitPoints: actor?.getCurrentHitPoints() || 0,
-      conModifier: actor?.getConModifier() || 0,
-      mortalTablesChoices: this.buildMortalTablesChoices(),
-      actor: actor,
-      horsetailApplied: false,
-      healingMagicLevel: 0,
-      layingOnHands: false,
-      healerClassLevel: 0,
-      healingProficiency: 0,
-      necromanticSpellLevel: 0,
-      treatmentTiming: 2,
-      freeModifier: 0,
+    if (!mortalWoundsData) {
+      mortalWoundsData = {
+        title: "Roll Mortal Wounds",
+        hasHeavyHelm: actor?.hasHeavyHelm() || 0,
+        heavyHelmMalus: actor?.hasHeavyHelm() ? 2 : 0,
+        hitDice: actor?.getHitDice() || "d6",
+        maxHitPoints: actor?.getMaxHitPoints() || 10,
+        currentHitPoints: actor?.getCurrentHitPoints() || 0,
+        conModifier: actor?.getConModifier() || 0,
+        mortalTablesChoices: this.buildMortalTablesChoices(),
+        treatmentTimingChoices: CONFIG.ACKS.mortal_treatment_timing,
+        spellLevelChoices: CONFIG.ACKS.mortal_spell_levels,
+        classLevelChoices: CONFIG.ACKS.mortal_class_levels,
+        healingProficiencyChoices: CONFIG.ACKS.mortal_healer_proficiency,
+        actor: actor,
+        horsetailApplied: false,
+        healingMagicLevel: 0,
+        layingOnHands: false,
+        healerClassLevel: 0,
+        healingProficiency: 0,
+        necromanticSpellLevel: 0,
+        treatmentTiming: 2,
+        freeModifier: 0,
+      }
+      mortalWoundsData.hitDiceModifier = __HIT_DICE_MOD[mortalWoundsData.hitDice.toLowerCase()] || 0
+      mortalWoundsData.hitPointsModifier = this.computeHitPointsModifier(mortalWoundsData.currentHitPoints, mortalWoundsData.maxHitPoints)
     }
-    mortalWoundsData.hitDiceModifier = __HIT_DICE_MOD[mortalWoundsData.hitDice.toLowerCase()] || 0
-    mortalWoundsData.hitPointsModifier = this.computeHitPointsModifier(mortalWoundsData.currentHitPoints, mortalWoundsData.maxHitPoints)
     mortalWoundsData.finalModifier = this.updateDialogResult(mortalWoundsData)
     console.log("Mortal Wounds Data", mortalWoundsData)
 
@@ -97,6 +103,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
       window: { title: mortalWoundsData.title },
       classes: ["acks", "dialog", "party-sheet", "app", "window-app"],
       content,
+      rejectClose: false,
       buttons: [{
         action: "roll",
         label: "Roll Mortal Wound",
@@ -109,8 +116,8 @@ export class AcksMortalWoundsDialog extends FormApplication {
           return output
         },
       }, {
-        action: "cancel",
-        label: "Cancel",
+        action: "close",
+        label: "Close",
         callback: (event, button, dialog) => {
           return null
         }
@@ -182,18 +189,24 @@ export class AcksMortalWoundsDialog extends FormApplication {
           this.updateDialogResult(mortalWoundsData)
         })
 
-        }
-      })
+      }
+    })
 
     if (dialogContext == null) {
       return
     }
+
     // Get the final result from the dialog
     let modifier = this.updateDialogResult(mortalWoundsData)
-    console.log("Final Modifier", modifier)
+    mortalWoundsData.mortalTablesChoice = dialogContext.mortalTablesChoice
+    mortalWoundsData.treatmentTiming = dialogContext.treatmentTiming
+    mortalWoundsData.necromanticSpellLevel = dialogContext.necromanticSpellLevel
+    mortalWoundsData.healingMagicLevel = dialogContext.healingMagicLevel
+    mortalWoundsData.horsetailModifier = mortalWoundsData.horsetailApplied ? 2 : 0
+
     let tableKey = dialogContext.mortalTablesChoice
     let rollResult = await AcksTableManager.rollD20Table("mortal_wounds", tableKey, modifier)
-    console.log("Roll Result", rollResult)
+    console.log("Final Modifier", mortalWoundsData)
 
     let chatContent = await renderTemplate("systems/acks/templates/chat/mortal-wounds-result.html", rollResult)
     let chatData = {
@@ -211,6 +224,13 @@ export class AcksMortalWoundsDialog extends FormApplication {
     ChatMessage.create(chatData).then((msg) => {
       console.log("Chat Message Created", msg)
     })
+
+    // Re-opens the dialog window and keep the data
+    setTimeout(() => {
+      let d = new AcksMortalWoundsDialog()
+      d.init(actor, mortalWoundsData)
+    }, 500)
+
     return dialogContext
   }
 

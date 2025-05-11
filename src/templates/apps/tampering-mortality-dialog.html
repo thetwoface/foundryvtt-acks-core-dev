@@ -5,43 +5,25 @@
     <div class="flexrow">
       <span>Alignment</span>
       <select name="tamperingChoice" class="tampering-table">
-        {{#each tamperingChoices}}
-        <option value="{{this.key}}"> {{this.label}}</option>
-        {{/each}}
+        {{selectOptions tamperingChoices selected=tamperingChoice valueAttr="key" labelAttr="label"}}
       </select>
     </div>
     <div class="flexrow">
       <span>Span of Creature's Life</span>
       <select name="creatureLife" class="creature-life">
-        <option value="2" selected>Youthful (+2)</option>
-        <option value="-5">Adult (-5)</option>
-        <option value="-10">Old (-10)</option>
-        <option value="-20">Ancient (-20)</option>
+        {{selectOptions spanChoices selected=creatureLife valueKey="value" labelKey="label"}}
       </select>
     </div>
 
     <div class="flexrow">
       <span>Casting in Temple of Spellcaster's God (+2)</span>
-      <input type="checkbox" name="castTemple" data-action="cast-temple" />
+      <input type="checkbox" name="castTemple" data-action="cast-temple" {{#if castTemple}} checked {{/if}} />
     </div>
     <div class="flexrow">
-      <span>Healer's Spell Level</span>
+      <span>Spellcaster's Power</span>
       <select name="spellcasterlLevel" class="spellcaster-level">
-        <option value="1">1 (+1)</option>
-        <option value="2">2 (+1)</option>
-        <option value="3">3 (+2)</option>
-        <option value="4">4 (+2)</option>
-        <option value="5">5 (+2)</option>
-        <option value="6">6 (+3)</option>
-        <option value="7">7 (+4)</option>
-        <option value="8">8 (+4)</option>
-        <option value="9">9 (+4)</option>
-        <option value="10">10 (+5)</option>
-        <option value="11">11 (+6)</option>
-        <option value="12">12 (+6)</option>
-        <option value="13">13 (+6)</option>
-        <option value="14">14 (+7)</option>
-  </select>
+        {{selectOptions classLevelChoices selected=spellcasterLevel valueKey="value" labelKey="label"}}
+      </select>
     </div>
   </fieldset>
 
@@ -50,39 +32,25 @@
       <legend>State of the Creature's Body</legend>
       <div class="flexrow">
         <span class="still-alive">Still Alive (+5) ?</span>
-        <input type="checkbox" name="stillAlive" data-action="still-alive" />
+        <input type="checkbox" name="stillAlive" data-action="still-alive" {{#if stillAlive}}checked{{/if}} />
         <span>Instantly Killed (-10) ?</span>
-        <input type="checkbox" name="instantKilled" data-action="instant-killed" />
+        <input type="checkbox" name="instantKilled" data-action="instant-killed" {{#if instantKilled}}checked{{/if}}/>
       </div>
       <div class="flexrow">
         <span>Spine</span>
         <select name="spine" class="spine-severed">
-          <option value="0" selected>None (0)</option>
-          <option value="-5">Severed (+5)</option>
-          <option value="-10">Crushed (+10)</option>
+          {{selectOptions spineChoices selected=spine valueKey="value" labelKey="label"}}
         </select>
       </div>
       <div class="flexrow">
         <span>Limbs Destroyed</span>
         <select name="limbsDestroyed" class="limbs-destroyed">
-          <option value="0" selected>None (0)</option>
-          <option value="-2">1 (-2)</option>
-          <option value="-4">2 (-4)</option>
-          <option value="-6">3 (-6)</option>
-          <option value="-8">4 (-8)</option>
-          <option value="-10">5 (-10)</option>
+          {{selectOptions limbsChoices selected=limbsDestroyed valueKey="value" labelKey="label"}}
         </select>
       </div>
       <div class="flexrow">
         <span>Organs Destroyed</span>
-        <select name="organsDestroyed" class="organs-destroyed">
-          <option value="0" selected>None (0)</option>
-          <option value="-1">1 (-1)</option>
-          <option value="-2">2 (-2)</option>
-          <option value="-3">3 (-3)</option>
-          <option value="-4">4 (-4)</option>
-          <option value="-5">5 (-5)</option>
-        </select>
+        <input type="number" name="organsDestroyed" value="{{organsDestroyed}}" class="organs-destroyed"/>
       </div>
 
       <div class="flexrow">
@@ -111,30 +79,11 @@
 
         <div class="flexrow">
           <span>Days Since Death </span>
-          <select name="daysSinceDeath" class="days-since-death">
-            <option value="0" selected>Zero (0)</option>
-            <option value="-1">One (-1)</option>
-            <option value="-2">Two (-2)</option>
-            <option value="-3">Three (-3)</option>
-            <option value="-4">Four (-4)</option>
-            <option value="-5">Five (-5)</option>
-            <option value="-6">Six (-6)</option>
-            <option value="-7">Seven (-7)</option>
-            <option value="-8">Eight (-8)</option>
-            <option value="-9">Nine (-9)</option>
-            <option value="-10">Ten (-10)</option>
-          </select>
+          <input type="number" name="daysSinceDeath" value="{{daysSinceDeath}}" class="days-since-death"/>
         </div>
         <div class="flexrow ">
           <span>Existing Side Effects </span>
-          <select name="sideEffects" class="side-effects">
-            <option value="0" selected>None (0)</option>
-            <option value="-1">1 (-1)</option>
-            <option value="-2">2 (-2)</option>
-            <option value="-3">3 (-3)</option>
-            <option value="-4">4 (-4)</option>
-            <option value="-5">5 (-5)</option>
-          </select>
+          <input type="number" name="sideEffects" value="{{sideEffects}}" class="side-effects"/>
         </div>
 
       </fieldset>

@@ -5,32 +5,20 @@
     <div class="flexrow">
       <span>Damage Type / Mortal Wounds Table</span>
       <select name="mortalTablesChoice" class="mortal-wound-table">
-        {{#each mortalTablesChoices}}
-        <option value="{{this.key}}"> {{this.label}}</option>
-        {{/each}}
+        {{selectOptions mortalTablesChoices selected=mortalTablesChoice valueAttr="key" labelAttr="label"}}
       </select>
     </div>
     <div class="flexrow">
       <span>Treatment</span>
       <select name="treatmentTiming" class="treatment-timing">
-        <option value="2" selected>Treatment within 1 Round (+2)</option>
-        <option value="-3">Treatment within 1 Turn of Injury(-3)</option>
-        <option value="-5">Treatment within 1 Hour of Injury(-5)</option>
-        <option value="-10">Treatment more than 1 day after Injury (-10)</option>
+        {{selectOptions treatmentTimingChoices selected=treatmentTiming valueAttr="value" labelAttr="label"}}
       </select>
-
     </div>
 
     <div class="flexrow">
       <span>If Necromantic Magic, enter spell's level</span>
       <select name="necromanticSpellLevel" class="necromantic-spell-level">
-        <option value="0" selected>None (0)</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+        {{selectOptions spellLevelChoices selected=necromanticSpellLevel valueAttr="value" labelAttr="label"}}
       </select>
     </div>
   </fieldset>
@@ -100,19 +88,13 @@
 
       <div class="flexrow">
         <span>Horsetail Applied ?</span>
-        <input type="checkbox" name="horsetailApplied" data-action="toggle-horsetail" />
-        <input type="number" disabled=true name="horsetailModifier" value="0" />
+        <input type="checkbox" name="horsetailApplied" data-action="toggle-horsetail" {{#if horsetailApplied}} checked {{/if}} />
+        <input type="number" disabled=true name="horsetailModifier" {{#if horsetailApplied}}value="2"{{else}}value="0"{{/if}}" />
       </div>
       <div class="flexrow">
         <span>Healing Magic Level </span>
         <select name="healingMagicLevel" class="healing-magic-level">
-          <option value="0" selected>None (0)</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="5">6</option>
+          {{selectOptions spellLevelChoices selected=healingMagicLevel valueAttr="value" labelAttr="label"}}
         </select>
       </div>
       <div class="flexrow">
@@ -122,33 +104,14 @@
       <div class="flexrow healer-class-level-div">
         <span>Healer's Class Level </span>
         <select name="healerClassLevel" disabled class="healer-class-level">
-          <option value="0">Not applicable</option>
-          <option value="1">1 (+1)</option>
-          <option value="2">2 (+1)</option>
-          <option value="3">3 (+2)</option>
-          <option value="4">4 (+2)</option>
-          <option value="5">5 (+2)</option>
-          <option value="6">6 (+3)</option>
-          <option value="7">7 (+4)</option>
-          <option value="8">8 (+4)</option>
-          <option value="9">9 (+4)</option>
-          <option value="10">10 (+5)</option>
-          <option value="11">11 (+6)</option>
-          <option value="12">12 (+6)</option>
-          <option value="13">13 (+6)</option>
-          <option value="14">14 (+7)</option>
+          {{selectOptions classLevelChoices selected=healerClassLevel valueAttr="value" labelAttr="label"}}
         </select>
       </div>
 
       <div class="flexrow">
         <span>Healing Proficiency</span>
         <select name="healingProficiency" class="healing-proficiency">
-          <option value="0" selected>None (0)</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          {{selectOptions healingProficiencyChoices selected=healingProficiency valueAttr="value" labelAttr="label"}}
         </select>
       </div>
 

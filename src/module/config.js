@@ -261,11 +261,14 @@ export const ACKS = {
   },
   tampering_limbs: {
     "0": { label: "None (0)", value: 0 },
-    "-2": { label: "1 (-2)", value: -1 },
-    "-4": { label: "2 (-4)", value: -2 },
-    "-6": { label: "3 (-6)", value: -3 },
-    "-8": { label: "4 (-8)", value: -4 },
-    "-10": { label: "5 (-10)", value: -5 }
+    "-2": { label: "1 (-2)", value: -2 },
+    "-4": { label: "2 (-4)", value: -4 },
+    "-6": { label: "3 (-6)", value: -6 },
+    "-8": { label: "4 (-8)", value: -8 },
+    "-10": { label: "5 (-10)", value: -10 },
+    "-12": { label: "6 (-12)", value: -12 },
+    "-14": { label: "7 (-14)", value: -14 },
+    "-16": { label: "8 (-16)", value: -16 },
   }
 
 };

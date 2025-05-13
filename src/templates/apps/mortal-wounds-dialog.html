@@ -29,7 +29,7 @@
       <div class="flexrow">
         <span>Heavy Helm ?</span>
         <input type="checkbox" name="hasHeavyHelm" data-action="toggle-heavy-helm" {{#if hasHeavyHelm}}checked{{/if}} />
-        <input disabled=true type="number" name="heavyHelmMalus" value="{{heavyHelmMalus}}" />
+        <input disabled=true type="number" name="heavyHelmModifier" value="{{heavyHelmModifier}}" />
       </div>
       {{#if actor}}
       <div class="flexrow">
@@ -40,10 +40,7 @@
       <div class="flexrow">
         <span>Hit Dice </span>
         <select name="hitDiceModifier" class="hit-dice-selector">
-          <option value="2" selected>d6 (+2)</option>
-          <option value="4">d8 (+4)</option>
-          <option value="6">d10 (+6)</option>
-          <option value="8">d12 (+8)</option>
+          {{selectOptions hitDiceChoices selected=hitDiceModifier valueAttr="value" labelAttr="label"}}
         </select>
       </div>
       {{/if}}
@@ -99,7 +96,7 @@
       </div>
       <div class="flexrow">
         <span>Laying on Hands ? </span>
-        <input type="checkbox" name="layingOnHands" data-action="toggle-laying" />
+        <input type="checkbox" name="layingOnHands" data-action="toggle-laying" {{#if layingOnHands}} checked{{/if}} />
       </div>
       <div class="flexrow healer-class-level-div">
         <span>Healer's Class Level </span>

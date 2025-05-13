@@ -1,4 +1,11 @@
 export const ACKS = {
+  hitDiceModifiers: {
+    "d4": {value: 0, label: "d4 (0)"},
+    "d6": {value: 2, label: "d6 (2)"},
+    "d8": {value: 4, label: "d8 (4)"},
+    "d10": {value: 6, label: "d10 (6)"},
+    "d12": {value: 8, label: "d12 (8)"}
+  },
   statusEffects: [
     { acks: true, id: "surprised", label: 'Surprised', icon: 'systems/acks/assets/icons/surprised.svg', duration: { rounds: 1 } },
     { acks: true, id: "overnumbering", label: 'OverNumbered', icon: 'icons/svg/regen.svg' },

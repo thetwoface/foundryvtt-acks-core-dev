@@ -1,8 +1,6 @@
 import { AcksTableManager } from "../apps/table-manager.js"
 import { AcksUtility } from "../utility.js"
 
-const __HIT_DICE_MOD = { "d4": 0, "d6": 2, "d8": 4, "d10": 6, "d12": 8 }
-
 export class AcksMortalWoundsDialog extends FormApplication {
 
   /* -------------------------------------------- */
@@ -44,7 +42,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
     finalModifier -= Number(AcksUtility.roundToEven(mortalWoundsData.necromanticSpellLevel / 2))
     finalModifier += Number(mortalWoundsData.treatmentTiming)
     finalModifier += Number(mortalWoundsData.freeModifier)
-    finalModifier += (Number(mortalWoundsData.layingOnHands)) ? AcksUtility.roundToEven(Number(mortalWoundsData.healerClassLevel / 2)) : 0
+    finalModifier += (mortalWoundsData.layingOnHands) ? AcksUtility.roundToEven(Number(mortalWoundsData.healerClassLevel / 2)) : 0
     $("input[name='finalModifierValue']").val(finalModifier)
     return finalModifier
   }
@@ -71,12 +69,14 @@ export class AcksMortalWoundsDialog extends FormApplication {
       mortalWoundsData = {
         title: "Roll Mortal Wounds",
         hasHeavyHelm: actor?.hasHeavyHelm() || 0,
-        heavyHelmMalus: actor?.hasHeavyHelm() ? 2 : 0,
+        heavyHelmModifier: actor?.hasHeavyHelm() ? 2 : 0,
         hitDice: actor?.getHitDice() || "d6",
         maxHitPoints: actor?.getMaxHitPoints() || 10,
         currentHitPoints: actor?.getCurrentHitPoints() || 0,
         conModifier: actor?.getConModifier() || 0,
         mortalTablesChoices: this.buildMortalTablesChoices(),
+        mortalTablesChoice: "acid",
+        hitDiceChoices: CONFIG.ACKS.hitDiceModifiers,
         treatmentTimingChoices: CONFIG.ACKS.mortal_treatment_timing,
         spellLevelChoices: CONFIG.ACKS.mortal_spell_levels,
         classLevelChoices: CONFIG.ACKS.mortal_class_levels,
@@ -91,7 +91,7 @@ export class AcksMortalWoundsDialog extends FormApplication {
         treatmentTiming: 2,
         freeModifier: 0,
       }
-      mortalWoundsData.hitDiceModifier = __HIT_DICE_MOD[mortalWoundsData.hitDice.toLowerCase()] || 0
+      mortalWoundsData.hitDiceModifier = Number(CONFIG.ACKS.hitDiceModifiers[mortalWoundsData.hitDice.toLowerCase()]?.value || 0)
       mortalWoundsData.hitPointsModifier = this.computeHitPointsModifier(mortalWoundsData.currentHitPoints, mortalWoundsData.maxHitPoints)
     }
     mortalWoundsData.finalModifier = this.updateDialogResult(mortalWoundsData)
@@ -130,20 +130,27 @@ export class AcksMortalWoundsDialog extends FormApplication {
         },
         "toggle-heavy-helm": (event, button, dialog) => {
           mortalWoundsData.hasHeavyHelm = !mortalWoundsData.hasHeavyHelm
-          $("input[name='heavyHelmMalus']").val(mortalWoundsData.hasHeavyHelm ? 2 : 0)
+          mortalWoundsData.heavyHelmModifier = mortalWoundsData.hasHeavyHelm ? 2 : 0
+          $("input[name='heavyHelmModifier']").val(mortalWoundsData.hasHeavyHelm ? 2 : 0)
           this.updateDialogResult(mortalWoundsData)
         },
         "toggle-laying": (event, button, dialog) => {
           mortalWoundsData.layingOnHands = !mortalWoundsData.layingOnHands
-          if (mortalWoundsData.layingOnHands) {
-            $(".healer-class-level").prop('disabled', false);
+          if ( mortalWoundsData.layingOnHands ) {
+            $(".healer-class-level").prop('disabled', false)
           } else {
-            $(".healer-class-level").prop('disabled', true);
+            $(".healer-class-level").prop('disabled', true)
           }
           this.updateDialogResult(mortalWoundsData)
         },
       },
       render: (event, dialog) => {
+          if ( mortalWoundsData.layingOnHands ) {
+            $(".healer-class-level").prop('disabled', false)
+          } else {
+            $(".healer-class-level").prop('disabled', true)
+          }
+
         $(".max-hit-points").change(event => {
           mortalWoundsData.maxHitPoints = Number(event.target.value)
           mortalWoundsData.hitPointsModifier = this.computeHitPointsModifier(mortalWoundsData.currentHitPoints, mortalWoundsData.maxHitPoints)
@@ -203,6 +210,10 @@ export class AcksMortalWoundsDialog extends FormApplication {
     mortalWoundsData.necromanticSpellLevel = dialogContext.necromanticSpellLevel
     mortalWoundsData.healingMagicLevel = dialogContext.healingMagicLevel
     mortalWoundsData.horsetailModifier = mortalWoundsData.horsetailApplied ? 2 : 0
+    mortalWoundsData.heavyHelmModifier = mortalWoundsData.hasHeavyHelm ? 2 : 0
+    mortalWoundsData.hitDiceModifier = Number(dialogContext.hitDiceModifier)
+    mortalWoundsData.layingOnHands = dialogContext.layingOnHands
+    mortalWoundsData.healerClassLevel = dialogContext.healerClassLevel
 
     let tableKey = dialogContext.mortalTablesChoice
     let rollResult = await AcksTableManager.rollD20Table("mortal_wounds", tableKey, modifier)

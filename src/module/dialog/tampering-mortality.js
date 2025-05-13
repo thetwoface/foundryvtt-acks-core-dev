@@ -157,6 +157,9 @@ export class AcksTamperingDialog extends FormApplication {
     if (dialogContext == null) {
       return
     }
+
+    tamperingData.tamperingChoice = dialogContext.tamperingChoice
+
     // Get the final result from the dialog
     let modifier = this.updateDialogResult(tamperingData)
     let tableKey = dialogContext.tamperingChoice

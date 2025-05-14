@@ -78,7 +78,7 @@
           "result": "16 – 20",
           "min": 16,
           "max": 20,
-          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
           "effects": {
             "1": "Your face melts like wax and chars like beef in the flame (gruesome scarring).",
             "2": "Your ear is burned off (-1 to Listening throws and -1 to surprise rolls).",
@@ -314,7 +314,7 @@
           "result": "16 – 20",
           "min": 16,
           "max": 20,
-          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
           "effects": {
             "1": "Your face stiffens like a mask, its muscles permanently frozen into a horrific grimace (gruesome scarring).",
             "2": "Your ear is lost to frostbite  (-1 to Listening throws and -1 to surprise rolls).",
@@ -432,7 +432,7 @@
           "result": "16 – 20",
           "min": 16,
           "max": 20,
-          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
           "effects": {
             "1": "The skin on your face sloughs off leaving your face a hideous mask of necrotic tissue (gruesome scarring).",
             "2": "Where once you had an ear, now you have a blackened mass of necrotic tissue (-1 to Listening throws and -1 to surprise rolls).",
@@ -786,7 +786,7 @@
           "result": "16 – 20",
           "min": 16,
           "max": 20,
-          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
           "effects": {
             "1": "Your nose is bitten off and your lips chewed to ruin, leaving your visage monstrous (gruesome scarring).",
             "2": "Your ear is bitten off (-1 to Listening throws and -1 to surprise rolls).",
@@ -905,7 +905,7 @@
           "result": "16 – 20",
           "min": 16,
           "max": 20,
-          "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+          "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
           "effects": {
             "1": "Your nose is cut off and your palate cleft, leaving your visage monstrous (gruesome scarring).",
             "2": "Your ear is sliced off (-1 to Listening throws and -1 to surprise rolls).",

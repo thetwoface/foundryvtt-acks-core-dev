@@ -212,7 +212,6 @@ export class AcksMortalWoundsDialog extends FormApplication {
     mortalWoundsData.horsetailModifier = mortalWoundsData.horsetailApplied ? 2 : 0
     mortalWoundsData.heavyHelmModifier = mortalWoundsData.hasHeavyHelm ? 2 : 0
     mortalWoundsData.hitDiceModifier = Number(dialogContext.hitDiceModifier)
-    mortalWoundsData.layingOnHands = dialogContext.layingOnHands
     mortalWoundsData.healerClassLevel = dialogContext.healerClassLevel
 
     let tableKey = dialogContext.mortalTablesChoice

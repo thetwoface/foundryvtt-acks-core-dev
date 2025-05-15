@@ -130,6 +130,54 @@ export class AcksActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  /** Return true if the character has a "heavy helmet" equipped
+   *
+  */
+  hasHeavyHelm() {
+    if (this.type != "character") {
+      return false;
+    }
+    let hasHeavyHelm = false;
+    this.items.forEach((item) => {
+      if (item.type == "armor" && item.system.equipped && (item.name.toLowerCase().includes("heavy") && item.name.toLowerCase().includes("helmet"))) {
+        hasHeavyHelm = true;
+      }
+    });
+    return hasHeavyHelm;
+  }
+
+  /* -------------------------------------------- */
+  getHitDice() {
+    return this.system.hp.hd;
+  }
+
+  /* -------------------------------------------- */
+  getMaxHitPoints() {
+    return this.system.hp.max;
+  }
+
+  /* -------------------------------------------- */
+  getCurrentHitPoints() {
+    return this.system.hp.value;
+  }
+
+  /* -------------------------------------------- */
+  getConModifier() {
+    if (this.type != "character") {
+      return 0;
+    }
+    return this.system.scores.con.mod;
+  }
+
+  /* -------------------------------------------- */
+  getWillModifier() {
+    if (this.type != "character") {
+      return 0;
+    }
+    return this.system.scores.wis.mod;
+  }
+
+  /* -------------------------------------------- */
   getLanguages() {
     let lang = this.items.filter((i) => i.type == "language");
     return lang;
@@ -1001,7 +1049,8 @@ export class AcksActor extends Actor {
     totalEncumbrance /= 6 // Get the weight in stones
     totalEncumbrance += this.getTotalMoneyEncumbrance().stone
 
-    let maxEncumbrance = 20 + this.system.scores.str.mod;
+    // Select the max encumbrance value
+    let maxEncumbrance = (this.system.encumbrance.forcemax>0) ? this.system.encumbrance.forcemax : 20 + this.system.scores.str.mod;
     if (this.system.encumbrance.max != maxEncumbrance && this._id) {
       this.update({ 'system.encumbrance.max': maxEncumbrance });
     }

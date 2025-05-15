@@ -1,8 +1,11 @@
+import { AcksMortalWoundsDialog } from "./dialog/mortal-wounds.js";
+import { AcksTamperingDialog } from "./dialog/tampering-mortality.js";
+
 export class AcksUtility {
 
+  /* -------------------------------------------- */
   static updateWeightsLanguages() {
     for (let a of game.actors) {
-      console.log("UPDATE WEIGHT", a);
       a.updateWeight();
       a.updateLanguages();
       a.updateImplements();
@@ -10,6 +13,42 @@ export class AcksUtility {
     for (let i of game.items) {
       i.updateWeight();
     }
+  }
+
+  /* -------------------------------------------- */
+  static roundToEven(num) {
+    // Get the fractional part
+    const fraction = Math.abs(num) - Math.floor(Math.abs(num));
+
+    // If exactly 0.5
+    if (fraction === 0.5) {
+      // Round to the nearest even integer
+      const floorValue = Math.floor(num);
+      return floorValue % 2 === 0 ? floorValue : floorValue + 1;
+    }
+
+    // Otherwise use normal rounding
+    return Math.round(num);
+  }
+
+  /* -------------------------------------------- */
+  static addButtons(app, html, data) {
+    const button = document.createElement('button');
+    button.style.width = '45%';
+    button.innerHTML = 'Mortal Wounds'
+    button.addEventListener('click', () => {
+      let cr = new AcksMortalWoundsDialog();
+      cr.init()
+    })
+    const buttonTampering = document.createElement('button');
+    buttonTampering.style.width = '45%';
+    buttonTampering.innerHTML = 'Tampering'
+    buttonTampering.addEventListener('click', () => {
+      let cr = new AcksTamperingDialog();
+      cr.init()
+    })
+    html.find('.header-actions').after(buttonTampering)
+    html.find('.header-actions').after(button)
   }
 
   /* -------------------------------------------- */
@@ -117,7 +156,7 @@ export class AcksUtility {
     event.preventDefault();
     const a = event.currentTarget;
     const li = a.closest('li');
-    const effect = li.dataset.effectId
+    let effect = li.dataset.effectId
       ? owner.effects.get(li.dataset.effectId)
       : null;
     switch (a.dataset.action) {
@@ -134,18 +173,6 @@ export class AcksUtility {
           }]
         }, { parent: owner });
         return effect.sheet.render(true);
-      /*return owner.createEmbeddedDocuments('ActiveEffect', [
-        {
-          name: game.i18n.format('DOCUMENT.New', {
-            type: game.i18n.localize('DOCUMENT.ActiveEffect'),
-          }),
-          icon: 'icons/svg/aura.svg',
-          origin: owner.uuid,
-          'duration.rounds':
-            li.dataset.effectType === 'temporary' ? 1 : undefined,
-          disabled: li.dataset.effectType === 'inactive',
-        },
-      ]);*/
       case 'edit':
         return effect.sheet.render(true);
       case 'delete':

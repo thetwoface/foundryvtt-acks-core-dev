@@ -1,0 +1,114 @@
+[
+  {
+    "result": "-6 or more",
+    "min": -1000000,
+    "max": -6,
+    "condition_recovery": "You were instantly killed.",
+    "effects": {
+      "1": "You die in so much agony that you wish you had never been born.",
+      "2": "The agonizing contortions of your death throes has left your spine and neck broken and body twisted",
+      "3": "You died in suffocating as the poison paralyzed your lungs and diaphragm.",
+      "4": "A deep, festering wound striated with spider veins signals your poisoned end.",
+      "5": "Spider veins and blistered flesh betray your toxic demise.",
+      "6": "Only the darkened veins near your injury reveal the cause of your death."
+    }
+  },
+  {
+    "result": "-5 – 0",
+    "min": -5,
+    "max": 0,
+    "condition_recovery": "You were instantly killed",
+    "effects": {
+      "1": "The agonizing contortions of your death throes has left your spine and neck broken and body twisted.",
+      "2": "You died in suffocating agony as the poison paralyzed your lungs and diaphragm.",
+      "3": "A deep, festering wound striated with spider veins signals your poisoned end.",
+      "4": "Spider veins and blistered flesh betray your toxic demise.",
+      "5": "Only the darkened veins near your injury reveal the cause of your death.",
+      "6": "Your corpse is largely and intact and ready for a noble funeral."
+    }
+  },
+  {
+    "result": "1 – 5",
+    "min": 1,
+    "max": 5,
+    "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+    "effects": {
+      "1": "The poison leaves you in a coma; you are alive but permanently unconscious and will starve unless force-fed.",
+      "2": "The poison has left you utterly and permanently paralyzed from the neck down. (paralyzed, cannot move, fight, use items, or cast spells, Death save each month or die from complications).",
+      "3": "Both your legs are permanently paralyzed by the poison (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+      "4":"Both your arms are permanently paralyzed because of the poison (cannot climb, use weapons or items, open locks, remove traps, or similar actions)",
+      "5": "The poison takes your sight (blinded,-4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+      "6": "Your lips and tongue are permanently paralyzed by the poison (cannot speak clearly, cast spells, or use magic items involving speech, -4 to reaction rolls)"
+    }
+  },
+  {
+    "result": "6 – 10",
+    "min": 6,
+    "max": 10,
+    "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+    "effects": {
+      "1": "The poison has left you permanently paralyzed from the waist down (as per legs crushed, cannot reproduce, and must make Death save each year or die from complications).",
+      "2": "Both your legs are partially but permanently paralyzed by the poison (crutch required, movement reduced by 60’, DEX reduced by 2/3 for AC purposes).",
+      "3": "One of your legs is permanently paralyzed by the poison (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+      "4": "One of your arms is permanently paralyzed and limp because of the poison (cannot climb, use shields, dual wield, or use two-handed weapon)",
+      "5": "Both eyes become clouded by the poison (-4 to missile attack throws at medium/long range)",
+      "6": "Your lips and tongue are partially paralyzed, leaving you drooling and slurring (-4 to all reaction rolls, -1 to initiative when spellcasting)"
+    }
+  },
+  {
+    "result": "11 – 15",
+    "min": 11,
+    "max": 15,
+    "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+    "effects": {
+      "1": "The poison permanently disrupts the rhythm of your heart (must rest for 2 turns every 6, wilderness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+      "2": "One of your legs is partially but permanently paralyzed by the poison (movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+      "3": "The poison takes a severe toll on your heart and lungs (normal load reduced by 6 stone, cannot force march).",
+      "4": "One of your hands is permanently locked up by the poison (cannot dual-wield or use two-handed weapons)",
+      "5": "One eye becomes clouded by the poison (-2 to missile attack throws at medium/long range)",
+      "6": "Your lips are partially paralyzed, leaving your speech slurred (-2 to reaction rolls)."
+    }
+  },
+  {
+    "result": "16 – 20",
+    "min": 16,
+    "max": 20,
+    "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+    "effects": {
+      "1": "The poison causes your face to become limp, droopy and scarred by spider veins (gruesome scarring)",
+      "2": "The poison has permanently sterilized you (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known)",
+      "3": "The poison has damaged your respiration, leaving you short of breath (cannot force march).",
+      "4": "1d3 fingers on one hand become permanently stiff and twisted. (3 lost fingers on one hand makes hand useless.)",
+      "5": "The poison causes swelling and discoloration on your cheek (minor scarring).",
+      "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+    }
+  },
+  {
+    "result": "21 – 25",
+    "min": 21,
+    "max": 25,
+    "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+    "effects": {
+      "1": "The poison has left your reflexes dulled and sluggish (-1 to all initiative rolls).",
+      "2": "1d3 toes on one foot are numb, stiff, and useless (3 lost toes on one foot makes leg lame).",
+      "3": "The poison leaves you with spider veins visible on your cheeks (noticeable scarring).",
+      "4": "1d3 nails on a hand fall off and never re-grow (minor scarring).",
+      "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "6": "A vision of the afterlife haunts you, then fades as you awaken."
+    }
+  },
+  {
+    "result": "26+",
+    "min": 26,
+    "max": 1000000,
+    "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+    "effects": {
+      "1": "The poison leaves you prone to fevers and sweats in foul weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+      "2": "Your nose becomes swollen, bumpy and reddened because of the poison (notable scarring).",
+      "3": "The poison leaves you with spider veins crisscrossing your legs  (minor scarring).",
+      "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+      "6": "The Choosers of the Slain pass you by, and you awaken."
+    }
+  }
+]

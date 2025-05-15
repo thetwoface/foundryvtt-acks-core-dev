@@ -17,6 +17,7 @@
   --acks-sheet-background-fade: url("./assets/ui/acks_sheet_background_fade01.webp");
   --acks-red-background: url("./assets/ui/acks_red_background.webp");
   --acks-sheet-tabs-background: rgb(190, 190, 161);
+  --input-text-color: #4b4a44;
 }
 
 /* ----------------------------------------- */
@@ -84,10 +85,15 @@
 .window-header{
   background: var(--acks-purple);
 }
+.application .window-header{
+  background: var(--acks-purple);
+}
+
 .acks.sheet.actor .window-content {
   background: var(--acks-sheet-background-fade);
   overflow:hidden;
   padding: 0px;
+
 }
 .acks.sheet.actor
 .acks.sheet.actor .blinking {
@@ -120,7 +126,7 @@
 }
 .acks.sheet.actor .header-details h1 input {
   margin: 0 0 10px 0;
-  font-family: "oranienbaum";
+  font-family: "oranienbaum", serif;
 }
 .acks.sheet.actor .profile-img {
   border: 0;
@@ -252,15 +258,12 @@
 .acks.sheet.actor .sheet-body .movement-group .attributes {
   display: flex;
   flex-direction: column;
-  /*justify-content: space-evenly;
-  height: 100%;*/
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes {
   display: flex;
   flex-direction: column;
   justify-content:flex-start;
   margin-top: 12px;
-  /*height: 100%;*/
 }
 .acks.sheet.actor .sheet-body .attribute-group .attributes .attribute {
   display: flex;
@@ -410,6 +413,7 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .acks.sheet.actor .sheet-body .inventory .item-list .item-name .item-image {
   flex-basis: 30px;
   flex-grow: 0;
@@ -1427,7 +1431,6 @@
   justify-content: flex-start;
   flex-direction: column;
   position: absolute;
-  /*transform: translate(0, -30%);*/
   top: -4rem;
   max-width: 250px;
   left: 4rem;
@@ -1435,7 +1438,6 @@
 .tokenhudext.right2 {
   justify-content: flex-start;
   flex-direction: column;
-  /*transform: translate(0, -30%);*/
   position: absolute;
   top: -4rem;
   left: 11rem;
@@ -1488,6 +1490,135 @@
   margin-top: 8px;
 }
 
-.combat-sidebar .combat-tracker .combatant-controls {
-  flex-wrap: wrap;
+/* ----------------------------------------- */
+/*  Mortal Wounds Dialog                    */
+.mortal-wounds-dialog fieldset {
+  margin: 8px;
+  border-radius: 4px;
+  padding: 0.2rem;
+  gap: 0.2rem;
+}
+.mortal-wounds-dialog fieldset legend {
+  font-family: var(--font-secondary);
+  font-size: calc(var(--font-size-standard) * 1.2);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.mortal-wounds-dialog select {
+  max-width: 6rem;
+  min-width: 6rem;
+  color: rgb(71, 70, 70);
+  background: var(--acks-sheet-tabs-background);
+}
+
+.mortal-wounds-dialog .free-modifier,
+.mortal-wounds-dialog input {
+  max-width: 4rem;
+  min-width: 4rem;
+  color: rgb(71, 70, 70);
+}
+
+.mortal-wounds-dialog  .treatment-timing,
+.mortal-wounds-dialog  .mortal-wound-table {
+  min-width: 16rem;
+  max-width: 16rem;
+}
+.mortal-wounds-dialog  .final-modifier-div {
+  margin: 8px;
+  font-size: 1.2rem;
+}
+.mortal-wounds-dialog  .final-modifier-div input {
+  font-size: 1.2rem;
+}
+.mortal-wounds-dialog input[type="number"] {
+  color: rgb(71, 70, 70, 0.85);
+}
+
+.mortal-wounds-dialog input:disabled {
+  background: var(--acks-sheet-tabs-background);
+  color: #7a7971;
+}
+
+.mortal-wounds-dialog .final-modifier-value {
+  font-weight: bold;
+  color : darkgreen;
+}
+
+.mortal-wounds-dialog .performing-healing {
+  max-width: 18rem;
+  min-width: 18rem;
+}
+
+/* ----------------------------------------- */
+/*  Tampering dialog                    */
+.tampering-dialog fieldset {
+  margin: 8px;
+  border-radius: 4px;
+  padding: 0.2rem;
+  gap: 0.2rem;
+}
+.tampering-dialog fieldset legend {
+  font-family: var(--font-secondary);
+  font-size: calc(var(--font-size-standard) * 1.2);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.tampering-dialog select {
+  max-width: 6rem;
+  min-width: 6rem;
+  color: rgb(71, 70, 70);
+  background: var(--acks-sheet-tabs-background);
+}
+
+.tampering-dialog .align-top {
+  align-items: flex-start;
+}
+
+.tampering-dialog .free-modifier,
+.tampering-dialog input {
+  max-width: 4rem;
+  min-width: 4rem;
+  color: rgb(71, 70, 70);
+}
+
+.tampering-dialog .tampering-soul-fieldset {
+  max-width: 14rem;
+  min-width: 14rem;
+}
+
+.tampering-dialog .tampering-body-fieldset {
+  max-width: 20rem;
+  min-width: 20rem;
+}
+
+.tampering-dialog .still-alive {
+  max-width: 6rem;
+  min-width: 6rem;
+}
+
+.tampering-dialog .spellcaster-level,
+.tampering-dialog .creature-life,
+.tampering-dialog .tampering-table {
+  min-width: 8rem;
+  max-width: 8rem;
+}
+.tampering-dialog  .final-modifier-div {
+  margin: 3px;
+  font-size: 1.2rem;
+}
+.tampering-dialog  .final-modifier-div input {
+  font-size: 1.2rem;
+}
+
+.tampering-dialog input[type="number"] {
+  color: rgb(71, 70, 70, 0.85);
+}
+
+.tampering-dialog input:disabled {
+  background: var(--acks-sheet-tabs-background);
+  color: #7a7971;
+}
+.tampering-dialog .final-modifier-value {
+  font-weight: bold;
+  color : darkgreen;
 }

@@ -1,0 +1,114 @@
+[
+  {
+    "result": "-6 or more",
+    "min": -100000,
+    "max": -6,
+    "condition_recovery": "You were instantly killed.",
+    "effects": {
+      "1": "Decay consumed you, leaving only a withered and lifeless husk.",
+      "2": "Flesh, fat, and muscle have rotted away, revealing tainted and brittle bone.",
+      "3": "Your flesh is too putrid for even vultures to feast upon.",
+      "4": "The stench of your decaying form is so unbearable that your friends are tempted to burn it.",
+      "5": "The rotting, corrupted tissue of your corpse speaks of your necrotic doom.",
+      "6": "Darkened, decaying flesh marks your unnerving end."
+    }
+  },
+  {
+    "result": "-5 – 0",
+    "min": -5,
+    "max": 0,
+    "condition_recovery": "You were instantly killed",
+    "effects": {
+      "1": "Flesh, fat, and muscle have rotted away, revealing tainted and brittle bone.",
+      "2": "Your flesh is too putrid for even vultures to feast upon.",
+      "3": "Your friends might find the smell of your cooked body pleasant if they weren’t your friends.",
+      "4": "The rotting, corrupted tissue of your corpse speaks of your necrotic doom.",
+      "5": "Darkened, decaying flesh marks your unnerving end.",
+      "6": "Your corpse is largely intact and ready for a noble funeral."
+    }
+  },
+  {
+    "result": "1 – 5",
+    "min": 1,
+    "max": 5,
+    "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+    "effects": {
+      "1": "All your limbs haver rotted, your lungs are diseased, and your face hideously scarred (as per both arms burned off both, both legs burned off, lungs blackened, gruesome scarring)",
+      "2": "Your eyes, ears, nose, and lips sloughed off under the corrupting darkness (as per both eyes lost, both ears lost, lips and tongue lost, and gruesome scarring)",
+      "3": "Both legs have rotted and must be amputated (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+      "4": "Both arms have rotted and must be amputated (cannot climb, use weapons or items, open locks, remove traps, or similar actions).",
+      "5": "Both your eyes were consumed by corrupting darkness (blinded, -4 attack throws, no LOS, movement reduced to ¼ normal, -2 to surprise rolls)",
+      "6": "Your screams of despair ended when necrosis claimed your lips and tongue (mute, cannot speak, cast spells, or use magic items involving speech, and -4 to reaction rolls)."
+    }
+  },
+  {
+    "result": "6 – 10",
+    "min": 6,
+    "max": 10,
+    "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+    "effects": {
+      "1": "One leg and one arm have rotted; the other half was merely scarred with necrosis (as per one leg lost, one arm lost, notable scarring)",
+      "2": "Both of your ears and most of your facial sloughed off (-2 to Listening throws, -2 to surprise rolls, gruesome scarring)",
+      "3": "One leg has rotted and must be amputated (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+      "4": "One arm has rotted and must be amputated (cannot climb, use shields, dual wield, or use two-handed weapon).",
+      "5": "One of your eyes melted in the heat (-2 to missile attack throws).",
+      "6": "Your lips and jaw were burned white (notable scarring)"
+    }
+  },
+  {
+    "result": "11 – 15",
+    "min": 11,
+    "max": 15,
+    "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+    "effects": {
+      "1": "Your struggle to draw breath through diseased and ruined lungs (must rest for 2 turns every 6, wilder-ness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+      "2": "Your genitals have been reduced to rotten, pustulous ruin (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known).",
+      "3": "One foot has rotted and must be amputated (peg required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+      "4": "One hand has rotted and must be amputated (cannot dual-wield or use two-handed weapons).",
+      "5": "The flesh of one of your cheeks is pink and lump with a large burn scar (notable scarring).",
+      "6": "Your fingers are scarred where the flesh sloughed off (minor scarring)."
+    }
+  },
+  {
+    "result": "16 – 20",
+    "min": 16,
+    "max": 20,
+    "condition_recovery": "You are shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of rest.",
+    "effects": {
+      "1": "The skin on your face sloughs off leaving your face a hideous mask of necrotic tissue (gruesome scarring).",
+      "2": "Where once you had an ear, now you have a blackened mass of necrotic tissue (-1 to Listening throws and -1 to surprise rolls).",
+      "3": "1d3 toes on one foot have rotted and must be amputated (3 lost toes on one foot makes foot useless).",
+      "4": "1d3 fingers on one hand have rotted and must be amputated (3 lost fingers on one hand makes hand useless.)",
+      "5": "The smallest finger on one hand is burned off (3 lost fingers on a hand makes it useless).",
+      "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+    }
+  },
+  {
+    "result": "21 – 25",
+    "min": 21,
+    "max": 25,
+    "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+    "effects": {
+      "1": "The suffering that your body experienced lingers eternally (-1 to all initiative rolls).",
+      "2": "Your hair fell out in clumps, and half your torso and one arm are scarred by flesh-eating necrosis (two notable scarrings).",
+      "3": "Your hair fell out in clumps, leaving bald patches amidst a rotting scalp (notable scarring).",
+      "4": "Your hand is scarred where the flesh sloughed off (minor scarring).",
+      "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "6": "A vision of the afterlife haunts you, then fades as you awaken."
+    }
+  },
+  {
+    "result": "26+",
+    "min": 26,
+    "max": 1000000,
+    "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+    "effects": {
+      "1": "Your necrosis-marred body aches in bad weather  (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+      "2": "Half your torso and one arm are scarred by flesh-eating necrosis (notable scarring).",
+      "3": "Your shoulder has an oozing necrotic scar where decay took hold (minor scarring).",
+      "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+      "6": "The Choosers of the Slain pass you by, and you awaken."
+    }
+  }
+]

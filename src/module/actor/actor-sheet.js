@@ -1,11 +1,8 @@
-import { AcksActor } from "./entity.js";
 import { AcksEntityTweaks } from "../dialog/entity-tweaks.js";
 import { AcksUtility } from "../utility.js";
+import { AcksMortalWoundsDialog } from "../dialog/mortal-wounds.js";
+import { AcksTamperingDialog } from "../dialog/tampering-mortality.js";
 export class AcksActorSheet extends ActorSheet {
-
-  constructor(...args) {
-    super(...args);
-  }
 
   /* -------------------------------------------- */
   async getData() {
@@ -33,8 +30,8 @@ export class AcksActorSheet extends ActorSheet {
     console.log("Actor sheet", data);
     return data;
   }
-  /* -------------------------------------------- */
 
+  /* -------------------------------------------- */
   activateEditor(target, editorOptions, initialContent) {
     // remove some controls to the editor as the space is lacking
     if (target == "system.details.description") {
@@ -49,8 +46,8 @@ export class AcksActorSheet extends ActorSheet {
     if (data) {
       let dataItem = JSON.parse(data);
       let actorId = dataItem.uuid.split('.')[1]
-      if (dataItem.uuid.includes("Actor") && !dataItem.uuid.includes("Item") && actorId && actorId != this.actor.id) {
-        this.actor.addHenchman(actorId);
+      if ( dataItem.uuid.includes("Actor") && !dataItem.uuid.includes("Item") && actorId && actorId != this.actor.id) {
+        this.actor.addHenchman( actorId);
         return;
       }
     }
@@ -189,6 +186,18 @@ export class AcksActorSheet extends ActorSheet {
       AcksUtility.onManageActiveEffect(ev, document);
     });
 
+    html.find(".mortal-wound-dialog").click((ev) => {
+      let actorObject = this.actor;
+      let dialog = new AcksMortalWoundsDialog();
+      dialog.init(actorObject);
+    })
+
+    html.find(".tampering-dialog").click((ev) => {
+      let actorObject = this.actor;
+      let dialog = new AcksTamperingDialog();
+      dialog.init(actorObject);
+    })
+
     html.find(".item .item-controls .item-show").click(async (ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
@@ -276,7 +285,7 @@ export class AcksActorSheet extends ActorSheet {
       });
     });
 
-    html.find(".hit-dice .attribute-name a").click((ev) => {
+    html.find(".hit-dice ").click((ev) => {
       let actorObject = this.actor;
       actorObject.rollHitDice({ event: ev });
     });

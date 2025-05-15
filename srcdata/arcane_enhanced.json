@@ -1,0 +1,114 @@
+[
+  {
+    "result": "-6 or more",
+    "min": -1000000,
+    "max": -6,
+    "condition_recovery": "You were instantly killed.",
+    "effects": {
+      "1": "No one would believe a human body could be crushed into a puddle.",
+      "2": "Your dead flesh hangs like a wet red blanket over your shattered skeleton.",
+      "3": "Your skull is crushed like an eggshell, cerebral fluid leaking out like yolk.",
+      "4": "Your rib cage’s collapse leads to an agonizing death gasping for air from ruptured lungs.",
+      "5": "Crushed bones and splattered brains betray your grisly end.",
+      "6": "A bone-shattering wound reveals your harsh demise."
+    }
+  },
+  {
+    "result": "-5 – 0",
+    "min": -5,
+    "max": 0,
+    "condition_recovery": "You were instantly killed",
+    "effects": {
+      "1": "Your dead flesh hangs like a wet red blanket over your shattered skeleton.",
+      "2": "Your skull is crushed like an eggshell, cerebral fluid leaking out like yolk.",
+      "3": "Your rib cage collapsed, leading to an agonizing death gasping for air from ruptured lungs.",
+      "4": "Crushed bones and splattered brains betray your grisly end.",
+      "5": "A bone-shattering wound reveals your harsh demise.",
+      "6": "Your corpse is largely and intact and ready for a noble funeral."
+    }
+  },
+  {
+    "result": "1 – 5",
+    "min": 1,
+    "max": 5,
+    "condition_recovery": "You are mortally wounded. You die unless healed to 1 hp within 1 round. If you are healed, you need 1 month of bed rest.",
+    "effects": {
+      "1": "The bone-crushing impact drives you into a coma; you are alive but permanently unconscious and will starve unless force-fed.",
+      "2": "Your spine is broken at the neck (paralyzed, cannot move, fight, use items, or cast spells, Death save each month or die from complications).",
+      "3": "Both your legs are crushed and must be amputated (DEX reduced to 3 for AC purposes, two crutches required, movement reduced by 60’, cannot force march).",
+      "4": "Both your arms are crushed and must be amputated (cannot climb, use weapons or items, open locks, remove traps, or similar actions)",
+      "5": "You are permanently addled by a blow to the head (-2 on magical research and proficiency throws, -10% penalty on earned XP).",
+      "6": "Your jaw is irreparably broken, and all your teeth pulverized (cannot speak clearly, cast spells, or use magic items involving speech, -4 to reaction rolls)"
+    }
+  },
+  {
+    "result": "6 – 10",
+    "min": 6,
+    "max": 10,
+    "condition_recovery": "You are grievously wounded. You die unless healed to 1 hp within 1 turn. If you are healed, you need 2 weeks of bed rest.",
+    "effects": {
+      "1": "Your spine is shattered at the waist (as per legs crushed, cannot reproduce, and must make Death save each year or die from complications).",
+      "2": "Both your legs are lamed by bad breaks (crutch required, movement reduced by 60’, DEX reduced by 2/3 for AC purposes).",
+      "3": "One of your legs is crushed and must be amputated (crutch is required, movement reduced by 30’, DEX reduced by 1/3 for AC purposes).",
+      "4": "One of your arms is crushed and must be amputated (cannot climb, use shields, dual wield, or use two-handed weapon)",
+      "5": "A skull-shaking blow leaves you partly deaf and suffering ear-ringing head-aches (-2 to Listening throws, -2 to surprise rolls, -1 initiative).",
+      "6": "3d6 teeth are broken inward by a forceful blow, leaving you slurring and gap-toothed (-4 to all reaction rolls, -1 to initiative when  spellcasting)"
+    }
+  },
+  {
+    "result": "11 – 15",
+    "min": 11,
+    "max": 15,
+    "condition_recovery": "You are critically wounded. You die unless healed to 1 hp within 1 day. If you are healed, you need 1 week of bed rest.",
+    "effects": {
+      "1": "Your shattered ribs press on your lungs, causing constant fatigue and pain (must rest for 2 turns every 6, wilderness movement reduced by 1/3, cannot force march, CON reduced by 1/3)",
+      "2": "One of your legs is lamed by a bad break (movement reduced by 30’, DEX reduced by 1/3 for AC purposes)",
+      "3": "One of your knees is damaged (normal load reduced by 6 stone, cannot force march).",
+      "4": "One of your hands is crushed and must be amputated (cannot dual-wield or use two-handed weapons)",
+      "5": "One of your ear drums is popped, partially deafening you (-1 to Listening throws, -1 to surprise rolls).",
+      "6": "1d6 of your teeth are knocked out (-2 to reaction rolls with opposite sex and upper-class NPCs)."
+    }
+  },
+  {
+    "result": "16 – 20",
+    "min": 16,
+    "max": 20,
+    "condition_recovery": "You are in shock. You recover with 1 hp. You need magical healing and one night of bed rest, or 1 week of bed rest.",
+    "effects": {
+      "1": "Your nose is flattened, cheek crushed, and ear turned to cauliflower (gruesome scarring)",
+      "2": "Scrotum crushed or womb ruptured (cannot reproduce, -3 to reaction rolls if loss of manhood / womanhood is known)",
+      "3": "Your hips are fractured and the break heals poorly (cannot force march).",
+      "4": "1d3 fingers one hand are smashed into bloody pulp. (3 lost fingers on one hand makes hand useless.)",
+      "5": "Your ear is turned to cauliflower (minor scarring).",
+      "6": "Ghostly visions of lost companions flicker before your eyes as you awaken."
+    }
+  },
+  {
+    "result": "21 – 25",
+    "min": 21,
+    "max": 25,
+    "condition_recovery": "You were knocked out. You recover with 1 hp. You need magical healing or one night of bed rest.",
+    "effects": {
+      "1": "A broken rib heals badly and it aches when you move too fast (-1 to all initiative rolls).",
+      "2": "1d3 toes on one foot smashed into bloody pulp. (3 lost toes on one foot makes leg lame).",
+      "3": "The wrenching blow leaves you with lower back pain (normal load reduced by 3 stone).",
+      "4": "1d3 nails on a hand are blackened & ruinous (minor scarring).",
+      "5": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "6": "A vision of the afterlife haunts you, then fades as you awaken."
+    }
+  },
+  {
+    "result": "26+",
+    "min": 26,
+    "max": 1000000,
+    "condition_recovery": "You were just dazed. You recover immediately with 1hp. You do not need any bed rest.",
+    "effects": {
+      "1": "Your bones ache in bad weather (-1 to initiative in Frigid, Drizzly, or Rainy weather).",
+      "2": "Your nose is flattened and ear turned to cauliflower (notable scarring).",
+      "3": "Your nose is broken (minor scarring).",
+      "4": "Ghostly visions of lost companions flicker before your eyes as you awaken.",
+      "5": "A vision of the afterlife haunts you, then fades as you awaken.",
+      "6": "The Choosers of the Slain pass you by, and you awaken."
+    }
+  }
+]

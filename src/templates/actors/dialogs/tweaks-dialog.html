@@ -86,7 +86,7 @@
   <div class="form-group">
     <label>{{localize "ACKS.EncumbranceStone"}}</label>
     <div class="form-fields">
-      <input type="text" name="system.encumbrance.max" id="encumbrance" value="{{system.encumbrance.max}}"
+      <input type="text" data-tooltip="Force a value for the max encumbrance" name="system.encumbrance.forcemax" id="encumbrance" value="{{system.encumbrance.forcemax}}"
         data-dtype="Number" {{#unless user.isGM}}disabled{{/unless}} />
     </div>
   </div>

@@ -1,37 +1,43 @@
 export const ACKS = {
-  // label and icon are deprecated, see https://github.com/foundryvtt/foundryvtt/issues/10430
-  statusEffects : [
-    { acks: true, id: "surprised", name: 'Surprised', img: 'systems/acks/assets/icons/surprised.svg', duration: {rounds: 1} },
-    { acks: true, id: "overnumbering", name: 'OverNumbered', img: 'icons/svg/regen.svg' },
-    { acks: true, id: "done", name: 'Done', img: 'icons/svg/cancel.svg' },
-    { acks: true, id: "readied", name: 'Readied', img: 'icons/svg/ice-aura.svg' },
-    { acks: true, id: "delayed", name: 'Delayed', img: 'icons/svg/clockwork.svg' },
-    { acks: true, id: "slumbering", name: 'Slumbering', img: 'icons/svg/stoned.svg' },
+  hitDiceModifiers: {
+    "d4": {value: 0, label: "d4 (0)"},
+    "d6": {value: 2, label: "d6 (2)"},
+    "d8": {value: 4, label: "d8 (4)"},
+    "d10": {value: 6, label: "d10 (6)"},
+    "d12": {value: 8, label: "d12 (8)"}
+  },
+  statusEffects: [
+    { acks: true, id: "surprised", label: 'Surprised', icon: 'systems/acks/assets/icons/surprised.svg', duration: { rounds: 1 } },
+    { acks: true, id: "overnumbering", label: 'OverNumbered', icon: 'icons/svg/regen.svg' },
+    { acks: true, id: "done", label: 'Done', icon: 'icons/svg/cancel.svg' },
+    { acks: true, id: "readied", label: 'Readied', icon: 'icons/svg/ice-aura.svg' },
+    { acks: true, id: "delayed", label: 'Delayed', icon: 'icons/svg/clockwork.svg' },
+    { acks: true, id: "slumbering", label: 'Slumbering', icon: 'icons/svg/stoned.svg' },
   ],
-  surpriseTableAdventurers : {
+  surpriseTableAdventurers: {
     "forelos": {
-      "forelos": {monsterModifier: +10, adventurerModifier: +10, canEvade: false, description: "ACKS.surprise.forelos.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.los"},
-      "none": {monsterModifier: -1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.none"}
+      "forelos": { monsterModifier: +10, adventurerModifier: +10, canEvade: false, description: "ACKS.surprise.forelos.forelos" },
+      "fore": { monsterModifier: 1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.fore" },
+      "los": { monsterModifier: 0, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.los" },
+      "none": { monsterModifier: -1, adventurerModifier: +10, canEvade: true, description: "ACKS.surprise.forelos.none" }
     },
     "fore": {
-      "forelos": {monsterModifier: 10, adventurerModifier: +1, canEvade: false, description: "ACKS.surprise.fore.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.los"},
-      "none": {monsterModifier: -1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.none"}
+      "forelos": { monsterModifier: 10, adventurerModifier: +1, canEvade: false, description: "ACKS.surprise.fore.forelos" },
+      "fore": { monsterModifier: 1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.fore" },
+      "los": { monsterModifier: 0, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.los" },
+      "none": { monsterModifier: -1, adventurerModifier: 1, canEvade: true, description: "ACKS.surprise.fore.none" }
     },
     "los": {
-      "forelos": {monsterModifier: 10, adventurerModifier: 0, canEvade: false, description: "ACKS.surprise.los.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.los"},
-      "none": {monsterModifier: -1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.none"}
+      "forelos": { monsterModifier: 10, adventurerModifier: 0, canEvade: false, description: "ACKS.surprise.los.forelos" },
+      "fore": { monsterModifier: 1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.fore" },
+      "los": { monsterModifier: 0, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.los" },
+      "none": { monsterModifier: -1, adventurerModifier: 0, canEvade: true, description: "ACKS.surprise.los.none" }
     },
     "none": {
-      "forelos": {monsterModifier: 10, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.forelos"},
-      "fore": {monsterModifier: 1, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.fore"},
-      "los": {monsterModifier: 0, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.los"},
-      "none": {monsterModifier: -10, adventurerModifier: -10, canEvade: false, description: "ACKS.surprise.none.none"}
+      "forelos": { monsterModifier: 10, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.forelos" },
+      "fore": { monsterModifier: 1, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.fore" },
+      "los": { monsterModifier: 0, adventurerModifier: -1, canEvade: false, description: "ACKS.surprise.none.los" },
+      "none": { monsterModifier: -10, adventurerModifier: -10, canEvade: false, description: "ACKS.surprise.none.none" }
     }
   },
   scores: {
@@ -61,7 +67,7 @@ export const ACKS = {
     breath: "ACKS.saves.breath.long",
     spell: "ACKS.saves.spell.long",
   },
-  armor : {
+  armor: {
     unarmored: "ACKS.armor.unarmored",
     light: "ACKS.armor.light",
     heavy: "ACKS.armor.heavy",
@@ -208,4 +214,68 @@ export const ACKS = {
     high_encumbrance: 30,
     overburdened: 0
   },
+  mortal_treatment_timing: {
+    "2": { label: "Treatment within 1 Round (+2)", value: 2 },
+    "-3": { label: "Treatment within 1 Turn of Injury (-3)", value: -3 },
+    "-5": { label: "Treatment within 1 Hour of Injury (-5)", value: -5 },
+    "-8": { label: "Treatment within 1 Day of Injury (-8)", value: -8 },
+    "-10": { label: "Treatment more than 1 day after Injury (-10)", value: -10 }
+  },
+  mortal_spell_levels: {
+    "0": { label: "None (0)", value: 0 },
+    "1": { label: "1", value: 1 },
+    "2": { label: "2", value: 2 },
+    "3": { label: "3", value: 3 },
+    "4": { label: "4", value: 4 },
+    "5": { label: "5", value: 5 },
+    "6": { label: "6", value: 6 }
+  },
+  mortal_class_levels: {
+    "0": { label: "Not applicable", value: 0 },
+    "1": { label: "1 (+0)", value: 1 },
+    "2": { label: "2 (+1)", value: 2 },
+    "3": { label: "3 (+2)", value: 3 },
+    "4": { label: "4 (+2)", value: 4 },
+    "5": { label: "5 (+2)", value: 5 },
+    "6": { label: "6 (+3)", value: 6 },
+    "7": { label: "7 (+4)", value: 7 },
+    "8": { label: "8 (+4)", value: 8 },
+    "9": { label: "9 (+4)", value: 9 },
+    "10": { label: "10 (+5)", value: 10 },
+    "11": { label: "11 (+6)", value: 11 },
+    "12": { label: "12 (+6)", value: 12 },
+    "13": { label: "13 (+6)", value: 13 },
+    "14": { label: "14 (+7)", value: 14 }
+  },
+  mortal_healer_proficiency: {
+    "0": { label: "None (0)", value: 0 },
+    "1": { label: "1", value: 1 },
+    "2": { label: "2", value: 2 },
+    "3": { label: "3", value: 3 },
+    "4": { label: "4", value: 4 },
+    "5": { label: "5", value: 5 }
+  },
+  tampering_span: {
+    "2": { label: "Youthful (+2)", value: 2 },
+    "-5": { label: "Adult (-5)", value: -5 },
+    "-10": { label: "Old (-10)", value: -10 },
+    "-20": { label: "Ancient (-20)", value: -20 }
+  },
+  tampering_spine: {
+    "0": { label: "None (0)", value: 0 },
+    "-5": { label: "1 (-5)", value: -5 },
+    "-10": { label: "2 (-10)", value: -10 }
+  },
+  tampering_limbs: {
+    "0": { label: "None (0)", value: 0 },
+    "-2": { label: "1 (-2)", value: -2 },
+    "-4": { label: "2 (-4)", value: -4 },
+    "-6": { label: "3 (-6)", value: -6 },
+    "-8": { label: "4 (-8)", value: -8 },
+    "-10": { label: "5 (-10)", value: -10 },
+    "-12": { label: "6 (-12)", value: -12 },
+    "-14": { label: "7 (-14)", value: -14 },
+    "-16": { label: "8 (-16)", value: -16 },
+  }
+
 };

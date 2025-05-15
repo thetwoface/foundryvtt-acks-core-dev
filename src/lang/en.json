@@ -173,7 +173,7 @@
   "ACKS.movement.expedition": "Expedition",
   "ACKS.movement.stealth": "Stealth",
   "ACKS.movement.climb": "Climb",
-  "ACKS.movement.bonus": "Movement Bonus (ft)",
+  "ACKS.movement.bonus": "Movement Bonus",
 
   "ACKS.SurpriseOthers": "Surprise Others",
   "ACKS.AvoidSurprise": "Avoid Surprise",
@@ -378,6 +378,10 @@
   "ACKS.messages.Fumble": "<b>1! Automatic Miss!</b>",
   "ACKS.messages.Critical": "<b>20! Automatic Hit!</b>",
   "ACKS.messages.PayWages": "{name} paid {value} gp in wages",
+  "ACKS.messages.Table": "Table",
+  "ACKS.messages.Roll": "Roll",
+  "ACKS.messages.ConditionRecovery": "Condition & Recovery",
+  "ACKS.messages.Effect": "Effect",
 
   "ACKS.colors.green": "Green",
   "ACKS.colors.red": "Red",

@@ -45,6 +45,24 @@ export class AcksTamperingDialog extends FormApplication {
     return choices
   }
 
+  chooseAlignment(actor) {
+    if (!actor) {
+      return "tampering_neutral"
+    }
+    let alignment = actor.system?.details?.alignment?.toLowerCase() || "neutral";
+    console.log("Actor Alignment", actor, alignment)
+    if (alignment === "lawful") {
+      return "tampering_lawful"
+    } else if (alignment === "chaotic") {
+      return "tampering_chaotic"
+    } else if (alignment === "neutral") {
+      return "tampering_neutral"
+    } else {
+      console.log("Unknown alignment", actor.name, alignment)
+      return "tampering_neutral"
+    }
+  }
+
   /* -------------------------------------------- */
   async init(actor = undefined, tamperingData = undefined) {
 
@@ -53,7 +71,7 @@ export class AcksTamperingDialog extends FormApplication {
         title: "Roll Tampering with Mortality",
         willModifier: actor?.getWillModifier() || 0,
         tamperingChoices: this.buildTamperingTablesChoices(),
-        tamperingChoice: "tampering_neutral",
+        tamperingChoice: this.chooseAlignment(actor),
         spanChoices: CONFIG.ACKS.tampering_span,
         classLevelChoices: CONFIG.ACKS.mortal_class_levels,
         spineChoices: CONFIG.ACKS.tampering_spine,

@@ -64,14 +64,14 @@ export class AcksUtility {
 
   /* -------------------------------------------- */
   static displayWelcomeMessage() {
-    let welcomeMessage = game.settings.get('acks', 'welcome-message-12-2')
+    let welcomeMessage = game.settings.get('acks', 'welcome-message-13-0')
     console.log("WELCOME", welcomeMessage)
     if (!welcomeMessage) {
-      game.settings.set('acks', 'welcome-message-12-2', true)
+      game.settings.set('acks', 'welcome-message-13-0', true)
       // New dialog with full message
       let d = new Dialog({
         title: game.i18n.localize('ACKS.Welcome.Title'),
-        content: `<p>${game.i18n.localize('ACKS.Welcome.Message-12-2')}</p>`,
+        content: `<p>${game.i18n.localize('ACKS.Welcome.Message-13-0')}</p>`,
         buttons: {
           ok: {
             icon: '<i class="fas fa-check"></i>',

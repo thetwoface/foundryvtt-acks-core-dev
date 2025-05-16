@@ -16,6 +16,13 @@ export const registerMainSettings = async () => {
       type: Boolean,
       config: false
     });
+    game.settings.register("acks", "welcome-message-13-0", {
+      name: "welcome-message-13-0",
+      default: false,
+      scope: "world",
+      type: Boolean,
+      config: false
+    });
 
     game.settings.register("acks", "skip-dialog-key", {
       name: "Key used to skip roll dialog ",

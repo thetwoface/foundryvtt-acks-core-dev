@@ -2,7 +2,68 @@
 
 This is the change history for the FoundryVTT ACKS II core system module (search for *acks* in the Foundry installer).
 
+## Release 12.3.1 - Bugfixes and Improvements
+
+Bugfixes and improvements.
+
+### Improvements and Updates
+- **2025-05-31:** Party overview fixes and other small stuff (#130)  
+  Bugfixes and improvements including:
+  * Fix party overview visibility - Now party overview button is always visible
+  * Update party-sheet.hbs - Changed extension to HBS (Handlebars) and auto formatting
+  * Improve party overview - Now party overview will correctly show current / max encumbrance with a tooltip
+  * Update character-inventory-tab.html - Fixed encumbrance breakpoint indicators not showing on inventory tab
+  * Update utility.js - Fixed error in Foundry v13 when creating Mortal Wounds and Tampering buttons
+  * Fix tampering with mortality - Added Middle aged option to Tampering with Mortality dialogue
+- **2025-05-30:** Add code formatter (#128)  
+  * prettier setup
+  * auto formatting applied
+  * Create CONTRIBUTING.md
+
+### Bugfixes
+- **2025-05-29:** Fix #129 : color and CSS management changes in v13
+
+
+## Release 12.3.0 - Add Wounds and Woe
+commit aa046ff86a472c012381b8bea655aabaa666af23
+
+Adds the capability to roll on the Mortal Wounds and Tampering with Mortality tables.  
+Bugfixes and improvements.
+
+### Improvements and Updates
+- **2025-05-16:** Update verified version to FoundryVTT v13
+- **2025-05-16:** Add welcome message for 12.3
+- **2025-03-27:** Update party button
+- **2025-05-06:** Merge pull request #127 from thetwoface/foundry-v13-update  
+Update for Foundry v13
+- **2025-05-04:** Add full mortal wounds and tampering rolls, #126
+- **2025-05-03:** Add a new field to manage tweaked max encumbrance, #119
+- **2025-03-25:** added base movement mod  
+Add base movement mod
+- **2025-04-30:** Update party-sheet.js  
+Clean up
+- **2025-04-30:** Update acks.css  
+Temporary fix for saving throw label not fitting into the box
+- **2025-04-29:** Merge pull request #125 from thetwoface/master  
+Party button update moves the button from the Actors sidebar to the toolbar.
+- **2025-04-18:** Update party-sheet.js  
+Can now select all actors in party sheet add dialogue
+
+
+### Bugfixes
+- **2025-05-02:** Fix observer case, related  to #123
+- **2025-04-08:** reverted character only filter  
+Revert character only filter
+- **2025-03-17:** Merge pull request #1 from thetwoface/attack-error-fix  
+Attack error fix
+- **2025-03-17:** Fix attack error  
+Fixed error so player can now click on MELEE or RANGED field in his character sheet
+- **2025-04-30:** foundry v13 fixes  
+Fixing critical errors
+
+
 ## Release 12.2.6 - Updates and Bugfixes
+commit b97e4bd47d9346469027a99d226bbbf3a6363a30
 
 Updates for Movement, base movement, rolling Hit Dice, and added developer documentation.
 

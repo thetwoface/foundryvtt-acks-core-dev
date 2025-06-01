@@ -2,6 +2,14 @@
 
 This is the change history for the FoundryVTT ACKS II core system module (search for *acks* in the Foundry installer).
 
+## Release 12.3.2
+
+Fix a bug with the party-sheet functionality.
+
+### Bugfixes
+- **2025-06-01:** Update party-sheet.js (#131)  
+Remove unused code that was throwing the error.
+
 ## Release 12.3.1 - Bugfixes and Improvements
 
 Bugfixes and improvements.

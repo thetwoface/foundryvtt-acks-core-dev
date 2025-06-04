@@ -18,6 +18,7 @@ import { AcksUtility } from "./module/utility.js";
 import { AcksPolyglot } from "./module/apps/polyglot-support.js";
 import { AcksTableManager } from "./module/apps/table-manager.js";
 import { AcksCommands } from "./module/apps/acks-commands.js";
+import { AcksItemSheetV2 } from "./module/item/item-sheet-v2.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -69,6 +70,9 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("acks", AcksItemSheet, {
     makeDefault: true,
+  });
+  Items.registerSheet("acks", AcksItemSheetV2, {
+    makeDefault: false,
   });
 
   await preloadHandlebarsTemplates();

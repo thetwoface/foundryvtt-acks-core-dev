@@ -72,6 +72,7 @@ Hooks.once("init", async function () {
     makeDefault: true,
   });
   Items.registerSheet("acks", AcksItemSheetV2, {
+    types: ["item"],
     makeDefault: false,
   });
 

@@ -16,3 +16,4 @@ src/packs
 
 **/*.md
 **/*.html
+**/*.hbs

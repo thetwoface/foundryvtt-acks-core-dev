@@ -23,7 +23,9 @@ export class AcksItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
       submitOnChange: true,
       submitOnClose: true,
     },
-    actions: {},
+    actions: {
+      createEffect: AcksItemSheetV2.#addEffect,
+    },
   };
 
   /** @override */
@@ -55,7 +57,7 @@ export class AcksItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
     },
     effects: {
       template: "systems/acks/templates/items/v2/item/effects.hbs",
-      templates: ["systems/acks/templates/items/partials/item-generic-effects-tab.html"],
+      templates: ["systems/acks/templates/items/v2/common/item-active-effects.hbs"],
     },
   };
 
@@ -98,6 +100,18 @@ export class AcksItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
       default:
     }
     return context;
+  }
+
+  /**
+   * Handle adding new active effect
+   * @this {AcksItemSheetV2}
+   * @param {Event} event
+   * @param {HTMLElement} target
+   */
+  static #addEffect(event, target) {
+    debugger;
+    const aeCls = getDocumentClass("ActiveEffect");
+    aeCls.createDialog({}, { parent: this.document });
   }
 
   /**

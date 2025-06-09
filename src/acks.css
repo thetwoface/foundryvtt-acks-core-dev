@@ -1676,6 +1676,13 @@
 
 .sheet.acks.item-v2 .sheet-header .middle {
   flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.sheet.acks.item-v2 .sheet-header .middle input[type=text]{
+  font-size: var(--font-size-28);
+  line-height: var(--font-size-28);
 }
 
 .sheet.acks.item-v2 .sheet-header .flexrow {

@@ -2,6 +2,15 @@ import { AcksMortalWoundsDialog } from "./dialog/mortal-wounds.js";
 import { AcksTamperingDialog } from "./dialog/tampering-mortality.js";
 
 export class AcksUtility {
+  /**
+   * Checks for minimum Foundry version
+   * @param {number} minVersion - major Foundry Version, i.e. 13
+   * @return {boolean} true if version is minVersion or more
+   */
+  static isMinVersion(minVersion) {
+    return game.release.generation >= minVersion;
+  }
+
   /* -------------------------------------------- */
   static updateWeightsLanguages() {
     for (let a of game.actors) {
@@ -46,7 +55,7 @@ export class AcksUtility {
       let cr = new AcksTamperingDialog();
       cr.init();
     });
-    const $html = game.release.generation < 13 ? html : $(html);
+    const $html = AcksUtility.isMinVersion(13) ? $(html) : html;
     $html.find(".header-actions").after(buttonTampering);
     $html.find(".header-actions").after(button);
   }
@@ -147,6 +156,7 @@ export class AcksUtility {
 
     // Iterate over active effects, classifying them into categories
     for (let e of effects) {
+      e.updateDuration();
       if (e.disabled) categories.inactive.effects.push(e);
       else if (e.isTemporary) categories.temporary.effects.push(e);
       else categories.passive.effects.push(e);

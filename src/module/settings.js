@@ -39,7 +39,7 @@ export const registerMainSettings = async () => {
     hint: game.i18n.localize("ACKS.Setting.colorFriendlies"), // A description of the registered setting and its behavior
     scope: "world", // "world" = sync to db, "client" = local storage
     config: true, // false if you dont want it to show in module config
-    type: String, // Number, Boolean, String,
+    type: new foundry.data.fields.ColorField(), // Foundry will render corresponding controls itself
     requiresReload: true,
     default: "#afc2ee",
     onChange: (value) => {
@@ -47,30 +47,17 @@ export const registerMainSettings = async () => {
     },
   });
 
-  Hooks.on("renderSettingsConfig", (app, el, data) => {
-    let col = game.settings.get("acks", "color-friendlies");
-    el.find('[name="acks.color-friendlies"]')
-      .parent()
-      .append(`<input type="color" value="${col}" data-edit="acks.color-friendlies">`);
-  });
-
   await game.settings.register("acks", "color-hostiles", {
     name: game.i18n.localize("ACKS.Setting.colorHostiles"), // The name of the setting in the settings menu
     hint: game.i18n.localize("ACKS.Setting.colorHostiles"), // A description of the registered setting and its behavior
     scope: "world", // "world" = sync to db, "client" = local storage
     config: true, // false if you dont want it to show in module config
-    type: String, // Number, Boolean, String,
+    type: new foundry.data.fields.ColorField(), // Foundry will render corresponding controls itself
     requiresReload: true,
     default: "#eb7272",
     onChange: (value) => {
       console.log(value);
     },
-  });
-  Hooks.on("renderSettingsConfig", (app, el, data) => {
-    let col = game.settings.get("acks", "color-hostiles");
-    el.find('[name="acks.color-hostiles"]')
-      .parent()
-      .append(`<input type="color" value="${col}" data-edit="acks.color-hostiles">`);
   });
 
   /*game.settings.register("acks", "initiative", {

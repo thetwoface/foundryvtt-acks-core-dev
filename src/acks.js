@@ -4,7 +4,7 @@ import { AcksActorSheetCharacter } from "./module/actor/character-sheet.js";
 import { AcksActorSheetMonster } from "./module/actor/monster-sheet.js";
 import { preloadHandlebarsTemplates } from "./module/preloadTemplates.js";
 import { AcksActor } from "./module/actor/entity.js";
-import { AcksItem } from "./module/item/entity.js";
+import { AcksItem } from "./module/documents/item.js";
 import { ACKS } from "./module/config.js";
 import { registerMainSettings } from "./module/settings.js";
 import { registerHelpers } from "./module/helpers.js";
@@ -19,6 +19,13 @@ import { AcksPolyglot } from "./module/apps/polyglot-support.js";
 import { AcksTableManager } from "./module/apps/table-manager.js";
 import { AcksCommands } from "./module/apps/acks-commands.js";
 import AcksItemSheetV2 from "./module/item/item-sheet-v2.mjs";
+import LanguageData from "./module/data/item/language-data.mjs";
+import MoneyData from "./module/data/item/money-data.mjs";
+import ItemData from "./module/data/item/item-data.mjs";
+import WeaponData from "./module/data/item/weapon-data.mjs";
+import ArmorData from "./module/data/item/armor-data.mjs";
+import SpellData from "./module/data/item/spell-data.mjs";
+import AbilityData from "./module/data/item/ability-data.mjs";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -55,6 +62,15 @@ Hooks.once("init", async function () {
 
   CONFIG.Actor.documentClass = AcksActor;
   CONFIG.Item.documentClass = AcksItem;
+  CONFIG.Item.dataModels = {
+    language: LanguageData,
+    money: MoneyData,
+    item: ItemData,
+    weapon: WeaponData,
+    armor: ArmorData,
+    spell: SpellData,
+    ability: AbilityData,
+  };
   CONFIG.Combat.documentClass = AcksCombatClass;
 
   // Register sheet application classes

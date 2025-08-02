@@ -411,10 +411,23 @@ export class AcksActor extends Actor {
 
     let toPush = [];
     if (this.system?.languages?.value) {
-      for (let langName of this.system?.languages?.value) {
+      for (let langName of this.system.languages.value) {
+        // Do we have existing language?
+        if (this.items.find((i) => i.name.toLowerCase() == langName.toLowerCase() && i.type == "language")) {
+          continue;
+        }
         let lang = langList.find((i) => i.name.toLowerCase() == langName.toLowerCase());
         if (lang) {
           toPush.push(lang);
+        } else {
+          // Create a new dynamic language item
+          toPush.push({
+            name: langName,
+            type: "language",
+            system: {
+              description: ""
+            },
+          });
         }
       }
       if (toPush.length > 0) {

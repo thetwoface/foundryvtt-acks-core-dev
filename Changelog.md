@@ -2,18 +2,89 @@
 
 This is the change history for the FoundryVTT ACKS II core system module (search for *acks* in the Foundry installer).
 
+## Release 12.3.6
+commit eb1c5d34bf525af40b462334fa8f32310acce091
+
+There are two major areas of improvement within this release:
+1. Convert internal item structure to use Foundry v12's DataModel.
+2. Continued migration to App v2 for the UI.
+
+### Bugfixes
+- **2025-08-02:** Fix language import.  
+Fixed a long-standing bug having to do with migrating Language items from the older character sheets to the ACKS II character sheets.
+
+### Improvements and Updates
+- **2025-08-03:** Remove legacy configuration for Descending AC (#143)  
+ACKS II has ascending AC so removed configuration, variables, and calculations for the unused case of descending AC.
+- **2025-08-02:** Migrate Items to v12 Data Model (#141)  
+Replace template with data model definitions.  
+Rename files; Add new Data Models for the following:  
+  * basic Item
+  * Language Item
+  * Money Item
+  * Weapon Item
+  * Armor Item
+  * Spell Item
+  * Ability Item
+- **2025-07-10:** Weapon sheet v2 (#140)  
+Continued revision of the v2 Item Sheets.  
+  * Add weapon sheet v2; small refactoring of styles; moved weight and cost into header
+  * Update settings.js: fixed settings error in Foundry v13
+  * Update settings.js: Used Foundry's ColorField data type instead of String - Foundry will handle rendering of HTML controls itself.
+- **2025-06-30:** More v2 item sheets (#138)  
+Continued revision of the v2 Item Sheets.  
+  * Language Sheet v2: added language sheet v2. Also now Effects tab is removed for some items that can't have effects, like language and money
+  * Money Sheet v2
+  * Ability Sheet v2
+  * Spell Sheet v2
+  * Sheet height fix: Fixed height for character's inventory, spell, ability and hireling tabs, monster's attributes tab
+- **2025-06-25:** Item armor sheet v2 (#137)  
+Add App V2 version of armor sheet:  
+  * Armor sheet v2
+  * Armor types update
+  * Add Very Light and Medium armor types
+- **2025-06-23:** Item Sheet v2 (#136)  
+Begin migrating to App V2 interface.  
+  * Add Item Sheet v2 - Only for Foundry v13+.  
+    For item of type "item" (and clothing) for now.
+
+## Release 12.3.5
+commit 420c92f035fc9acf49678fab052b86bb2f07b4dc
+
+Bugfixes for FoundryVTT v13 compatibility
+### Bugfixes
+- **2025-06-14:** fixed active effect error in foundry v13 (#135)  
+
+## Release 12.3.4
+commit cf50b993325d1e2982941467dba450a9b65e6ac6
+
+Improve the appearance of the ACKS System Module on Foundry & Forge sites.
+### Improvements and Updates
+- **2025-06-11:** Update to add some Manifest+ fields. Closes #133.  
+- **2025-06-06:** Add ACKS II VTT image for use by Foundry & Forge.  
+
+## Release 12.3.3
+commit b3108027baa8db78446c4984581676db99357817
+
+Bugfixes for FoundryVTT v13 compatibility
+### Bugfixes
+- **2025-06-04:** Small v13 fixes (#132)  
+* Update acks.css: Make actor buttons in combat tracker wrap when in Foundry v13
+* Update monster-attributes-tab.html: Fix issue where if click text field to change HD of a monster, you get the Hit Dice roll dialogue instead; added Dice icons to HD and Throw sections of monster sheet to indicate you can click on them to roll;
+* Update config.js: Fix attributes order
+
 ## Release 12.3.2
+commit 694b8133193a509d68d595f99ba116800065dd75
 
 Fix a bug with the party-sheet functionality.
-
 ### Bugfixes
 - **2025-06-01:** Update party-sheet.js (#131)  
 Remove unused code that was throwing the error.
 
-## Release 12.3.1 - Bugfixes and Improvements
+## Release 12.3.1
+commit 2191720fbbf8f9cb91b59ab905f5b40cc10c1117
 
 Bugfixes and improvements.
-
 ### Improvements and Updates
 - **2025-05-31:** Party overview fixes and other small stuff (#130)  
   Bugfixes and improvements including:
@@ -32,9 +103,10 @@ Bugfixes and improvements.
 - **2025-05-29:** Fix #129 : color and CSS management changes in v13
 
 
-## Release 12.3.0 - Add Wounds and Woe
+## Release 12.3.0
 commit aa046ff86a472c012381b8bea655aabaa666af23
 
+**Add Wounds and Woe:**  
 Adds the capability to roll on the Mortal Wounds and Tampering with Mortality tables.  
 Bugfixes and improvements.
 
@@ -70,9 +142,10 @@ Fixed error so player can now click on MELEE or RANGED field in his character sh
 Fixing critical errors
 
 
-## Release 12.2.6 - Updates and Bugfixes
+## Release 12.2.6
 commit b97e4bd47d9346469027a99d226bbbf3a6363a30
 
+Updates and Bugfixes  
 Updates for Movement, base movement, rolling Hit Dice, and added developer documentation.
 
 ### Updates
@@ -86,7 +159,8 @@ Updates for Movement, base movement, rolling Hit Dice, and added developer docum
 - **2025-04-10:** Fix #123 - Avoid a user permissions issue if non-GM is first login after updating ACKS game system versions.
 - **2025-03-31:** Merge Hit Dice pull request #113 from wyatt-kinkade/master -- Fix to issue #94
 
-## Release 12.2.5 - Mainly a Bugfix Release
+## Release 12.2.5
+Mainly a Bugfix Release
 
 ### Updates
 
@@ -105,7 +179,8 @@ Updates for Movement, base movement, rolling Hit Dice, and added developer docum
 - **2025-03-21:** Update Changelog for release.  
 Rename Changelog.txt to Markdown (Changelog.md).
 
-## Release 12.2.4 - Updates to Initiative and Surprise
+## Release 12.2.4
+Updates to Initiative and Surprise
 
 ### Updates
 - Move the remaining ACKS (original) packs into an ACKS Rulebook folder. This separates each of the ACKS content areas by publication (e.g. Original Rules, Revised Rules, Judges Journal, Monstrous Manual, and so on)
@@ -147,7 +222,8 @@ Rename Changelog.txt to Markdown (Changelog.md).
 
 git log --pretty=changelog 0039810e5637b9c87683ee13be9e6213193b5424..84c67bdb3dc10116e0dee942d8c76903c4bc0d81
 
-## Release 12.2.3 - Compendium Updates
+## Release 12.2.3
+Compendium Updates
 
 ### Updates
 - Add new ACKS II Adventuring Equipment table.
@@ -180,7 +256,8 @@ Remove obsoleted equipment items & fix folder names.
 
 Git commit ID: 0039810e5637b9c87683ee13be9e6213193b5424
 
-## Release 12.2.2 - Bugfix Release
+## Release 12.2.2
+Bugfix Release
 
 ### Updates
 None
@@ -194,7 +271,8 @@ None
 
 Git commit ID: be9d090c77fc4b92be9699e5cca30f4642684b35
 
-## Release 12.2.1 - Bugfix Release
+## Release 12.2.1
+Bugfix Release
 
 ### Updates
 - Add / restore support for the Polyglot module that had worked in ACKS (original).
@@ -223,8 +301,8 @@ Git commit ID: be9d090c77fc4b92be9699e5cca30f4642684b35
 
 Git commit ID: 72d583b058ae3f68f54bd9d14781355644259bd9
 
-## Release 12.2.0 - Update for ACKS II
-
+## Release 12.2.0
+### Update for ACKS II
 Major drop of ACKS II updates and corrections
 
 ### New Features

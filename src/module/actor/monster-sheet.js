@@ -1,4 +1,3 @@
-import { AcksActor } from "./entity.js";
 import { AcksActorSheet } from "./actor-sheet.js";
 
 // Define the Item sheet default options

@@ -3,7 +3,7 @@ import { AcksItemSheet } from "./module/item/item-sheet.js";
 import { AcksActorSheetCharacter } from "./module/actor/character-sheet.js";
 import { AcksActorSheetMonster } from "./module/actor/monster-sheet.js";
 import { preloadHandlebarsTemplates } from "./module/preloadTemplates.js";
-import { AcksActor } from "./module/actor/entity.js";
+import { AcksActor } from "./module/documents/actor.js";
 import { AcksItem } from "./module/documents/item.js";
 import { ACKS } from "./module/config.js";
 import { registerMainSettings } from "./module/settings.js";

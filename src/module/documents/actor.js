@@ -425,7 +425,7 @@ export class AcksActor extends Actor {
             name: langName,
             type: "language",
             system: {
-              description: ""
+              description: "",
             },
           });
         }

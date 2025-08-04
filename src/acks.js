@@ -26,6 +26,8 @@ import WeaponData from "./module/data/item/weapon-data.mjs";
 import ArmorData from "./module/data/item/armor-data.mjs";
 import SpellData from "./module/data/item/spell-data.mjs";
 import AbilityData from "./module/data/item/ability-data.mjs";
+import CharacterData from "./module/data/actor/character-data.mjs";
+import MonsterData from "./module/data/actor/monster-data.mjs";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -61,6 +63,11 @@ Hooks.once("init", async function () {
   registerMainSettings();
 
   CONFIG.Actor.documentClass = AcksActor;
+  CONFIG.Actor.dataModels = {
+    character: CharacterData,
+    monster: MonsterData,
+  };
+
   CONFIG.Item.documentClass = AcksItem;
   CONFIG.Item.dataModels = {
     language: LanguageData,

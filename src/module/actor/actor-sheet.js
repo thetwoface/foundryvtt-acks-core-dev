@@ -17,7 +17,7 @@ export class AcksActorSheet extends ActorSheet {
     // Prepare owned items
     this._prepareItems(data);
     data.henchmen = this.actor.getHenchmen();
-    data.languages = this.actor.getLanguages();
+    data.languages = this.actor.getLanguages(); //TODO: why do we override what was set in _prepareItems?
     data.description = await TextEditor.enrichHTML(this.object.system.details.description, { async: true });
     data.notes = await TextEditor.enrichHTML(this.object.system.details.notes, { async: true });
     data.totalWages = this.actor.getTotalWages();
